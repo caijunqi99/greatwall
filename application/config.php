@@ -54,9 +54,9 @@ return [
     // +----------------------------------------------------------------------
 
     // 默认模块名
-    'default_module'         => 'home',
+    'default_module'         => 'admin',
     // 禁止访问模块
-    'deny_module_list'       => ['common'],
+    'deny_module_list'       => ['common','home'],
     // 默认控制器名
     'default_controller'     => 'Index',
     // 默认操作名
