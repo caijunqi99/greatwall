@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no"/>
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1" />
+<title>附近店铺</title>
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link rel="stylesheet" type="text/css" href="../css/store_nearby.css">
+<link rel="stylesheet" type="text/css" href="../css/nctouch_member.css">
+<link rel="stylesheet" type="text/css" href="../css/nctouch_common.css">
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=22bb7221fc279a484895afcc6a0bb33a"></script>
+</head>
+<body>
+<header id="header">
+    <div class="head-info">
+        <div class="location">
+            <div class="address">
+                <a href="javascript:void(0)" id="pos_info">
+                    <p class="address-text"><i class="bottom-jiantou"></i><span class="pos_area"></span><span class="pos_address"></span></p>
+                    
+                </a>
+            </div>
+        </div>
+
+        <div class="search-header">
+            <div class="search-box">
+               	<i class='icon_search' onclick="get_store()"></i>
+                    <input type="text" name="keyword" value="" placeholder="搜索附近门店" class="keyword">                
+                
+            </div>            
+        </div>
+        
+    </div>
+</header>
+    <div id="mymap"></div>
+<div class="nearshop-page">
+    <div class="head-title">
+        <h2><i class="icon-store"></i>附近门店</h2>
+    </div>
+    <div id="shop-nearby"></div>
+    
+</div>
+<div class="pre-loading" style="display: none">
+  <div class="pre-block">
+    <div class="spinner"><i></i></div>
+    分类数据读取中... </div>
+</div>
+<footer id="footer" class="fixed-Width"></footer>
+</body>
+<script type="text/html" id="shop-list">
+	<ul>
+<% if(store_list.length>0){ %>
+            <% for (var i in store_list) { var gc = store_list[i]; %>
+        <li class="store-info">
+            <div class="basic-info">
+                <div class="store-left">
+                    <a href="store.html?store_id=<%= gc.store_id %>">
+                        <img src="<%=gc.store_logo;%>"/>
+                    </a>
+                </div>
+                <div class="store-right">
+                    <a href="" class="shop_link">
+                        <div class="store-title">
+                            <span class="store-name"><%=gc.store_name;%></span>
+                            <% if (gc.is_own_shop){ %><span class="manage_mode">自营</span>	<% } %>
+                            <span class="store-distance"><%=gc.distance;%>km</span>
+                        </div>
+                        <div class="store-range">
+                            <%=gc.area_info;%>
+                        </div>
+                        <div class="store-notice">
+                            <%=gc.store_address;%>
+                        </div>
+                    </a>
+                    <div class="suggest-goods-list">
+                        <ul>
+							<% for (var j in gc.goods_list) { var goods = gc.goods_list[j]; %>
+                            <li>
+                                <a href="product_detail.html?goods_id=<%=goods.goods_id;%>">
+                                    <p><img src="<%=goods.goods_image;%>"/></p>
+                                    <p class="goods_price">￥<%=goods.goods_price;%></p>
+                                </a> 
+                            </li>
+                           <% } %>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear_both"></div>
+            </div>
+        </li>
+        <% } %>
+<% }else{ %>
+<li style="padding: 2rem 0;text-align: center;color: #ddd;">没有找到门店</li>
+<% } %>
+
+    </ul>
+</script>
+<script type="text/javascript" src="../js/config.js"></script>
+<script type="text/javascript" src="../js/zepto.min.js"></script>
+<script type="text/javascript" src="../js/template.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/tmpl/store_nearby.js"></script>
+<script type="text/javascript" src="../js/tmpl/footer.js"></script>
+</html>

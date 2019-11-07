@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1" />
+<title>推广海报</title>
+<link rel="stylesheet" type="text/css" href="../../css/base.css">
+<link rel="stylesheet" type="text/css" href="../../css/nctouch_member.css">
+</head>
+<body>
+<header id="header">
+  <div class="header-wrap">
+    <div class="header-l"> <a href="javascript:history.go(-1)"> <i class="back"></i> </a> </div>
+    <div class="header-title">
+      <h1>推广海报</h1>
+    </div>
+  </div>
+</header>
+    <style>
+    .nctouch-main-layout p{font-size: 0.7rem;text-align: left;padding:10px;word-break: break-all;}
+    .nctouch-main-layout p.label{padding-top: 10px;font-weight: bold;font-size: 0.8rem;color:gray}
+    .nctouch-main-layout p.center{text-align: center}
+    .nctouch-main-layout #foo{border: 1px solid #eee;background: #fff;line-height: 1rem;padding:0.2rem;width: 80%}
+    .nctouch-main-layout .btn{line-height: 1.4rem;height: 1.4rem}
+    </style>
+<div class="nctouch-main-layout feedback">
+    <p class='label'>邀请注册链接</p>
+    <p><input value='' id='foo' type='text'><a href="javascript:void" class='btn' data-clipboard-action="copy" data-clipboard-target="#foo">复制</a></p>
+    
+    <div id="poster" style="text-align: center;"></div>
+</div>
+<footer id="footer" class="bottom"></footer>
+
+<script type="text/javascript" src="../../js/config.js"></script> 
+<script type="text/javascript" src="../../js/zepto.min.js"></script> 
+<script type="text/javascript" src="../../js/common.js"></script> 
+<script type="text/javascript" src="../../js/template.js"></script>
+<script type="text/javascript" src="../../js/simple-plugin.js"></script> 
+<script type="text/javascript" src="../../js/tmpl/footer.js"></script> 
+<script type="text/javascript" src="../../../static/plugins/clipboard.min.js"></script> 
+<script type="text/javascript" src="../../js/tmpl/member_inviter_poster.js"></script>
+<script>
+$(function(){
+    var clipboard = new Clipboard('.btn');
+
+    clipboard.on('success', function(e) {
+        alert('复制成功');
+    });
+
+})
+</script>
+</body>
+<script type="text/html" id="member_poster">
+    
+    
+    <p class='label'>推广公众号二维码</p>
+    <p class='center'>
+        <% if(refer_qrcode_weixin){ %>
+        <img src='<%=refer_qrcode_weixin;%>' style='max-width:50%;' />
+        <% }else{ %>
+        生成二维码失败<br><%=wx_error_msg;%>
+        <%}%>
+    </p>
+    <p class='label'>推广注册海报</p>
+    <p class='center'><img src='<%=refer_qrcode_logo;%>' style='max-width:80%;' /></p>
+</script>
+</html>
