@@ -16,23 +16,38 @@ class Index extends MobileMall {
      */
     
     public function index() {
-        $condition['a.ap_id']=array('in',array('14','13'));
-        $condition['n.ap_isuse']='1';
-        $data=model('adv')-> mbadvlist($condition,'a.adv_sort desc');
-        $adname=array('14'=>'adv_list','13'=>'home2');//预留一部分扩充adv_list/home1/home2/home3/home4
-       foreach ($data as $key=>$val) {
-           $val['adv_code']=adv_image($val['adv_code']);
-           $datas[$adname[$val['ap_id']]][] = $val;
-       }
-       //获取随机推荐的商品
-        $goods=model('goods')->getGoodsCommendList(1,8);
-       foreach ($goods as $k=>$val){
-           $goods[$k]['goods_image']=goods_thumb($val);
-       }
-       $datas['goods']=$goods;
+       
+        $adv = model('Appadv')->getAllAppAdv();
+        $adv = array_group_by($adv,'ap_id');
+
+        //轮播图
+        $datas['chart']      = $adv[1];
+        //促销
+        $datas['promotion']  = $adv[2];
+        //首页横图广告
+        $datas['transverse'] = $adv[4];
+        //导航栏目
+        $datas['menu']       = $adv[5];
+        //折扣栏
+        $datas['discount']   = $adv[6];
+        
         output_data($datas);
     }
 
+    /**
+     * 获取首页推荐商品
+     * @DateTime 2019-11-12
+     * @return   [type]     [description]
+     */
+    public function getCommendGoods(){
+        $limit = input('limit')?input('limit'):6;
+        //获取随机推荐的商品
+        $goods=model('goods')->getGoodsCommendListBymall($limit);
+        foreach ($goods as $k=>$val){
+           $goods[$k]['goods_image']=goods_thumb($val);
+        }
+        output_data($goods);
+    }
     /**
      * android客户端版本号
      */

@@ -40,7 +40,7 @@ class Connect extends MobileMall
             $log_type = $_GET['type'];//短信类型:1为注册,2为登录,3为找回密码
             $model_sms_log = Model('smslog');
             $condition = array();
-            $condition['log_ip'] = getIp();
+            $condition['log_ip'] = request()->ip();
             $condition['log_type'] = $log_type;
             $sms_log = $model_sms_log->getSmsInfo($condition);
             if(!empty($sms_log) && ($sms_log['add_time'] > TIMESTAMP-10)) {//同一IP十分钟内只能发一条短信
@@ -94,7 +94,7 @@ class Connect extends MobileMall
                     if($result){
                         $log_array['log_phone'] = $phone;
                         $log_array['log_captcha'] = $captcha;
-                        $log_array['log_ip'] = getIp();
+                        $log_array['log_ip'] = request()->ip();
                         $log_array['log_msg'] = $log_msg;
                         $log_array['log_type'] = $log_type;
                         $log_array['add_time'] = time();

@@ -51,7 +51,7 @@
           </td>
           <td class="w48 sort"><span title="{$Think.lang.ds_editable}" ajax_branch="goods_class_sort" datatype="number" fieldid="{$v.gc_id}" fieldname="gc_sort" ds_type="inline_edit" class="editable ">{$v.gc_sort}</span></td>
           <td class="w50pre name">
-          <span title="{$Think.lang.ds_editable}" required="1" fieldid="{$v.gc_id}" ajax_branch="goods_class_name" fieldname="gc_name" ds_type="inline_edit" class="editable ">{$v.gc_name}</span>
+          <span title="{$Think.lang.ds_editable} -- 分类ID {$v.gc_id}" required="1" fieldid="{$v.gc_id}" ajax_branch="goods_class_name" fieldname="gc_name" ds_type="inline_edit" class="editable ">{$v.gc_name}</span>
           <a class="btn-add-nofloat marginleft" href="{:url('Goodsclass/goods_class_add',['gc_parent_id'=>$v.gc_id])}"><span>{$Think.lang.ds_add_sub_class}</span></a>
           </td>
           <td>{$v.type_name}</td>

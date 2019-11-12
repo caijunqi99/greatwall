@@ -9,6 +9,7 @@ $lang['db_total_num'] = '共';
 $lang['db_tablenum_record'] = '张记录';
 $lang['db_total_size'] = '共计';
 $lang['db_database_table'] = '数据库表';
+$lang['db_comment'] = '数据表备注';
 $lang['db_data_length'] = '记录条数';
 $lang['db_occupy_space'] = '占用空间';
 $lang['db_code'] = '编码';

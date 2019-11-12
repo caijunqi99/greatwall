@@ -397,8 +397,8 @@ class Goods extends Model {
      * @param int $limit 限制
      * @return array
      */
-    public function getGoodsCommendList($store_id, $limit = 5) {
-        $goods_commend_list = $this->getGoodsOnlineList(array('store_id' => $store_id, 'goods_commend' => 1), 'goods_id,goods_name,goods_advword,goods_image,store_id,goods_promotion_price,goods_price', 0, '', $limit, 'goods_commonid');
+    public function getGoodsCommendList($store_id, $limit = 5,$pages=0) {
+        $goods_commend_list = $this->getGoodsOnlineList(array('store_id' => $store_id, 'goods_commend' => 1), 'goods_id,goods_name,goods_advword,goods_image,store_id,goods_promotion_price,goods_price', $pages, '', $limit, 'goods_commonid');
         if (!empty($goods_id_list)) {
             $tmp = array();
             foreach ($goods_id_list as $v) {
@@ -407,6 +407,14 @@ class Goods extends Model {
             $goods_commend_list = $this->getGoodsOnlineList(array('goods_id' => array('in', $tmp)), 'goods_id,goods_name,goods_advword,goods_image,store_id,goods_promotion_price', 0, '', $limit);
         }
         return $goods_commend_list;
+    }
+
+    public function getGoodsCommendListBymall($limit=6,$page=1){
+        $condition['goods_state'] = self::STATE1;
+        $condition['goods_verify'] = self::VERIFY1;
+        $goods = $this->getGoodsList($condition,'goods_id,goods_name,goods_advword,goods_image,store_id,goods_promotion_price,goods_price','', '',0, $limit);
+        return $goods;
+
     }
 
     /**

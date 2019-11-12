@@ -6,6 +6,33 @@ require __DIR__ . '/common_global.php';
 require __DIR__ . '/common_goods.php';
 /* 图片上传、生成缩略图、删除等操作调用 */
 require __DIR__ . '/common_upload.php';
+
+
+
+
+/**
+ * 二维数组按照某一键值分组
+ * @DateTime 2019-11-12
+ * @param    array      $arr [description]
+ * @param    string     $key [description]
+ * @return   [type]          [description]
+ */
+function array_group_by($arr=array(), $key=''){
+    $grouped = array();
+    foreach ($arr as $value) {
+        $grouped[$value[$key]][] = $value;
+    }
+    if (func_num_args() > 2) {
+        $args = func_get_args();
+        foreach ($grouped as $key => $value) {
+            $parms = array_merge($value, array_slice($args, 2, func_num_args()));
+            $grouped[$key] = call_user_func_array('array_group_by', $parms);
+        }
+    }
+    return $grouped;
+}
+
+
 /*
  * 更换数组的键值 为了应对 ->key
  */

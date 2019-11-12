@@ -65,12 +65,14 @@ $lang['app_adv_typedate'] ='操作值';
 //操作类型
 $lang['appadv_adv_form_choose_type'] = '请选择';
 $lang['appadv_adv_form_goods'] = '商品';
+$lang['appadv_adv_form_goods_class'] = '分类';
 $lang['appadv_adv_form_store'] = '店铺';
 $lang['appadv_adv_form_groupbuy'] = '抢购活动';
 $lang['appadv_adv_form_article'] = '文章';
 $lang['appadv_adv_form_url'] = '链接';
 $lang['appadv_adv_form_type'] ='操作类型一共四种，对应点击以后的操作';
 $lang['appadv_adv_form_goods_type'] = '商品编号会跳转到指定的商品详细页面，输入框填写商品编号。';
+$lang['appadv_adv_form_goods_class_type'] = '商品的分类类型，输入框填写商品分类ID,可在商品分类页鼠标指向分类名称获取';
 $lang['appadv_adv_form_store_type'] ='店铺编号会跳转到指定的店铺页面，输入框填写店铺编号';
 $lang['appadv_adv_form_groupbuy_type'] = '抢购编号会跳转到指定的抢购活动，输入框填写抢购编号。';
 $lang['appadv_adv_form_article_type'] = '文章编号会跳转到指定文章内容，输入框填写文章编号。';

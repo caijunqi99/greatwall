@@ -145,4 +145,22 @@ class Appadv extends Model
         @unlink(BASE_UPLOAD_PATH . DS . ATTACH_APPADV. DS .$adv['adv_code']);
         return db('appadv')->where($condition)->delete();
     }
+
+    /**
+     * 获取所有app广告
+     * @DateTime 2019-11-12
+     * @return   [type]     [description]
+     */
+    public function getAllAppAdv(){
+        $result = db('appadvposition')
+                    ->alias('a')
+                    ->join('__APPADV__ v', 'a.ap_id = v.ap_id', 'LEFT')
+                    ->field('a.ap_id,v.adv_title,v.adv_id,v.adv_type,v.adv_code')
+                    ->where(['a.ap_isuse'=>1,'v.adv_enabled'=>1])
+                    ->select();
+        foreach ($result as $key => $value) {
+            $result[$key]['adv_code']=get_appadv_code($value['adv_code']);
+        }
+        return $result;
+    }
 }

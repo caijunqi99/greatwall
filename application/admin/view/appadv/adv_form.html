@@ -71,6 +71,7 @@
             <td class="vatop rowform">
               <select name="adv_type" id="adv_type">
                   <option value="">{$Think.lang.appadv_adv_form_choose_type}</option>
+                  <option value="class" {if $adv.adv_type=="class"}selected='selected'{/if}>{$Think.lang.appadv_adv_form_goods_class}</option>
                   <option value="goods" {if $adv.adv_type=="goods"}selected='selected'{/if}>{$Think.lang.appadv_adv_form_goods}</option>
                   <option value="store" {if $adv.adv_type=="store"}selected='selected'{/if}>{$Think.lang.appadv_adv_form_store}</option>
                    <option value="article" {if $adv.adv_type=="article"}selected='selected'{/if}>{$Think.lang.appadv_adv_form_article}</option>
@@ -107,6 +108,7 @@ $("#file_adv_code").change(function () {
     function change_image_type_desc(type) {
         var desc_array = {};
             desc_array['goods'] = '{$Think.lang.appadv_adv_form_goods_type}';
+            desc_array['class'] = '{$Think.lang.appadv_adv_form_goods_class_type}';
             desc_array['store'] = '{$Think.lang.appadv_adv_form_store_type}';
             desc_array['article'] = '{$Think.lang.appadv_adv_form_article_type}';
             desc_array['url'] = '{$Think.lang.appadv_adv_form_url_type}';

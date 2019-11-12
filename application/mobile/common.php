@@ -5,7 +5,7 @@ function output_data($datas, $extend_data = array()) {
     $data = array();
     $data['code'] = isset($datas['error'])?'100':'200';
     $data['result']=isset($datas['error'])?array():$datas;
-    $data['message'] = isset($datas['error'])?$datas['error']:'';
+    $data['message'] = isset($datas['error'])?$datas['error']:'ok';
     //$data['datas']=$datas;
     if(!empty($extend_data)) {
         $data = array_merge($data, $extend_data);
