@@ -409,6 +409,13 @@ class Goods extends Model {
         return $goods_commend_list;
     }
 
+    /**
+     * 获取推荐商品 APP首页使用
+     * @DateTime 2019-11-12
+     * @param    integer    $limit [description]
+     * @param    integer    $page  [description]
+     * @return   [type]            [description]
+     */
     public function getGoodsCommendListBymall($limit=6,$page=1){
         $condition['goods_state'] = self::STATE1;
         $condition['goods_verify'] = self::VERIFY1;
