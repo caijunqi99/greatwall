@@ -4,7 +4,6 @@
 
 $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
-
 return array(
     'think\\worker\\' => array($vendorDir . '/topthink/think-worker/src'),
     'think\\oracle\\' => array($vendorDir . '/topthink/think-oracle/src'),

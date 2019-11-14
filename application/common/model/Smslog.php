@@ -72,7 +72,34 @@ class Smslog extends Model {
             $member_name = isset($member['member_name'])?$member['member_name']:'';
         }
         $sms = new \sendmsg\Sms();
-        $result = $sms->send($smslog_phone, $smslog_msg);
+        //smslog_type :1为注册,2为登录,3为找回密码,4绑定手机,5安全验证,默认为1
+        switch ($smslog_type) {
+            case 1: //1为注册
+                $temp['SignName'] = '会员注册';
+                $temp['TemplateCode'] = 'SMS_177535055';
+                break;
+            case 2: //2为登录
+                $temp['SignName'] = '申请登录';
+                $temp['TemplateCode'] = 'SMS_177550059';
+                break;
+            case 3: //3为找回密码
+                $temp['SignName'] = '账户安全验证';
+                $temp['TemplateCode'] = 'SMS_177545061';
+                break;
+            case 4: //4绑定手机
+                $temp['SignName'] = '绑定手机号';
+                $temp['TemplateCode'] = 'SMS_177550049';
+                break;
+            case 5: //5安全验证
+                $temp['SignName'] = '账户安全验证';
+                $temp['TemplateCode'] = 'SMS_177545061';
+                break;
+            default:
+                $temp['SignName'] = '会员注册';
+                $temp['TemplateCode'] = 'SMS_177535055';
+                break;
+        }
+        $result = $sms->send($smslog_phone, $smslog_msg,$smslog_captcha,$temp);
         
         if ($result) {
             $log['smslog_phone'] = $smslog_phone;

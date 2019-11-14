@@ -31,7 +31,8 @@ class Connectsms extends BaseMall {
             $member_model = model('member');
             $member = $member_model->getMemberInfo(array('member_mobile' => $sms_mobile));
             $sms_captcha = rand(100000, 999999);
-            $log_msg = '【' . config('site_name') . '】'.lang('ds_you_in').'' . date("Y-m-d");
+            // $log_msg = '【' . config('site_name') . '】'.lang('ds_you_in').'' . date("Y-m-d");
+            $log_msg = lang('ds_you_in').'' . date("Y-m-d");
             switch ($log_type) {
                 case '1':
                     if (config('sms_register') != 1) {

@@ -58,10 +58,10 @@ class Message extends AdminControl {
             $list_config = rkcache('config', true);
             
             $smscf_wj_num = '';
-            if(!empty($list_config['smscf_wj_username'])&&!empty($list_config['smscf_wj_key'])){
-                //如果配置了信息,可以查看具体可用短信条数
-                $smscf_wj_num = http_request('http://www.smschinese.cn/web_api/SMS/?Action=SMS_Num&Uid='.$list_config['smscf_wj_username'].'&Key='.$list_config['smscf_wj_key'],'get');
-            }
+            // if(!empty($list_config['smscf_wj_username'])&&!empty($list_config['smscf_wj_key'])){
+            //     //如果配置了信息,可以查看具体可用短信条数
+            //     $smscf_wj_num = http_request('http://www.smschinese.cn/web_api/SMS/?Action=SMS_Num&Uid='.$list_config['smscf_wj_username'].'&Key='.$list_config['smscf_wj_key'],'get');
+            // }
             $this->assign('smscf_wj_num', $smscf_wj_num);
             $this->assign('list_config', $list_config);
             
