@@ -22,15 +22,15 @@ class Logout extends MobileMember
         if(empty($_POST['username']) || !in_array($_POST['client'], $this->client_type_array)) {
             output_error('参数错误1');
         }
-
+ 
         $model_mb_user_token = Model('mbusertoken');
 
         if($this->member_info['member_name'] == trim($_POST['username'])) {
             $condition = array();
             $condition['member_id'] = $this->member_info['member_id'];
-            $condition['client_type'] = $_POST['client'];
-            $model_mb_user_token->delMbUserToken($condition);
-            output_data('1');
+            $condition['member_clienttype'] = $_POST['client'];
+            $model_mb_user_token->delMbusertoken($condition);
+            output_data(['state'=>TRUE]);
         } else {
             output_error('参数错误2');
         }

@@ -17,7 +17,7 @@ class MobileMember extends MobileHome {
             if (empty($key)) {
                 $key = input('param.key');
             }
-            $mb_user_token_info = $model_mb_user_token->getMbUserTokenInfoByToken($key);
+            $mb_user_token_info = $model_mb_user_token->getMbusertokenInfoByToken($key);
             if (empty($mb_user_token_info)) {
                 output_error('请登录', array('login' => '0'));
             }
@@ -29,9 +29,9 @@ class MobileMember extends MobileHome {
             if (empty($this->member_info)) {
                 output_error('请登录', array('login' => '0'));
             } else {
-                $this->member_info['client_type'] = $mb_user_token_info['client_type'];
-                $this->member_info['openid'] = $mb_user_token_info['openid'];
-                $this->member_info['token'] = $mb_user_token_info['token'];
+                $this->member_info['member_clienttype'] = $mb_user_token_info['member_clienttype'];
+                $this->member_info['member_openid'] = $mb_user_token_info['member_openid'];
+                $this->member_info['member_token'] = $mb_user_token_info['member_token'];
                 $level_name = $model_member->getOneMemberGrade($mb_user_token_info['member_id']);
                 $this->member_info['level_name'] = $level_name['level_name'];
                 //读取卖家信息
@@ -42,12 +42,12 @@ class MobileMember extends MobileHome {
     }
 
     public function getOpenId() {
-        return $this->member_info['openid'];
+        return $this->member_info['member_openid'];
     }
 
     public function setOpenId($openId) {
-        $this->member_info['openid'] = $openId;
-        Model('mbusertoken')->updateMemberOpenId($this->member_info['token'], $openId);
+        $this->member_info['member_openid'] = $openId;
+        Model('mbusertoken')->editMemberOpenId($this->member_info['member_token'], $openId);
     }
 }
 

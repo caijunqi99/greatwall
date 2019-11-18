@@ -217,6 +217,24 @@ class Member extends Model
     }
 
     /**
+     * 生成推荐码
+     * @DateTime 2019-11-18
+     * @return   [type]     [description]
+     */
+    public function _get_inviter_code(){
+        $codeLen = config('inviter_code_len');
+        $code = '';
+        for ($i=0; $i < $codeLen; $i++) { 
+            $code .= chr(rand(65,90));
+        }
+        $member = $this->getMemberCount(['inviter_code'=>$code]);
+        if ($member) {
+            return $this->_get_inviter_code();
+        }
+        return $code;
+    }
+
+    /**
      * 注册
      * @access public
      * @author bayi-shop
@@ -230,10 +248,10 @@ class Member extends Model
         if (is_array($check_member_name) and count($check_member_name) > 0) {
             return array('error' => '用户名已存在');
         }
-
-
-
-
+        $check_member_name = $this->getMemberInfo(array('member_mobile' => $register_info['member_mobile']));
+        if (is_array($check_member_name) and count($check_member_name) > 0) {
+            return array('error' => '用户名已存在');
+        }
         $insert_id = $this->addMember($register_info);
         if ($insert_id) {
             $this->addMemberAfter($insert_id,$register_info);
@@ -316,6 +334,7 @@ class Member extends Model
             $member_info['member_addtime'] = TIMESTAMP;
             $member_info['member_logintime'] = TIMESTAMP;
             $member_info['member_old_logintime'] = TIMESTAMP;
+            $member_info['inviter_code']         = $data['inviter_code'];
             $member_info['member_login_ip'] = request()->ip();
             $member_info['member_old_login_ip'] = $member_info['member_login_ip'];
             if (isset($data['member_truename'])) {

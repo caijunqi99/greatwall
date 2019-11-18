@@ -50,7 +50,7 @@ class Showstore extends MobileMember {
         if (trim($_POST['key']) != '') {
             $model_mb_user_token = Model('mb_user_token');
             $key = trim($_POST['key']);
-            $mb_user_token_info = $model_mb_user_token->getMbUserTokenInfoByToken($key);
+            $mb_user_token_info = $model_mb_user_token->getMbusertokenInfoByToken($key);
             $kkyy = $mb_user_token_info['member_id'];
         }
 

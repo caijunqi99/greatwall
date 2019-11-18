@@ -15,7 +15,7 @@ class MobileMall extends MobileHome {
         }
 
         $model_mb_user_token = Model('mbusertoken');
-        $mb_user_token_info = $model_mb_user_token->getMbUserTokenInfoByToken($key);
+        $mb_user_token_info = $model_mb_user_token->getMbusertokenInfoByToken($key);
         if (empty($mb_user_token_info)) {
             return 0;
         }

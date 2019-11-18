@@ -35,15 +35,15 @@ class Connect extends MobileMall
      */
     public function get_sms_captcha(){
         $state = '发送失败';
-        $phone = $_GET['phone'];
+        $phone = input('param.member_mobile');
         if (strlen($phone) == 11){
-            $log_type = $_GET['type'];//短信类型:1为注册,2为登录,3为找回密码
+            $log_type = input('param.type');//短信类型:1为注册,2为登录,3为找回密码
             $model_sms_log = Model('smslog');
             $condition = array();
-            $condition['log_ip'] = request()->ip();
-            $condition['log_type'] = $log_type;
+            $condition['smslog_ip'] = request()->ip();
+            $condition['smslog_type'] = $log_type;
             $sms_log = $model_sms_log->getSmsInfo($condition);
-            if(!empty($sms_log) && ($sms_log['add_time'] > TIMESTAMP-10)) {//同一IP十分钟内只能发一条短信
+            if(!empty($sms_log) && ($sms_log['smslog_smstime'] > TIMESTAMP-10)) {//同一IP十分钟内只能发一条短信
                 $state = '同一IP地址十分钟内，请勿多次获取动态码！';
             } else {
                 $state = 'true';
@@ -88,21 +88,12 @@ class Connect extends MobileMall
                         $state = '参数错误';
                         break;
                 }
-                if($state == 'true'){
-                    $sms = new \sendmsg\Sms();
-                    $result = $sms->send($phone,$log_msg);
-                    if($result){
-                        $log_array['log_phone'] = $phone;
-                        $log_array['log_captcha'] = $captcha;
-                        $log_array['log_ip'] = request()->ip();
-                        $log_array['log_msg'] = $log_msg;
-                        $log_array['log_type'] = $log_type;
-                        $log_array['add_time'] = time();
-                        $model_sms_log->addSms($log_array);
-                        output_data(array('sms_time'=>10));exit;
-                    } else {
-                        $state = '手机短信发送失败';
-                    }
+                $result = $model_sms_log->sendSms($phone,$log_msg,$log_type,$captcha,$member['member_id'],$member['member_name']);
+                if($result['state']){
+                    output_data(array('sms_time'=>10));exit;
+                }else{
+                    output_error($result['message']);
+                    exit;
                 }
             }
         }
@@ -113,22 +104,22 @@ class Connect extends MobileMall
      */
     public function check_sms_captcha(){
         $state = '验证失败';
-        $phone = $_GET['phone'];
-        $captcha = $_GET['captcha'];
-        $log_type=$_GET['type'];
-        if (strlen($phone) == 11){
-            $state = 'true';
+        $sms_phone = input('param.sms_phone');
+        $sms_captcha = input('param.sms_captcha');
+        $sms_type = input('param.sms_type');
+        if (strlen($sms_phone) == 11){
+            $state = 'TRUE';
             $condition = array();
-            $condition['log_phone'] = $phone;
-            $condition['log_captcha'] = $captcha;
-            $condition['log_type'] = $log_type;
+            $condition['smslog_phone'] = $sms_phone;
+            $condition['smslog_captcha'] = $sms_captcha;
+            $condition['smslog_type'] = $sms_type;
             $model_sms_log = Model('smslog');
             $sms_log = $model_sms_log->getSmsInfo($condition);
-            if(empty($sms_log) || ($sms_log['add_time'] < TIMESTAMP-1800)) {//半小时内进行验证为有效
+            if(empty($sms_log) || ($sms_log['smslog_smstime'] < TIMESTAMP-1800)) {//半小时内进行验证为有效
                 $state = '动态码错误或已过期，重新输入';
                 output_error($state);
             }
-            output_data($state);
+            output_data(['state'=>$state]);
         }
         output_error($state);
     }

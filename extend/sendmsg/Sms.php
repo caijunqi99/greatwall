@@ -107,7 +107,7 @@ class Sms
 
         // 选填，上行短信扩展码（扩展码字段控制在7位或以下，无特殊需求用户请忽略此字段）
         // $request->setSmsUpExtendCode("1234567");
-
+        // p($request);exit;
         // 发起访问请求
         $acsResponse = static::getAcsClient()->getAcsResponse($request);
         // p($acsResponse);exit;

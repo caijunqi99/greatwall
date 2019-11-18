@@ -22,7 +22,7 @@ class Wxauto extends MobileMember
             $ref = WAP_SITE_URL;
             $model_mb_user_token = Model('mbusertoken');
             $model_member = Model('member');
-            $mb_user_token_info = $model_mb_user_token->getMbUserTokenInfoByToken(cookie('key'));
+            $mb_user_token_info = $model_mb_user_token->getMbusertokenInfoByToken(cookie('key'));
             $member_info = $model_member->getMemberInfoByID($mb_user_token_info['member_id']);
             if (empty($member_info)) {
                 cookie('username', null);

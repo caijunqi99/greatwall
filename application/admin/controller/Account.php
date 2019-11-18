@@ -32,6 +32,7 @@ class Account extends AdminControl {
         } else {
             $update_array=array();
             $update_array['auto_register'] = input('post.auto_register');
+            $update_array['inviter_code_len'] = intval(input('post.inviter_code_len',5));
             $result = $config_model->editConfig($update_array);
             if ($result) {
                 $this->log(lang('ds_edit').lang('ds_account'),1);
