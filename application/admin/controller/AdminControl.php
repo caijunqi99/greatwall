@@ -261,6 +261,11 @@ class AdminControl extends Controller {
                         'text' => lang('ds_member_manage'),
                         'args' => 'member,Member,dashboard',
                     ),
+                    'companys' => array(
+                        'ico'=>'&#xe667;',
+                        'text' => lang('ds_companys_manage'),
+                        'args' => 'company,Companys,dashboard',
+                    ),
                 ),
             ),
             'setting' => array(
@@ -273,11 +278,11 @@ class AdminControl extends Controller {
                         'text' => lang('ds_base'),
                         'args' => 'base,Config,setting',
                     ),
-                    'account' => array(
-                        'ico'=>'&#xe678;',
-                        'text' => lang('ds_account'),
-                        'args' => 'qq,Account,setting',
-                    ),
+//                    'account' => array(
+//                        'ico'=>'&#xe678;',
+//                        'text' => lang('ds_account'),
+//                        'args' => 'qq,Account,setting',
+//                    ),
                     'upload_set' => array(
                         'ico'=>'&#xe72a;',
                         'text' => lang('ds_upload_set'),
@@ -380,20 +385,20 @@ class AdminControl extends Controller {
                         'text' => lang('ds_predeposit'),
                         'args' => 'pdrecharge_list,Predeposit,member',
                     ),
-                    'snsmalbum' => array(
-                        'ico'=>'&#xe72a;',
-                        'text' => lang('ds_snsmalbum'),
-                        'args' => 'index,Snsmalbum,member',
-                    ),
-                    'snsmember' => array(
-                        'text' => lang('ds_snsmember'),
-                        'args' => 'index,Snsmember,member',
-                    ),
-                    'chatlog' => array(
-                        'ico'=>'&#xe71f;',
-                        'text' => lang('ds_chatlog'),
-                        'args' => 'chatlog,Chatlog,member',
-                    ),
+//                    'snsmalbum' => array(
+//                        'ico'=>'&#xe72a;',
+//                        'text' => lang('ds_snsmalbum'),
+//                        'args' => 'index,Snsmalbum,member',
+//                    ),
+//                    'snsmember' => array(
+//                        'text' => lang('ds_snsmember'),
+//                        'args' => 'index,Snsmember,member',
+//                    ),
+//                    'chatlog' => array(
+//                        'ico'=>'&#xe71f;',
+//                        'text' => lang('ds_chatlog'),
+//                        'args' => 'chatlog,Chatlog,member',
+//                    ),
                 ),
             ),
             'goods' => array(
@@ -431,11 +436,11 @@ class AdminControl extends Controller {
                         'text' => lang('ds_album'),
                         'args' => 'index,GoodsAlbum,goods',
                     ),
-                    'Arrivalnotice' => array(
-                        'ico'=>'&#xe71b;',
-                        'text' => lang('ds_arrivalnotice'),
-                        'args' => 'index,Arrivalnotice,goods',
-                    ),
+//                    'Arrivalnotice' => array(
+//                        'ico'=>'&#xe71b;',
+//                        'text' => lang('ds_arrivalnotice'),
+//                        'args' => 'index,Arrivalnotice,goods',
+//                    ),
                 ),
             ),
             'store' => array(
@@ -505,21 +510,21 @@ class AdminControl extends Controller {
                         'text' => lang('ds_vrorder'),
                         'args' => 'index,Vrorder,trade',
                     ),
-                    'refund' => array(
-                        'ico'=>'&#xe6f3;',
-                        'text' => lang('ds_refund'),
-                        'args' => 'refund_manage,Refund,trade',
-                    ),
-                    'return' => array(
-                        'ico'=>'&#xe6f3;',
-                        'text' => lang('ds_return'),
-                        'args' => 'return_manage,Returnmanage,trade',
-                    ),
-                    'vrrefund' => array(
-                        'ico'=>'&#xe6f3;',
-                        'text' => lang('ds_vrrefund'),
-                        'args' => 'refund_manage,Vrrefund,trade',
-                    ),
+//                    'refund' => array(
+//                        'ico'=>'&#xe6f3;',
+//                        'text' => lang('ds_refund'),
+//                        'args' => 'refund_manage,Refund,trade',
+//                    ),
+//                    'return' => array(
+//                        'ico'=>'&#xe6f3;',
+//                        'text' => lang('ds_return'),
+//                        'args' => 'return_manage,Returnmanage,trade',
+//                    ),
+//                    'vrrefund' => array(
+//                        'ico'=>'&#xe6f3;',
+//                        'text' => lang('ds_vrrefund'),
+//                        'args' => 'refund_manage,Vrrefund,trade',
+//                    ),
                     'Bill' => array(
                         'ico'=>'&#xe69c;',
                         'text' => lang('ds_bill_manage'),
@@ -530,21 +535,21 @@ class AdminControl extends Controller {
                         'text' => lang('ds_consulting'),
                         'args' => 'Consulting,Consulting,trade',
                     ),
-                    'inform' => array(
-                        'ico'=>'&#xe70c;',
-                        'text' => lang('ds_inform'),
-                        'args' => 'inform_list,Inform,trade',
-                    ),
-                    'evaluate' => array(
-                        'ico'=>'&#xe6f2;',
-                        'text' => lang('ds_evaluate'),
-                        'args' => 'evalgoods_list,Evaluate,trade',
-                    ),
-                    'complain' => array(
-                        'ico'=>'&#xe676;',
-                        'text' => lang('ds_complain'),
-                        'args' => 'complain_new_list,Complain,trade',
-                    ),
+//                    'inform' => array(
+//                        'ico'=>'&#xe70c;',
+//                        'text' => lang('ds_inform'),
+//                        'args' => 'inform_list,Inform,trade',
+//                    ),
+//                    'evaluate' => array(
+//                        'ico'=>'&#xe6f2;',
+//                        'text' => lang('ds_evaluate'),
+//                        'args' => 'evalgoods_list,Evaluate,trade',
+//                    ),
+//                    'complain' => array(
+//                        'ico'=>'&#xe676;',
+//                        'text' => lang('ds_complain'),
+//                        'args' => 'complain_new_list,Complain,trade',
+//                    ),
                 ),
             ),
             'website' => array(
@@ -579,11 +584,11 @@ class AdminControl extends Controller {
                         'text' => lang('ds_friendlink'),
                         'args' => 'index,Link,website',
                     ),
-                    'Mallconsult' => array(
-                        'ico'=>'&#xe750;',
-                        'text' => lang('ds_mall_consult'),
-                        'args' => 'index,Mallconsult,website',
-                    ),
+//                    'Mallconsult' => array(
+//                        'ico'=>'&#xe750;',
+//                        'text' => lang('ds_mall_consult'),
+//                        'args' => 'index,Mallconsult,website',
+//                    ),
                 ),
             ),
             'operation' => array(
@@ -639,11 +644,11 @@ class AdminControl extends Controller {
                         'text' => lang('ds_statmarketing'),
                         'args' => 'promotion,Statmarketing,stat',
                     ),
-                    'stat_stataftersale' => array(
-                         'ico'=>'&#xe745;',
-                        'text' => lang('ds_stataftersale'),
-                        'args' => 'refund,Stataftersale,stat',
-                    ),
+//                    'stat_stataftersale' => array(
+//                         'ico'=>'&#xe745;',
+//                        'text' => lang('ds_stataftersale'),
+//                        'args' => 'refund,Stataftersale,stat',
+//                    ),
                 ),
             ),
             'mobile' => array(
@@ -662,43 +667,43 @@ class AdminControl extends Controller {
                     ),
                 ),
             ),
-            'wechat' => array(
-                'name' => 'wechat',
-                'text' => lang('wechat'),
-                'show' => TRUE,
-                'children' => array(
-                    'wechat_setting' => array(
-                        'ico'=>'&#xe6e0;',
-                        'text' => lang('wechat_setting'),
-                        'args' => 'setting,Wechat,wechat',
-                    ),
-                    'wechat_template_message' => array(
-                        'ico'=>'&#xe6e0;',
-                        'text' => lang('wechat_template_message'),
-                        'args' => 'template_message,Wechat,wechat',
-                    ),
-                    'wechat_menu' => array(
-                        'ico'=>'&#xe679;',
-                        'text' => lang('wechat_menu'),
-                        'args' => 'menu,Wechat,wechat',
-                    ),
-                    'wechat_keywords' => array(
-                        'ico'=>'&#xe672;',
-                        'text' => lang('wechat_keywords'),
-                        'args' => 'k_text,Wechat,wechat',
-                    ),
-                    'wechat_member' => array(
-                        'ico'=>'&#xe729;',
-                        'text' => lang('wechat_member'),
-                        'args' => 'member,Wechat,wechat',
-                    ),
-                    'wechat_push' => array(
-                        'ico'=>'&#xe71b;',
-                        'text' => lang('wechat_push'),
-                        'args' => 'SendList,Wechat,wechat',
-                    ),
-                ),
-            ),
+//            'wechat' => array(
+//                'name' => 'wechat',
+//                'text' => lang('wechat'),
+//                'show' => TRUE,
+//                'children' => array(
+//                    'wechat_setting' => array(
+//                        'ico'=>'&#xe6e0;',
+//                        'text' => lang('wechat_setting'),
+//                        'args' => 'setting,Wechat,wechat',
+//                    ),
+//                    'wechat_template_message' => array(
+//                        'ico'=>'&#xe6e0;',
+//                        'text' => lang('wechat_template_message'),
+//                        'args' => 'template_message,Wechat,wechat',
+//                    ),
+//                    'wechat_menu' => array(
+//                        'ico'=>'&#xe679;',
+//                        'text' => lang('wechat_menu'),
+//                        'args' => 'menu,Wechat,wechat',
+//                    ),
+//                    'wechat_keywords' => array(
+//                        'ico'=>'&#xe672;',
+//                        'text' => lang('wechat_keywords'),
+//                        'args' => 'k_text,Wechat,wechat',
+//                    ),
+//                    'wechat_member' => array(
+//                        'ico'=>'&#xe729;',
+//                        'text' => lang('wechat_member'),
+//                        'args' => 'member,Wechat,wechat',
+//                    ),
+//                    'wechat_push' => array(
+//                        'ico'=>'&#xe71b;',
+//                        'text' => lang('wechat_push'),
+//                        'args' => 'SendList,Wechat,wechat',
+//                    ),
+//                ),
+//            ),
             'flea' => array(
                 'name' => 'flea',
                 'text' => lang('flea'),

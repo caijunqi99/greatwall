@@ -222,7 +222,7 @@ class BaseSeller extends BaseMall
                     'url' => url('Sellergoodsonline/index'),
                     'submenu' => array(
                         array('name' => 'sellergoodsadd', 'text' => lang('goods_released'), 'controller' => 'Sellergoodsadd', 'url' => url('Sellergoodsadd/index'),),
-                        array('name' => 'seller_taobao_import', 'text' => lang('taobao_import'), 'controller' => 'SellerTaobaoImport', 'url' => url('SellerTaobaoImport/index'),),
+//                        array('name' => 'seller_taobao_import', 'text' => lang('taobao_import'), 'controller' => 'SellerTaobaoImport', 'url' => url('SellerTaobaoImport/index'),),
                         array('name' => 'sellergoodsonline', 'text' => lang('goods_on_sale'), 'controller' => 'Sellergoodsonline', 'url' => url('Sellergoodsonline/index'),),
                         array('name' => 'sellergoodsoffline', 'text' => lang('warehouse_goods'), 'controller' => 'Sellergoodsoffline', 'url' => url('Sellergoodsoffline/index'),),
                         array('name' => 'sellerplate', 'text' => lang('associated_format'), 'controller' => 'Sellerplate', 'url' => url('Sellerplate/index'),),
@@ -242,7 +242,7 @@ class BaseSeller extends BaseMall
                         array('name' => 'sellerdeliver', 'text' => lang('delivery_management'), 'controller' => 'Sellerdeliver', 'url' => url('Sellerdeliver/index'),),
                         array('name' => 'sellerdeliverset', 'text' => lang('delivery_settings'), 'controller' => 'Sellerdeliverset', 'url' => url('Sellerdeliverset/index'),),
                         array('name' => 'sellerwaybill', 'text' => lang('waybill_template'), 'controller' => 'Sellerwaybill', 'url' => url('Sellerwaybill/index')),
-                        array('name' => 'sellerevaluate', 'text' => lang('evaluation_management'), 'controller' => 'Sellerevaluate', 'url' => url('Sellerevaluate/index'),),
+//                        array('name' => 'sellerevaluate', 'text' => lang('evaluation_management'), 'controller' => 'Sellerevaluate', 'url' => url('Sellerevaluate/index'),),
                         array('name' => 'sellertransport', 'text' => lang('sales_area'), 'controller' => 'Sellertransport', 'url' => url('Sellertransport/index'),),
                         array('name' => 'Sellerbill', 'text' => lang('physical_settlement'), 'controller' => 'Sellerbill', 'url' => url('Sellerbill/index'),),
                     )
@@ -252,18 +252,18 @@ class BaseSeller extends BaseMall
                     'ico'=>'&#xe704;',
                     'name' => 'sellergroupbuy',
                     'text' => lang('sales_promotion'),
-                    'url' => url('Sellergroupbuy/index'),
+                    'url' => url('Sellerpromotionbooth/index'),
                     'submenu' => array(
-                        array('name' => 'Sellergroupbuy', 'text' => lang('snap_up_management'), 'controller' => 'Sellergroupbuy', 'url' => url('Sellergroupbuy/index'),),
-                        array('name' => 'Sellerpromotionxianshi', 'text' => lang('time_discount'), 'controller' => 'Sellerpromotionxianshi', 'url' => url('Sellerpromotionxianshi/index'),),
-                        array('name' => 'Sellermgdiscount', 'text' => lang('membership_level_discount'), 'controller' => 'Sellerpromotionmgdiscount', 'url' => url('Sellerpromotionmgdiscount/mgdiscount_store'),),
-                        array('name' => 'Sellerpromotionpintuan', 'text' => lang('syndication'), 'controller' => 'Sellerpromotionpintuan', 'url' => url('Sellerpromotionpintuan/index'),),
-                        array('name' => 'Sellerpromotionbargain', 'text' => lang('baseseller_bargain'), 'controller' => 'Sellerpromotionbargain', 'url' => url('Sellerpromotionbargain/index'),),
-                        array('name' => 'Sellerpromotionmansong', 'text' => lang('free_on_delivery'), 'controller' => 'Sellerpromotionmansong', 'url' => url('Sellerpromotionmansong/index'),),
-                        array('name' => 'Sellerpromotionbundling', 'text' => lang('discount_package'), 'controller' => 'Sellerpromotionbundling', 'url' => url('Sellerpromotionbundling/index'),),
+//                        array('name' => 'Sellergroupbuy', 'text' => lang('snap_up_management'), 'controller' => 'Sellergroupbuy', 'url' => url('Sellergroupbuy/index'),),
+//                        array('name' => 'Sellerpromotionxianshi', 'text' => lang('time_discount'), 'controller' => 'Sellerpromotionxianshi', 'url' => url('Sellerpromotionxianshi/index'),),
+//                        array('name' => 'Sellermgdiscount', 'text' => lang('membership_level_discount'), 'controller' => 'Sellerpromotionmgdiscount', 'url' => url('Sellerpromotionmgdiscount/mgdiscount_store'),),
+//                        array('name' => 'Sellerpromotionpintuan', 'text' => lang('syndication'), 'controller' => 'Sellerpromotionpintuan', 'url' => url('Sellerpromotionpintuan/index'),),
+//                        array('name' => 'Sellerpromotionbargain', 'text' => lang('baseseller_bargain'), 'controller' => 'Sellerpromotionbargain', 'url' => url('Sellerpromotionbargain/index'),),
+//                        array('name' => 'Sellerpromotionmansong', 'text' => lang('free_on_delivery'), 'controller' => 'Sellerpromotionmansong', 'url' => url('Sellerpromotionmansong/index'),),
+//                        array('name' => 'Sellerpromotionbundling', 'text' => lang('discount_package'), 'controller' => 'Sellerpromotionbundling', 'url' => url('Sellerpromotionbundling/index'),),
                         array('name' => 'Sellerpromotionbooth', 'text' => lang('recommended_stand'), 'controller' => 'Sellerpromotionbooth', 'url' => url('Sellerpromotionbooth/index'),),
-                        array('name' => 'Sellervoucher', 'text' => lang('voucher_management'), 'controller' => 'Sellervoucher', 'url' => url('Sellervoucher/templatelist'),),
-                        array('name' => 'Selleractivity', 'text' => lang('activity_management'), 'controller' => 'Selleractivity', 'url' => url('Selleractivity/index'),),
+//                        array('name' => 'Sellervoucher', 'text' => lang('voucher_management'), 'controller' => 'Sellervoucher', 'url' => url('Sellervoucher/templatelist'),),
+//                        array('name' => 'Selleractivity', 'text' => lang('activity_management'), 'controller' => 'Selleractivity', 'url' => url('Selleractivity/index'),),
                     )
                 ),
             'seller' =>
@@ -283,19 +283,19 @@ class BaseSeller extends BaseMall
                         array('name' => 'seller_brand', 'text' => lang('brand_application'), 'controller' => 'Sellerbrand', 'url' => url('Sellerbrand/index'),),
                     )
                 ),
-            'sellerconsult' =>
-                array(
-                    'ico'=>'&#xe6ab;',
-                    'name' => 'sellerconsult',
-                    'text' => lang('after_sales_service'),
-                    'url' => url('Sellerconsult/index'),
-                    'submenu' => array(
-                        array('name' => 'seller_consult', 'text' => lang('consulting_management'), 'controller' => 'Sellerconsult', 'url' => url('Sellerconsult/index'),),
-                        array('name' => 'seller_complain', 'text' => lang('complaint_record'), 'controller' => 'Sellercomplain', 'url' => url('Sellercomplain/index'),),
-                        array('name' => 'seller_refund', 'text' => lang('refund_paragraph'), 'controller' => 'Sellerrefund', 'url' => url('Sellerrefund/index'),),
-                        array('name' => 'seller_return', 'text' => lang('refund_cargo'), 'controller' => 'Sellerreturn', 'url' => url('Sellerreturn/index'),),
-                    )
-                ),
+//            'sellerconsult' =>
+//                array(
+//                    'ico'=>'&#xe6ab;',
+//                    'name' => 'sellerconsult',
+//                    'text' => lang('after_sales_service'),
+//                    'url' => url('Sellerconsult/index'),
+//                    'submenu' => array(
+//                        array('name' => 'seller_consult', 'text' => lang('consulting_management'), 'controller' => 'Sellerconsult', 'url' => url('Sellerconsult/index'),),
+//                        array('name' => 'seller_complain', 'text' => lang('complaint_record'), 'controller' => 'Sellercomplain', 'url' => url('Sellercomplain/index'),),
+//                        array('name' => 'seller_refund', 'text' => lang('refund_paragraph'), 'controller' => 'Sellerrefund', 'url' => url('Sellerrefund/index'),),
+//                        array('name' => 'seller_return', 'text' => lang('refund_cargo'), 'controller' => 'Sellerreturn', 'url' => url('Sellerreturn/index'),),
+//                    )
+//                ),
             'sellerstatistics' =>
                 array(
                     'ico'=>'&#xe6a3;',
@@ -311,18 +311,18 @@ class BaseSeller extends BaseMall
                         
                     )
                 ),
-            'sellercallcenter' =>
-                array(
-                    'ico'=>'&#xe61c;',
-                    'name' => 'sellercallcenter',
-                    'text' => lang('news_service'),
-                    'url' => url('Sellercallcenter/index'),
-                    'submenu' => array(
-                        array('name' => 'Sellercallcenter', 'text' => lang('setting_service'), 'controller' => 'Sellercallcenter', 'url' => url('Sellercallcenter/index'),),
-                        array('name' => 'Sellermsg', 'text' => lang('system_message'), 'controller' => 'Sellermsg', 'url' => url('Sellermsg/index'),),
-                        array('name' => 'Sellerim', 'text' => lang('chat_query'), 'controller' => 'Sellerim', 'url' => url('Sellerim/index'),),
-                    )
-                ),
+//            'sellercallcenter' =>
+//                array(
+//                    'ico'=>'&#xe61c;',
+//                    'name' => 'sellercallcenter',
+//                    'text' => lang('news_service'),
+//                    'url' => url('Sellercallcenter/index'),
+//                    'submenu' => array(
+//                        array('name' => 'Sellercallcenter', 'text' => lang('setting_service'), 'controller' => 'Sellercallcenter', 'url' => url('Sellercallcenter/index'),),
+//                        array('name' => 'Sellermsg', 'text' => lang('system_message'), 'controller' => 'Sellermsg', 'url' => url('Sellermsg/index'),),
+//                        array('name' => 'Sellerim', 'text' => lang('chat_query'), 'controller' => 'Sellerim', 'url' => url('Sellerim/index'),),
+//                    )
+//                ),
             'selleraccount' =>
                 array(
                     'ico'=>'&#xe702;',
