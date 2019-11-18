@@ -20,7 +20,7 @@ class Region extends AdminControl {
         parent::_initialize();
         Lang::load(APP_PATH . 'admin/lang/'.config('default_lang').'/region.lang.php');
         $this->_area_model = model('Area');
-        define('MAX_LAYER', 4);
+        define('MAX_LAYER', 5);
     }
 
     public function index() {
