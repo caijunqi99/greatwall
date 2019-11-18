@@ -14,7 +14,7 @@ use think\Lang;
  * ============================================================================
  * 控制器
  */
-class Points extends AdminControl {
+class Transaction extends AdminControl {
     const EXPORT_SIZE = 5000;
     public function _initialize() {
         parent::_initialize();
@@ -275,23 +275,8 @@ class Points extends AdminControl {
         $menu_array = array(
             array(
                 'name' => 'index',
-                'text' => lang('admin_points_log_title'),
-                'url' => url('Points/index')
-            ),
-            array(
-                'name' => 'pointslog',
-                'text' => lang('pointslog'),
-                'url' => "javascript:dsLayerOpen('".url('Points/pointslog')."','".lang('pointslog')."')"
-            ),
-            array(
-                'name' => 'setting',
-                'text' => lang('points_setting'),
-                'url' => url('Points/setting')
-            ),
-            array(
-                'name' => 'draw',
-                'text' => lang('points_draw'),
-                'url' => url('Points/draw')
+                'text' => lang('ds_transaction_code'),
+                'url' => url('Transaction/index')
             ),
         );
         return $menu_array;

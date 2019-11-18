@@ -8,7 +8,8 @@ $lang['admin_points_membername'] = '会员名称';
 $lang['admin_points_operatetype'] = '增减类型';
 $lang['admin_points_operatetype_add'] = '增加';
 $lang['admin_points_operatetype_reduce'] = '减少';
-$lang['admin_points_pointsnum'] = '积分值';
+$lang['admin_points_pointsnum'] = '冻结积分';
+$lang['admin_points_pointsnum_av'] = '可用积分';
 $lang['admin_points_pointsdesc'] = '描述';
 $lang['admin_points_pointsdesc_notice'] = '描述信息将显示在积分明细相关页，会员和管理员都可见';
 
@@ -62,3 +63,4 @@ $lang['points_number_ordermax'] = '每订单最多赠送积分';
 $lang['points_number_ordermax_tip'] = '例:设置为100，表明每订单赠送积分最多为100积分';
 $lang['pointslog']='积分调整';
 $lang['points_setting']='积分规则';
+$lang['points_draw']='积分提现';

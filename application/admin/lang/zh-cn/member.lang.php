@@ -14,6 +14,7 @@ $lang['member_index_to_message'] = '通知';
 $lang['member_index_points'] = '积分';
 $lang['member_index_inform'] = '举报商品';
 $lang['member_index_prestore'] = '预存款';
+$lang['member_index_prestore_c'] = '储值卡';
 $lang['member_index_available'] = '可用';
 $lang['member_index_frozen'] = '冻结';
 $lang['member_index_null'] = '会员尚未填写此项信息';
@@ -55,6 +56,9 @@ $lang['member_emailbind']='邮箱验证';
 $lang['member_exppoints']='经验值';
 $lang['member_grade']='会员级别';
 $lang['change_predeposit']='调节预存款';
+$lang['change_predeposit_c']='变更储值卡';
+$lang['change_bankname']='银行名称';
+$lang['change_bankcard']='银行卡账号';
 
 
 /**

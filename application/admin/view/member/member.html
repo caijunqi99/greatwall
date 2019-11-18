@@ -71,7 +71,7 @@
           <th class="align-center"><span fieldname="logins" ds_type="order_by">{$Think.lang.member_index_login_time}</span></th>
           <th class="align-center"><span fieldname="last_login" ds_type="order_by">{$Think.lang.member_index_last_login}</span></th>
           <th class="align-center">{$Think.lang.member_index_points}</th>
-          <th class="align-center">{$Think.lang.member_index_prestore}</th>
+          <th class="align-center">{$Think.lang.member_index_prestore_c}</th>
           <th class="align-center">{$Think.lang.member_exppoints}</th>
           <th class="align-center">{$Think.lang.member_grade}</th>
           <th class="align-center">{$Think.lang.member_index_login}</th>
@@ -127,7 +127,7 @@
               {else/}
               <a href="javascript:dsLayerConfirm('{:url('Member/memberstate',['member_id'=>$v.member_id,'member_state'=>0])}','{$Think.lang.ds_ensure_disable}')" class="dsui-btn-del"><i class="iconfont"></i>{$Think.lang.member_edit_denylogin}</a>
               {/if}
-              <a href="javascript:dsLayerOpen('{:url('Predeposit/pd_add',['member_id'=>$v.member_id])}','{$Think.lang.change_predeposit}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_predeposit}</a>
+              <a href="javascript:dsLayerOpen('{:url('Predeposit/pd_add',['member_id'=>$v.member_id])}','{$Think.lang.change_predeposit_c}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_predeposit_c}</a>
           </td>
         </tr>
         {/foreach}
