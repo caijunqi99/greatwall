@@ -8,7 +8,7 @@ $lang['ds_aboutus'] = '关于我们';
 $lang['ds_setting'] = '设置';
 $lang['ds_base'] = '站点设置';
 $lang['ds_account'] = '账号同步';
-$lang['ds_seo_set'] = 'SEO设置';
+$lang['ds_seoThinkPHP版本号_set'] = 'SEO设置';
 $lang['ds_upload'] = '上传';
 $lang['ds_upload_set'] = '上传设置';
 $lang['ds_message'] = '邮箱短信';
@@ -21,6 +21,8 @@ $lang['ds_region'] = '地区管理';
 $lang['ds_offpayarea'] = '配送地区';
 $lang['ds_db'] = '数据备份';
 $lang['ds_adminlog'] = '操作日志';
+$lang['ds_companys_manage'] = '分公司';
+$lang['ds_seo_set'] = 'SEO设置';
 //会员
 $lang['ds_member'] = '会员';
 $lang['ds_member_manage'] = '会员管理';

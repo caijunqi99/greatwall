@@ -251,16 +251,16 @@ class Config extends AdminControl {
                 'text' => lang('ds_base'),
                 'url' => url('Config/base')
             ),
-            array(
-                'name' => 'dump',
-                'text' => lang('dis_dump'),
-                'url' => url('Config/dump')
-            ),
-            array(
-                'name' => 'im',
-                'text' => lang('station_im_settings'),
-                'url' => url('Config/im')
-            ),
+//            array(
+//                'name' => 'dump',
+//                'text' => lang('dis_dump'),
+//                'url' => url('Config/dump')
+//            ),
+//            array(
+//                'name' => 'im',
+//                'text' => lang('station_im_settings'),
+//                'url' => url('Config/im')
+//            ),
             array(
                 'name' => 'auto',
                 'text' => lang('automatic_execution_time_setting'),

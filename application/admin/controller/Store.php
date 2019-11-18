@@ -1065,11 +1065,13 @@ class Store extends AdminControl {
                 'name' => 'store_joinin',
                 'text' => lang('pending'),
                 'url' => url('Store/store_joinin')
-            ), array(
-                'name' => 'reopen_list',
-                'text' => lang('reopen_list'),
-                'url' => url('Store/reopen_list')
-            ), array(
+            ),
+// array(
+//                'name' => 'reopen_list',
+//                'text' => lang('reopen_list'),
+//                'url' => url('Store/reopen_list')
+//            ),
+           array(
                 'name' => 'store_bind_class_applay_list',
                 'text' => lang('store_bind_class_apply'),
                 'url' => url('Store/store_bind_class_applay_list')
