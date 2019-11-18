@@ -1,0 +1,133 @@
+{include file="public/header" /}
+
+
+
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>{$Think.lang.ds_points}</h3>
+                <h5></h5>
+            </div>
+            {include file="public/admin_items" /}
+        </div>
+    </div>
+
+    <form method="post" name="settingForm" id="settingForm">
+        
+
+        <table class="ds-default-table">
+            <div class="explanation" id="explanation">
+                <div class="title" id="checkZoom">
+                    <h4 title="{$Think.lang.ds_explanation_tip}">{$Think.lang.ds_explanation}</h4>
+                    <span id="explanationZoom" title="{$Think.lang.ds_explanation_close}" class="arrow"></span>
+                </div>
+                <ul>
+                    <li>只有可用积分才能提现，冻结积分需结转为可用积分</li>
+                </ul>
+            </div>
+            <tbody>
+            <tr class="hover">
+                <td class="w200">冻结积分</td>
+                <td>0</td>
+            </tr>
+            <tr class="hover">
+                <td>可用积分</td>
+                <td>0</td>
+            </tr>
+            <tr class="hover">
+                <td>提现积分</td>
+                <td><input id="points_comments" name="points_comments" value="{$list_draw.points_comments}" class="txt" type="text" style="width:60px;">  提示：输入积分不能大于可用积分</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <table class="ds-default-table">
+
+            <tfoot>
+            <tr class="tfoot">
+                <td colspan="2"><input class="btn" type="submit" value="{$Think.lang.ds_submit}"/></td>
+            </tr>
+            </tfoot>
+        </table>
+    </form>
+</div>
+
+<script>
+
+    $(document).ready(function(){
+        $("#settingForm").validate({
+            errorPlacement: function(error, element){
+                error.appendTo(element.parent().parent().find('td:last'));
+            },
+            rules : {
+                points_reg:{
+                    number:true,
+                    min:0
+                },
+                points_login :{
+                    number:true,
+                    min:0
+                },
+                points_comments :{
+                    number:true,
+                    min:0
+                },
+                points_signin :{
+                    number:true,
+                    min:0
+                },
+                points_invite :{
+                    number:true,
+                    min:0
+                },
+                points_rebate :{
+                    number:true,
+                    min:0
+                },
+                points_orderrate :{
+                    number:true,
+                    min:0
+                },
+                points_ordermax :{
+                    number:true,
+                    min:0
+                }
+            },
+            messages : {
+                points_reg:{
+                    number:'{$Think.lang.ds_sort_number}',
+                    min:'{$Think.lang.ds_min_error}0'
+                },
+                points_login :{
+                    number:'{$Think.lang.ds_sort_number}',
+                    min:'{$Think.lang.ds_min_error}0'
+                },
+                points_comments :{
+                    number:'{$Think.lang.ds_sort_number}',
+                    min:'{$Think.lang.ds_min_error}0'
+                },
+                points_signin :{
+                    number:'{$Think.lang.ds_sort_number}',
+                    min:'{$Think.lang.ds_min_error}0'
+                },
+                points_invite :{
+                    number:'{$Think.lang.ds_sort_number}',
+                    min:'{$Think.lang.ds_min_error}0'
+                },
+                points_rebate :{
+                    number:'{$Think.lang.ds_sort_number}',
+                    min:'{$Think.lang.ds_min_error}0'
+                },
+                points_orderrate :{
+                    number:'{$Think.lang.ds_sort_number}',
+                    min:'{$Think.lang.ds_min_error}0'
+                },
+                points_ordermax :{
+                    number:'{$Think.lang.ds_sort_number}',
+                    min:'{$Think.lang.ds_min_error}0'
+                }
+            }
+        });
+    });
+</script>

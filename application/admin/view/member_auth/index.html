@@ -57,6 +57,9 @@
           <th class="align-center">{$Think.lang.member_idcard_image1}</th>
           <th class="align-center">{$Think.lang.member_idcard_image2}</th>
           <th class="align-center">{$Think.lang.member_idcard_image3}</th>
+          <th class="align-center">{$Think.lang.member_areainfo}</th>
+          <th class="align-center">{$Think.lang.change_bankname}</th>
+          <th class="align-center">{$Think.lang.change_bankcard}</th>
           <th class="align-center">{$Think.lang.ds_status}</th>
           <th class="align-center">{$Think.lang.ds_handle}</th>
         </tr>
@@ -104,6 +107,9 @@
           <td class="align-center">
               <img src="{:get_member_idcard_image($v.member_idcard_image3)}" height="100" onclick="openPhoto('{:get_member_idcard_image($v.member_idcard_image3)}')">
           </td>
+            <td class="align-center">{$v.member_idcard}</td>
+            <td class="align-center">{$v.member_idcard}</td>
+            <td class="align-center">{$v.member_idcard}</td>
           <td class="align-center">{$Think.lang.member_auth_state[$v.member_auth_state]}</td>
           <td class="align-center">
               {if $v.member_auth_state == 1}

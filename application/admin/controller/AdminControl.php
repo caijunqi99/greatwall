@@ -382,8 +382,13 @@ class AdminControl extends Controller {
                     ),
                     'predeposit' => array(
                         'ico'=>'&#xe6e2;',
-                        'text' => lang('ds_predeposit'),
+                        'text' => lang('ds_predeposit_c'),
                         'args' => 'pdrecharge_list,Predeposit,member',
+                    ),
+                    'transaction' => array(
+                        'ico'=>'&#xe72a;',
+                        'text' => lang('ds_transaction_code'),
+                        'args' => 'index,Transaction,member',
                     ),
 //                    'snsmalbum' => array(
 //                        'ico'=>'&#xe72a;',
