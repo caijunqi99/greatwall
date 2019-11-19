@@ -238,10 +238,10 @@
                 <?php $i++;?>
                 <tr class="bd-line">
                     <td>&nbsp;</td>
-                    <td class="w50"><div class="pic-thumb"><a target="_blank" href="{$goods.goods_url}"><img src="{:goods_thumb($goods,240)}" /></a></div></td>
+                    <td class="w50"><div class="pic-thumb"<!--<a target="_blank" href="{$goods.goods_url}">--><img src="{:goods_thumb($goods,240)}" /><!--</a>--></div></td>
                     <td class="tl">
                         <dl class="goods-name">
-                            <dt><a target="_blank" href="{$goods.goods_url}">{$goods.goods_name}</a></dt>
+                            <dt><!--<a target="_blank" href="{$goods.goods_url}">-->{$goods.goods_name}<!--</a>--></dt>
                             <dd>
                                 <?php if (isset($refund_all)) {?>
                                 <?php if (is_array($refund_all) && !empty($refund_all)) {?>

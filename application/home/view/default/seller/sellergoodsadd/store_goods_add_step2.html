@@ -264,17 +264,17 @@
         <dd id="dsProductDetails">
           <div class="tabs">
             <ul class="ui-tabs-nav">
-              <li class="ui-tabs-selected"><a href="#panel-1"><i class="iconfont">&#xe60c;</i> {$Think.lang.computer_side}</a></li>
-              <li class="selected"><a href="#panel-2"><i class="iconfont">&#xe60e;</i>{$Think.lang.mobile_side}</a></li>
+              <!--<li class="ui-tabs-selected"><a href="#panel-1"><i class="iconfont">&#xe60c;</i> {$Think.lang.computer_side}</a></li>-->
+              <li class="ui-tabs-selected"><a href="#panel-1"><i class="iconfont">&#xe60e;</i>{$Think.lang.mobile_side}</a></li>
             </ul>
             <div id="panel-1" class="ui-tabs-panel">
-                {:build_editor(['name'=>'goods_body','content'=>htmlspecialchars_decode($goods.goods_body)])}
-                <textarea name="goods_body" id="goods_body"></textarea>
-              <div class="hr8">
-                
-                <a class="dssc-btn mt5" dstype="show_desc" href="{:url('Selleralbum/pic_list',['item'=>'des'])}"><i class="iconfont">&#xe72a;</i>{$Think.lang.store_goods_album_insert_users_photo}</a> <a href="javascript:void(0);" dstype="del_desc" class="dssc-btn mt5" style="display: none;"><i class=" iconfont">&#xe67a;</i>{$Think.lang.close_album}</a>
-              </div>
-              <p id="des_demo"></p>
+                <!--{:build_editor(['name'=>'goods_body','content'=>htmlspecialchars_decode($goods.goods_body)])}-->
+                <!--<textarea name="goods_body" id="goods_body"></textarea>-->
+              <!--<div class="hr8">-->
+
+                <!--<a class="dssc-btn mt5" dstype="show_desc" href="{:url('Selleralbum/pic_list',['item'=>'des'])}"><i class="iconfont">&#xe72a;</i>{$Think.lang.store_goods_album_insert_users_photo}</a> <a href="javascript:void(0);" dstype="del_desc" class="dssc-btn mt5" style="display: none;"><i class=" iconfont">&#xe67a;</i>{$Think.lang.close_album}</a>-->
+              <!--</div>-->
+              <!--<p id="des_demo"></p>-->
             </div>
             <div id="panel-2" class="ui-tabs-panel ui-tabs-hide">
               <div class="dssc-mobile-editor">

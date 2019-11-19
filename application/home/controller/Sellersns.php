@@ -242,7 +242,7 @@ class Sellersns extends BaseSeller {
         $menu_array = array(
             array('name' => 'store_sns_add', 'text' => lang('store_sns_add'), 'url' => url('Sellersns/add')),
             array('name' => 'store_sns_setting', 'text' => lang('store_sns_setting'), 'url' => url('Sellersns/setting')),
-            array('name' => 'store_sns_brower', 'text' => lang('store_sns_browse'), 'url' => url('Storesnshome/index', ['sid' => session('store_id')])),
+//            array('name' => 'store_sns_brower', 'text' => lang('store_sns_browse'), 'url' => url('Storesnshome/index', ['sid' => session('store_id')])),
         );
         return $menu_array;
     }

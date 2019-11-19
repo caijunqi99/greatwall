@@ -15,7 +15,7 @@
 				<dd>{$Think.lang.user_name}：<strong>{$Think.session.member_name}</strong></dd>
                 <dd>{$Think.lang.administrative_rights}：<strong>{$Think.session.seller_group_name}</strong></dd>
                 <dd>{$Think.lang.last_login}：<strong>{$Think.session.seller_last_logintime}</strong> </dd>
-                <dd>{$Think.lang.store_name}{$Think.lang.ds_colon}<a href="{:url('Store/index',['store_id'=>$Think.session.store_id])}" >{$store_info.store_name}</a></dd>
+                <dd>{$Think.lang.store_name}{$Think.lang.ds_colon}<!--<a href="{:url('Store/index',['store_id'=>$Think.session.store_id])}" >-->{$store_info.store_name}<!--</a>--></dd>
                 <dd>{$Think.lang.store_store_grade}{$Think.lang.ds_colon}<strong>{$store_info.grade_name}</strong></dd>
                 <dd>{$Think.lang.store_validity}{$Think.lang.ds_colon}
                     <strong>{$store_info.store_endtime_text}
@@ -76,13 +76,13 @@
               <h5></h5>
           </div>
           <div class="content">
-              <ul>
-                  {notempty name="help_list"}
-                  {foreach name="help_list" item="val" }
-                  <li><i class="iconfont">&#xe73b;</i><a target="_blank" href="{:url('Showhelp/index',['t_id'=>$val.helptype_id])}" title="{$val.helptype_name}">{$val.helptype_name}</a></li>
-                  {/foreach}
-                  {/notempty}
-              </ul>
+              <!--<ul>-->
+                  <!--{notempty name="help_list"}-->
+                  <!--{foreach name="help_list" item="val" }-->
+                  <!--<li><i class="iconfont">&#xe73b;</i><a target="_blank" href="{:url('Showhelp/index',['t_id'=>$val.helptype_id])}" title="{$val.helptype_name}">{$val.helptype_name}</a></li>-->
+                  <!--{/foreach}-->
+                  <!--{/notempty}-->
+              <!--</ul>-->
               <dl>
                   <dt>{$Think.lang.store_site_info}</dt>
                   {notempty name="phone_array"}

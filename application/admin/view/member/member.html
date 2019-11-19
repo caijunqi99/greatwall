@@ -72,6 +72,7 @@
           <th class="align-center"><span fieldname="last_login" ds_type="order_by">{$Think.lang.member_index_last_login}</span></th>
           <th class="align-center">{$Think.lang.member_index_points}</th>
           <th class="align-center">{$Think.lang.member_index_prestore_c}</th>
+          <th class="align-center">{$Think.lang.ds_transaction_code_c}</th>
           <th class="align-center">{$Think.lang.member_exppoints}</th>
           <th class="align-center">{$Think.lang.member_grade}</th>
           <th class="align-center">{$Think.lang.member_index_login}</th>
@@ -112,10 +113,11 @@
           <td class="align-center">{$v.member_loginnum}</td>
           <td class="w150 align-center"><p>{$v.member_logintime}</p>
             <p>{$v.member_login_ip}</p></td>
-          <td class="align-center">{$v.member_points}</td>
-          <td class="align-center"><p>{$Think.lang.member_index_available}:&nbsp;<strong class="red">{$v.available_predeposit}</strong>&nbsp;{$Think.lang.currency_zh}</p>
-            <p>{$Think.lang.member_index_frozen}:&nbsp;<strong class="red">{$v.freeze_predeposit}</strong>&nbsp;{$Think.lang.currency_zh}</p>
-          </td>
+            <td class="align-center"><p>{$Think.lang.member_index_available}:&nbsp;<strong class="red">{$v.member_points_available}</strong></p>
+                <p>{$Think.lang.member_index_frozen}:&nbsp;<strong class="red">{$v.member_points}</strong></p>
+            </td>
+          <td class="align-center">{$v.available_rc_balance}</td>
+          <td class="align-center">{$v.member_transaction}</td>
           <td class="align-center">{$v.member_exppoints}</td>
           <td class="align-center">{$v.member_grade}</td>
           <td class="align-center">{if $v.member_state == 1}{$Think.lang.member_edit_allow}{else/}{$Think.lang.member_edit_deny}{/if}</td>

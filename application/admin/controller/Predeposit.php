@@ -775,12 +775,12 @@ class Predeposit extends AdminControl {
             ),
             array(
                 'name' => 'pdlog_list',
-                'text' => lang('pdlog_list'),
+                'text' => lang('pdlog_list_c'),
                 'url' => url('Predeposit/pdlog_list')
             ),
             array(
                 'name' => 'pd_add',
-                'text' => lang('pd_add'),
+                'text' => lang('pd_add_c'),
                 'url' => "javascript:dsLayerOpen('".url('Predeposit/pd_add')."','".lang('pd_add')."')"
             ),
         );

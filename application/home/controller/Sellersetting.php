@@ -632,9 +632,10 @@ class Sellersetting extends BaseSeller {
             4 => array(
                 'name' => 'store_slide', 'text' => lang('ds_member_path_store_slide'),
                 'url' => url('Sellersetting/store_slide')
-            ), 5 => array(
-                'name' => 'store_theme', 'text' => lang('store_theme'), 'url' => url('Sellersetting/theme')
             ),
+//            5 => array(
+//                'name' => 'store_theme', 'text' => lang('store_theme'), 'url' => url('Sellersetting/theme')
+//            ),
             7 => array(
                 'name' => 'store_mobile', 'text' => lang('mobile_phone_store_settings'), 'url' => url('Sellersetting/store_mobile'),
             ),
