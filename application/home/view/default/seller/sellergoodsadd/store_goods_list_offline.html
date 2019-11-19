@@ -64,74 +64,74 @@
       <td class="trigger"><i class="tip iconfont" dstype="ajaxGoodsList" data-comminid="{$val.goods_commonid}" title="{$Think.lang.click_check_goods}">&#xe6db;</i></td>
       <td>
           <div class="pic-thumb">
-        <a href="{:url('Goods/index',['goods_id'=>$storage_array[$val['goods_commonid']]['goods_id']])}" target="_blank"><img src="{:goods_thumb($val, 240)}"/></a>
-          </div>
-      </td>
-      <td class="tl"><dl class="goods-name">
-          <dt style="max-width: 450px !important;">
-            {if $val.is_virtual ==1}
-            <span class="type-virtual" title="{$Think.lang.virtual_exchange}">{$Think.lang.virtual}</span>
-            {/if}
-            {if $val.is_goodsfcode ==1}
-            <span class="type-fcode" title="{$Think.lang.f_code_priority_goods}">{$Think.lang.sellergoodsadd_f_code}</span>
-            {/if}
-            {if $val.is_presell ==1}
-            <span class="type-presell" title="{$Think.lang.advance_sale}">{$Think.lang.sellergoodsadd_presell}</span>
-            {/if}
-            {if $val.is_appoint ==1}
-            <span class="type-appoint" title="{$Think.lang.book_sales_tips}">{$Think.lang.sellergoodsadd_make}</span>
-            {/if}
-            <a href="{:url('Goods/index',['goods_id'=>$storage_array[$val['goods_commonid']]['goods_id']])}" target="_blank">{$val.goods_name}</a></dt>
-          <dd>{$Think.lang.store_goods_index_goods_no}{$Think.lang.ds_colon}{$val.goods_serial}</dd>
-          <dd class="serve"> <span class="{if $val.goods_commend == 1}open{/if}" title="{$Think.lang.shop_recommendation}"><i class="commend">{$Think.lang.commend}</i></span> <span class="{if $val.mobile_body !=''}open{/if}" title="{$Think.lang.details_products_mobile_phones}"><i class="iconfont">&#xe601;</i></span> <span class="" title="{$Think.lang.product_page_qr_code}"><i class="iconfont">&#xe72d;</i>
-            <div class="QRcode"><a target="_blank" href="{:goods_qrcode(array('goods_id' => $storage_array[$val['goods_commonid']]['goods_id']))}">{$Think.lang.download_label}</a>
-              <p><img src="{:goods_qrcode(array('goods_id' => $storage_array[$val['goods_commonid']]['goods_id']))}"/></p>
-            </div>
-            </span> </dd>
-        </dl></td>
-      <td><a href="javascript:void(0)" onclick="ds_ajaxget_confirm('{:url('Sellergoodsoffline/goods_show',['commonid'=>$val.goods_commonid])}','')" class="dssc-btn">{$Think.lang.store_goods_index_show}</a></td>
-      <td><span>{$Think.lang.currency}{$val.goods_price}</span></td>
-      <td><span>{$storage_array[$val['goods_commonid']]['sum']}{$Think.lang.piece}</span></td>
-      <td class="dscs-table-handle"><span><a href="{:url('Sellergoodsonline/edit_goods',['commonid'=>$val.goods_commonid])}" class="btn-blue"><i class="iconfont">&#xe731;</i><p>{$Think.lang.ds_edit}</p></a></span>
-        <span><a href="javascript:void(0)" onclick="ds_ajaxget_confirm('{:url('Sellergoodsonline/drop_goods',['commonid'=>$val.goods_commonid])}','{$Think.lang.ds_ensure_del}');" class="btn-red"><i class="iconfont">&#xe725;</i><p>{$Think.lang.ds_del}</p></a></span></td>
-    </tr>
-    <tr style="display:none;"><td colspan="20"><div class="dssc-goods-sku ps-container"></div></td></tr>
-    {/foreach}
-    {else /}
-    <tr>
-      <td colspan="20" class="norecord"><div class="warning-option"><i class="iconfont">&#xe64c;</i><span>{$Think.lang.no_record}</span></div></td>
-    </tr>
-    {/notempty}
-  </tbody>
-    {notempty name="goods_list"}
-  <tfoot>
-    <tr>
-      <th class="tc"><input type="checkbox" id="all2" class="checkall"/></th>
-      <th colspan="10"><label for="all2">{$Think.lang.ds_select_all}</label>
-        <a href="javascript:void(0);" class="dssc-btn-mini" ds_type="batchbutton" uri="{:url('Sellergoodsonline/drop_goods')}" name="commonid" confirm="{$Think.lang.ds_ensure_del}"><i class="iconfont">&#xe725;</i>{$Think.lang.ds_del}</a>
-        <a href="javascript:void(0);" class="dssc-btn-mini" ds_type="batchbutton" uri="{:url('Sellergoodsoffline/goods_show')}" name="commonid">{$Think.lang.store_goods_index_show}</a></th>
-    </tr>
-    <tr>
-      <td colspan="20"><div class="pagination">{$show_page}</div></td>
-    </tr>
-  </tfoot>
-  {/notempty}
-</table>
-<script src="{$Think.PLUGINS_SITE_ROOT}/jquery.poshytip.min.js"></script>
-<script src="{$Think.HOME_SITE_ROOT}/js/store_goods_list.js"></script> 
-<script>
-$(function(){
-    //Ajax提示
-    $('.tip').poshytip({
-        className: 'tip-yellowsimple',
-        showTimeout: 1,
-        alignTo: 'target',
-        alignX: 'center',
-        alignY: 'top',
-        offsetY: 5,
-        allowTipHover: false
-    });
-});
-</script>
+              <!--<a href="{:url('Goods/index',['goods_id'=>$storage_array[$val['goods_commonid']]['goods_id']])}" target="_blank">--><img src="{:goods_thumb($val, 240)}"/><!--</a>-->
+                </div>
+            </td>
+            <td class="tl"><dl class="goods-name">
+                <dt style="max-width: 450px !important;">
+                  {if $val.is_virtual ==1}
+                  <span class="type-virtual" title="{$Think.lang.virtual_exchange}">{$Think.lang.virtual}</span>
+                  {/if}
+                  {if $val.is_goodsfcode ==1}
+                  <span class="type-fcode" title="{$Think.lang.f_code_priority_goods}">{$Think.lang.sellergoodsadd_f_code}</span>
+                  {/if}
+                  {if $val.is_presell ==1}
+                  <span class="type-presell" title="{$Think.lang.advance_sale}">{$Think.lang.sellergoodsadd_presell}</span>
+                  {/if}
+                  {if $val.is_appoint ==1}
+                  <span class="type-appoint" title="{$Think.lang.book_sales_tips}">{$Think.lang.sellergoodsadd_make}</span>
+                  {/if}
+                    <!--<a href="{:url('Goods/index',['goods_id'=>$storage_array[$val['goods_commonid']]['goods_id']])}" target="_blank">-->{$val.goods_name}<!--</a>--></dt>
+                  <dd>{$Think.lang.store_goods_index_goods_no}{$Think.lang.ds_colon}{$val.goods_serial}</dd>
+                  <dd class="serve"> <span class="{if $val.goods_commend == 1}open{/if}" title="{$Think.lang.shop_recommendation}"><i class="commend">{$Think.lang.commend}</i></span> <span class="{if $val.mobile_body !=''}open{/if}" title="{$Think.lang.details_products_mobile_phones}"><i class="iconfont">&#xe601;</i></span> <span class="" title="{$Think.lang.product_page_qr_code}"><i class="iconfont">&#xe72d;</i>
+                    <div class="QRcode"><a target="_blank" href="{:goods_qrcode(array('goods_id' => $storage_array[$val['goods_commonid']]['goods_id']))}">{$Think.lang.download_label}</a>
+                      <p><img src="{:goods_qrcode(array('goods_id' => $storage_array[$val['goods_commonid']]['goods_id']))}"/></p>
+                    </div>
+                    </span> </dd>
+                </dl></td>
+              <td><a href="javascript:void(0)" onclick="ds_ajaxget_confirm('{:url('Sellergoodsoffline/goods_show',['commonid'=>$val.goods_commonid])}','')" class="dssc-btn">{$Think.lang.store_goods_index_show}</a></td>
+              <td><span>{$Think.lang.currency}{$val.goods_price}</span></td>
+              <td><span>{$storage_array[$val['goods_commonid']]['sum']}{$Think.lang.piece}</span></td>
+              <td class="dscs-table-handle"><span><a href="{:url('Sellergoodsonline/edit_goods',['commonid'=>$val.goods_commonid])}" class="btn-blue"><i class="iconfont">&#xe731;</i><p>{$Think.lang.ds_edit}</p></a></span>
+                <span><a href="javascript:void(0)" onclick="ds_ajaxget_confirm('{:url('Sellergoodsonline/drop_goods',['commonid'=>$val.goods_commonid])}','{$Think.lang.ds_ensure_del}');" class="btn-red"><i class="iconfont">&#xe725;</i><p>{$Think.lang.ds_del}</p></a></span></td>
+            </tr>
+            <tr style="display:none;"><td colspan="20"><div class="dssc-goods-sku ps-container"></div></td></tr>
+            {/foreach}
+            {else /}
+            <tr>
+              <td colspan="20" class="norecord"><div class="warning-option"><i class="iconfont">&#xe64c;</i><span>{$Think.lang.no_record}</span></div></td>
+            </tr>
+            {/notempty}
+          </tbody>
+            {notempty name="goods_list"}
+          <tfoot>
+            <tr>
+              <th class="tc"><input type="checkbox" id="all2" class="checkall"/></th>
+              <th colspan="10"><label for="all2">{$Think.lang.ds_select_all}</label>
+                <a href="javascript:void(0);" class="dssc-btn-mini" ds_type="batchbutton" uri="{:url('Sellergoodsonline/drop_goods')}" name="commonid" confirm="{$Think.lang.ds_ensure_del}"><i class="iconfont">&#xe725;</i>{$Think.lang.ds_del}</a>
+                <a href="javascript:void(0);" class="dssc-btn-mini" ds_type="batchbutton" uri="{:url('Sellergoodsoffline/goods_show')}" name="commonid">{$Think.lang.store_goods_index_show}</a></th>
+            </tr>
+            <tr>
+              <td colspan="20"><div class="pagination">{$show_page}</div></td>
+            </tr>
+          </tfoot>
+          {/notempty}
+        </table>
+        <script src="{$Think.PLUGINS_SITE_ROOT}/jquery.poshytip.min.js"></script>
+        <script src="{$Think.HOME_SITE_ROOT}/js/store_goods_list.js"></script>
+        <script>
+        $(function(){
+            //Ajax提示
+            $('.tip').poshytip({
+                className: 'tip-yellowsimple',
+                showTimeout: 1,
+                alignTo: 'target',
+                alignX: 'center',
+                alignY: 'top',
+                offsetY: 5,
+                allowTipHover: false
+            });
+        });
+        </script>
 
-{/block}
+        {/block}

@@ -59,9 +59,9 @@
         <?php $i++;?>
         <tr>
             <td class="bdl"></td>
-            <td class="w70"><div class="dssc-goods-thumb"><a href="{$goods.goods_url}" target="_blank"><img src="{:goods_thumb($goods,240)}"/></a></div></td>
+            <td class="w70"><div class="dssc-goods-thumb"><a href="javascript:;" ><img src="{:goods_thumb($goods,240)}"/></a></div></td>
             <td class="tl"><dl class="goods-name">
-                    <dt><a target="_blank" href="{$goods.goods_url}">{$goods.goods_name}</a></dt>
+                    <dt><!--<a target="_blank" href="{$goods.goods_url}">-->{$goods.goods_name}<!--</a>--></dt>
                     <dd>
                         {notempty name="$goods.goods_type_cn"}
                         <span class="sale-type">{$goods.goods_type_cn}</span>
