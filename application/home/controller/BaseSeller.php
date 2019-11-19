@@ -340,18 +340,18 @@ class BaseSeller extends BaseMall
         if(!$is_platform_store){
             $menu_list['seller']['submenu']=array_merge(array(array('name' => 'seller_money', 'text' => lang('store_money'), 'controller' => 'Sellermoney', 'url' => url('Sellermoney/index'),),array('name' => 'seller_deposit', 'text' => lang('store_deposit'), 'controller' => 'Sellerdeposit', 'url' => url('Sellerdeposit/index'),)),$menu_list['seller']['submenu']);
         }
-        if (config('inviter_open')) {
-            $menu_list['sellerinviter'] = array(
-                'ico'=>'&#xe6ed;',
-                'name' => 'sellerinviter',
-                'text' => lang('distribution'),
-                'url' => url('Sellerinviter/goods_list'),
-                'submenu' => array(
-                    array('name' => 'sellerinviter_goods', 'text' => lang('distribution_management'), 'controller' => 'Sellerinviter', 'url' => url('Sellerinviter/goods_list'),),
-                    array('name' => 'sellerinviter_order', 'text' => lang('distribution_earnings'), 'controller' => 'Sellerinviter', 'url' => url('Sellerinviter/order_list'),),
-                )
-            );
-        }
+//        if (config('inviter_open')) {
+//            $menu_list['sellerinviter'] = array(
+//                'ico'=>'&#xe6ed;',
+//                'name' => 'sellerinviter',
+//                'text' => lang('distribution'),
+//                'url' => url('Sellerinviter/goods_list'),
+//                'submenu' => array(
+//                    array('name' => 'sellerinviter_goods', 'text' => lang('distribution_management'), 'controller' => 'Sellerinviter', 'url' => url('Sellerinviter/goods_list'),),
+//                    array('name' => 'sellerinviter_order', 'text' => lang('distribution_earnings'), 'controller' => 'Sellerinviter', 'url' => url('Sellerinviter/order_list'),),
+//                )
+//            );
+//        }
         return $menu_list;
     }
 
