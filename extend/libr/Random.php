@@ -1,6 +1,6 @@
 <?php
 
-namespace fast;
+namespace libr;
 
 /**
  * 随机生成类
