@@ -86,7 +86,7 @@ class Connect extends MobileMall
                         break;
                     default:
                         $state = '参数错误';
-                        break;
+                        break;  
                 }
                 $result = $model_sms_log->sendSms($phone,$log_msg,$log_type,$captcha,$member['member_id'],$member['member_name']);
                 if($result['state']){

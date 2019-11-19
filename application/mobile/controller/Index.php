@@ -19,7 +19,7 @@ class Index extends MobileMall {
        
         $adv = model('Appadv')->getAllAppAdv();
         $adv = array_group_by($adv,'ap_id');
-
+        
         //轮播图
         $datas['chart']      = $adv[1];
         //促销
