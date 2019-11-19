@@ -1168,3 +1168,60 @@ function p($arr){
     }
     
 }
+
+/**
+ * 内容写入文件
+ *
+ * @param string $filepath 待写入内容的文件路径
+ * @param string /array $data 待写入的内容
+ * @param  string $mode 写入模式，如果是追加，可传入“append”
+ * @return bool
+ */
+function write_file($filepath, $data, $mode = null,$type=ture)
+{
+    if (!is_array($data) && !is_scalar($data)) {
+        return false;
+    }
+    if (!$type) {
+        $data = var_export($data, true);
+        $data = "<?php  return " . $data . ";";    
+    }
+    $mode = $mode == 'append' ? FILE_APPEND : null;
+    if (false === file_put_contents($filepath, ($data), $mode)) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+
+/**
+ * 写入支付文件
+ * @param  [string] $data     内容
+ * @param  [string] $payment  [写入支付文件名称]
+ * @param  [string] $filename [写入文件名称，为空则以时间命名]
+ * @return [bool]           
+ */
+function write_payment($data, $filename='',$type='sms'){
+    $path = RUNTIME_PATH.'interface/'.$type.'/'.date('Y-m-d').'_'.$filename.'.log';
+    $dir = dirname($path);
+    if (!is_dir($dir))mk_dir($dir);
+    $result = write_file($path, $data.PHP_EOL, $mode = 'append',$type=true);
+    return $result;
+}
+/**
+ * 循环创建目录
+ *
+ * @param string $dir 待创建的目录
+ * @param  $mode 权限
+ * @return boolean
+ */
+function mk_dir($dir, $mode = '0777')
+{
+    if (is_dir($dir) || @mkdir($dir, $mode))
+        return true;
+    if (!mk_dir(dirname($dir), $mode))
+        return false;
+    return @mkdir($dir, $mode);
+}

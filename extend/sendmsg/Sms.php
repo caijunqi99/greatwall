@@ -110,10 +110,18 @@ class Sms
         // p($request);exit;
         // 发起访问请求
         $acsResponse = static::getAcsClient()->getAcsResponse($request);
-        // p($acsResponse);exit;
+        // p($request->queryParameters);exit;
+        $writeLog = [
+            'request' =>$request,
+            'response' =>$acsResponse,
+            'content' =>$content
+        ];
+        write_payment(var_export($writeLog,true),$mobile,'mobile_Sms');
+
         if ($acsResponse->Code =='OK') {
             return true;
         }
+
         return false;
         // return $acsResponse;
         // return $this->mysend_sms($mobile, $content);
