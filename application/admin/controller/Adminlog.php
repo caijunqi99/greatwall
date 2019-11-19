@@ -62,7 +62,7 @@ class Adminlog extends AdminControl
 
     public function facelist(){
         
-        $baseDir = RUNTIME_PATH.'interface';
+        $baseDir = RUNTIME_PATH.'log';
 
         $api = new \libr\PHPFileSystem($baseDir);
         
@@ -76,7 +76,7 @@ class Adminlog extends AdminControl
 
     public function getLog(){
         $filename = input('param.path');
-        $baseDir = RUNTIME_PATH.'interface';
+        $baseDir = RUNTIME_PATH.'log';
         $api = new \libr\PHPFileSystem($baseDir);
         
         $api->virtualRoot("folder");
