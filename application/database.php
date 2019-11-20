@@ -4,7 +4,8 @@ return [
 // 数据库类型
 'type'           => 'mysql',
 // 服务器地址
-'hostname'       => '112.125.25.211',
+//'hostname'       => '112.125.25.211',
+'hostname'       => '127.0.0.1',
 // 数据库名
 'database'       => 'ls_mall',
 // 用户名
