@@ -27,7 +27,7 @@ class Bill extends AdminControl
     {
         //检查是否需要生成上月及更早结算单的程序不再执行，执行量较大，放到任务计划中触发
         $condition = array();
-        $query_year = input('get.query_year');
+        $query_year = input('param.query_year');
         if (preg_match('/^\d{4}$/', $query_year, $match)) {
             $condition['os_month'] = array('like',$query_year.'%');
         }
@@ -52,17 +52,17 @@ class Bill extends AdminControl
         $bill_model = model('bill');
         $condition = array();
 
-        $bill_state = input('get.bill_state');
+        $bill_state = input('param.bill_state');
         if (is_numeric($bill_state)) {
             $condition['ob_state'] = intval($bill_state);
         }
-        $query_store = input('get.query_store');
+        $query_store = input('param.query_store');
         if (preg_match('/^\d{1,8}$/', $query_store)) {
             $condition['ob_store_id'] = $query_store;
         } elseif ($query_store != '') {
             $condition['ob_store_name'] = $query_store;
         }
-        $os_month = input('get.os_month');
+        $os_month = input('param.os_month');
         if($os_month){
             $condition['ob_startdate']=array('>=',strtotime($os_month.'01 0:0:0'));
             $condition['ob_enddate']=array('<',strtotime($os_month.'01 23:59:59 +1 month -1 day'));
@@ -96,8 +96,8 @@ class Bill extends AdminControl
         $order_condition['order_state'] = ORDER_STATE_SUCCESS;
         $order_condition['store_id'] = $bill_info['ob_store_id'];
 
-        $query_start_date = input('get.query_start_date');
-        $query_end_date = input('get.query_end_date');
+        $query_start_date = input('param.query_start_date');
+        $query_end_date = input('param.query_end_date');
         $if_start_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $query_start_date);
         $if_end_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $query_end_date);
         $start_unixtime = $if_start_date ? strtotime($query_start_date) : null;
@@ -309,7 +309,7 @@ class Bill extends AdminControl
     public function export_js_step1() {
         $bill_model = model('bill');
         $condition = array();
-        $query_year = input('get.query_year');
+        $query_year = input('param.query_year');
         if (preg_match('/^\d{4}$/', $query_year, $match)) {
             $condition['os_month'] = array('like',$query_year.'%');
         }
@@ -390,17 +390,17 @@ class Bill extends AdminControl
         $bill_model = model('bill');
         $condition = array();
 
-        $bill_state = input('get.bill_state');
+        $bill_state = input('param.bill_state');
         if (is_numeric($bill_state)) {
             $condition['ob_state'] = intval($bill_state);
         }
-        $query_store = input('get.query_store');
+        $query_store = input('param.query_store');
         if (preg_match('/^\d{1,8}$/', $query_store)) {
             $condition['ob_store_id'] = $query_store;
         } elseif ($query_store != '') {
             $condition['ob_store_name'] = $query_store;
         }
-        $os_month = input('get.os_month');
+        $os_month = input('param.os_month');
         if($os_month){
             $condition['ob_startdate']=array('>=',strtotime($os_month.'01 0:0:0'));
             $condition['ob_enddate']=array('<',strtotime($os_month.'01 23:59:59 +1 month -1 day'));

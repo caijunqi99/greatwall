@@ -23,12 +23,12 @@ class Shopnearby extends MobileMall {
 
         //查询条件
         $condition = array();
-        if (!empty(input('get.keyword'))) {
-            $condition['store_name'] = array('like', '%' . input('get.keyword') . '%');
+        if (!empty(input('param.keyword'))) {
+            $condition['store_name'] = array('like', '%' . input('param.keyword') . '%');
         }
-        $lat = input('get.latitude');
-        $lng = input('get.longitude');
-        $page = intval(input('get.page'));
+        $lat = input('param.latitude');
+        $lng = input('param.longitude');
+        $page = intval(input('param.page'));
         $store_list = db('store')->where($condition)->where('(2 * 6378.137* ASIN(SQRT(POW(SIN(PI()*(' . $lat . '-latitude)/360),2)+COS(PI()*' . $lat . '/180)* COS(latitude * PI()/180)*POW(SIN(PI()*(' . $lng . '-longitude)/360),2)))) < 100000')->field('store_id,is_own_shop,store_name,area_info,store_address,store_logo,(2 * 6378.137* ASIN(SQRT(POW(SIN(PI()*(' . $lat . '-latitude)/360),2)+COS(PI()*' . $lat . '/180)* COS(latitude * PI()/180)*POW(SIN(PI()*(' . $lng . '-longitude)/360),2)))) as distance')->order('distance asc')->page($page, 30)->select();
 
         $goods_conditions = array(

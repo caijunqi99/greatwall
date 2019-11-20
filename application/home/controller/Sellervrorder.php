@@ -31,11 +31,11 @@ class Sellervrorder extends BaseSeller {
         $condition = array();
         $condition['store_id'] = session('store_id');
 
-        $order_sn = input('get.order_sn');
+        $order_sn = input('param.order_sn');
         if ($order_sn != '') {
             $condition['order_sn'] = $order_sn;
         }
-        $buyer_name = input('get.buyer_name');
+        $buyer_name = input('param.buyer_name');
         if ($buyer_name != '') {
             $condition['buyer_name'] = $buyer_name;
         }
@@ -46,8 +46,8 @@ class Sellervrorder extends BaseSeller {
         } else {
             $state_type = 'store_order';
         }
-        $query_start_date = input('get.query_start_date');
-        $query_end_date = input('get.query_end_date');
+        $query_start_date = input('param.query_start_date');
+        $query_end_date = input('param.query_end_date');
         $if_start_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $query_end_date);
         $if_end_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $query_start_date);
         $start_unixtime = $if_start_date ? strtotime($query_end_date) : null;
@@ -56,7 +56,7 @@ class Sellervrorder extends BaseSeller {
             $condition['add_time'] = array('between', array($start_unixtime, $end_unixtime));
         }
 
-        $skip_off = input('get.skip_off');
+        $skip_off = input('param.skip_off');
         if ($skip_off == 1) {
             $condition['order_state'] = array('neq', ORDER_STATE_CANCEL);
         }
@@ -178,11 +178,11 @@ class Sellervrorder extends BaseSeller {
      */
     private function _exchange() {
         if (input('param.submit_exchange')=='ok') {
-            if (!preg_match('/^[a-zA-Z0-9]{15,18}$/', input('get.vr_code'))) {
+            if (!preg_match('/^[a-zA-Z0-9]{15,18}$/', input('param.vr_code'))) {
                 return array('error' => lang('exchange_code_format_error'));
             }
             $vrorder_model = model('vrorder');
-            $vr_code_info = $vrorder_model->getVrordercodeInfo(array('vr_code' => input('get.vr_code')));
+            $vr_code_info = $vrorder_model->getVrordercodeInfo(array('vr_code' => input('param.vr_code')));
             if (empty($vr_code_info) || $vr_code_info['store_id'] != session('store_id')) {
                 return array('error' => lang('exchange_code_not_exist'));
             }
@@ -200,7 +200,7 @@ class Sellervrorder extends BaseSeller {
             $update = array();
             $update['vr_state'] = 1;
             $update['vr_usetime'] = TIMESTAMP;
-            $update = $vrorder_model->editVrorderCode($update, array('vr_code' => input('get.vr_code')));
+            $update = $vrorder_model->editVrorderCode($update, array('vr_code' => input('param.vr_code')));
 
             //如果全部兑换完成，更新订单状态
             model('vrorder','logic')->changeOrderStateSuccess($vr_code_info['order_id']);

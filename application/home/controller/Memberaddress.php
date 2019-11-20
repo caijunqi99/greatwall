@@ -35,6 +35,7 @@ class Memberaddress extends BaseMember {
 
     public function add() {
         if (!request()->isPost()) {
+            
             $area_mod=model('area');
             $region_list = $area_mod->getAreaList(array('area_parent_id'=>'0'));
             $this->assign('region_list', $region_list);

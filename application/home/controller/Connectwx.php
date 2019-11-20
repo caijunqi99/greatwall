@@ -20,7 +20,7 @@ class Connectwx extends BaseMall
      * 微信登录
      */
     public function index(){
-        if(empty(input('get.code'))) {
+        if(empty(input('param.code'))) {
             echo $this->fetch($this->template_dir.'index');
         } else {
             $this->get_info();
@@ -95,7 +95,7 @@ class Connectwx extends BaseMall
      * 回调获取信息
      */
     public function get_info(){
-        $code = input('get.code');
+        $code = input('param.code');
         if(!empty($code)) {
             $user_info = $this->get_user_info($code);
             if(!empty($user_info['unionid'])) {

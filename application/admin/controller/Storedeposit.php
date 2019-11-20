@@ -25,8 +25,8 @@ class Storedeposit extends AdminControl {
 
     public function index() {
         $condition = array();
-        $stime = input('get.stime');
-        $etime = input('get.etime');
+        $stime = input('param.stime');
+        $etime = input('param.etime');
         $if_start_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $stime);
         $if_end_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $etime);
         $start_unixtime = $if_start_date ? strtotime($stime) : null;
@@ -34,7 +34,7 @@ class Storedeposit extends AdminControl {
         if ($start_unixtime || $end_unixtime) {
             $condition['storedepositlog_add_time'] = array('between', array($start_unixtime, $end_unixtime));
         }
-        $mname = input('get.mname');
+        $mname = input('param.mname');
         if (!empty($mname)) {
             $condition['store_name'] = array('like','%'.$mname.'%');
         }
@@ -64,7 +64,7 @@ class Storedeposit extends AdminControl {
         $this->assign('show_page', $storedepositlog_model->page_info->render());
         $this->assign('withdraw_list', $withdraw_list);
         
-        $this->assign('filtered', input('get.') ? 1 : 0); //是否有查询条件
+        $this->assign('filtered', input('param.') ? 1 : 0); //是否有查询条件
         
         $this->setAdminCurItem('withdraw_list');
         return $this->fetch();
@@ -207,7 +207,7 @@ class Storedeposit extends AdminControl {
 
     public function adjust() {
         if (!(request()->isPost())) {
-            $store_id = intval(input('get.store_id'));
+            $store_id = intval(input('param.store_id'));
             if($store_id>0){
                 $condition['store_id'] = $store_id;
                 $store = model('store')->getStoreInfo($condition);

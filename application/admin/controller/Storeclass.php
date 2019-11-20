@@ -132,11 +132,11 @@ class Storeclass extends AdminControl {
             //分类：验证是否有重复的名称
             case 'store_class_name':
                 $condition = array();
-                $condition['storeclass_name'] = input('get.value');
+                $condition['storeclass_name'] = input('param.value');
                 $condition['storeclass_id'] = array('neq', intval(input('param.id')));
                 $class_list = $storeclass_model->getStoreclassList($condition);
                 if (empty($class_list)) {
-                    $update_array['storeclass_name'] = input('get.value');
+                    $update_array['storeclass_name'] = input('param.value');
                     $update = $storeclass_model->editStoreclass($update_array, array('storeclass_id' => intval(input('param.id'))));
                     $return = 'true';
                 } else {
@@ -145,13 +145,13 @@ class Storeclass extends AdminControl {
                 break;
             //分类： 排序 显示 设置
             case 'store_class_sort':
-                $update_array['storeclass_sort'] = intval(input('get.value'));
+                $update_array['storeclass_sort'] = intval(input('param.value'));
                 $result = $storeclass_model->editStoreclass($update_array, array('storeclass_id' => intval(input('param.id'))));
                 $return = 'true';
                 break;
             //分类：添加、修改操作中 检测类别名称是否有重复
             case 'check_class_name':
-                $condition['storeclass_name'] = input('get.storeclass_name');
+                $condition['storeclass_name'] = input('param.storeclass_name');
                 $class_list = $storeclass_model->getStoreclassList($condition);
                 $return = empty($class_list) ? 'true' : 'false';
                 break;

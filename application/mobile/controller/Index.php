@@ -40,7 +40,7 @@ class Index extends MobileMall {
      * @return   [type]     [description]
      */
     public function getCommendGoods(){
-        $limit = input('limit')?input('limit'):6;
+        $limit = input('param.limit')?input('param.limit'):6;
         //获取随机推荐的商品
         $goods=model('goods')->getGoodsCommendListBymall($limit);
         foreach ($goods as $k=>$val){
@@ -97,7 +97,7 @@ class Index extends MobileMall {
      * 高级搜索
      */
     public function search_adv() {
-        $gc_id = intval(input('get.gc_id'));
+        $gc_id = intval(input('param.gc_id'));
         $_tmp = array();
         $area_list = Model('area')->getAreaList(array('area_deep' => 1), 'area_id,area_name');
         if (config('contract_allow') == 1) {

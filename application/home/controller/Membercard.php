@@ -14,7 +14,7 @@ class Membercard extends BaseMall {
      */
     public function index() {
         $ownid = session('member_id');
-        $uid = intval(input('get.uid'));
+        $uid = intval(input('param.uid'));
 
         $member_info = db('member')->field('member_id, member_name, member_truename, member_sex, member_email, member_qq, member_ww, member_areainfo, member_birthday, member_privacy, member_exppoints')->find($uid);
         if (empty($member_info)) {
@@ -57,7 +57,7 @@ class Membercard extends BaseMall {
         $data['birthday'] = ($followed >= intval($member_info['member_privacy']['birthday']) && !empty($member_info['member_birthday'])) ? $member_info['member_birthday'] : lang('home_member_privary');
         $data['level_name'] = $member_info['level_name'];
 
-        switch (input('get.from')) {
+        switch (input('param.from')) {
             case 'shop':
                 $data['url'] = HOME_SITE_URL;
                 break;

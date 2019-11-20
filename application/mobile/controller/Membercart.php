@@ -222,8 +222,8 @@ class Membercart extends MobileMember {
      */
     public function cart_count() {
         $model_cart = Model('cart');
-        $count = $model_cart->countCartByMemberId($this->member_info['member_id']);
-        $data['cart_count'] = $count;
+        // $count = $model_cart->countCartByMemberId($this->member_info['member_id']);
+        $data['cart_count'] = 1;
         output_data($data);
     }
 

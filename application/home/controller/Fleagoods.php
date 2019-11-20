@@ -39,8 +39,8 @@ class Fleagoods extends BaseFlea {
 
         
         //留言成功调转到留言
-        if (!empty(input('get.succ'))) {
-            if (input('get.succ') == 'succ') {
+        if (!empty(input('param.succ'))) {
+            if (input('param.succ') == 'succ') {
                 $succ_link = HOME_SITE_URL.'/Fleagoods/index.html?goods_id=' . $goods_id . "#flea_message";
                 @header("Location: " . $succ_link);exit();
             }

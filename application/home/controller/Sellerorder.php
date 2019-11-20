@@ -26,11 +26,11 @@ class Sellerorder extends BaseSeller {
         $condition = array();
         $condition['store_id'] = session('store_id');
 
-        $order_sn = input('get.order_sn');
+        $order_sn = input('param.order_sn');
         if ($order_sn != '') {
             $condition['order_sn'] = $order_sn;
         }
-        $buyer_name = input('get.buyer_name');
+        $buyer_name = input('param.buyer_name');
         if ($buyer_name != '') {
             $condition['buyer_name'] = $buyer_name;
         }
@@ -41,15 +41,15 @@ class Sellerorder extends BaseSeller {
         } else {
             $state_type = 'store_order';
         }
-        $if_start_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', input('get.query_start_date'));
-        $if_end_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', input('get.query_end_date'));
-        $start_unixtime = $if_start_date ? strtotime(input('get.query_start_date')) : null;
-        $end_unixtime = $if_end_date ? strtotime(input('get.query_end_date')) : null;
+        $if_start_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', input('param.query_start_date'));
+        $if_end_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', input('param.query_end_date'));
+        $start_unixtime = $if_start_date ? strtotime(input('param.query_start_date')) : null;
+        $end_unixtime = $if_end_date ? strtotime(input('param.query_end_date')) : null;
         if ($start_unixtime || $end_unixtime) {
             $condition['add_time'] = array('between', array($start_unixtime, $end_unixtime));
         }
 
-        $skip_off = input('get.buyer_name');
+        $skip_off = input('param.buyer_name');
         if ($skip_off == 1) {
             $condition['order_state'] = array('neq', ORDER_STATE_CANCEL);
         }

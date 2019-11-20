@@ -50,7 +50,7 @@ class Memberpayment extends MobileMember
         if (!preg_match('/^\d{18}$/', $pay_sn)) {
             output_error('支付单号错误');
         }
-        $pay_info = $this->_get_real_order_info($pay_sn, input('get.'));
+        $pay_info = $this->_get_real_order_info($pay_sn, input('param.'));
         if (isset($pay_info['error'])) {
             exit($pay_info['error']);
         }
@@ -359,7 +359,7 @@ class Memberpayment extends MobileMember
     public function orderpay_app()
     {
         $pay_sn = input('param.pay_sn');
-        $pay_info = $this->_get_real_order_info($pay_sn,input('get.'));
+        $pay_info = $this->_get_real_order_info($pay_sn,input('param.'));
         if (isset($pay_info['error'])) {
             output_error($pay_info['error']);
         }

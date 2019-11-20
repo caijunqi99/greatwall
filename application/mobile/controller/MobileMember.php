@@ -17,7 +17,9 @@ class MobileMember extends MobileHome {
             if (empty($key)) {
                 $key = input('param.key');
             }
+            
             $mb_user_token_info = $model_mb_user_token->getMbusertokenInfoByToken($key);
+
             if (empty($mb_user_token_info)) {
                 output_error('请登录', array('login' => '0'));
             }

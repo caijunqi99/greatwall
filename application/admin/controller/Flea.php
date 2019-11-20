@@ -101,10 +101,10 @@ class Flea extends AdminControl
      * ajax操作
      */
     public function ajax() {
-        $branch = input('get.branch');
-        $column = input('get.column');
-        $value = trim(input('get.value'));
-        $id = intval(input('get.id'));
+        $branch = input('param.branch');
+        $column = input('param.column');
+        $value = trim(input('param.value'));
+        $id = intval(input('param.id'));
         switch ($branch) {
             /**
              * 商品名称

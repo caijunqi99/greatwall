@@ -16,7 +16,7 @@ class Member extends MobileMember {
         $member_info = array();
 
         $member_info['user_name'] = $this->member_info['member_name'];
-        $member_info['avator'] = getMemberAvatarForID($this->member_info['member_id']);
+        $member_info['avator'] = get_member_avatar_for_id($this->member_info['member_id']);
         $member_info['point'] = $this->member_info['member_points'];
         $member_gradeinfo = Model('member')->getOneMemberGrade(intval($this->member_info['member_exppoints']));
         $member_info['level_name'] = $member_gradeinfo['level_name'];

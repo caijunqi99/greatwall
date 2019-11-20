@@ -78,7 +78,7 @@ class Sellertransport extends BaseSeller
 
     public function edit()
     {
-        $id = intval(input('get.id'));
+        $id = intval(input('param.id'));
         $transport_model = model('transport');
         $transport = $transport_model->getTransportInfo(array('transport_id' => $id));
         $extend = $transport_model->getExtendInfo(array('transport_id' => $id));
@@ -117,7 +117,7 @@ class Sellertransport extends BaseSeller
 
     public function cloned()
     {
-        $id = intval(input('get.id'));
+        $id = intval(input('param.id'));
         $transport_model = model('transport');
         $transport = $transport_model->getTransportInfo(array('transport_id' => $id));
         unset($transport['transport_id']);

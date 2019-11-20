@@ -152,7 +152,7 @@ class Selleraccount extends BaseSeller {
     }
 
     public function check_seller_name_exist() {
-        $seller_name = input('get.seller_name');
+        $seller_name = input('param.seller_name');
         $result = $this->_is_seller_name_exist($seller_name);
         if($result) {
             echo 'true';
@@ -169,8 +169,8 @@ class Selleraccount extends BaseSeller {
     }
 
     public function check_seller_member() {
-        $member_name = input('get.member_name');
-        $password = input('get.password');
+        $member_name = input('param.member_name');
+        $password = input('param.password');
         $result = $this->_check_seller_member($member_name, $password);
         if($result) {
             echo 'true';

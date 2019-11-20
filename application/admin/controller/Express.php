@@ -18,13 +18,13 @@ class Express extends AdminControl {
     }
 
     public function index() {
-        $express_letter = input('get.express_letter');
+        $express_letter = input('param.express_letter');
         $condition = array();
         if (preg_match('/^[A-Z]$/', $express_letter)) {
             $condition['express_letter'] = $express_letter;
         }
         
-        $express_name = input('get.express_name');
+        $express_name = input('param.express_name');
         if(!empty($express_name)){
             $condition['express_name'] = array('like', "%" . $express_name . "%");
         }
@@ -123,10 +123,10 @@ class Express extends AdminControl {
      * ajax操作
      */
     public function ajax() {
-        $branch = input('get.branch');
-        $column = input('get.column');
-        $value = trim(input('get.value'));
-        $id = intval(input('get.id'));
+        $branch = input('param.branch');
+        $column = input('param.column');
+        $value = trim(input('param.value'));
+        $id = intval(input('param.id'));
         switch ($branch) {
             case 'state':
                 $express_model = model('express');

@@ -31,13 +31,14 @@
         {foreach name="lst" item="value"}
         {foreach name="$value.data" item="val"}
         {foreach name="$val.data" item="v" key='k'}
-        <tr class="hover member">
+        <tr class="hover member" id="log_{$k+1}">
           <td class="align-center">{$k+1}</td>
           <td class="align-center">{$v.id}</td>
           <td class="align-center">{$val.value}</td>
           <td class="w150 align-center"><p>{:TransByte($v.size)}</p></td>
           <td class="align-center">
-              <a href="javascript:checkError('{$v.id}');" class="dsui-btn-edit"><i class="iconfont"></i>查看内容</a>
+              <a href="javascript:checkError('{$v.id}','check');" id="{$k+1}" class="dsui-btn-edit"><i class="iconfont"></i>查看内容</a>
+              <a href="javascript:checkError('{$v.id}','del');" class="dsui-btn-del"><i class="iconfont"></i>删除</a>
           </td>
         </tr>
         {/foreach}
@@ -54,30 +55,40 @@
 
 </div>
 <script type="text/javascript">
-    function checkError(id) {
+    
+    function checkError(id,act) {
+        var uniqid = this.attr('id');
+        console.log(uniqid);
+        return;
         $.ajax({
             url: "{:url('Adminlog/getLog')}",
             type: 'GET',
             dataType: 'html',
-            data: {'path': id},
+            data: {'path': id,'act':act},
         })
         .done(function(sb) {
-            layer.open({
-        type: 1
-        ,title: id //不显示标题栏
-        ,closeBtn: false
-        ,area:['90%','90%']
-        ,shade: 0.8
-        ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-        ,btn: [ '关闭日志']
-        ,btnAlign: 'c'
-        ,moveType: 1 //拖拽模式，0或者1
-        ,content: sb
-        ,success: function(layero){
-          
-        }
-      });
-            console.log(sb);
+            switch (act) {
+                case 'check':
+                    layer.open({
+                            type: 1
+                            ,title: id //不显示标题栏
+                            ,closeBtn: false
+                            ,area:['90%','90%']
+                            ,shade: 0.8
+                            ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                            ,btn: [ '关闭日志']
+                            ,btnAlign: 'c'
+                            ,moveType: 1 //拖拽模式，0或者1
+                            ,content: sb
+                            ,success: function(layero){
+                              
+                        }
+                    });
+                    break;
+                case 'del':
+                    layer.msg('缓存日志删除成功!');
+                    break;
+            }
         })  
     }
 </script>

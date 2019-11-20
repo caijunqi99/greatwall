@@ -98,8 +98,8 @@ class Connectsms extends BaseMall {
      */
     public function check_captcha() {
         $state = lang('validation_fails');
-        $phone = input('get.phone');
-        $captcha = input('get.sms_captcha');
+        $phone = input('param.phone');
+        $captcha = input('param.sms_captcha');
         if (strlen($phone) == 11 && strlen($captcha) == 6) {
             $state = 'true';
             $condition = array();

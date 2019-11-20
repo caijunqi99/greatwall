@@ -14,7 +14,7 @@ namespace app\home\controller;
 class Pnum extends BaseMall {
 
     public function index() {
-        $pnum = input('get.pnum');
+        $pnum = input('param.pnum');
         $im = imagecreate(120, 16);
         $bg = imagecolorallocate($im, 247, 247, 247);
         $textcolor = imagecolorallocate($im, 101, 101, 101);

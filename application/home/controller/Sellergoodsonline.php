@@ -32,12 +32,12 @@ class Sellergoodsonline extends BaseSeller {
         $where = array();
         $where['store_id'] = session('store_id');
 
-        $storegc_id = intval(input('get.storegc_id'));
+        $storegc_id = intval(input('param.storegc_id'));
         if ($storegc_id > 0) {
             $where['goods_stcids'] = array('like', '%,' . $storegc_id . ',%');
         }
-        $keyword = trim(input('get.keyword'));
-        $search_type = trim(input('get.search_type'));
+        $keyword = trim(input('param.keyword'));
+        $search_type = trim(input('param.search_type'));
         if (trim($keyword) != '') {
             switch ($search_type) {
                 case 0:

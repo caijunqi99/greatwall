@@ -27,11 +27,11 @@ class Sellerplate extends BaseSeller {
         // 版式列表
         $where = array();
         $where['store_id'] = session('store_id');
-        $p_name = trim(input('get.p_name'));
+        $p_name = trim(input('param.p_name'));
         if ($p_name != '') {
             $where['storeplate_name'] = array('like', '%' . $p_name . '%');
         }
-        $p_position = trim(input('get.p_position'));
+        $p_position = trim(input('param.p_position'));
         if (in_array($p_position, array('0', '1'))) {
             $where['storeplate_position'] = $p_position;
         }

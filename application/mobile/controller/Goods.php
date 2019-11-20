@@ -27,10 +27,10 @@ class Goods extends MobileMall {
         $condition = array();
         // ==== 暂时不显示定金预售商品，手机端未做。  ====
         //$condition['is_book'] = 0;
-        $gc_id = intval(input('get.gc_id'));
-        $keyword = input('get.keyword');
-        $barcode = input('get.barcode');
-        $b_id = intval(input('get.b_id'));
+        $gc_id = intval(input('param.gc_id'));
+        $keyword = input('param.keyword');
+        $barcode = input('param.barcode');
+        $b_id = intval(input('param.b_id'));
         if ($gc_id > 0) {
             $condition['gc_id'] = $gc_id;
         } elseif (!empty($keyword)) {
@@ -51,8 +51,8 @@ class Goods extends MobileMall {
         } elseif ($b_id > 0) {
             $condition['brand_id'] = $b_id;
         }
-        $price_from = input('get.price_from');
-        $price_to = input('get.price_to');
+        $price_from = input('param.price_from');
+        $price_to = input('param.price_to');
         $price_from = preg_match('/^[\d.]{1,20}$/', $price_from) ? $price_from : null;
         $price_to = preg_match('/^[\d.]{1,20}$/', $price_to) ? $price_to : null;
 
@@ -62,20 +62,20 @@ class Goods extends MobileMall {
         $fieldstr .= ',is_virtual,is_presell,is_fcode,have_gift,goods_jingle,store_id,store_name,is_own_shop';
 
         //排序方式
-        $order = $this->_goods_list_order(input('get.key'), input('get.order'));
+        $order = $this->_goods_list_order(input('param.key'), input('param.order'));
 
         //全文搜索搜索参数
-        $indexer_searcharr = input('get.');
+        $indexer_searcharr = input('param.');
         //搜索消费者保障服务
         $search_ci_arr = array();
-        $ci = trim(input('get.ci'), '_');
+        $ci = trim(input('param.ci'), '_');
         if ($ci && $ci != 0 && is_string($ci)) {
             //处理参数
             $search_ci = $ci;
             $search_ci_arr = explode('_', $search_ci);
             $indexer_searcharr['search_ci_arr'] = $search_ci_arr;
         }
-        if (input('get.own_shop') == 1) {
+        if (input('param.own_shop') == 1) {
             $indexer_searcharr['type'] = 1;
         }
         $indexer_searcharr['price_from'] = $price_from;
@@ -107,22 +107,22 @@ class Goods extends MobileMall {
             } elseif ($price_to) {
                 $condition['goods_promotion_price'] = array('elt', $price_to);
             }
-            if (input('get.gift') == 1) {
+            if (input('param.gift') == 1) {
                 $condition['have_gift'] = 1;
             }
-            if (input('get.own_shop') == 1) {
+            if (input('param.own_shop') == 1) {
                 $condition['store_id'] = 1;
             }
-            if (intval(input('get.area_id')) > 0) {
-                $condition['areaid_1'] = intval(input('get.area_id'));
+            if (intval(input('param.area_id')) > 0) {
+                $condition['areaid_1'] = intval(input('param.area_id'));
             }
 
             //团购和限时折扣搜索
             $_tmp = array();
-            if (input('get.groupbuy') == 1) {
+            if (input('param.groupbuy') == 1) {
                 $_tmp[] = 1;
             }
-            if (input('get.xianshi') == 1) {
+            if (input('param.xianshi') == 1) {
                 $_tmp[] = 2;
             }
             if ($_tmp) {
@@ -131,7 +131,7 @@ class Goods extends MobileMall {
             unset($_tmp);
 
             //虚拟商品
-            if (input('get.virtual') == 1) {
+            if (input('param.virtual') == 1) {
                 $condition['is_virtual'] = 1;
             }
 
@@ -263,8 +263,8 @@ class Goods extends MobileMall {
      * 商品详细页
      */
     public function goods_detail() {
-        $goods_id = intval(input('get.goods_id'));
-        $area_id = intval(input('get.area_id'));
+        $goods_id = intval(input('param.goods_id'));
+        $area_id = intval(input('param.area_id'));
         // 商品详细信息
         $model_goods = Model('goods');
         $goods_detail = $model_goods->getGoodsDetail($goods_id);
@@ -446,7 +446,7 @@ class Goods extends MobileMall {
      */
     public function goods_body() {
         header("Access-Control-Allow-Origin:*");
-        $goods_id = intval(input('get.goods_id'));
+        $goods_id = intval(input('param.goods_id'));
 
         $model_goods = Model('goods');
 
@@ -458,8 +458,8 @@ class Goods extends MobileMall {
     }
 
     public function goods_evaluate() {
-        $goods_id = intval(input('get.goods_id'));
-        $type = intval(input('get.type'));
+        $goods_id = intval(input('param.goods_id'));
+        $type = intval(input('param.type'));
 
         $condition = array();
         $condition['geval_goodsid'] = $goods_id;
@@ -494,8 +494,8 @@ class Goods extends MobileMall {
      * @return unknown
      */
     public function calc() {
-        $area_id = intval(input('get.area_id'));
-        $goods_id = intval(input('get.goods_id'));
+        $area_id = intval(input('param.area_id'));
+        $goods_id = intval(input('param.goods_id'));
         output_data($this->_calc($area_id, $goods_id));
     }
 
@@ -539,9 +539,9 @@ class Goods extends MobileMall {
      * 取得店铺分店地址
      */
     public function store_o2o_addr() {
-        $store_id = intval(input('get.store_id'));
-        $lng = input('get.lng');
-        $lat = input('get.lat');
+        $store_id = intval(input('param.store_id'));
+        $lng = input('param.lng');
+        $lat = input('param.lat');
         $condition = array();
         $condition['store_id'] = $store_id;
         $map_list = Model('storemap')->getStoreMapList($condition, '', '', 'map_id asc');
@@ -580,7 +580,7 @@ class Goods extends MobileMall {
     }
 
     public function auto_complete() {
-        $data = Model('search')->where(array('term' => input('get.term')))->select();
+        $data = Model('search')->where(array('term' => input('param.term')))->select();
         foreach ($data as $k => $v) {
             $data[$k] = $v['value'];
         }

@@ -63,7 +63,7 @@ class Login extends MobileMall
         }
     }
     public function get_inviter(){
-        $inviter_id=intval(input('get.inviter_id'));
+        $inviter_id=intval(input('param.inviter_id'));
         $member=db('member')->where('member_id',$inviter_id)->field('member_id,member_name')->find();
         
         output_data(array('member' => $member));

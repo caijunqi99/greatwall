@@ -44,17 +44,17 @@ class Shopnearby extends BaseMall {
         $store_list = array();
         //查询条件
         $condition = array();
-        if (!empty(input('get.keyword'))) {
-            $condition['store_name'] = array('like', '%' . input('get.keyword') . '%');
+        if (!empty(input('param.keyword'))) {
+            $condition['store_name'] = array('like', '%' . input('param.keyword') . '%');
         }
-        $storeclass_id = intval(input('get.storeclass_id'));
+        $storeclass_id = intval(input('param.storeclass_id'));
         if ($storeclass_id) {
             $condition['storeclass_id'] = array('=', $storeclass_id);
         }
-        $lat = input('get.latitude');
-        $lng = input('get.longitude');
+        $lat = input('param.latitude');
+        $lng = input('param.longitude');
         if ($lat && $lng) {
-            $page = intval(input('get.page'));
+            $page = intval(input('param.page'));
             $store_list = db('store')->where($condition)->where('(2 * 6378.137* ASIN(SQRT(POW(SIN(PI()*(' . $lat . '-store_latitude)/360),2)+COS(PI()*' . $lat . '/180)* COS(store_latitude * PI()/180)*POW(SIN(PI()*(' . $lng . '-store_longitude)/360),2)))) < 100000')->field('store_phone,store_latitude,store_longitude,store_id,is_platform_store,store_name,area_info,store_address,store_logo,store_banner,(2 * 6378.137* ASIN(SQRT(POW(SIN(PI()*(' . $lat . '-store_latitude)/360),2)+COS(PI()*' . $lat . '/180)* COS(store_latitude * PI()/180)*POW(SIN(PI()*(' . $lng . '-store_longitude)/360),2)))) as distance')->order('distance asc')->page($page, 30)->select();
 
             $goods_conditions = array(

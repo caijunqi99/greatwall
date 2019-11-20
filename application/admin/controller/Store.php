@@ -23,19 +23,19 @@ class Store extends AdminControl {
     public function store() {
         $store_model = model('store');
 
-        $owner_and_name = input('get.owner_and_name');
+        $owner_and_name = input('param.owner_and_name');
         if (trim($owner_and_name) != '') {
             $condition['member_name'] = array('like', '%' . $owner_and_name . '%');
         }
-        $store_name = input('get.store_name');
+        $store_name = input('param.store_name');
         if (trim($store_name) != '') {
             $condition['store_name'] = array('like', '%' . trim($store_name) . '%');
         }
-        $grade_id = input('get.grade_id');
+        $grade_id = input('param.grade_id');
         if (intval($grade_id) > 0) {
             $condition['grade_id'] = intval($grade_id);
         }
-        $store_state = input('get.store_state');
+        $store_state = input('param.store_state');
         switch ($store_state) {
             case 'close':
                 $condition['store_state'] = 0;
@@ -543,15 +543,15 @@ class Store extends AdminControl {
      */
     public function reopen_list() {
         $condition = array();
-        $store_id = input('get.store_id');
+        $store_id = input('param.store_id');
         if (intval($store_id)) {
             $condition['storereopen_store_id'] = intval($store_id);
         }
-        $store_name = input('get.store_name');
+        $store_name = input('param.store_name');
         if (!empty($store_name)) {
             $condition['storereopen_store_name'] = $store_name;
         }
-        $storereopen_state = input('get.storereopen_state');
+        $storereopen_state = input('param.storereopen_state');
         if ($storereopen_state != '') {
             $condition['storereopen_state'] = intval($storereopen_state);
         }

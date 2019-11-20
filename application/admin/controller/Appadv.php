@@ -22,7 +22,7 @@ class Appadv extends AdminControl {
          * 显示广告位管理界面
          */
         $condition = array();
-        $search_name = trim(input('get.search_name'));
+        $search_name = trim(input('param.search_name'));
         if ($search_name != '') {
             $condition['ap_name'] = $search_name;
         }
@@ -175,7 +175,7 @@ class Appadv extends AdminControl {
     
     public function ajax() {
         $appadv_model = model('appadv');
-        switch (input('get.branch')) {
+        switch (input('param.branch')) {
             case 'ap_branch':
                 $column = input('param.column');
                 $value = input('param.value');

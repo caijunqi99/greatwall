@@ -21,12 +21,12 @@ class Sellercost extends BaseSeller {
         $storecost_model = model('storecost');
         $condition = array();
         $condition['storecost_store_id'] = session('store_id');
-        $storecost_remark = input('get.storecost_remark');
+        $storecost_remark = input('param.storecost_remark');
         if (!empty($storecost_remark)) {
             $condition['storecost_remark'] = array('like', '%' . $storecost_remark . '%');
         }
-        $add_time_from = input('get.add_time_from');
-        $add_time_to = input('get.add_time_to');
+        $add_time_from = input('param.add_time_from');
+        $add_time_to = input('param.add_time_to');
         if (!empty($add_time_from) && !empty($add_time_to)) {
             $condition['storecost_time'] = array('between', array(strtotime($add_time_from), strtotime($add_time_to)));
         }

@@ -85,8 +85,8 @@ class Pointcart extends BasePointShop
      * 积分礼品购物车更新礼品数量
      */
     public function update() {
-        $pcart_id	= intval(input('get.pc_id'));
-        $quantity	= intval(input('get.quantity'));
+        $pcart_id	= intval(input('param.pc_id'));
+        $quantity	= intval(input('param.quantity'));
         //兑换失败提示
         $msg = lang('pointcart_cart_modcart_fail');
 
@@ -126,7 +126,7 @@ class Pointcart extends BasePointShop
      * 积分礼品购物车删除单个礼品
      */
     public function drop() {
-        $pcart_id	= intval(input('get.pc_id'));
+        $pcart_id	= intval(input('param.pc_id'));
         if($pcart_id <= 0) {
             echo json_encode(array('done'=>false,'msg'=> lang('ds_common_del_fail'))); die;
         }

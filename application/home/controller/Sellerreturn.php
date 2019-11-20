@@ -30,13 +30,13 @@ class Sellerreturn extends BaseSeller {
         $condition['refund_type'] = '2'; //类型:1为退款,2为退货
         $keyword_type = array('order_sn', 'refund_sn', 'buyer_name');
 
-        $keyword = input('get.keyword');
-        $type = input('get.type');
+        $keyword = input('param.keyword');
+        $type = input('param.type');
         if (trim($keyword) != '' && in_array($type, $keyword_type)) {
             $condition[$type] = array('like', '%' . $keyword . '%');
         }
-        $add_time_from = input('get.add_time_from');
-        $add_time_to = input('get.add_time_to');
+        $add_time_from = input('param.add_time_from');
+        $add_time_to = input('param.add_time_to');
         if (trim($add_time_from) != '' || trim($add_time_to) != '') {
             $add_time_from = strtotime(trim($add_time_from));
             $add_time_to = strtotime(trim($add_time_to));
@@ -44,7 +44,7 @@ class Sellerreturn extends BaseSeller {
                 $condition['add_time'] = array('between', array($add_time_from, $add_time_to));
             }
         }
-        $seller_state = intval(input('get.state'));
+        $seller_state = intval(input('param.state'));
         if ($seller_state > 0) {
             $condition['seller_state'] = $seller_state;
         }

@@ -32,7 +32,7 @@ class Adv extends AdminControl {
              */
             $condition = array();
             $orderby = '';
-            $search_name = trim(input('get.search_name'));
+            $search_name = trim(input('param.search_name'));
             if ($search_name != '') {
                 $condition['ap_name'] = array('like', "%" . $search_name . "%");
             }
@@ -329,7 +329,7 @@ class Adv extends AdminControl {
 
     public function ajax() {
         $adv_model = model('adv');
-        switch (input('get.branch')) {
+        switch (input('param.branch')) {
             case 'ap_branch':
                 $column = trim(input('param.column'));
                 $value = trim(input('param.value'));

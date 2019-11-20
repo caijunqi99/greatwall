@@ -27,28 +27,28 @@ class Vrorder extends AdminControl {
         $vrorder_model = model('vrorder');
         $condition = array();
 
-        $order_sn = input('get.order_sn');
+        $order_sn = input('param.order_sn');
         if ($order_sn) {
             $condition['order_sn'] = $order_sn;
         }
-        $store_name = input('get.store_name');
+        $store_name = input('param.store_name');
         if ($store_name) {
             $condition['store_name'] = $store_name;
         }
-        $order_state = input('get.order_state');
+        $order_state = input('param.order_state');
         if (!empty($order_state)) {
             $condition['order_state'] = intval($order_state);
         }
-        $payment_code = input('get.payment_code');
+        $payment_code = input('param.payment_code');
         if ($payment_code) {
             $condition['payment_code'] = $payment_code;
         }
-        $buyer_name = input('get.buyer_name');
+        $buyer_name = input('param.buyer_name');
         if ($buyer_name) {
             $condition['buyer_name'] = $buyer_name;
         }
-        $query_start_time = input('get.query_start_time');
-        $query_end_time = input('get.query_end_time');
+        $query_start_time = input('param.query_start_time');
+        $query_end_time = input('param.query_end_time');
         $if_start_time = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $query_start_time);
         $if_end_time = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $query_end_time);
         $start_unixtime = $if_start_time ? strtotime($query_start_time) : null;
