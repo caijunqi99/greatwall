@@ -63,6 +63,8 @@
                       <input type="hidden" value="{$member_array['member_provinceid']|default=''}" name="province_id" id="_area_1">
                       <input type="hidden" value="{$member_array['member_cityid']|default=''}" name="city_id" id="_area_2">
                       <input type="hidden" value="{$member_array['member_areaid']|default=''}" name="area_id" id="_area_3">
+                            <input type="hidden" value="{$member_array['member_townid']|default=''}" name="town_id" id="_area_4">
+                            <input type="hidden" value="{$member_array['member_villageid']|default=''}" name="village_id" id="_area_5">
                       <input type="hidden" name="region" id="region" value="{$member_array.member_areainfo}"/>
                         </span>
                     </td>
@@ -161,12 +163,12 @@
                 </tr>
                 <tr class="noborder">
                     <td class="required"><label>{$Think.lang.member_index_points_yes}:</label></td>
-                    <td class="vatop rowform"><strong class="red">{$member_array.member_points_available}</strong></td>
+                    <td class="vatop rowform"><strong class="red">{$member_array.member_points_available}</strong>&nbsp;{$Think.lang.points_unit}</td>
                     <td class="vatop tips"></td>
                 </tr>
                 <tr class="noborder">
                     <td class="required"><label>{$Think.lang.member_index_points_no}:</label></td>
-                    <td class="vatop rowform"><strong class="red">{$member_array.member_points}</strong></td>
+                    <td class="vatop rowform"><strong class="red">{$member_array.member_points}</strong>&nbsp;{$Think.lang.points_unit}</td>
                     <td class="vatop tips"></td>
                 </tr>
                 <tr class="noborder">
