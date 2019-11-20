@@ -191,7 +191,7 @@
           </td>
           {/if}
           <td class="align-center">
-              <a href="{:url('/home/goods/index',['goods_id' =>$storage_array[$v['goods_commonid']]['goods_id']])}" target="_blank" class="dsui-btn-view"><i class="iconfont"></i>{$Think.lang.ds_view}</a>
+              <!--<a href="{:url('/home/goods/index',['goods_id' =>$storage_array[$v['goods_commonid']]['goods_id']])}" target="_blank" class="dsui-btn-view"><i class="iconfont"></i>{$Think.lang.ds_view}</a>-->
               
               {if $type == 'lockup'}
               <a href="javascript:dsLayerConfirm('{:url('Goods/goods_del',['common_id'=>$v.goods_commonid])}','{$Think.lang.ds_ensure_del}',{$v.goods_commonid})" class="dsui-btn-del"><i class="iconfont"></i>{$Think.lang.ds_del}</a>

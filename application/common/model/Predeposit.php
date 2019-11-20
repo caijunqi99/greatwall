@@ -406,7 +406,7 @@ class Predeposit extends Model {
                 break;
             case 'sys_add_money':
                 $data_log['lg_av_amount'] = $data['amount'];
-                $data_log['lg_desc'] = '管理员调节预存款【增加】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['lg_desc'];
+                $data_log['lg_desc'] = '管理员调节储值卡【增加】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['lg_desc'];
                 $data_log['lg_admin_name'] = $data['admin_name'];
                 $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
 
@@ -416,7 +416,7 @@ class Predeposit extends Model {
                 break;
             case 'sys_del_money':
                 $data_log['lg_av_amount'] = -$data['amount'];
-                $data_log['lg_desc'] = '管理员调节预存款【减少】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['lg_desc'];
+                $data_log['lg_desc'] = '管理员调节储值卡【减少】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['lg_desc'];
                 $data_log['lg_admin_name'] = $data['admin_name'];
                 $data_pd['available_predeposit'] = Db::raw('available_predeposit-'.$data['amount']);
 
@@ -427,7 +427,7 @@ class Predeposit extends Model {
             case 'sys_freeze_money':
                 $data_log['lg_av_amount'] = -$data['amount'];
                 $data_log['lg_freeze_amount'] = $data['amount'];
-                $data_log['lg_desc'] = '管理员调节预存款【冻结】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['lg_desc'];
+                $data_log['lg_desc'] = '管理员调节储值卡【冻结】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['lg_desc'];
                 $data_log['lg_admin_name'] = $data['admin_name'];
                 $data_pd['available_predeposit'] = Db::raw('available_predeposit-'.$data['amount']);
                 $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit+'.$data['amount']);
@@ -439,7 +439,7 @@ class Predeposit extends Model {
             case 'sys_unfreeze_money':
                 $data_log['lg_av_amount'] = $data['amount'];
                 $data_log['lg_freeze_amount'] = -$data['amount'];
-                $data_log['lg_desc'] = '管理员调节预存款【解冻】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['lg_desc'];
+                $data_log['lg_desc'] = '管理员调节储值卡【解冻】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['lg_desc'];
                 $data_log['lg_admin_name'] = $data['admin_name'];
                 $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
                 $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit-'.$data['amount']);
