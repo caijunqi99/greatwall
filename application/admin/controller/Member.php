@@ -149,6 +149,8 @@ class Member extends AdminControl {
                 'is_buylimit' => input('post.isbuy'),
                 'is_allowtalk' => input('post.allowtalk'),
                 'member_state' => input('post.memberstate'),
+                'member_villageid' => input('post.village_id'),
+                'member_townid' => input('post.town_id'),
                 'member_cityid' => input('post.city_id'),
                 'member_provinceid' => input('post.province_id'),
                 'member_areainfo' => input('post.region'),

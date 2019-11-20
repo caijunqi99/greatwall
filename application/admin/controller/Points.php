@@ -119,12 +119,21 @@ class Points extends AdminControl {
     //积分明细查询
     function pointslog() {
         if (!request()->isPost()) {
+            $member_id = intval(input('get.member_id'));
+            if($member_id>0){
+                $condition['member_id'] = $member_id;
+                $member = model('member')->getMemberInfo($condition);
+                if(!empty($member)){
+                    $this->assign('member_info',$member);
+                }
+            }
             return $this->fetch();
         } else {
             $data = [
                 'member_name' => input('post.member_name'),
                 'points_type' => input('post.points_type'),
                 'points_num' => intval(input('post.points_num')),
+                'points_num_av' => intval(input('post.points_num_av')),
                 'points_desc' => input('post.points_desc'),
             ];
             $point_validate = validate('point');
@@ -145,8 +154,10 @@ class Points extends AdminControl {
             $insert_arr['pl_membername'] = $member_info['member_name'];
             if ($data['points_type'] == 2) {
                 $insert_arr['pl_points'] = -$data['points_num'];
+                $insert_arr['pl_pointsav'] = -$data['points_num_av'];
             } else {
                 $insert_arr['pl_points'] = $data['points_num'];
+                $insert_arr['pl_pointsav'] = $data['points_num_av'];
             }
             $insert_arr['pl_desc'] = $data['points_desc'];
             $insert_arr['pl_adminname'] = session('admin_name');
@@ -167,7 +178,7 @@ class Points extends AdminControl {
         }
         $member_info = model('member')->getMemberInfo(array('member_name' => $name));
         if (is_array($member_info) && count($member_info) > 0) {
-            echo json_encode(array('id' => $member_info['member_id'], 'name' => $member_info['member_name'], 'points' => $member_info['member_points']));
+            echo json_encode(array('id' => $member_info['member_id'], 'name' => $member_info['member_name'], 'points' => $member_info['member_points'],'points_available'=>$member_info['member_points_available']));
         } else {
             exit(json_encode(array('id' => 0)));
             die;

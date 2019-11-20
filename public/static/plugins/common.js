@@ -745,12 +745,14 @@ function load_history_information(){
                 settings.area_id_2 = area_ids[1] ? area_ids[1] : "";
                 settings.area_id_3 = area_ids[2] ? area_ids[2] : "";
                 settings.area_id_4 = area_ids[3] ? area_ids[3] : "";
+                settings.area_id_5 = area_ids[4] ? area_ids[4] : "";
                 settings.last_text = $region.prevAll("select").find("option:selected").last().text();
                 var area_id = settings.area_id = $(this).val();
                 if ($('#_area_1').length > 0) $("#_area_1").val(settings.area_id_1);
                 if ($('#_area_2').length > 0) $("#_area_2").val(settings.area_id_2);
                 if ($('#_area_3').length > 0) $("#_area_3").val(settings.area_id_3);
                 if ($('#_area_4').length > 0) $("#_area_4").val(settings.area_id_4);
+                if ($('#_area_5').length > 0) $("#_area_5").val(settings.area_id_5);
                 if ($('#_area').length > 0) $("#_area").val(settings.area_id);
                 if ($('#_areas').length > 0) $("#_areas").val(settings.area_ids);
                 if (settings.show_deep > 0 && $region.prevAll("select").size() == settings.show_deep) {
