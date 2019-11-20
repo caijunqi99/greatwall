@@ -1186,7 +1186,7 @@ function write_file($filepath, $data, $mode = null,$type=ture)
         $data = var_export($data, true);
         $data = "<?php  return " . $data . ";";    
     }
-    $mode = $mode == 'append' ? FILE_APPEND : null;
+    $mode = ($mode == 'append') ? FILE_APPEND : null;
     if (false === file_put_contents($filepath, ($data), $mode)) {
         return false;
     }
@@ -1203,11 +1203,12 @@ function write_file($filepath, $data, $mode = null,$type=ture)
  * @param  [string] $filename [写入文件名称，为空则以时间命名]
  * @return [bool]           
  */
-function write_payment($data, $filename='',$type='sms'){
-    $path = RUNTIME_PATH.'interface/'.$type.'/'.date('Y-m-d').'_'.$filename.'.log';
+function write_payment($data, $filename='',$types='sms'){
+    $path = RUNTIME_PATH.'interface/'.$types.'/'.date('Y-m-d').'_'.$filename.'.log';
+    $spl = '---------------------------------------------------';
     $dir = dirname($path);
     if (!is_dir($dir))mk_dir($dir);
-    $result = write_file($path, $data.PHP_EOL, $mode = 'append',$type=true);
+    $result = write_file($path, $data."\r\n".$spl."\r\n".PHP_EOL, 'append',$type=true);
     return $result;
 }
 /**

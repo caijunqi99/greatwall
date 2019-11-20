@@ -65,7 +65,7 @@ $lang['payment_time_required'] = '请填写付款时间';
 $lang['payment_code_required'] = '请选择付款方式';
 $lang['trade_no_required'] = '请填写第三方支付平台交易号';
 
-$lang['now_available_predeposit'] = '当前预存款数为';
+$lang['now_available_predeposit'] = '当前储值卡数为';
 $lang['now_freeze_predeposit'] = '当前预存款冻结金额数为';
 $lang['operatetype_1'] = '增加';
 $lang['operatetype_2'] = '减少';

@@ -6,7 +6,7 @@ use think\Lang;
 
 /**
  * ============================================================================
- 
+
  * ============================================================================
  * 控制器
  */
@@ -40,9 +40,9 @@ class Predeposit extends AdminControl {
         $recharge_list = $predeposit_model->getPdRechargeList($condition, 20, '*', 'pdr_id desc');
         $this->assign('recharge_list', $recharge_list);
         $this->assign('show_page', $predeposit_model->page_info->render());
-        
+
         $this->assign('filtered', $condition ? 1 : 0); //是否有查询条件
-        
+
         $this->setAdminCurItem('pdrecharge_list');
         return $this->fetch();
     }
@@ -193,9 +193,9 @@ class Predeposit extends AdminControl {
         $list_log = $predeposit_model->getPdLogList($condition, 10, '*', 'lg_id desc');
         $this->assign('show_page', $predeposit_model->page_info->render());
         $this->assign('list_log', $list_log);
-        
+
         $this->assign('filtered', $condition ? 1 : 0); //是否有查询条件
-        
+
         $this->setAdminCurItem('pdlog_list');
         return $this->fetch();
     }
@@ -230,9 +230,9 @@ class Predeposit extends AdminControl {
         $predeposit_list = $predeposit_model->getPdcashList($condition, 20, '*', 'pdc_payment_state asc,pdc_id asc');
         $this->assign('predeposit_list', $predeposit_list);
         $this->assign('show_page', $predeposit_model->page_info->render());
-        
+
         $this->assign('filtered', $condition ? 1 : 0); //是否有查询条件
-        
+
         $this->setAdminCurItem('pdcash_list');
         return $this->fetch('pdcash_list');
     }
@@ -465,9 +465,9 @@ class Predeposit extends AdminControl {
             exit(json_encode(array('id' => 0)));
         }
     }
-    
-    
-    
+
+
+
 
     /**
      * 导出预存款充值记录
@@ -488,8 +488,8 @@ class Predeposit extends AdminControl {
         if (input('param.paystate_search') != '') {
             $condition['pdr_payment_state'] = input('param.paystate_search');
         }
-        
-        
+
+
         $predeposit_model = model('predeposit');
         if (!is_numeric(input('param.curpage'))) {
             $count = $predeposit_model->getPdRechargeCount($condition);
@@ -569,7 +569,7 @@ class Predeposit extends AdminControl {
         $excel_obj->generateXML($excel_obj->charset(lang('exp_yc_yckcz'), CHARSET) . input('param.curpage') . '-' . date('Y-m-d-H', TIMESTAMP));
     }
 
-    
+
     /**
      * 导出预存款提现记录
      *
@@ -688,8 +688,8 @@ class Predeposit extends AdminControl {
         if (!empty($aname)) {
             $condition['lg_admin_name'] = $aname;
         }
-        
-        
+
+
         $predeposit_model = Model('predeposit');
         if (!is_numeric(input('param.curpage'))) {
             $count = $predeposit_model->getPdLogCount($condition);
@@ -756,8 +756,8 @@ class Predeposit extends AdminControl {
         $excel_obj->addWorksheet($excel_obj->charset(lang('exp_mx_rz'), CHARSET));
         $excel_obj->generateXML($excel_obj->charset(lang('exp_mx_rz'), CHARSET) . input('param.curpage') . '-' . date('Y-m-d-H', TIMESTAMP));
     }
-    
-    
+
+
     /**
      * 获取卖家栏目列表,针对控制器下的栏目
      */

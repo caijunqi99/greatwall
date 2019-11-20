@@ -15,7 +15,7 @@ use Aliyun\Core\DefaultAcsClient;
 use Aliyun\Api\Sms\Request\V20170525\SendSmsRequest;
 use Aliyun\Api\Sms\Request\V20170525\SendBatchSmsRequest;
 use Aliyun\Api\Sms\Request\V20170525\QuerySendDetailsRequest;
-
+use think\Log;
 // 加载区域结点配置
 Config::load();
 
@@ -116,12 +116,11 @@ class Sms
             'response' =>$acsResponse,
             'content' =>$content
         ];
-        write_payment(var_export($writeLog,true),$mobile,'mobile_Sms');
-
+        
         if ($acsResponse->Code =='OK') {
             return true;
         }
-
+        Log::write($writeLog);
         return false;
         // return $acsResponse;
         // return $this->mysend_sms($mobile, $content);

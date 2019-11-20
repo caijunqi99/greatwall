@@ -1,0 +1,83 @@
+{include file="public/header" /}
+
+
+
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>{$Think.lang.ds_member_manage}</h3>
+                <h5></h5>
+            </div>
+            {include file="public/admin_items" /}
+        </div>
+    </div>
+
+    <table class="ds-default-table">
+      <thead>
+        <tr class="thead">
+          <!-- <th>&nbsp;</th> -->
+          <!-- <th colspan="2">完整路径</th> -->
+          <th class="align-center">ID</th>
+          <th class="align-center">完整路径</th>
+          <th class="align-center">所属类型</th>
+          <th class="align-center">大小</th>
+          
+          <th class="align-center">{$Think.lang.ds_handle}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {notempty name="lst"}
+        {foreach name="lst" item="value"}
+        {foreach name="$value.data" item="val"}
+        {foreach name="$val.data" item="v" key='k'}
+        <tr class="hover member">
+          <td class="align-center">{$k+1}</td>
+          <td class="align-center">{$v.id}</td>
+          <td class="align-center">{$val.value}</td>
+          <td class="w150 align-center"><p>{:TransByte($v.size)}</p></td>
+          <td class="align-center">
+              <a href="javascript:checkError('{$v.id}');" class="dsui-btn-edit"><i class="iconfont"></i>查看内容</a>
+          </td>
+        </tr>
+        {/foreach}
+        {/foreach}
+        {/foreach}
+        {else /}
+        <tr class="no_data">
+          <td colspan="11">{$Think.lang.ds_no_record}</td>
+        </tr>
+        {/notempty}
+      </tbody>
+      
+    </table>
+
+</div>
+<script type="text/javascript">
+    function checkError(id) {
+        $.ajax({
+            url: "{:url('Adminlog/getLog')}",
+            type: 'GET',
+            dataType: 'html',
+            data: {'path': id},
+        })
+        .done(function(sb) {
+            layer.open({
+        type: 1
+        ,title: id //不显示标题栏
+        ,closeBtn: false
+        ,area:['90%','90%']
+        ,shade: 0.8
+        ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+        ,btn: [ '关闭日志']
+        ,btnAlign: 'c'
+        ,moveType: 1 //拖拽模式，0或者1
+        ,content: sb
+        ,success: function(layero){
+          
+        }
+      });
+            console.log(sb);
+        })  
+    }
+</script>
