@@ -6,7 +6,7 @@
     <div class="fixed-bar">
         <div class="item-title">
             <div class="subject">
-                <h3>{$Think.lang.ds_member_manage}</h3>
+                <h3>{$Think.lang.ds_company_manage}</h3>
                 <h5></h5>
             </div>
             {include file="public/admin_items" /}
@@ -68,13 +68,9 @@
         <tr class="thead">
           <th>&nbsp;</th>
           <th colspan="2">{$Think.lang.member_index_name}</th>
-          <th class="align-center"><span fieldname="logins" ds_type="order_by">{$Think.lang.member_index_login_time}</span></th>
-          <th class="align-center"><span fieldname="last_login" ds_type="order_by">{$Think.lang.member_index_last_login}</span></th>
-          <th class="align-center">{$Think.lang.member_index_points}</th>
-          <th class="align-center">{$Think.lang.member_index_prestore}</th>
-          <th class="align-center">{$Think.lang.member_exppoints}</th>
-          <th class="align-center">{$Think.lang.member_grade}</th>
-          <th class="align-center">{$Think.lang.member_index_login}</th>
+          <th colspan="align-center">{$Think.lang.member_index_mobile}</th>
+          <th class="align-center">{$Think.lang.ds_company_level}</th>
+          <th class="align-center">{$Think.lang.member_areainfo}</th>
           <th class="align-center">{$Think.lang.ds_handle}</th>
         </tr>
       </thead>
@@ -105,20 +101,15 @@
                 {if $v.member_qq != ''}
                 <a target="_blank" href="{$Think.HTTP_TYPE}wpa.qq.com/msgrd?v=3&uin={$v.member_qq}&site=qq&menu=yes" class=""  title="QQ: {$v.member_qq}"><img border="0" src="{$Think.HTTP_TYPE}wpa.qq.com/pa?p=2:{$v.member_qq}:52"/></a>
                 {/if}
-               {if $v.member_mobile != ''}
-               <div style="font-size:13px; padding-left:10px">&nbsp;&nbsp;{$v.member_mobile}</div>
-               {/if}
               </div></td>
-          <td class="align-center">{$v.member_loginnum}</td>
-          <td class="w150 align-center"><p>{$v.member_logintime}</p>
-            <p>{$v.member_login_ip}</p></td>
-          <td class="align-center">{$v.member_points}</td>
-          <td class="align-center"><p>{$Think.lang.member_index_available}:&nbsp;<strong class="red">{$v.available_predeposit}</strong>&nbsp;{$Think.lang.currency_zh}</p>
-            <p>{$Think.lang.member_index_frozen}:&nbsp;<strong class="red">{$v.freeze_predeposit}</strong>&nbsp;{$Think.lang.currency_zh}</p>
-          </td>
-          <td class="align-center">{$v.member_exppoints}</td>
-          <td class="align-center">{$v.member_grade}</td>
-          <td class="align-center">{if $v.member_state == 1}{$Think.lang.member_edit_allow}{else/}{$Think.lang.member_edit_deny}{/if}</td>
+          <td class="align-center">{$v.member_mobile}</td>
+            {if $v.member_mobile == 1}<td class="align-center">省级</td>
+            {elseif $v.member_mobile == 2}<td class="align-center">市级</td>
+            {elseif $v.member_mobile == 3}<td class="align-center">区/县级</td>
+            {elseif $v.member_mobile == 4}<td class="align-center">镇级</td>
+            {elseif $v.member_mobile == 4}<td class="align-center">村级</td>
+            {else /}<td class="align-center">无</td>{/if}
+            <td class="align-center">{$v.member_mobile}</td>
           <td class="align-center">
               <a href="javascript:dsLayerOpen('{:url('Member/edit',['member_id'=>$v.member_id])}','{$Think.lang.ds_edit}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.ds_edit}</a>
               <a href="javascript:dsLayerOpen('{:url('Notice/notice',['member_name'=>$v.member_name])}','{$Think.lang.member_index_to_message}-{$v.member_name}')" class="dsui-btn-add"><i class="iconfont"></i>{$Think.lang.member_index_to_message}</a>

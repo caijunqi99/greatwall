@@ -1,0 +1,57 @@
+[33mc767066[m HEAD@{0}: pull origin dev: Fast-forward
+[33mc8bf7a5[m HEAD@{1}: checkout: moving from master to dev
+[33m899bdff[m HEAD@{2}: merge w: Merge made by the 'recursive' strategy.
+[33m00252c6[m HEAD@{3}: pull origin master: Fast-forward
+[33mc8bf7a5[m HEAD@{4}: checkout: moving from w to master
+[33m7e3535f[m HEAD@{5}: commit: ss
+[33mc8bf7a5[m HEAD@{6}: checkout: moving from dev to w
+[33mc8bf7a5[m HEAD@{7}: merge w: Fast-forward
+[33md1722a0[m HEAD@{8}: checkout: moving from master to dev
+[33mc8bf7a5[m HEAD@{9}: merge w: Fast-forward
+[33md1722a0[m HEAD@{10}: checkout: moving from w to master
+[33mc8bf7a5[m HEAD@{11}: commit: ss
+[33md1722a0[m HEAD@{12}: pull origin master: Fast-forward
+[33m4f0669c[m HEAD@{13}: checkout: moving from dev to w
+[33md1722a0[m HEAD@{14}: pull origin master: Fast-forward
+[33m264169b[m HEAD@{15}: pull origin dev: Fast-forward
+[33m1c33c13[m HEAD@{16}: checkout: moving from master to dev
+[33md1722a0[m HEAD@{17}: pull origin master: Merge made by the 'recursive' strategy.
+[33m4f0669c[m HEAD@{18}: merge w: Fast-forward
+[33m1c33c13[m HEAD@{19}: checkout: moving from w to master
+[33m4f0669c[m HEAD@{20}: commit: ss
+[33m0ede656[m HEAD@{21}: commit: ss
+[33m1c33c13[m HEAD@{22}: checkout: moving from master to w
+[33m1c33c13[m HEAD@{23}: checkout: moving from dev to master
+[33m1c33c13[m HEAD@{24}: pull origin w: Fast-forward
+[33m16fc8ef[m HEAD@{25}: checkout: moving from master to dev
+[33m1c33c13[m HEAD@{26}: pull origin w: Fast-forward
+[33m16fc8ef[m HEAD@{27}: checkout: moving from w to master
+[33m1c33c13[m HEAD@{28}: commit: 调试
+[33m16fc8ef[m HEAD@{29}: checkout: moving from master to w
+[33m16fc8ef[m HEAD@{30}: pull origin w: Fast-forward
+[33m082b5df[m HEAD@{31}: checkout: moving from dev to master
+[33m16fc8ef[m HEAD@{32}: pull origin w: Fast-forward
+[33m082b5df[m HEAD@{33}: checkout: moving from w to dev
+[33m16fc8ef[m HEAD@{34}: commit: 登陆注册
+[33m326fa7f[m HEAD@{35}: pull origin master: Fast-forward
+[33m082b5df[m HEAD@{36}: checkout: moving from master to w
+[33m082b5df[m HEAD@{37}: merge w: Fast-forward
+[33m243ab7a[m HEAD@{38}: checkout: moving from dev to master
+[33m082b5df[m HEAD@{39}: merge w: Fast-forward
+[33m243ab7a[m HEAD@{40}: checkout: moving from w to dev
+[33m082b5df[m HEAD@{41}: commit: 添加阿里短信借口
+[33m243ab7a[m HEAD@{42}: checkout: moving from master to w
+[33m243ab7a[m HEAD@{43}: merge w: Fast-forward
+[33mdd655c1[m HEAD@{44}: checkout: moving from dev to master
+[33m243ab7a[m HEAD@{45}: merge w: Fast-forward
+[33mdd655c1[m HEAD@{46}: checkout: moving from w to dev
+[33m243ab7a[m HEAD@{47}: commit: ss
+[33mdd655c1[m HEAD@{48}: checkout: moving from master to w
+[33mdd655c1[m HEAD@{49}: pull origin w: Fast-forward
+[33m46f515e[m HEAD@{50}: checkout: moving from dev to master
+[33mdd655c1[m HEAD@{51}: pull origin w: Fast-forward
+[33m56e55d3[m HEAD@{52}: checkout: moving from w to dev
+[33mdd655c1[m HEAD@{53}: commit: app首页接口
+[33m56e55d3[m HEAD@{54}: pull origin master: Fast-forward
+[33m46f515e[m HEAD@{55}: checkout: moving from master to w
+[33m46f515e[m HEAD@{56}: clone: from git@github.com:caijunqi99/greatwall.git

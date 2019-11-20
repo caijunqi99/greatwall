@@ -18,7 +18,7 @@ class Companys extends AdminControl {
     }
 
     public function company() {
-        $member_model = model('member');
+        $member_model = model('company');
 
 
         //会员级别
@@ -73,6 +73,7 @@ class Companys extends AdminControl {
             $order = 'member_id desc';
         }
         $member_list = $member_model->getMemberList($condition, '*', 10, $order);
+
         //整理会员信息
         if (is_array($member_list) && !empty($member_list)) {
             foreach ($member_list as $k => $v) {
@@ -90,12 +91,17 @@ class Companys extends AdminControl {
 
         $this->assign('filtered', $condition ? 1 : 0); //是否有查询条件
 
-        $this->setAdminCurItem('member');
+        $this->setAdminCurItem('company');
         return $this->fetch();
     }
 
     public function add() {
         if (!request()->isPost()) {
+            $member_id=2;
+            $member_model = model('member');
+            $condition['member_id'] = $member_id;
+            $member_array = $member_model->getMemberInfo($condition);
+            $this->assign('member_array', $member_array);
             return $this->fetch();
         } else {
             //需要完善地方 1.对录入数据进行判断  2.对判断用户名是否存在
@@ -188,7 +194,7 @@ class Companys extends AdminControl {
 
         switch ($branch) {
             /**
-             * 验证会员是否重复
+             * 验证手机号
              */
             case 'check_user_name':
                 $member_model = model('member');
@@ -196,26 +202,10 @@ class Companys extends AdminControl {
                 $condition['member_id'] = array('neq', intval(input('param.member_id')));
                 $list = $member_model->getMemberInfo($condition);
                 if (empty($list)) {
-                    echo 'true';
-                    exit;
-                } else {
                     echo 'false';
                     exit;
-                }
-                break;
-            /**
-             * 验证邮件是否重复
-             */
-            case 'check_email':
-                $member_model = model('member');
-                $condition['member_email'] = input('param.member_email');
-                $condition['member_id'] = array('neq', intval(input('param.member_id')));
-                $list = $member_model->getMemberInfo($condition);
-                if (empty($list)) {
-                    echo 'true';
-                    exit;
                 } else {
-                    echo 'false';
+                    echo 'true';
                     exit;
                 }
                 break;
@@ -253,16 +243,16 @@ class Companys extends AdminControl {
     protected function getAdminItemList() {
         $menu_array = array(
             array(
-                'name' => 'member',
+                'name' => 'company',
                 'text' => lang('ds_manage'),
-                'url' => url('Member/member')
+                'url' => url('Companys/company')
             ),
         );
-        if (request()->action() == 'add' || request()->action() == 'member') {
+        if (request()->action() == 'add' || request()->action() == 'company') {
             $menu_array[] = array(
                 'name' => 'add',
                 'text' => lang('ds_add'),
-                'url' => "javascript:dsLayerOpen('".url('Member/add')."','".lang('ds_add')."')"
+                'url' => "javascript:dsLayerOpen('".url('Companys/add')."','".lang('ds_add')."')"
             );
         }
         return $menu_array;

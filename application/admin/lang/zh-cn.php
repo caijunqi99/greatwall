@@ -26,6 +26,14 @@ $lang['ds_seo_set'] = 'SEO设置';
 //会员
 $lang['ds_member'] = '会员';
 $lang['ds_member_manage'] = '会员管理';
+$lang['ds_company_manage'] = '分公司管理';
+$lang['ds_company_level'] = '分公司级别';
+$lang['ds_company_level_province'] = '省级分公司';
+$lang['ds_company_level_city'] = '市级分公司';
+$lang['ds_company_level_area'] = '区/县级分公司';
+$lang['ds_company_level_zhen'] = '镇级分公司';
+$lang['ds_company_level_cun'] = '村级分公司';
+$lang['ds_company_level_choose'] = '请选择分公司级别';
 $lang['ds_membergrade'] = '会员级别';
 $lang['ds_exppoints'] = '经验值管理';
 $lang['ds_notice'] = '会员通知';
