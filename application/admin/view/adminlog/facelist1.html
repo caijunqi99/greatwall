@@ -1,0 +1,149 @@
+{include file="public/header" /}
+
+
+
+
+
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>{$Think.lang.ds_region}</h3>
+                <h5></h5>
+            </div>
+            {include file="public/admin_items" /}
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom">
+            <h4 title="{$Think.lang.ds_explanation_tip}">{$Think.lang.ds_explanation}</h4>
+            <span id="explanationZoom" title="{$Think.lang.ds_explanation_close}" class="arrow"></span>
+        </div>
+        <ul>
+            <li>查看接口日志</li>
+        </ul>
+    </div>
+    
+<link rel="stylesheet" href="{$Think.ADMIN_ASSETS}/css/backend.min.css?v=1.0.1">
+<link rel="stylesheet" href="{$Think.HOME_SITE_ROOT}/css/common.css">
+<link rel="stylesheet" href="{$Think.HOME_SITE_ROOT}/css/home.css">
+
+<script src="{$Think.HOME_SITE_ROOT}/js/search_category_menu.js"></script>
+<style>
+    #treeview .jstree-leaf > .jstree-icon, #treeview .jstree-leaf .jstree-themeicon {
+        display: inline-block;
+    }
+
+    #treeview .jstree-themeicon {
+        display: inline-block;
+    }
+</style>
+<div class="row animated fadeInRight">
+    <div class="col-md-3" id="left-content">
+        <div class="box box-success">
+            <div class="panel-heading">
+                目录
+            </div>
+            <div class="panel-body">
+                <div class="col-xs-12 col-sm-8">
+                    <div id="treeview">
+                        <ul id="files" class="tree">
+                          {foreach name="goods_class_array" item="value"}
+                          <li><a href="javascript:;">{$value.id}</a>
+                            {notempty name="$value.data"}
+                            <ul>
+                              {foreach name="$value.data" item="val"}
+                              <li><a href="javascript:;">{$val.id}</a>
+                                {notempty name="$val.data"}
+                                <ul>
+                                  {foreach name="$val.data" item="v"}
+                                  <li class=""><a href="javascript:;">{$v.id}</a></li>
+                                  {/foreach}
+                                </ul>
+                                {/notempty}
+                              </li>
+                              {/foreach}
+                            </ul>
+                            {/notempty}
+                          </li>
+                          {/foreach}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box box-info">
+            <div class="panel-heading">
+                信息
+            </div>
+            <div class="panel-body">
+                <h4>Size: <small id="info-size">Null</small></h4>
+                <h4>Update Time: <small id="info-update_time">Null</small></h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9 col-xs-12" id="right-content">
+        <div class="panel panel-default panel-intro panel-nav">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-list"></i>列表</a></li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="one">
+                        <div class="widget-body no-padding">
+                            <div id="toolbar" class="toolbar">
+
+                                <a href="javascript:;" class="btn btn-default btn-channel hidden-xs hidden-sm"><i class="fa fa-bars"></i></a>
+                            </div>
+                            <table id="table" class="table table-striped table-bordered table-hover" width="100%">
+                        <div class="fixed-table-body">
+                            <table id="table" class="table table-striped table-bordered table-hover" width="100%" data-operate-detail="1" ,="" data-operate-del="1" style="margin-top: 0px;">
+
+                            <thead style="display: table-header-group;">
+                                <tr>
+                                    <th style="text-align: center; vertical-align: middle; "><div class="th-inner sortable both desc">Id</div><div class="fht-cell"></div>
+                                    </th>
+                                    
+                                    <th style="text-align: center; vertical-align: middle; "><div class="th-inner ">Url</div><div class="fht-cell"></div>
+                                    </th>
+                                    <th style="text-align: center; vertical-align: middle; "><div class="th-inner ">Size</div><div class="fht-cell"></div>
+                                    </th>
+                                    <th style="text-align: center; vertical-align: middle; "><div class="th-inner ">操作</div><div class="fht-cell"></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody data-listidx="0">
+                                {foreach name="goods_class_array" item="value"}
+                                    {foreach name="$value.data" item="val"}
+                                    {foreach name="$val.data" item="v" key='k'}
+                                <tr data-index="0" class="selected"> 
+                                    
+                                    <td style="text-align: center; vertical-align: middle; ">{$k+1}</td> 
+                                    <td style="text-align: center; vertical-align: middle; "><a class="" href="javascript:;" title="Url">{$v.id}</a></td> 
+                                    <td style="text-align: center; vertical-align: middle; ">{:TransByte($v.size)}</td> 
+                                    <td style="text-align: center; vertical-align: middle; ">
+                                        <a href="javascript:;" class="btn btn-xs btn-success btn-detail" title="详情" data-table-id="table" data-field-index="6" data-row-index="0" data-button-index="0"><i class="fa fa-list"></i> 详情</a> 
+                                    </td>
+                                    
+                                </tr>
+                                {/foreach}
+                                    {/foreach}
+                                    {/foreach}
+
+                            </tbody>
+                        </table></div>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -4,7 +4,6 @@ namespace app\admin\controller;
 
 
 use think\Lang;
-
 /**
  * ============================================================================
  
@@ -60,6 +59,31 @@ class Adminlog extends AdminControl
         $this->setAdminCurItem('loglist');
         return $this->fetch();
     }
+
+    public function facelist(){
+        
+        $baseDir = RUNTIME_PATH.'log';
+
+        $api = new \libr\PHPFileSystem($baseDir);
+        
+        $api->virtualRoot("folder");
+        $lst = $api->ls("/", TRUE,'all');
+        // p($lst);
+        $this->assign('lst',$lst);
+        $this->setAdminCurItem('facelist');
+        return $this->fetch();
+    }
+
+    public function getLog(){
+        $filename = input('param.path');
+        $baseDir = RUNTIME_PATH.'log';
+        $api = new \libr\PHPFileSystem($baseDir);
+        
+        $api->virtualRoot("folder");
+        $text = $api->cat($filename);
+        echo $text;
+    }
+
 
     /**
      * 删除日志
@@ -180,6 +204,11 @@ class Adminlog extends AdminControl
                 'name' => 'loglist',
                 'text' => lang('admin_log'),
                 'url' => url('Adminlog/loglist')
+            ),
+            array(
+                'name' => 'facelist',
+                'text' => '缓存日志',
+                'url' => url('Adminlog/facelist')
             )
             );
         return $menu_array;
