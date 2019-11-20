@@ -126,18 +126,20 @@ class Points extends Model {
             $value_array['pl_adminname'] = $insertarr['pl_adminname'];
         }
         $value_array['pl_points'] = $insertarr['pl_points'];
+        $value_array['pl_pointsav'] = $insertarr['pl_pointsav'];
         $value_array['pl_addtime'] = TIMESTAMP;
         $value_array['pl_desc'] = $insertarr['pl_desc'];
         $value_array['pl_stage'] = $stage;
         $result = false;
-        if ($value_array['pl_points'] != '0') {
+        //if ($value_array['pl_points'] != '0') {
             $result = self::addPointslog($value_array);
-        }
+       //}
         if ($result) {
             //更新member内容
             $obj_member = model('member');
             $upmember_array = array();
             $upmember_array['member_points'] = Db::raw('member_points+'.$insertarr['pl_points']);
+            $upmember_array['member_points_available'] = Db::raw('member_points_available+'.$insertarr['pl_pointsav']);
             $obj_member->editMember(array('member_id' => $insertarr['pl_memberid']), $upmember_array);
             return true;
         } else {

@@ -22,7 +22,8 @@ $lang['admin_points_points_min_error'] = '积分值必须大于0';
 $lang['admin_points_points_short_error'] = '积分不足，会员当前积分数为';
 $lang['admin_points_addmembername_error'] = '请输入会员名';
 $lang['admin_points_member_tip'] = '会员';
-$lang['admin_points_member_tip_2'] = ', 当前积分数为';
+$lang['admin_points_member_tip_2'] = ', 冻结积分数为';
+$lang['admin_points_member_tip_2c'] = ', 当前可用积分数为';
 
 /**
  * 积分日志

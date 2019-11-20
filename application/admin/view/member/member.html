@@ -120,17 +120,17 @@
           <td class="align-center">{$v.member_exppoints}</td>
           <td class="align-center">{$v.member_grade}</td>
           <td class="align-center">{if $v.member_state == 1}{$Think.lang.member_edit_allow}{else/}{$Think.lang.member_edit_deny}{/if}</td>
-          <td class="align-center">
+          <td >
               <a href="javascript:dsLayerOpen('{:url('Member/edit',['member_id'=>$v.member_id])}','{$Think.lang.ds_edit}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.ds_edit}</a>
               <a href="javascript:dsLayerOpen('{:url('Notice/notice',['member_name'=>$v.member_name])}','{$Think.lang.member_index_to_message}-{$v.member_name}')" class="dsui-btn-add"><i class="iconfont"></i>{$Think.lang.member_index_to_message}</a>
               {if $v.member_state == 0}
               <a href="javascript:dsLayerConfirm('{:url('Member/memberstate',['member_id'=>$v.member_id,'member_state'=>1])}','{$Think.lang.ds_ensure_enable}')" class="dsui-btn-add"><i class="iconfont"></i>{$Think.lang.member_edit_allowlogin}</a>
               {else/}
               <a href="javascript:dsLayerConfirm('{:url('Member/memberstate',['member_id'=>$v.member_id,'member_state'=>0])}','{$Think.lang.ds_ensure_disable}')" class="dsui-btn-del"><i class="iconfont"></i>{$Think.lang.member_edit_denylogin}</a>
-              {/if}
-              <a href="javascript:dsLayerOpen('{:url('Predeposit/pd_add',['member_id'=>$v.member_id])}','{$Think.lang.change_predeposit_c}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_points_c}</a>
+              {/if}<p>
               <a href="javascript:dsLayerOpen('{:url('Predeposit/pd_add',['member_id'=>$v.member_id])}','{$Think.lang.change_predeposit_c}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_predeposit_c}</a>
-              <a href="javascript:dsLayerOpen('{:url('Predeposit/pd_add',['member_id'=>$v.member_id])}','{$Think.lang.change_predeposit_c}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_code_c}</a>
+              <a href="javascript:dsLayerOpen('{:url('Points/pointslog',['member_id'=>$v.member_id])}','{$Think.lang.change_points_c}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_points_c}</a>
+              <a href="javascript:dsLayerOpen('{:url('Predeposit/pd_add',['member_id'=>$v.member_id])}','{$Think.lang.change_predeposit_c}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_code_c}</a></p>
           </td>
         </tr>
         {/foreach}
