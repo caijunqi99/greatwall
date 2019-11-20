@@ -27,8 +27,8 @@ class Memberpoints extends BaseMember {
             $condition_arr['pl_stage'] = input('param.stage');
         }
 
-        $saddtime = input('get.stime');
-        $etime = input('get.etime');
+        $saddtime = input('param.stime');
+        $etime = input('param.etime');
         $if_start_time = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $saddtime);
         $if_end_time = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $etime);
         $start_unixtime = $if_start_time ? strtotime($saddtime) : null;
@@ -37,7 +37,7 @@ class Memberpoints extends BaseMember {
             $condition_arr['pl_addtime'] = array('between', array($start_unixtime, $end_unixtime));
         }
 
-        $pl_desc = input('get.description');
+        $pl_desc = input('param.description');
         if (!empty($pl_desc)) {
             $condition_arr['pl_desc'] = array('like', '%' . $pl_desc . '%');
         }

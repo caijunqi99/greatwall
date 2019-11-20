@@ -76,11 +76,18 @@ class Adminlog extends AdminControl
 
     public function getLog(){
         $filename = input('param.path');
+        $act = input('param.act');
         $baseDir = RUNTIME_PATH.'log';
         $api = new \libr\PHPFileSystem($baseDir);
-        
         $api->virtualRoot("folder");
-        $text = $api->cat($filename);
+        switch ($act) {
+            case 'check':
+                $text = $api->cat($filename);
+                break;
+            case 'del':
+                $text = $api->rm($filename);
+                break;
+        }
         echo $text;
     }
 

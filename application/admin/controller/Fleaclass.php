@@ -403,7 +403,7 @@ class Fleaclass extends AdminControl
      */
     public function goods_class_del(){
         $fleaclass_model = model('fleaclass');
-        $fleaclass_id = input('get.fleaclass_id');
+        $fleaclass_id = input('param.fleaclass_id');
         if ($fleaclass_id > 0){
             /* 删除分类 */
             $fleaclass_model->delFleaclass($fleaclass_id);

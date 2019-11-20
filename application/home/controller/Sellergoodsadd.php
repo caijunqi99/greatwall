@@ -81,7 +81,7 @@ class Sellergoodsadd extends BaseSeller
         }
         $this->assign('editor_multimedia', $editor_multimedia);
 
-        $gc_id = intval(input('get.class_id'));
+        $gc_id = intval(input('param.class_id'));
 
         // 验证商品分类是否存在且商品分类是否为最后一级
         $data = model('goodsclass')->getGoodsclassForCacheModel();
@@ -636,8 +636,8 @@ class Sellergoodsadd extends BaseSeller
      */
     public function ajax_goods_class()
     {
-        $gc_id = intval(input('get.gc_id'));
-        $deep = intval(input('get.deep'));
+        $gc_id = intval(input('param.gc_id'));
+        $deep = intval(input('param.deep'));
         if ($gc_id <= 0 || $deep <= 0 || $deep >= 4) {
             exit(json_encode(array()));
         }
@@ -654,7 +654,7 @@ class Sellergoodsadd extends BaseSeller
      */
     public function ajax_stapledel()
     {
-        $staple_id = intval(input('get.staple_id'));
+        $staple_id = intval(input('param.staple_id'));
         if ($staple_id < 1) {
             echo json_encode(array('done' => false, 'msg' => lang('param_error')));
             die();
@@ -684,7 +684,7 @@ class Sellergoodsadd extends BaseSeller
      */
     public function ajax_show_comm()
     {
-        $staple_id = intval(input('get.stapleid'));
+        $staple_id = intval(input('param.stapleid'));
 
         /**
          * 查询相应的商品分类id
@@ -778,9 +778,9 @@ class Sellergoodsadd extends BaseSeller
      */
     public function ajax_add_spec()
     {
-        $name = trim(input('get.name'));
-        $gc_id = intval(input('get.gc_id'));
-        $sp_id = intval(input('get.sp_id'));
+        $name = trim(input('param.name'));
+        $gc_id = intval(input('param.gc_id'));
+        $sp_id = intval(input('param.sp_id'));
         if ($name == '' || $gc_id <= 0 || $sp_id <= 0) {
             echo json_encode(array('done' => false));
             die();

@@ -50,14 +50,14 @@ class Vrrefund extends AdminControl {
         $condition['admin_state'] = '1'; //状态:1为待审核,2为同意,3为不同意
 
         $keyword_type = array('order_sn', 'refund_sn', 'store_name', 'buyer_name', 'goods_name');
-        $key = input('get.key');
-        $type = input('get.type');
+        $key = input('param.key');
+        $type = input('param.type');
         if (trim($key) != '' && in_array($type, $keyword_type)) {
             $condition[$type] = array('like', '%' . $type . '%');
         }
 
-        $add_time_from = trim(input('get.add_time_from'));
-        $add_time_to = trim(input('get.add_time_to'));
+        $add_time_from = trim(input('param.add_time_from'));
+        $add_time_to = trim(input('param.add_time_to'));
         if ($add_time_from != '' || $add_time_to != '') {
             $add_time_from = strtotime($add_time_from);
             $add_time_to = strtotime($add_time_to);
@@ -83,13 +83,13 @@ class Vrrefund extends AdminControl {
         $condition = array();
 
         $keyword_type = array('order_sn', 'refund_sn', 'store_name', 'buyer_name', 'goods_name');
-        $key = input('get.key');
-        $type = input('get.type');
+        $key = input('param.key');
+        $type = input('param.type');
         if (trim($key) != '' && in_array($type, $keyword_type)) {
             $condition[$type] = array('like', '%' . $key . '%');
         }
-        $add_time_from = trim(input('get.add_time_from'));
-        $add_time_to = trim(input('get.add_time_to'));
+        $add_time_from = trim(input('param.add_time_from'));
+        $add_time_to = trim(input('param.add_time_to'));
         if ($add_time_from != '' || $add_time_to != '') {
             $add_time_from = strtotime($add_time_from);
             $add_time_to = strtotime($add_time_to);
@@ -205,13 +205,13 @@ class Vrrefund extends AdminControl {
         $condition = array();
 
         $keyword_type = array('order_sn', 'refund_sn', 'store_name', 'buyer_name', 'goods_name');
-        $key = input('get.key');
-        $type = input('get.type');
+        $key = input('param.key');
+        $type = input('param.type');
         if (trim($key) != '' && in_array($type, $keyword_type)) {
             $condition[$type] = array('like', '%' . $key . '%');
         }
-        $add_time_from = trim(input('get.add_time_from'));
-        $add_time_to = trim(input('get.add_time_to'));
+        $add_time_from = trim(input('param.add_time_from'));
+        $add_time_to = trim(input('param.add_time_to'));
         if ($add_time_from != '' || $add_time_to != '') {
             $add_time_from = strtotime($add_time_from);
             $add_time_to = strtotime($add_time_to);

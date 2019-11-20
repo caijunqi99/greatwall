@@ -30,7 +30,7 @@
         <dt>{$Think.lang.text_class}：</dt>
         <dd class="nobg<?php if (!($hasChildren = !empty(input('class')))) echo ' selected'; ?>"><a href="{:dropParam(array('class', 's_class'))}">{$Think.lang.text_no_limit}</a></dd>
         <?php $names = $groupbuy_classes['name']; foreach ($groupbuy_classes['children'][0] as $v) { ?>
-        <dd<?php if ($hasChildren && input('get.class') == $v) echo ' class="selected"'; ?>><a href="{:replaceAndDropParam(array('class' => $v), array('s_class'))}">{$names[$v]}</a></dd>
+        <dd<?php if ($hasChildren && input('param.class') == $v) echo ' class="selected"'; ?>><a href="{:replaceAndDropParam(array('class' => $v), array('s_class'))}">{$names[$v]}</a></dd>
         <?php } ?>
         <?php if ($hasChildren && !empty($groupbuy_classes['children'][input('param.class')])) { ?>
         <ul>

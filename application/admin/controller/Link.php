@@ -19,7 +19,7 @@ class Link extends AdminControl {
 
     public function index() {
         $condition = array();
-        $link_title = input('get.link_title');
+        $link_title = input('param.link_title');
         if ($link_title) {
             $condition['link_title'] = ['like', "%$link_title%"];
         }
@@ -144,12 +144,12 @@ class Link extends AdminControl {
      */
     public function ajax() {
         $result = -1;
-        switch (input('get.branch')) {
+        switch (input('param.branch')) {
             case 'link':
                 $model_link = model('link');
-                $link_id = intval(input('get.id'));
+                $link_id = intval(input('param.id'));
                 $update_array = array();
-                $update_array[input('get.column')] = trim(input('get.value'));
+                $update_array[input('param.column')] = trim(input('param.value'));
                 $result = $model_link->editLink($update_array, $link_id);
                 break;
         }

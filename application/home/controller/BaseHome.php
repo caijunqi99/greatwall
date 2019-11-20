@@ -144,7 +144,7 @@ class BaseHome extends Controller
                 die;
             }
             $ref_url = request_uri();
-            if (input('get.inajax')) {
+            if (input('param.inajax')) {
                 ds_show_dialog('', '', 'js', "login_dialog();", 200);
             }
             else {

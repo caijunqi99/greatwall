@@ -23,21 +23,21 @@ class Storesnstrace extends AdminControl {
     public function index() {
         // where条件
         $where = array();
-        if (input('get.search_sname') != '') {
-            $where['stracelog_storename'] = array('like', '%' . trim(input('get.search_sname')) . '%');
+        if (input('param.search_sname') != '') {
+            $where['stracelog_storename'] = array('like', '%' . trim(input('param.search_sname')) . '%');
         }
-        if (input('get.search_stitle') != '') {
-            $where['stracelog_title'] = array('like', '%' . trim(input('get.search_stitle')) . '%');
+        if (input('param.search_stitle') != '') {
+            $where['stracelog_title'] = array('like', '%' . trim(input('param.search_stitle')) . '%');
         }
-        if (input('get.search_scontent') != '') {
-            $where['stracelog_content'] = array('like', '%' . trim(input('get.search_scontent')) . '%');
+        if (input('param.search_scontent') != '') {
+            $where['stracelog_content'] = array('like', '%' . trim(input('param.search_scontent')) . '%');
         }
-        if (input('get.search_type') != '') {
-            $where['stracelog_type'] = trim(input('get.search_type'));
+        if (input('param.search_type') != '') {
+            $where['stracelog_type'] = trim(input('param.search_type'));
         }
-        if (input('get.search_stime') != '' || input('get.search_etime') != '') {
-            $s_time = input('get.search_stime') != '' ? strtotime(input('get.search_stime')) : null;
-            $e_time = input('get.search_etime') != '' ? strtotime(input('get.search_etime')) : null;
+        if (input('param.search_stime') != '' || input('param.search_etime') != '') {
+            $s_time = input('param.search_stime') != '' ? strtotime(input('param.search_stime')) : null;
+            $e_time = input('param.search_etime') != '' ? strtotime(input('param.search_etime')) : null;
             $where['stracelog_time'] = array('between', array($s_time, $e_time));
         }
         // 实例化模型
@@ -113,23 +113,23 @@ class Storesnstrace extends AdminControl {
     public function storecomment_list() {
         // where 条件
         $where = array();
-        $st_id = intval(input('get.st_id'));
+        $st_id = intval(input('param.st_id'));
         if ($st_id > 0) {
             $where['stracelog_id'] = $st_id;
         }
         
-        if (input('get.search_uname') != '') {
-            $where['storesnscomm_membername'] = array('like', '%' . trim(input('get.search_uname')) . '%');
+        if (input('param.search_uname') != '') {
+            $where['storesnscomm_membername'] = array('like', '%' . trim(input('param.search_uname')) . '%');
         }
-        if (input('get.search_content') != '') {
-            $where['storesnscomm_content'] = array('like', '%' . trim(input('get.search_content')) . '%');
+        if (input('param.search_content') != '') {
+            $where['storesnscomm_content'] = array('like', '%' . trim(input('param.search_content')) . '%');
         }
-        if (input('get.search_state') != '') {
-            $where['storesnscomm_state'] = intval(input('get.search_state'));
+        if (input('param.search_state') != '') {
+            $where['storesnscomm_state'] = intval(input('param.search_state'));
         }
-        if (input('get.search_stime') != '' || input('get.search_etime') != '') {
-            $s_time = input('get.search_stime') != '' ? strtotime(input('get.search_stime')) : null;
-            $e_time = input('get.search_etime') != '' ? strtotime(input('get.search_etime')) : null;
+        if (input('param.search_stime') != '' || input('param.search_etime') != '') {
+            $s_time = input('param.search_stime') != '' ? strtotime(input('param.search_stime')) : null;
+            $e_time = input('param.search_etime') != '' ? strtotime(input('param.search_etime')) : null;
             $where['storesnscomm_time'] = array('between', array($s_time, $e_time));
         }
         $model_storesnscomment = model('storesnscomment');
@@ -170,7 +170,7 @@ class Storesnstrace extends AdminControl {
             ds_json_encode('10001', lang('param_error'));
         }
         $storesnscomm_state = 1;
-        if (input('get.type') == 'hide') {
+        if (input('param.type') == 'hide') {
             $storesnscomm_state = 0;
         }
         // 实例化模型

@@ -135,7 +135,7 @@ class Webchat extends BaseMember {
         $time_from['15'] = strtotime($add_time_to) - 60 * 60 * 24 * 15;
         $time_from['30'] = strtotime($add_time_to) - 60 * 60 * 24 * 30;
 
-        $key = input('get.t');
+        $key = input('param.t');
         if (trim($key) != '' && array_key_exists($key, $time_from)) {
             $webchat_model = model('webchat');
             $chat_log = array();
@@ -202,7 +202,7 @@ class Webchat extends BaseMember {
      *
      */
     public function json($json) {
-        echo input('get.callback') . '(' . json_encode($json) . ')';
+        echo input('param.callback') . '(' . json_encode($json) . ')';
         exit;
     }
 

@@ -24,17 +24,17 @@ class Shop extends MobileMall {
         $model_store = Model('store');
         //查询条件
         $condition = array();
-        $sc_id = intval(input('get.sc_id'));
+        $sc_id = intval(input('param.sc_id'));
         if ($sc_id > 0) {
             $condition['sc_id'] = $sc_id;
-        } elseif (!empty(input('get.keyword'))) {
-            //$condition['store_name'] = array('like', '%' . input('get.keyword') . '%');
+        } elseif (!empty(input('param.keyword'))) {
+            //$condition['store_name'] = array('like', '%' . input('param.keyword') . '%');
         }
         //所需字段
         $fields = "*";
         //排序方式
-        $order = $this->_store_list_order(input('get.key'), input('get.order'));
-        $page = intval(input('get.page'));
+        $order = $this->_store_list_order(input('param.key'), input('param.order'));
+        $page = intval(input('param.page'));
         $store_list = db('store')->where($condition)->order($order)->page($page,10)->select();
         $page_count = db('store')->where($condition)->count();
         $own_store_list = $store_list;

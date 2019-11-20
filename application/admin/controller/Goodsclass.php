@@ -82,7 +82,7 @@ class Goodsclass extends AdminControl {
             ksort($t_list);
 
             $this->assign('type_list', $t_list);
-            $this->assign('gc_parent_id', input('get.gc_parent_id'));
+            $this->assign('gc_parent_id', input('param.gc_parent_id'));
             $this->assign('parent_list', $parent_list);
             $this->setAdminCurItem('goods_class_add');
             return $this->fetch('goods_class_add');
@@ -424,7 +424,7 @@ class Goodsclass extends AdminControl {
      * 删除TAG
      */
     public function tag_del() {
-        $id = intval(input('get.tag_id'));
+        $id = intval(input('param.tag_id'));
         $classtag_model = model('goodsclasstag');
         if ($id > 0) {
             //删除TAG
@@ -594,9 +594,9 @@ class Goodsclass extends AdminControl {
              */
             case 'check_class_name':
                 $goodsclass_model = model('goodsclass');
-                $condition['gc_name'] = trim(input('get.gc_name'));
-                $condition['gc_parent_id'] = intval(input('get.gc_parent_id'));
-                $condition['gc_id'] = array('neq', intval(input('get.gc_id')));
+                $condition['gc_name'] = trim(input('param.gc_name'));
+                $condition['gc_parent_id'] = intval(input('param.gc_parent_id'));
+                $condition['gc_id'] = array('neq', intval(input('param.gc_id')));
                 $class_list = $goodsclass_model->getGoodsclassList($condition);
                 if (empty($class_list)) {
                     echo 'true';

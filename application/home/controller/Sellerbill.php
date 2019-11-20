@@ -68,8 +68,8 @@ class Sellerbill extends BaseSeller {
         $order_condition['order_state'] = ORDER_STATE_SUCCESS;
         $order_condition['store_id'] = $bill_info['ob_store_id'];
 
-        $query_start_date = input('get.query_start_date');
-        $query_end_date = input('get.query_end_date');
+        $query_start_date = input('param.query_start_date');
+        $query_end_date = input('param.query_end_date');
         $if_start_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $query_start_date);
         $if_end_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $query_end_date);
         $start_unixtime = $if_start_date ? strtotime($query_start_date) : null;
@@ -77,7 +77,7 @@ class Sellerbill extends BaseSeller {
         if ($if_start_date || $if_end_date) {
             $order_condition['finnshed_time'] = array('between', array($start_unixtime, $end_unixtime));
         }
-        $query_order_no = input('get.query_order_no');
+        $query_order_no = input('param.query_order_no');
         $type = input('param.type');
         if ($type == 'vrorder') {
             if (preg_match('/^\d{8,20}$/', $query_order_no)) {

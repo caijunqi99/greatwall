@@ -11,7 +11,7 @@ class MobileMall extends MobileHome {
     protected function getMemberIdIfExists() {
         $key = input('post.key');
         if (empty($key)) {
-            $key = input('get.key');
+            $key = input('param.key');
         }
 
         $model_mb_user_token = Model('mbusertoken');

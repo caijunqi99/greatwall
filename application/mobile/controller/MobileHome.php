@@ -21,7 +21,7 @@ class MobileHome extends Controller
         parent::_initialize();
 
         //分页数处理
-        $pagesize = intval(input('get.pagesize'));
+        $pagesize = intval(input('param.pagesize'));
         if ($pagesize > 0) {
             $this->pagesize = $pagesize;
         }

@@ -187,7 +187,7 @@ class Cart extends BaseMember {
      * 推荐组合加入购物车
      */
     public function add_comb() {
-        if (!preg_match('/^[\d|]+$/', input('get.goods_ids'))) {
+        if (!preg_match('/^[\d|]+$/', input('param.goods_ids'))) {
             exit(json_encode(array('state' => 'false')));
         }
 
@@ -197,7 +197,7 @@ class Cart extends BaseMember {
             exit(json_encode(array('msg' => lang('please_login_first'), 'UTF-8')));
         }
 
-        $goods_id_array = explode('|', input('get.goods_ids'));
+        $goods_id_array = explode('|', input('param.goods_ids'));
 
         $goods_model = model('goods');
         $goods_list = $goods_model->getGoodsOnlineListAndPromotionByIdArray($goods_id_array);
@@ -280,8 +280,8 @@ class Cart extends BaseMember {
      * 购物车更新商品数量
      */
     public function update() {
-        $cart_id = intval(abs(input('get.cart_id')));
-        $quantity = intval(abs(input('get.quantity')));
+        $cart_id = intval(abs(input('param.cart_id')));
+        $quantity = intval(abs(input('param.quantity')));
 
         if (empty($cart_id) || empty($quantity)) {
             exit(json_encode(array('msg' => lang('cart_update_buy_fail'))));
@@ -381,7 +381,7 @@ class Cart extends BaseMember {
      * 购物车删除单个商品，未登录前使用cart_id即为goods_id
      */
     public function del() {
-        $cart_id = intval(input('get.cart_id'));
+        $cart_id = intval(input('param.cart_id'));
         if ($cart_id < 0)
             return;
         $cart_model = model('cart');

@@ -103,7 +103,7 @@ class Search extends Model {
      * @param type $appname 全文搜索INI配置文件名
      */
     private function _createXS($pagesize, $appname) {
-        $curpage = intval(input('get.curpage'));
+        $curpage = intval(input('param.curpage'));
         if($curpage>0){
             $start = ($curpage - 1) * $pagesize;
         }else{

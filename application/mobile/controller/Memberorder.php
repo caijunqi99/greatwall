@@ -58,7 +58,7 @@ class Memberorder extends MobileMember {
                     }
                     else {
                         $value['extend_order_goods'][$k] = $goods_info;
-                        $value['extend_order_goods'][$k]['goods_image_url'] = cthumb($goods_info['goods_image'], 240, $value['store_id']);
+                        $value['extend_order_goods'][$k]['goods_image_url'] = goods_cthumb($goods_info['goods_image'], 240, $value['store_id']);
                     }
                 }
             }

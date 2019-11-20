@@ -332,7 +332,7 @@ class Memberorder extends BaseMember {
         } else if ($state_type == 'order_receive') {
             $result = $this->_order_receive($order_info, input('post.'));
         } else if (in_array($state_type, array('order_delete', 'order_drop', 'order_restore'))) {
-            $result = $this->_order_recycle($order_info, input('get.'));
+            $result = $this->_order_recycle($order_info, input('param.'));
         } else {
             exit();
         }

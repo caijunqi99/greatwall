@@ -111,7 +111,7 @@ class Index extends BaseMall {
          * 实例化商品分类模型
          */
         $goodsclass_model = model('goodsclass');
-        $goods_class = $goodsclass_model->getGoodsclassListByParentId(intval(input('get.gc_id')));
+        $goods_class = $goodsclass_model->getGoodsclassListByParentId(intval(input('param.gc_id')));
         $array = array();
         if (is_array($goods_class) and count($goods_class) > 0) {
             foreach ($goods_class as $val) {
@@ -163,7 +163,7 @@ class Index extends BaseMall {
          * 实例化商品分类模型
          */
         $fleaclass_model = model('fleaclass');
-        $goods_class = $fleaclass_model->getFleaclassList(array('fleaclass_parent_id' => intval(input('get.gc_id'))));
+        $goods_class = $fleaclass_model->getFleaclassList(array('fleaclass_parent_id' => intval(input('param.gc_id'))));
         $array = array();
         if (is_array($goods_class) and count($goods_class) > 0) {
             foreach ($goods_class as $val) {
@@ -190,7 +190,7 @@ class Index extends BaseMall {
      * json输出地址数组 
      */
     public function json_area_show() {
-        $area_info['text'] = model('area')->getTopAreaName(intval(input('get.area_id')));
+        $area_info['text'] = model('area')->getTopAreaName(intval(input('param.area_id')));
         echo $_GET['callback'] . '(' . json_encode($area_info) . ')';
     }
 
@@ -204,8 +204,8 @@ class Index extends BaseMall {
      */
     public function getweekofmonth() {
         Loader::import('mall.datehelper');
-        $year = input('get.y');
-        $month = input('get.m');
+        $year = input('param.y');
+        $month = input('param.m');
         $week_arr = getMonthWeekArr($year, $month);
         echo json_encode($week_arr);
         die;

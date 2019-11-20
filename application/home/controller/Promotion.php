@@ -69,7 +69,7 @@ class Promotion extends BaseMall {
         $this->assign('goodsevallist', $eval_list);
 
         $this->assign('goods_list', $xs_goods_list);
-        if (!empty(input('get.curpage'))) {
+        if (!empty(input('param.curpage'))) {
             return $this->fetch($this->template_dir . 'item');
         } else {
 

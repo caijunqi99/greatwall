@@ -58,7 +58,7 @@ class Companys extends AdminControl {
                 break;
         }
         //会员等级
-        $search_grade = intval(input('get.search_grade'));
+        $search_grade = intval(input('param.search_grade'));
         if ($search_grade>0 && $member_grade) {
             if (isset($member_grade[$search_grade + 1]['exppoints'])) {
                 $condition['member_exppoints'] = array('between',array($member_grade[$search_grade]['exppoints'],$member_grade[$search_grade + 1]['exppoints']));
@@ -68,7 +68,7 @@ class Companys extends AdminControl {
         }
 
         //排序
-        $order = trim(input('get.search_sort'));
+        $order = trim(input('param.search_sort'));
         if (!in_array($order,array('member_logintime desc','member_loginnum desc'))) {
             $order = 'member_id desc';
         }
@@ -193,7 +193,7 @@ class Companys extends AdminControl {
             case 'check_user_name':
                 $member_model = model('member');
                 $condition['member_name'] = input('param.member_name');
-                $condition['member_id'] = array('neq', intval(input('get.member_id')));
+                $condition['member_id'] = array('neq', intval(input('param.member_id')));
                 $list = $member_model->getMemberInfo($condition);
                 if (empty($list)) {
                     echo 'true';

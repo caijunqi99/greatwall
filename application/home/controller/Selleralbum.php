@@ -49,7 +49,7 @@ class Selleralbum extends BaseSeller {
          */
         $condition['store_id'] = session('store_id');
         $order = 'aclass_sort desc';
-        $sort = input('get.sort');
+        $sort = input('param.sort');
         if ($sort != '') {
             switch ($sort) {
                 case '0':
@@ -257,7 +257,7 @@ class Selleralbum extends BaseSeller {
         $param = array();
         $param['aclass_id'] = $id;
         $param['store_id'] = session('store_id');
-        $order = input('get.sort');
+        $order = input('param.sort');
         switch ($order) {
             case '0':
                 $order = 'apic_uploadtime desc';
@@ -378,7 +378,7 @@ class Selleralbum extends BaseSeller {
      * 修改相册封面
      */
     public function change_album_cover() {
-        $id = intval(input('get.id'));
+        $id = intval(input('param.id'));
         if ($id <= 0) {
             ds_json_encode(10001,lang('ds_common_op_fail'));
         }
@@ -777,7 +777,7 @@ class Selleralbum extends BaseSeller {
         $data['file_name'] = $pic;
         $data['origin_file_name'] = $_FILES["file"]["name"];
         $data['file_path'] = $pic;
-        $data['instance'] = input('get.instance');
+        $data['instance'] = input('param.instance');
         $data['state'] = 'true';
         /**
          * 整理为json格式
@@ -822,7 +822,7 @@ class Selleralbum extends BaseSeller {
      * ajax验证名称时候重复
      */
     public function ajax_check_class_name() {
-        $ac_name = trim(input('get.ac_name'));
+        $ac_name = trim(input('param.ac_name'));
         if ($ac_name == '') {
             echo 'true';
             die;
