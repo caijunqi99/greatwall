@@ -71,9 +71,9 @@ class Region extends AdminControl {
              */
             case 'area_name':
                 $area_model = model('area');
-                $where = array('area_id' => intval(input('get.id')));
+                $where = array('area_id' => intval(input('param.id')));
                 $update_array = array();
-                $update_array['area_name'] = trim(input('get.value'));
+                $update_array['area_name'] = trim(input('param.value'));
                 $area_model->editArea($update_array, $where);
                 echo 'true';
                 exit;
@@ -84,9 +84,9 @@ class Region extends AdminControl {
              */
             case 'area_sort':
                 $area_model = model('area');
-                $where = array('area_id' => intval(input('get.id')));
+                $where = array('area_id' => intval(input('param.id')));
                 $update_array = array();
-                $update_array['area_sort'] = trim(input('get.value'));
+                $update_array['area_sort'] = trim(input('param.value'));
                 $area_model->editArea($update_array, $where);
 
                 \areacache::deleteCacheFile();
@@ -97,9 +97,9 @@ class Region extends AdminControl {
 
             case 'area_region':
                 $area_model = model('area');
-                $where = array('area_id' => intval(input('get.id')));
+                $where = array('area_id' => intval(input('param.id')));
                 $update_array = array();
-                $update_array['area_region'] = trim(input('get.value'));
+                $update_array['area_region'] = trim(input('param.value'));
                 $area_model->editArea($update_array, $where);
                 
                 \areacache::deleteCacheFile();
@@ -110,9 +110,9 @@ class Region extends AdminControl {
 
             case 'area_index_show':
                 $area_model = model('area');
-                $where = array('area_id' => intval(input('get.id')));
+                $where = array('area_id' => intval(input('param.id')));
                 $update_array = array();
-                $update_array[input('get.column')] = input('get.value');
+                $update_array[input('param.column')] = input('param.value');
                 $area_model->editArea($update_array, $where);
 
                 \areacache::deleteCacheFile();

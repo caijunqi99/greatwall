@@ -12,7 +12,7 @@ class Goodsclass extends MobileMall {
     }
 
     public function index() {
-        $gc_id = intval(input('get.gc_id'));
+        $gc_id = intval(input('param.gc_id'));
         if ($gc_id > 0) {
             $date = $this->_get_class_list($gc_id);
             output_data($date);
@@ -26,19 +26,15 @@ class Goodsclass extends MobileMall {
      */
     private function _get_root_class() {
         $model_goods_class = Model('goodsclass');
-        $model_mb_category = Model('mbcategory');
+        // $model_mb_category = Model('mbcategory');
 
         $goods_class_array = Model('goodsclass')->getGoodsClassForCacheModel();
 
         $class_list = $model_goods_class->getGoodsClassListByParentId(0);
-        $mb_categroy = $model_mb_category->getLinkList(array());
-        $mb_categroy = array_under_reset($mb_categroy, 'gc_id');
+        // $mb_categroy = $model_mb_category->getLinkList(array());
+        // $mb_categroy = array_under_reset($mb_categroy, 'gc_id');
         foreach ($class_list as $key => $value) {
-            if (!empty($mb_categroy[$value['gc_id']])) {
-                $class_list[$key]['image'] = UPLOAD_SITE_URL . DS . ATTACH_MOBILE . DS . 'category' . DS . $mb_categroy[$value['gc_id']]['gc_thumb'];
-            } else {
-                $class_list[$key]['image'] = '';
-            }
+            $class_list[$key]['image'] = '';
 
             $class_list[$key]['text'] = '';
             $child_class_string = $goods_class_array[$value['gc_id']]['child'];
@@ -84,7 +80,7 @@ class Goodsclass extends MobileMall {
      * 获取全部子集分类
      */
     public function get_child_all() {
-        $gc_id = intval(input('get.gc_id'));
+        $gc_id = intval(input('param.gc_id'));
         $data = array();
         if ($gc_id > 0) {
             $data = $this->_get_class_list($gc_id);

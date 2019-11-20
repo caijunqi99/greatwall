@@ -155,8 +155,8 @@ class Storelist extends BaseMall {
 
         //可以使用全文搜索进行状态筛选及排序，但需要经常重新生成索引，否则结果不太准，所以暂不使用。使用数据库，速度会慢些
         //		$cl->SetFilter('store_state',array(1),false);
-        //		if (input('get.key') == 'store_credit'){
-        //			$order = input('get.order') == 'desc' ? SPH_SORT_ATTR_DESC : SPH_SORT_ATTR_ASC;
+        //		if (input('param.key') == 'store_credit'){
+        //			$order = input('param.order') == 'desc' ? SPH_SORT_ATTR_DESC : SPH_SORT_ATTR_ASC;
         //			$cl->SetSortMode($order,'store_sort');
         //		}
 

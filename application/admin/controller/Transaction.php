@@ -32,12 +32,12 @@ class Transaction extends AdminControl {
             if (!empty($aname)) {
                 $condition_arr['pl_adminname'] = array('like', '%' . $aname . '%');
             }
-            $stage = input('get.stage');
+            $stage = input('param.stage');
             if ($stage) {
                 $condition_arr['pl_stage'] = trim($stage);
             }
-            $stime = input('get.stime');
-            $etime = input('get.etime');
+            $stime = input('param.stime');
+            $etime = input('param.etime');
             $if_start_time = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $stime);
             $if_end_time = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $etime);
             $start_unixtime = $if_start_time ? strtotime($stime) : null;
@@ -190,12 +190,12 @@ class Transaction extends AdminControl {
             $condition_arr['pl_adminname'] = array('like', '%' . $aname . '%');
         }
         
-        $stage = input('get.stage');
+        $stage = input('param.stage');
         if ($stage) {
             $condition_arr['pl_stage'] = trim($stage);
         }
-        $stime = input('get.stime');
-        $etime = input('get.etime');
+        $stime = input('param.stime');
+        $etime = input('param.etime');
         $if_start_time = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $stime);
         $if_end_time = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $etime);
         $start_unixtime = $if_start_time ? strtotime($stime) : null;

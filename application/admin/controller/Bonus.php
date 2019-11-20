@@ -24,12 +24,12 @@ class Bonus extends AdminControl {
             $condition['bonus_name'] = array('like', '%' . $bonus_name . '%');
         }
         //红包是否有效
-        $bonus_state = intval(input('get.bonus_state'));
+        $bonus_state = intval(input('param.bonus_state'));
         if ($bonus_state) {
             $condition['bonus_state'] = $bonus_state;
         }
         //红包类型
-        $bonus_type = intval(input('get.bonus_type'));
+        $bonus_type = intval(input('param.bonus_type'));
         if ($bonus_type) {
             $condition['bonus_type'] = $bonus_type;
         }

@@ -33,7 +33,7 @@ class Memberaddress extends MobileMember
      */
     public function address_info()
     {
-        $address_id = intval($_POST['address_id']);
+        $address_id = intval(input('param.address_id'));
 
         $model_address = Model('address');
 
@@ -53,22 +53,22 @@ class Memberaddress extends MobileMember
      */
     public function address_del()
     {
-        $address_id = intval($_POST['address_id']);
-
+        $address_id = intval(input('param.address_id'));
         $model_address = Model('address');
 
         $condition = array();
         $condition['address_id'] = $address_id;
         $condition['member_id'] = $this->member_info['member_id'];
         $model_address->delAddress($condition);
-        output_data('1');
+        output_data(['state'=>true]);
     }
 
     /**
      * 新增地址
      */
     public function address_add()
-    {
+    {   
+        // p(input('param.address_id'));exit;
         $model_address = Model('address');
 
         $address_info = $this->_address_valid();
@@ -86,8 +86,9 @@ class Memberaddress extends MobileMember
      * 编辑地址
      */
     public function address_edit()
-    {
-        $address_id = intval($_POST['address_id']);
+    {      
+        // p($this->member_info);exit;
+        $address_id = intval(input('param.address_id'));
 
         $model_address = Model('address');
 
@@ -98,9 +99,9 @@ class Memberaddress extends MobileMember
         }
 
         $address_info = $this->_address_valid();
-        $result = $model_address->editAddress($address_info, array('address_id' => $address_id));
+        $result = $model_address->editAddress($address_info, array('member_id' => $this->member_info['member_id'],'address_id' => $address_id));
         if ($result) {
-            output_data('1');
+            output_data(['state'=>True]);
         }
         else {
             output_error('保存失败');
@@ -114,9 +115,9 @@ class Memberaddress extends MobileMember
     {
         $obj_validate = new Validate();
         $data=[
-            'true_name'=>$_POST["true_name"],
-            'area_info'=>$_POST["area_info"],
-            'address'=>$_POST["address"],
+            'true_name' =>input('param.true_name'),
+            'area_info' =>input('param.area_info'),
+            'address'   =>input('param.address'),
         ];
 
         $rule=[
@@ -124,7 +125,7 @@ class Memberaddress extends MobileMember
             ['area_info','require','地区不能为空'],
             ['address','require','地址不能为空'],
         ];
-        if (!isset($_POST['mob_phone'])&&!isset($_POST['tel_phone'])){
+        if (empty(input('param.mob_phone'))&& empty(input('param.tel_phone'))){
             $data['mob_phone']='';
             $rule[]=['mob_phone','require','联系方式不能为空'];
         }
@@ -134,17 +135,17 @@ class Memberaddress extends MobileMember
         }
 
         $data = array();
-        $data['member_id'] = $this->member_info['member_id'];
-        $data['true_name'] = $_POST['true_name'];
-        $data['area_id'] = intval($_POST['area_id']);
-        $data['city_id'] = intval($_POST['city_id']);
-        $data['area_info'] = $_POST['area_info'];
-        $data['address'] = $_POST['address'];
-        $data['longitude'] = $_POST['longitude'];
-        $data['latitude'] = $_POST['latitude'];
-        $data['tel_phone'] = isset($_POST['tel_phone'])?$_POST['tel_phone']:'';
-        $data['mob_phone'] = isset($_POST['mob_phone'])?$_POST['mob_phone']:'';
-        $data['is_default'] = $_POST['is_default'];
+        $data['member_id']          = $this->member_info['member_id'];
+        $data['address_realname']   = input('param.true_name');
+        $data['area_id']            = intval(input('param.area_id'));
+        $data['city_id']            = intval(input('param.city_id'));
+        $data['area_info']          = input('param.area_info');
+        $data['address_detail']     = input('param.address');
+        $data['address_longitude']  = input('param.longitude');
+        $data['address_latitude']   = input('param.latitude');
+        $data['address_tel_phone']  = empty(input('param.tel_phone'))?input('param.tel_phone'):'';
+        $data['address_mob_phone']  = empty(input('param.mob_phone'))?input('param.mob_phone'):'';
+        $data['address_is_default'] = input('param.is_default');
         return $data;
     }
 

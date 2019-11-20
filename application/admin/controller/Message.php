@@ -92,8 +92,8 @@ class Message extends AdminControl {
     {
         $condition = array();
         
-        $add_time_from = input('get.add_time_from');
-        $add_time_to = input('get.add_time_to');
+        $add_time_from = input('param.add_time_from');
+        $add_time_to = input('param.add_time_to');
         if (trim($add_time_from) != '' || trim($add_time_to) != '') {
             $add_time_from = strtotime(trim($add_time_from));
             $add_time_to = strtotime(trim($add_time_to));
@@ -101,11 +101,11 @@ class Message extends AdminControl {
                 $condition['smslog_smstime'] = array('between', array($add_time_from, $add_time_to));
             }
         }
-        $member_name = input('get.member_name');
+        $member_name = input('param.member_name');
         if(!empty($member_name)){
             $condition['member_name'] = array('like',"%" . $member_name . "%");
         }
-        $smslog_phone = input('get.smslog_phone');
+        $smslog_phone = input('param.smslog_phone');
         if(!empty($smslog_phone)){
             $condition['smslog_phone'] = array('like',"%" . $smslog_phone . "%");
         }

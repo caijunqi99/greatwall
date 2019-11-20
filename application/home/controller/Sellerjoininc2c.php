@@ -199,7 +199,7 @@ class Sellerjoininc2c extends BaseMember {
 
     public function check_seller_name_exist() {
         $condition = array();
-        $condition['seller_name'] = input('get.seller_name');
+        $condition['seller_name'] = input('param.seller_name');
 
         $seller_model = model('seller');
         $result = $seller_model->isSellerExist($condition);
@@ -382,7 +382,7 @@ class Sellerjoininc2c extends BaseMember {
          * 实例化卖家模型
          */
         $store_model = model('store');
-        $store_name = input('get.store_name');
+        $store_name = input('param.store_name');
         $store_info = $store_model->getStoreInfo(array('store_name' => $store_name));
         if (!empty($store_info['store_name']) && $store_info['member_id'] != session('member_id')) {
             echo 'false';

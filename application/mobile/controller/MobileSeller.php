@@ -17,7 +17,7 @@ class MobileSeller extends MobileHome {
 
         $key = input('post.key');
         if (empty($key)) {
-            $key = input('get.key');
+            $key = input('param.key');
         }
         if (empty($key)) {
             output_error('请登录', array('login' => '0'));

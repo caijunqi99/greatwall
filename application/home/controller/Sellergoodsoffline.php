@@ -31,12 +31,12 @@ class Sellergoodsoffline extends BaseSeller {
         $where = array();
         $where['store_id'] = session('store_id');
 
-        $storegc_id = intval(input('get.storegc_id'));
+        $storegc_id = intval(input('param.storegc_id'));
         if ($storegc_id > 0) {
             $where['goods_stcids'] = array('like', '%,' . $storegc_id . ',%');
         }
-        $keyword = input('get.keyword');
-        $search_type = input('get.search_type');
+        $keyword = input('param.keyword');
+        $search_type = input('param.search_type');
         if (trim($keyword) != '') {
             switch ($search_type) {
                 case 0:
@@ -52,7 +52,7 @@ class Sellergoodsoffline extends BaseSeller {
         }
 
         $type = input('param.type');
-        $verify = input('get.verify');
+        $verify = input('param.verify');
         switch ($type) {
             // 违规的商品
             case 'lock_up':

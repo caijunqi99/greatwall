@@ -34,8 +34,8 @@ class SellerTaobaoImport extends BaseSeller {
             $store_goods_class = $model_store_class->getClassTree(array('store_id' => session('store_id'), 'storegc_state' => '1'));
             $this->assign('store_goods_class', $store_goods_class);
 
-            if (input('get.step') != '') {
-                $this->assign('step', input('get.step'));
+            if (input('param.step') != '') {
+                $this->assign('step', input('param.step'));
             } else {
                 $this->assign('step', '1');
             }

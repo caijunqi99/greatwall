@@ -8,7 +8,7 @@
         {foreach $header_categories as $gc_list}  
         <div class="all-category-floor" id='cate-{$gc_list.gc_id}'>
             <div class="floor-top">
-                <div class="title"><a class="iconfont toggle" onclick='$(this).parents(".all-category-floor").find(".floor-bot").toggle();$(this).toggleClass("active")'>&#xe689;</a><a href="{:url('Search/index',['cate_id'=>$gc_list.gc_id])}">{$gc_list.gc_name}</a></div>
+                <div class="title"><a class="iconfont toggle" onclick='$(this).parents(".all-category-floor").find(".floor-bot").toggle();$(this).toggleClass("active")'>&#xe689;</a><a href="{:url('Search/index',['cate_id'=>$gc_list.gc_id])}">{$gc_list.gc_name}1</a></div>
             </div>
             {notempty name='gc_list.class2'}  
             <div class="floor-bot">

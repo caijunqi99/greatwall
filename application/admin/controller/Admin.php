@@ -83,10 +83,10 @@ class Admin extends AdminControl {
      */
     public function ajax() {
         $admin_model = model('admin');
-        switch (input('get.branch')) {
+        switch (input('param.branch')) {
             //管理人员名称验证
             case 'check_admin_name':
-                $condition['admin_name'] = input('get.admin_name');
+                $condition['admin_name'] = input('param.admin_name');
                 $admin_info = $admin_model->infoAdmin($condition);
                 if (!empty($admin_info)) {
                     exit('false');
@@ -100,7 +100,7 @@ class Admin extends AdminControl {
                 if (is_numeric(input('param.gid'))) {
                     $condition['gid'] = array('neq', intval(input('param.gid')));
                 }
-                $condition['gname'] = input('get.gname');
+                $condition['gname'] = input('param.gname');
                 $info = $admin_model->getOneGadmin($condition);
                 if (!empty($info)) {
                     exit('false');

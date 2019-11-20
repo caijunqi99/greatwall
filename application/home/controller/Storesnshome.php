@@ -361,7 +361,7 @@ class Storesnshome extends BaseStoreSns {
      * 一条SNS动态及其评论
      */
     public function straceinfo() {
-        $stid = intval(input('get.st_id'));
+        $stid = intval(input('param.st_id'));
         if ($stid <= 0) {
             $this->error(lang('param_error'));
         }

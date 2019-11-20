@@ -107,10 +107,10 @@ $(function(){
         $(this).show();
     });
 });
-<?php if(intval(input('get.area_id')) > 0){?>
+<?php if(intval(input('param.area_id')) > 0){?>
 $(function(){
     // 选择地区后的地区显示
-    $('[ds_type="area_name"]').html('<?php echo $province_array[intval(input('get.area_id'))]; ?>');
+    $('[ds_type="area_name"]').html('<?php echo $province_array[intval(input('param.area_id'))]; ?>');
 });
 <?php }?>
 </script>

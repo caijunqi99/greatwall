@@ -19,7 +19,7 @@ class Ownshop extends AdminControl {
         $condition = array(
             'is_platform_store' => 1,
         );
-        $store_name = trim(input('get.store_name'));
+        $store_name = trim(input('param.store_name'));
         if (strlen($store_name) > 0) {
             $condition['store_name'] = array('like', "%$store_name%");
             $this->assign('store_name', $store_name);
@@ -173,7 +173,7 @@ class Ownshop extends AdminControl {
     }
 
     public function check_seller_name() {
-        $seller_name = input('get.seller_name');
+        $seller_name = input('param.seller_name');
         echo json_encode($this->checkSellerName($seller_name));
         exit;
     }
@@ -196,7 +196,7 @@ class Ownshop extends AdminControl {
     }
 
     public function check_member_name() {
-        $member_name = input('get.member_name');
+        $member_name = input('param.member_name');
         echo json_encode($this->checkMemberName($member_name));
         exit;
     }
@@ -376,7 +376,7 @@ class Ownshop extends AdminControl {
             echo json_encode(array('result' => FALSE, 'message' => lang('param_error')));
             die;
         }
-        $new_commis_rate = intval(input('get.value'));
+        $new_commis_rate = intval(input('param.value'));
         if ($new_commis_rate < 0 || $new_commis_rate >= 100) {
             echo json_encode(array('result' => FALSE, 'message' => lang('param_error')));
             die;
@@ -403,14 +403,14 @@ class Ownshop extends AdminControl {
      * 验证店铺名称是否存在
      */
     public function ckeck_store_name() {
-        $store_name = trim(input('get.store_name'));
+        $store_name = trim(input('param.store_name'));
         if (empty($store_name)) {
             echo 'false';
             exit;
         }
         $where = array();
         $where['store_name'] = $store_name;
-        $store_id = input('get.store_id');
+        $store_id = input('param.store_id');
         if (isset($store_id)) {
             $where['store_id'] = array('neq', $store_id);
         }

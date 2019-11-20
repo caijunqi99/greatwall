@@ -131,7 +131,7 @@ class Sellerdeliverset extends BaseSeller {
      * 设置默认发货地址
      */
     public function daddress_default_set() {
-        $address_id = intval(input('get.address_id'));
+        $address_id = intval(input('param.address_id'));
         if ($address_id <= 0)
             return false;
         $condition = array();

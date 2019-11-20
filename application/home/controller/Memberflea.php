@@ -395,7 +395,7 @@ class Memberflea extends BaseFleaMember {
          * 实例化商品分类模型
          */
         $fleaclass_model = model('fleaclass');
-        $sub_class = $fleaclass_model->getFleaclassList(array('fleaclass_parent_id' => intval(input('get.cate_id'))));
+        $sub_class = $fleaclass_model->getFleaclassList(array('fleaclass_parent_id' => intval(input('param.cate_id'))));
         if (is_array($sub_class) and ! empty($sub_class)) {
             echo 'false';
         } else {
@@ -439,9 +439,9 @@ class Memberflea extends BaseFleaMember {
                 }
                 db('flea')->where('goods_id', 'in', $fav_arr)->setDec('flea_collect_num');
             } else {
-                if (intval(input('get.fav_id')) > 0) {
+                if (intval(input('param.fav_id')) > 0) {
                     $condition = array();
-                    $condition['fleafav_id'] = intval(input('get.fav_id'));
+                    $condition['fleafav_id'] = intval(input('param.fav_id'));
                     $condition['member_id'] = session('member_id');
                     $condition['fleafav_type'] = 'flea';
                     if (!$fleafavorites_model->delFleafavorites($condition)) {

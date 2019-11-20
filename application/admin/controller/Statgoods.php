@@ -191,10 +191,10 @@ class Statgoods extends AdminControl
         foreach ((array)$statlist as $k=>$v){
             switch ($type){
                 case 'goodsnum':
-                    $stat_arr['series'][0]['data'][$k] = array('name'=>strval($v['goods_name']),'y'=>intval($v[input('get.type')]));
+                    $stat_arr['series'][0]['data'][$k] = array('name'=>strval($v['goods_name']),'y'=>intval($v[input('param.type')]));
                     break;
                 case 'orderamount':
-                    $stat_arr['series'][0]['data'][$k] = array('name'=>strval($v['goods_name']),'y'=>floatval($v[input('get.type')]));
+                    $stat_arr['series'][0]['data'][$k] = array('name'=>strval($v['goods_name']),'y'=>floatval($v[input('param.type')]));
                     break;
             }
             $statlist[$k]['sort'] = $k+1;

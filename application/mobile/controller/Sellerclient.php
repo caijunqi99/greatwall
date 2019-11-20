@@ -42,7 +42,7 @@ class Sellerclient extends MobileSeller {
 
         if (!empty($member_list)) {
             foreach ($member_list as $key => $val) {
-                $member_list[$key]['member_avatar'] = getMemberAvatarForID($val['member_id']);
+                $member_list[$key]['member_avatar'] = get_member_avatar_for_id($val['member_id']);
             }
         }
 

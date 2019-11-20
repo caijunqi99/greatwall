@@ -172,8 +172,8 @@ class Predeposit extends AdminControl {
 
     public function pdlog_list() {
         $condition = array();
-        $stime = input('get.stime');
-        $etime = input('get.etime');
+        $stime = input('param.stime');
+        $etime = input('param.etime');
         $if_start_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $stime);
         $if_end_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $etime);
         $start_unixtime = $if_start_date ? strtotime($stime) : null;
@@ -181,11 +181,11 @@ class Predeposit extends AdminControl {
         if ($start_unixtime || $end_unixtime) {
             $condition['lg_addtime'] = array('between', array($start_unixtime, $end_unixtime));
         }
-        $mname = input('get.mname');
+        $mname = input('param.mname');
         if (!empty($mname)) {
             $condition['lg_member_name'] = $mname;
         }
-        $aname = input('get.aname');
+        $aname = input('param.aname');
         if (!empty($aname)) {
             $condition['lg_admin_name'] = $aname;
         }
@@ -205,8 +205,8 @@ class Predeposit extends AdminControl {
      */
     public function pdcash_list() {
         $condition = array();
-        $stime = input('get.stime');
-        $etime = input('get.etime');
+        $stime = input('param.stime');
+        $etime = input('param.etime');
         $if_start_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $stime);
         $if_end_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $etime);
         $start_unixtime = $if_start_date ? strtotime($stime) : null;
@@ -214,15 +214,15 @@ class Predeposit extends AdminControl {
         if ($start_unixtime || $end_unixtime) {
             $condition['pdc_addtime'] = array('between', array($start_unixtime, $end_unixtime));
         }
-        $mname = input('get.mname');
+        $mname = input('param.mname');
         if (!empty($mname)) {
             $condition['pdc_member_name'] = array('like', "%" . $mname . "%");
         }
-        $pdc_bank_user = input('get.pdc_bank_user');
+        $pdc_bank_user = input('param.pdc_bank_user');
         if (!empty($pdc_bank_user)) {
             $condition['pdc_bank_user'] = array('like', "%" . $pdc_bank_user . "%");
         }
-        $paystate_search = input('get.paystate_search');
+        $paystate_search = input('param.paystate_search');
         if ($paystate_search != '') {
             $condition['pdc_payment_state'] = $paystate_search;
         }
@@ -354,7 +354,7 @@ class Predeposit extends AdminControl {
 
     public function pd_add() {
         if (!(request()->isPost())) {
-            $member_id = intval(input('get.member_id'));
+            $member_id = intval(input('param.member_id'));
             if($member_id>0){
                 $condition['member_id'] = $member_id;
                 $member = model('member')->getMemberInfo($condition);
@@ -576,8 +576,8 @@ class Predeposit extends AdminControl {
      */
     public function export_cash_step1() {
         $condition = array();
-        $stime = input('get.stime');
-        $etime = input('get.etime');
+        $stime = input('param.stime');
+        $etime = input('param.etime');
         $if_start_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $stime);
         $if_end_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $etime);
         $start_unixtime = $if_start_date ? strtotime($stime) : null;
@@ -585,15 +585,15 @@ class Predeposit extends AdminControl {
         if ($start_unixtime || $end_unixtime) {
             $condition['pdc_addtime'] = array('between', array($start_unixtime, $end_unixtime));
         }
-        $mname = input('get.mname');
+        $mname = input('param.mname');
         if (!empty($mname)) {
             $condition['pdc_member_name'] = array('like', "%" . $mname . "%");
         }
-        $pdc_bank_user = input('get.pdc_bank_user');
+        $pdc_bank_user = input('param.pdc_bank_user');
         if (!empty($pdc_bank_user)) {
             $condition['pdc_bank_user'] = array('like', "%" . $pdc_bank_user . "%");
         }
-        $paystate_search = input('get.paystate_search');
+        $paystate_search = input('param.paystate_search');
         if ($paystate_search != '') {
             $condition['pdc_payment_state'] = $paystate_search;
         }
@@ -671,8 +671,8 @@ class Predeposit extends AdminControl {
      */
     public function export_mx_step1() {
         $condition = array();
-        $stime = input('get.stime');
-        $etime = input('get.etime');
+        $stime = input('param.stime');
+        $etime = input('param.etime');
         $if_start_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $stime);
         $if_end_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $etime);
         $start_unixtime = $if_start_date ? strtotime($stime) : null;
@@ -680,11 +680,11 @@ class Predeposit extends AdminControl {
         if ($start_unixtime || $end_unixtime) {
             $condition['lg_addtime'] = array('between', array($start_unixtime, $end_unixtime));
         }
-        $mname = input('get.mname');
+        $mname = input('param.mname');
         if (!empty($mname)) {
             $condition['lg_member_name'] = $mname;
         }
-        $aname = input('get.aname');
+        $aname = input('param.aname');
         if (!empty($aname)) {
             $condition['lg_admin_name'] = $aname;
         }

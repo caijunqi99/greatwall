@@ -143,8 +143,8 @@ class Memberaccount extends MobileMember
     public function get_mobile_info()
     {
         $data = array();
-        $data['state'] = $this->member_info['member_mobile_bind'] ? true : false;
-        $data['mobile'] = $data['state'] ? encryptShow($this->member_info['member_mobile'], 4, 4) : $this->member_info['member_mobile'];
+        $data['state'] = $this->member_info['member_mobilebind'] ? true : false;
+        $data['mobile'] = $data['state'] ? encrypt_show($this->member_info['member_mobile'], 4, 4) : $this->member_info['member_mobile'];
         output_data($data);
     }
 
