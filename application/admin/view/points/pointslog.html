@@ -7,12 +7,16 @@
             <tbody>
                 <tr class="noborder">
                     <td class="required w120"><label class="validation">{$Think.lang.admin_points_membername}:</label></td>
-                    <td class="vatop rowform"><input type="text" name="member_name" id="member_name" class="txt" onchange="javascript:checkmember();">
-                        <input type="hidden" name="member_id" id="member_id" value=''/></td>
+                    <td class="vatop rowform"><input type="text" name="member_name" id="member_name" class="txt" onchange="javascript:checkmember();" value="{$member_info.member_name|default=''}">
+                        <input type="hidden" name="member_id" id="member_id" value="{$member_info.member_id|default='0'}"/></td>
                     <td class="vatop tips"></td>
                 </tr>
-                <tr id="tr_memberinfo">
-                    <td colspan="2" style="font-weight:bold;" id="td_memberinfo"></td>
+                <tr class="noborder">
+                    <td colspan="2" class="required" id="td_memberinfo">
+                        {notempty name="member_info"}
+                        {$Think.lang.admin_points_member_tip}{$member_info.member_name}{$Think.lang.admin_points_member_tip_2c}{$member_info.member_points_available}{$Think.lang.points_unit}{$Think.lang.admin_points_member_tip_2}{$member_info.member_points}{$Think.lang.points_unit}
+                        {/notempty}
+                    </td>
                 </tr>
                 <tr class="noborder">
                     <td class="required"><label>{$Think.lang.admin_points_operatetype}:</label></td>
@@ -27,6 +31,11 @@
                 <tr class="noborder">
                     <td class="required"><label class="validation">{$Think.lang.admin_points_pointsnum}:</label></td>
                     <td class="vatop rowform"><input type="text" id="points_num" name="points_num" class="txt"></td>
+                    <td class="vatop tips"></td>
+                </tr>
+                <tr class="noborder">
+                    <td class="required"><label class="validation">{$Think.lang.admin_points_pointsnum_av}:</label></td>
+                    <td class="vatop rowform"><input type="text" id="points_num_av" name="points_num_av" class="txt"></td>
                     <td class="vatop tips"></td>
                 </tr>
                 <tr class="noborder">
@@ -59,7 +68,7 @@
             if (data.id)
             {
                 $("#tr_memberinfo").show();
-                var msg = "{$Think.lang.admin_points_member_tip}" + data.name + "{$Think.lang.admin_points_member_tip_2}" + data.points;
+                var msg = "{$Think.lang.admin_points_member_tip}" + data.name +"{$Think.lang.admin_points_member_tip_2c}"+data.points_available + "{$Think.lang.points_unit}{$Think.lang.admin_points_member_tip_2}" + data.points+"{$Think.lang.points_unit}";
                 $("#member_name").val(data.name);
                 $("#member_id").val(data.id);
                 $("#td_memberinfo").text(msg);
@@ -90,7 +99,11 @@
                 },
                 points_num: {
                     required: true,
-                    min: 1
+                    min: 0
+                },
+                points_num_av: {
+                    required: true,
+                    min: 0
                 }
             },
             messages: {
@@ -102,6 +115,10 @@
                     required: '{$Think.lang.admin_points_member_error_again}'
                 },
                 points_num: {
+                    required: '{$Think.lang.admin_points_points_null_error}',
+                    min: '{$Think.lang.admin_points_points_min_error}'
+                },
+                points_num_av: {
                     required: '{$Think.lang.admin_points_points_null_error}',
                     min: '{$Think.lang.admin_points_points_min_error}'
                 }

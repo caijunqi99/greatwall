@@ -21,7 +21,7 @@
                     <tr class="noborder" id="tr_memberinfo">
                         <td colspan="2" class="required" id="td_memberinfo">
                             {notempty name="member_info"}
-                            {$member_info.member_name}, {$Think.lang.now_available_predeposit}{$member_info.available_predeposit}元
+                            会员{$member_info.member_name}, {$Think.lang.now_available_predeposit}{$member_info.available_predeposit}元
                             {/notempty}
                         </td>
                     </tr>
@@ -68,7 +68,7 @@
                                 if (data.id)
                                 {
                                     $("#tr_memberinfo").show();
-                                    var msg = " " + data.name + ", {$Think.lang.now_available_predeposit}" + data.available_predeposit + ", {$Think.lang.now_freeze_predeposit}" + data.freeze_predeposit;
+                                    var msg = "会员" + data.name + ", {$Think.lang.now_available_predeposit}" + data.available_predeposit + "元";
                                     $("#member_name").val(data.name);
                                     $("#member_id").val(data.id);
                                     $("#td_memberinfo").text(msg);
