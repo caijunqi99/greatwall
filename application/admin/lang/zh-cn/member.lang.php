@@ -59,6 +59,8 @@ $lang['member_exppoints']='经验值';
 $lang['member_grade']='会员级别';
 $lang['change_predeposit']='调节预存款';
 $lang['change_predeposit_c']='变更储值卡';
+$lang['change_points_c']='变更积分';
+$lang['change_code_c']='变更交易码';
 $lang['change_bankname']='银行名称';
 $lang['change_bankcard']='银行卡账号';
 

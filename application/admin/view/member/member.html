@@ -1,8 +1,7 @@
 {include file="public/header" /}
 
 
-
-<div class="page">
+<div class="page" xmlns="http://www.w3.org/1999/html">
     <div class="fixed-bar">
         <div class="item-title">
             <div class="subject">
@@ -129,7 +128,9 @@
               {else/}
               <a href="javascript:dsLayerConfirm('{:url('Member/memberstate',['member_id'=>$v.member_id,'member_state'=>0])}','{$Think.lang.ds_ensure_disable}')" class="dsui-btn-del"><i class="iconfont"></i>{$Think.lang.member_edit_denylogin}</a>
               {/if}
+              <a href="javascript:dsLayerOpen('{:url('Predeposit/pd_add',['member_id'=>$v.member_id])}','{$Think.lang.change_predeposit_c}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_points_c}</a>
               <a href="javascript:dsLayerOpen('{:url('Predeposit/pd_add',['member_id'=>$v.member_id])}','{$Think.lang.change_predeposit_c}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_predeposit_c}</a>
+              <a href="javascript:dsLayerOpen('{:url('Predeposit/pd_add',['member_id'=>$v.member_id])}','{$Think.lang.change_predeposit_c}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_code_c}</a>
           </td>
         </tr>
         {/foreach}
