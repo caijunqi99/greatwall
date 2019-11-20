@@ -21,7 +21,7 @@
                     <tr class="noborder" id="tr_memberinfo">
                         <td colspan="2" class="required" id="td_memberinfo">
                             {notempty name="member_info"}
-                            {$member_info.member_name}, {$Think.lang.now_available_predeposit}{$member_info.available_predeposit}, {$Think.lang.now_freeze_predeposit}{$member_info.freeze_predeposit}
+                            {$member_info.member_name}, {$Think.lang.now_available_predeposit}{$member_info.available_predeposit}元
                             {/notempty}
                         </td>
                     </tr>
@@ -31,8 +31,8 @@
                             <select id="operatetype" name="operatetype">
                                 <option value="1">{$Think.lang.operatetype_1}</option>
                                 <option value="2">{$Think.lang.operatetype_2}</option>
-                                <option value="3">{$Think.lang.operatetype_3}</option>
-                                <option value="4">{$Think.lang.operatetype_4}</option>
+                                <!--<option value="3">{$Think.lang.operatetype_3}</option>-->
+                                <!--<option value="4">{$Think.lang.operatetype_4}</option>-->
                             </select>
                         </td>
                     </tr>
