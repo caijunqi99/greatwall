@@ -40,6 +40,7 @@ $lang['marketmanageaward_send']='中奖数量';
 $lang['choose_prizes']='选择奖品';
 $lang['gift_points']='赠送积分';
 $lang['choose_bonus']='选择红包';
+$lang['choose_matter']='实物名称';
 $lang['choose_voucher']='选择优惠券';
 $lang['unlimited_times']='不限次数';
 

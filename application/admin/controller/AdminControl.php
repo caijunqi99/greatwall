@@ -245,12 +245,12 @@ class AdminControl extends Controller {
                         'text' => lang('ds_welcome'),
                         'args' => 'welcome,Dashboard,dashboard',
                     ),
-                    /*
-                    'aboutus' => array(
-                        'text' => lang('ds_aboutus'),
-                        'args' => 'aboutus,dashboard,dashboard',
-                    ),
-                     */
+
+//                    'aboutus' => array(
+//                        'text' => lang('ds_aboutus'),
+//                        'args' => 'aboutus,dashboard,dashboard',
+//                    ),
+
                     'config' => array(
                         'ico'=>'&#xe6e0;',
                         'text' => lang('ds_base'),
@@ -277,6 +277,11 @@ class AdminControl extends Controller {
                         'ico'=>'&#xe6e0;',
                         'text' => lang('ds_base'),
                         'args' => 'base,Config,setting',
+                    ),
+                    'scale' => array(
+                        'ico'=>'&#xe6e0;',
+                        'text' => lang('ds_scale'),
+                        'args' => 'scale,Scale,setting',
                     ),
 //                    'account' => array(
 //                        'ico'=>'&#xe678;',

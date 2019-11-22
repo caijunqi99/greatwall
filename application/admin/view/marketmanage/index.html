@@ -50,9 +50,9 @@
                     <a href="javascript:dsLayerOpen('{:url('Marketmanage/detail',['marketmanage_id'=>$marketmanage.marketmanage_id,'type'=>$marketmanage.marketmanage_type])}','{$Think.lang.ds_detail}')" class="dsui-btn-view"><i class="iconfont"></i>{$Think.lang.ds_detail}</a>
                     <a href="javascript:dsLayerOpen('{:url('Marketmanage/edit',['marketmanage_id'=>$marketmanage.marketmanage_id,'type'=>$marketmanage.marketmanage_type])}','{$Think.lang.ds_edit}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.ds_edit}</a>
                     <a href="javascript:dsLayerConfirm('{:url('Marketmanage/del',['marketmanage_id'=>$marketmanage.marketmanage_id,'type'=>$marketmanage.marketmanage_type])}','{$Think.lang.ds_ensure_del}')"  class="dsui-btn-del"><i class="iconfont"></i>{$Think.lang.ds_del}</a>
-                    {if $marketmanage.marketmanage_endtime > $Think.TIMESTAMP}
-                    <a href="javascript:dsLayerOpen('{:url('Marketmanage/link',['marketmanage_id'=>$marketmanage.marketmanage_id,'type'=>$marketmanage.marketmanage_type])}','{$Think.lang.ds_link}')" class="dsui-btn-link"><i class="iconfont"></i>{$Think.lang.ds_link}</a>
-                    {/if}
+                    <!--{if $marketmanage.marketmanage_endtime > $Think.TIMESTAMP}-->
+                    <!--<a href="javascript:dsLayerOpen('{:url('Marketmanage/link',['marketmanage_id'=>$marketmanage.marketmanage_id,'type'=>$marketmanage.marketmanage_type])}','{$Think.lang.ds_link}')" class="dsui-btn-link"><i class="iconfont"></i>{$Think.lang.ds_link}</a>-->
+                    <!--{/if}-->
                 </td>
             </tr>
             {/foreach}

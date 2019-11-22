@@ -23,6 +23,7 @@ $lang['ds_db'] = '数据备份';
 $lang['ds_adminlog'] = '操作日志';
 $lang['ds_companys_manage'] = '分公司';
 $lang['ds_seo_set'] = 'SEO设置';
+$lang['ds_scale']='比例设置';
 //会员
 $lang['ds_member'] = '会员';
 $lang['ds_member_manage'] = '会员管理';
@@ -129,6 +130,7 @@ $lang['ds_point_signin_tips'] = '签到送积分';
 $lang['ds_rechargecard'] = '平台充值卡';
 $lang['ds_rechargecard_tips'] = '使用充值卡购物';
 $lang['ds_bonus'] = '吸粉红包';
+$lang['ds_matter'] = '实物奖励';
 $lang['ds_bonus_tips'] = '帮助平台快速积累粉丝，可提现';
 $lang['ds_market_1'] = '刮刮卡';
 $lang['ds_market_1_tips'] = '通过刮开卡片进行抽奖的玩法';
