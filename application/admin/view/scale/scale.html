@@ -1,0 +1,121 @@
+{include file="public/header" /}
+
+
+
+
+
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>{$Think.lang.scale_set}</h3>
+                <h5></h5>
+            </div>
+            {include file="public/admin_items" /}
+        </div>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" name="form1" action="">
+        <div class="ncap-form-default">
+            <dl>
+                <dt>{$Think.lang.province_scale}</dt>
+                <dd>
+                    <input id="province_scale" name="province_scale" value="{$list_config.province_scale}" class="input-txt" type="text">%
+                    <span class="err"></span>
+                </dd>
+            </dl>
+            <dl>
+                <dt>{$Think.lang.city_scale}</dt>
+                <dd>
+                    <input id="city_scale" name="city_scale" value="{$list_config.city_scale}" class="input-txt" type="text">%
+                    <span class="err"></span>
+                </dd>
+            </dl>
+            <dl>
+                <dt>{$Think.lang.county_scale}</dt>
+                <dd>
+                    <input id="county_scale" name="county_scale" value="{$list_config.county_scale}" class="input-txt" type="text">%
+                    <span class="err"></span>
+                </dd>
+            </dl>
+            <dl>
+                <dt>{$Think.lang.town_scale}</dt>
+                <dd>
+                    <input id="town_scale" name="town_scale" value="{$list_config.town_scale}" class="input-txt" type="text">%
+                    <span class="err"></span>
+                </dd>
+            </dl>
+            <dl>
+                <dt>{$Think.lang.village_scale}</dt>
+                <dd>
+                    <input id="village_scale" name="village_scale" value="{$list_config.village_scale}" class="input-txt" type="text">%
+                    <span class="err"></span>
+                </dd>
+            </dl>
+            <dl>
+                <dt>{$Think.lang.release}</dt>
+                <dd>
+                    <input id="release" name="release" value="{$list_config.release}" class="input-txt" type="text">
+                    <span class="err"></span>
+                </dd>
+            </dl>
+            <dl>
+                <dt>{$Think.lang.release_scale}</dt>
+                <dd>
+                    <input id="release_scale" name="release_scale" value="{$list_config.release_scale}" class="input-txt" type="text">%
+                    <span class="err"></span>
+                </dd>
+            </dl>
+            <dl>
+                <dt>{$Think.lang.commission}</dt>
+                <dd>
+                    <input id="commission" name="commission" value="{$list_config.commission}" class="input-txt" type="text">%
+                    <span class="err"></span>
+                </dd>
+            </dl>
+
+
+
+
+
+
+
+
+            <dl>
+                <dt></dt>
+                <dd><a href="JavaScript:void(0);" class="btn" onclick="document.form1.submit()">{$Think.lang.ds_confirm_submit}</a></dd>
+            </dl>
+        </div>
+    </form>
+
+</div>
+
+
+
+
+
+<script>
+    $(function(){
+        $("#site_logo").change(function () {
+            $("#textfield1").val($("#site_logo").val());
+        });
+        $("#member_logo").change(function () {
+            $("#textfield2").val($("#member_logo").val());
+        });
+        $("#seller_center_logo").change(function () {
+            $("#textfield3").val($("#seller_center_logo").val());
+        });
+
+        $("#site_mobile_logo").change(function () {
+            $("#textfield4").val($("#site_mobile_logo").val());
+        });
+        $("#site_logowx").change(function () {
+            $("#textfield5").val($("#site_logowx").val());
+        });
+        $("#file_business_licence").change(function () {
+            $("#textfield6").val($("#file_business_licence").val());
+        });
+    })
+</script>
+
+

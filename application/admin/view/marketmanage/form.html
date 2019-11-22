@@ -69,8 +69,8 @@
                                     <dt>{$Think.lang.choose_prizes}</dt>
                                     <dd>
                                         <label><input name="type_{$award.marketmanageaward_level}" type="radio" value="1" {if $award.marketmanageaward_type eq '1'}checked{/if}>{$Think.lang.points_unit}</label>
-                                        <label><input name="type_{$award.marketmanageaward_level}" type="radio" value="2" {if $award.marketmanageaward_type eq '2'}checked{/if}>{$Think.lang.ds_bonus}</label>
-                                        <label><input name="type_{$award.marketmanageaward_level}" type="radio" value="3" {if $award.marketmanageaward_type eq '3'}checked{/if}>{$Think.lang.ds_voucher}</label>
+                                        <label><input name="type_{$award.marketmanageaward_level}" type="radio" value="2" {if $award.marketmanageaward_type eq '2'}checked{/if}>{$Think.lang.ds_matter}</label>
+                                        <!--<label><input name="type_{$award.marketmanageaward_level}" type="radio" value="3" {if $award.marketmanageaward_type eq '3'}checked{/if}>{$Think.lang.ds_voucher}</label>-->
                                     </dd>
                                 </dl>
                                 <dl class="award_type_show" id="award_type_show_1" {if $award.marketmanageaward_type neq '1'}style="display:none"{/if}>
@@ -80,13 +80,14 @@
                                     </dd>
                                 </dl>
                                 <dl class="award_type_show" id="award_type_show_2" {if $award.marketmanageaward_type neq '2'}style="display:none"{/if}>
-                                    <dt>{$Think.lang.choose_bonus}:</dt>
+                                    <dt>{$Think.lang.choose_matter}:</dt>
                                     <dd>
-                                        <select name="bonus_id_{$award.marketmanageaward_level}">
-                                            {foreach name="bonus_list" item="bonus"}
-                                            <option value="{$bonus.bonus_id}" {if $award.bonus_id eq $bonus.bonus_id}selected{/if}>{$bonus.bonus_name}</option>
-                                            {/foreach}
-                                        </select>
+                                        <input name="bonus_id_{$award.marketmanageaward_level}" value="{$award.bonus_id}" class="input-txt w108" type="text">
+                                        <!--<select name="bonus_id_{$award.marketmanageaward_level}">-->
+                                            <!--{foreach name="bonus_list" item="bonus"}-->
+                                            <!--<option value="{$bonus.bonus_id}" {if $award.bonus_id eq $bonus.bonus_id}selected{/if}>{$bonus.bonus_name}</option>-->
+                                            <!--{/foreach}-->
+                                        <!--</select>-->
                                     </dd>
                                 </dl>
                                 <dl class="award_type_show" id="award_type_show_3" {if $award.marketmanageaward_type neq '3'}style="display:none"{/if}>

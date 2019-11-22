@@ -90,7 +90,7 @@ class Marketmanage extends AdminControl {
                     'marketmanageaward_count' => intval($_POST['count_' . $i]),
                     'marketmanageaward_probability' => $marketmanageaward_probability,//中奖概率
                     'marketmanageaward_point'=>intval($_POST['point_' . $i]),
-                    'bonus_id'=>isset($_POST['bonus_id_' . $i]) ? intval($_POST['bonus_id_' . $i]) : 0,
+                    'bonus_id'=>isset($_POST['bonus_id_' . $i]) ? $_POST['bonus_id_' . $i] : 0,
                     'vouchertemplate_id'=> isset($_POST['vouchertemplate_id_' . $i]) ? intval($_POST['vouchertemplate_id_' . $i]) : 0,
                 );
             }
@@ -168,7 +168,7 @@ class Marketmanage extends AdminControl {
                     'marketmanageaward_count' => intval($_POST['count_' . $i]),
                     'marketmanageaward_probability' => $marketmanageaward_probability,//中奖概率
                     'marketmanageaward_point' => intval($_POST['point_' . $i]),
-                    'bonus_id' => isset($_POST['bonus_id_' . $i]) ? intval($_POST['bonus_id_' . $i]) : 0,
+                    'bonus_id' => isset($_POST['bonus_id_' . $i]) ? $_POST['bonus_id_' . $i] : 0,
                     'vouchertemplate_id' => isset($_POST['vouchertemplate_id_' . $i]) ? intval($_POST['vouchertemplate_id_' . $i]) : 0,
                 );
             }
