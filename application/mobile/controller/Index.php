@@ -37,7 +37,14 @@ class Index extends MobileMall {
                 }
             }
         }
+        $advtitle = [
+            0=>'超值好货-数码精品',
+            1=>'热品限时-超值秒杀',
+            2=>'天然山货-大自然的馈赠',
+            3=>'海鲜大咖-海的味道我知道',
+        ];
         $adv = array_group_by($adv,'ap_id');
+        $datas = [];
         //轮播图
         $datas['chart']      = $adv[1];
         //促销
@@ -47,8 +54,10 @@ class Index extends MobileMall {
         //导航栏目
         $datas['menu']       = $adv[5];
         //折扣栏
-        $datas['discount']   = $adv[6];
-        
+        $datas['discount'] = [
+            'title '=> $advtitle,
+            'date '=> $adv[6],
+        ];
         output_data($datas);
     }
 
