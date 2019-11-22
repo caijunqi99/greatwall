@@ -29,16 +29,19 @@ class Goodsclass extends MobileMall {
         // $model_mb_category = Model('mbcategory');
 
         $goods_class_array = Model('goodsclass')->getGoodsClassForCacheModel();
-
-        $class_list = $model_goods_class->getGoodsClassListByParentId(0);
+        $class_list = $model_goods_class->getGoodsclassListByParentId(0);
+        // p($goods_class_array);exit;
         // $mb_categroy = $model_mb_category->getLinkList(array());
         // $mb_categroy = array_under_reset($mb_categroy, 'gc_id');
         foreach ($class_list as $key => $value) {
-            $class_list[$key]['image'] = '';
+            $class_list[$key]['image'] = goodsclass_image($value['gc_id']);
 
             $class_list[$key]['text'] = '';
-            $child_class_string = $goods_class_array[$value['gc_id']]['child'];
-            $child_class_array = explode(',', $child_class_string);
+            if (isset($goods_class_array[$value['gc_id']]['child'])) {
+                $child_class_string = $goods_class_array[$value['gc_id']]['child'];
+                $child_class_array = explode(',', $child_class_string);
+            }
+            
             foreach ($child_class_array as $child_class) {
                 $class_list[$key]['text'] .= $goods_class_array[$child_class]['gc_name'] . '/';
             }
@@ -86,8 +89,11 @@ class Goodsclass extends MobileMall {
             $data = $this->_get_class_list($gc_id);
             if (!empty($data['class_list'])) {
                 foreach ($data['class_list'] as $key => $val) {
+                    $data['class_list'][$key]['image'] = goodsclass_image($val['gc_id']);
                     $d = $this->_get_class_list($val['gc_id']);
                     $data['class_list'][$key]['child'] = $d['class_list'];
+                    
+
                 }
             }
         }

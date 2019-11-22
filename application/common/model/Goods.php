@@ -424,6 +424,13 @@ class Goods extends Model {
 
     }
 
+    public function getGoodsCommendListByAppadv($condition){
+        $condition['goods_state'] = self::STATE1;
+        $condition['goods_verify'] = self::VERIFY1;
+        $goods = $this->getGoodsList($condition,'goods_id,goods_name,goods_advword,goods_image,store_id,goods_promotion_price,goods_price','', '',0, 0);
+        return $goods;
+    }
+
     /**
      * 计算商品库存
      * @access public

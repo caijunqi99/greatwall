@@ -155,7 +155,7 @@ class Appadv extends Model
         $result = db('appadvposition')
                     ->alias('a')
                     ->join('__APPADV__ v', 'a.ap_id = v.ap_id', 'LEFT')
-                    ->field('a.ap_id,v.adv_title,v.adv_id,v.adv_type,v.adv_code')
+                    ->field('a.ap_id,v.adv_title,v.adv_id,v.adv_type,v.adv_code,adv_typedate')
                     ->where(['a.ap_isuse'=>1,'v.adv_enabled'=>1])
                     ->select();
         foreach ($result as $key => $value) {
