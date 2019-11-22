@@ -58,7 +58,7 @@ class Company extends Model
      * @param string $order    排序
      * @return array 
      */
-    public function getMemberList($condition = array(), $field = '*', $pagesize = 0, $order = 'member_id desc')
+    public function getCompanyList($condition = array(), $field = '*', $pagesize = 0, $order = 'member_id desc')
     {
         if ($pagesize) {
             $member_list = db('company')->where($condition)->order($order)->paginate($pagesize,false,['query' => request()->param()]
@@ -84,19 +84,16 @@ class Company extends Model
     }
 
     /**
-     * 编辑会员
+     * 编辑公司
      * @access public
      * @author bayi-shop
      * @param array $condition 检索条件
      * @param array $data 数据
      * @return bool 
      */
-    public function editMember($condition, $data)
+    public function editCompany($condition, $data)
     {
         $update = db('company')->where($condition)->update($data);
-        if ($update && $condition['member_id']) {
-            dcache($condition['member_id'], 'member');
-        }
         return $update;
     }
     
@@ -312,91 +309,49 @@ class Company extends Model
     }
 
     /**
-     * 注册商城会员
+     * 会员申请为分公司
      * @access public
      * @author bayi-shop
      * @param  array $data 会员信息
      * @return array 数组格式的返回结果
      */
-    public function addMember($data)
+    public function addCompany($data)
     {
         if (empty($data)) {
             return false;
         }
         try {
             $this->startTrans();
-            $member_info = array();
-            $member_info['member_name'] = $data['member_name'];
-            $member_info['member_password'] = md5(trim($data['member_password']));
-            if (isset($data['member_email'])) {
-                $member_info['member_email'] = $data['member_email'];
+            $company_info = array();
+            $company_info['company_addtime'] = TIMESTAMP;
+            if (isset($data['member_areainfo'])) {
+                $company_info['member_areainfo'] = $data['member_areainfo'];
             }
-            $member_info['member_addtime'] = TIMESTAMP;
-            $member_info['member_logintime'] = TIMESTAMP;
-            $member_info['member_old_logintime'] = TIMESTAMP;
-            $member_info['inviter_code']         = $data['inviter_code'];
-            $member_info['member_login_ip'] = request()->ip();
-            $member_info['member_old_login_ip'] = $member_info['member_login_ip'];
-            if (isset($data['member_truename'])) {
-                $member_info['member_truename'] = $data['member_truename'];
+            if (isset($data['member_villageid'])) {
+                $company_info['member_villageid'] = $data['member_villageid'];
             }
-            if (isset($data['member_qq'])) {
-                $member_info['member_qq'] = $data['member_qq'];
+            if (isset($data['member_townid'])) {
+                $company_info['member_townid'] = $data['member_townid'];
             }
-            if (isset($data['member_sex'])) {
-                $member_info['member_sex'] = $data['member_sex'];
+            if (isset($data['member_areaid'])) {
+                $company_info['member_areaid'] = $data['member_areaid'];
             }
-            if (isset($data['member_avatar'])) {
-                $member_info['member_avatar'] = $data['member_avatar'];
+            if (isset($data['member_cityid'])) {
+                $company_info['member_cityid'] = $data['member_cityid'];
             }
-            if (isset($data['member_qqopenid'])) {
-                $member_info['member_qqopenid'] = $data['member_qqopenid'];
+            if (isset($data['member_provinceid'])) {
+                $company_info['member_provinceid'] = $data['member_provinceid'];
             }
-            if (isset($data['member_qqinfo'])) {
-                $member_info['member_qqinfo'] = $data['member_qqinfo'];
+            if (isset($data['company_level'])) {
+                $company_info['company_level'] = $data['company_level'];
             }
-            if (isset($data['member_sinaopenid'])) {
-                $member_info['member_sinaopenid'] = $data['member_sinaopenid'];
+            if (isset($data['member_mobile'])) {
+                $company_info['member_mobile'] = $data['member_mobile'];
             }
-            if (isset($data['member_sinainfo'])) {
-                $member_info['member_sinainfo'] = $data['member_sinainfo'];
+            if (isset($data['member_id'])) {
+                $company_info['member_id'] = $data['member_id'];
             }
-            //添加邀请人(推荐人)会员积分
-            if (isset($data['inviter_id']) && intval($data['inviter_id'])>0) {
-                $member_info['inviter_id'] = intval($data['inviter_id']);
-            }
-
-            //  手机注册登录绑定
-            if (isset($data['member_mobilebind'])) {
-                $member_info['member_mobile'] = $data['member_mobile'];
-                $member_info['member_mobilebind'] = $data['member_mobilebind'];
-            }
-            if (isset($data['member_wxunionid'])) {
-                $member_info['member_wxunionid'] = $data['member_wxunionid'];
-                $member_info['member_wxinfo'] = $data['member_wxinfo'];
-                $member_info['member_wxopenid'] = $data['member_wxopenid'];
-            }
-            $insert_id = db('member')->insertGetId($member_info);
-            if (!$insert_id) {
-                exception();
-            }
-         
-            // 添加默认相册
-            $insert = array();
-            $insert['ac_name'] = '买家秀';
-            $insert['member_id'] = $insert_id;
-            $insert['ac_des'] = '买家秀默认相册';
-            $insert['ac_sort'] = 255;
-            $insert['ac_isdefault'] = 1;
-            $insert['ac_uploadtime'] = TIMESTAMP;
-            $result = db('snsalbumclass')->insertGetId($insert);
-
-            //添加会员积分
-            if (config('points_isuse')) {
-                model('points')->savePointslog('regist', array(
-                    'pl_memberid' => $insert_id, 'pl_membername' => $data['member_name']
-                ), false);
-            }
+            $insert_id = db('company')->insertGetId($company_info);
             $this->commit();
             return $insert_id;
         } catch (Exception $e) {

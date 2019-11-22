@@ -100,14 +100,18 @@ class Member extends AdminControl {
         } else {
             //需要完善地方 1.对录入数据进行判断  2.对判断用户名是否存在
             $member_model = model('member');
+            $inviter_code = $member_model->_get_inviter_code();
             $data = array(
                 'member_name' => input('post.member_name'),
                 'member_password' => input('post.member_password'),
                 'member_email' => input('post.member_email'),
+                'member_mobile' => input('post.member_mobile'),
                 'member_truename' => input('post.member_truename'),
                 'member_sex' => input('post.member_sex'),
                 'member_qq' => input('post.member_qq'),
                 'member_ww' => input('post.member_ww'),
+                'inviter_id' => input('post.inviter_id'),
+                'inviter_code' => $inviter_code,
                 'member_addtime' => TIMESTAMP,
                 'member_loginnum' => 0,
                 'inform_allow' => 1, //默认允许举报商品
@@ -149,6 +153,8 @@ class Member extends AdminControl {
                 'is_buylimit' => input('post.isbuy'),
                 'is_allowtalk' => input('post.allowtalk'),
                 'member_state' => input('post.memberstate'),
+                'member_villageid' => input('post.village_id'),
+                'member_townid' => input('post.town_id'),
                 'member_cityid' => input('post.city_id'),
                 'member_provinceid' => input('post.province_id'),
                 'member_areainfo' => input('post.region'),
