@@ -157,6 +157,7 @@ class Login extends MobileMall
         $this->check_sms_captcha($username,$sms_captcha,$log_type);
         //生成推荐码
         $register_info['inviter_code'] = $model_member->_get_inviter_code();
+        
         $member_info = $model_member->register($register_info);
         if (!isset($member_info['error'])) {
             $token = $this->_get_token($member_info['member_id'], $member_info['member_name'], $client);

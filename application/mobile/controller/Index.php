@@ -18,8 +18,26 @@ class Index extends MobileMall {
     public function index() {
        
         $adv = model('Appadv')->getAllAppAdv();
+        $ids = '';
+        foreach ($adv as $key => $v) {
+            if($v['adv_type']=='goods')$ids .=$v['adv_typedate'].',';
+        }
+        $ids= trim($ids,',');
+        $condition = [];
+        $condition['goods_id'] = ['in',$ids];
+        $goods = model('Goods')->getGoodsCommendListByAppadv($condition);
+        $goods_ids = array_column($goods, null,'goods_id');
+        foreach ($adv as $k => $a) {
+            if ($a['adv_type']=='goods') {
+                if (!empty($goods_ids[ $adv[$k]['adv_typedate'] ])) {
+                    //替换为完整缩略图地址
+                    $goods_ids[$adv[$k]['adv_typedate']]['goods_image'] = goods_cthumb($goods_ids[$adv[$k]['adv_typedate']]['goods_image'],240);
+
+                    $adv[$k]['goodsInfo']=$goods_ids[ $adv[$k]['adv_typedate'] ];
+                }
+            }
+        }
         $adv = array_group_by($adv,'ap_id');
-        
         //轮播图
         $datas['chart']      = $adv[1];
         //促销
