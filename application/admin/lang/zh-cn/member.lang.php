@@ -4,7 +4,9 @@
  * index
  */
 $lang['member_index_name'] = '会员';
+$lang['member_index_id'] = '会员ID';
 $lang['member_index_email'] = '电子邮箱';
+$lang['member_index_code'] = '邀请码';
 $lang['member_index_mobile'] = '手机号码';
 $lang['member_index_true_name'] = '真实姓名';
 $lang['member_index_reg_time'] = '注册时间';
@@ -69,6 +71,7 @@ $lang['change_bankcard']='银行卡账号';
  * 会员添加
  */
 $lang['member_add_name_exists'] = '会员名有重复，请您换一个';
+$lang['member_add_phone_exists'] = '请先注册成为会员，才能申请成为公司';
 $lang['member_add_name_null'] = '会员名不能为空';
 $lang['password_add_name_null'] = '密码不能为空';
 $lang['member_add_name_length'] = '用户名必须在3-15字符之间';

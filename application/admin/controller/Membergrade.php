@@ -26,10 +26,14 @@ class Membergrade extends AdminControl
                     $mg_arr[$i]['level'] = $i;
                     $level_name = $v['level_name'];
                     $exppoints  = intval($v['exppoints']);
+                    $exppointone=$v['exppointone'];
+                    $exppointtwo=$v['exppointtwo'];
                     if(empty($level_name)){
                         $this->error(lang('param_error'));
                     }
                     $mg_arr[$i]['level_name'] = $level_name;
+                    $mg_arr[$i]['exppointone']=$exppointone;
+                    $mg_arr[$i]['exppointtwo']=$exppointtwo;
                     //所需经验值
                     if($max_exppoints>=$exppoints){
                         $this->error($level_name.lang('exppoints_greater_than').$max_exppoints);
@@ -58,6 +62,7 @@ class Membergrade extends AdminControl
         } else {
             $list_config = rkcache('config', true);
             $membergrade_list = $list_config['member_grade'] ? unserialize($list_config['member_grade']) : array();
+            //print_r($membergrade_list);exit;
             $this->assign('membergrade_list', $membergrade_list);
             $this->setAdminCurItem('index');
             return $this->fetch();

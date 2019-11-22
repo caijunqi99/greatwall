@@ -29,6 +29,8 @@
             <thead>
                 <tr class="thead">
                     <th class="align-center">{$Think.lang.membergrade_level_name}</th>
+                    <th class="align-center">{$Think.lang.membergrade_level_name_one}</th>
+                    <th class="align-center">{$Think.lang.membergrade_level_name_two}</th>
                     <th class="align-left">{$Think.lang.membergrade_exppoints}</th>
                     <th class="align-left">{$Think.lang.ds_handle}</th>
                 </tr>
@@ -38,6 +40,8 @@
                 {foreach name="membergrade_list" item="membergrade" key="k" }
                 <tr>
                     <td><input type="text" ds_type="verify" name="mg[{$membergrade.level}][level_name]" value="{$membergrade.level_name}" class="w120" /></td>
+                    <td><input type="text" ds_type="verify" name="mg[{$membergrade.level}][exppointone]" value="{$membergrade.exppointone}" class="w60" {if $membergrade.level eq 1}readonly{/if}/>%</td>
+                    <td><input type="text" ds_type="verify" name="mg[{$membergrade.level}][exppointtwo]" value="{$membergrade.exppointtwo}" class="w60" {if $membergrade.level eq 1}readonly{/if}/>%</td>
                     <td><input type="text" ds_type="verify" name="mg[{$membergrade.level}][exppoints]" value="{$membergrade.exppoints}" class="w60" {if $membergrade.level eq 1}readonly{/if}/></td>
                     <td>{if $membergrade.level neq 1}<a onclick="remove_tr($(this));" href="JavaScript:void(0);">{$Think.lang.ds_del}</a>{/if}</td>
                 </tr>
@@ -65,6 +69,8 @@
             var i = 0;
             var mg_tbody = '<tr>' +
                     '<td><input type="text" ds_type="verify" name="mg[key][level_name]" value="" class="w120" /></td>' +
+                    '<td><input type="text" ds_type="verify" name="mg[key][exppointone]"  value="" class="w60" /></td>' +
+                    '<td><input type="text" ds_type="verify" name="mg[key][exppointtwo]"  value="" class="w60" /></td>' +
                     '<td><input type="text" ds_type="verify" name="mg[key][exppoints]"  value="" class="w60" /></td>' +
                     '<td><a onclick="remove_tr($(this));" href="JavaScript:void(0);">{$Think.lang.membergrade_remove}</a></td>' +
                     '</tr>';

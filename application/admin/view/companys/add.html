@@ -11,9 +11,9 @@
                     <td class="vatop tips"></td>
                 </tr>
                 <tr class="noborder">
-                    <td class="required w120"><label class="validation" for="member_name">{$Think.lang.ds_company_level}:</label></td>
+                    <td class="required w120"><label class="validation" for="member_level">{$Think.lang.ds_company_level}:</label></td>
                     <td class="vatop rowform">
-                        <select id="points_type" name="points_type">
+                        <select id="member_level" name="member_level">
                             <option value="0">{$Think.lang.ds_company_level_choose}</option>
                             <!--<option value="1">{$Think.lang.ds_company_level_province}</option>-->
                             <option value="2">{$Think.lang.ds_company_level_city}</option>
@@ -25,13 +25,15 @@
                     <td class="vatop tips"></td>
                 </tr>
                 <tr class="noborder">
-                    <td class="required w120"><label class="validation" for="member_name">{$Think.lang.member_areainfo}:</label></td>
+                    <td class="required w120"><label class="validation" for="member_areaino">{$Think.lang.member_areainfo}:</label></td>
                     <td class="vatop rowform"  colspan="2">
                         <span  class="w400">
-                      <input type="hidden" value="{$member_array['member_provinceid']|default=''}" name="province_id" id="_area_1">
-                      <input type="hidden" value="{$member_array['member_cityid']|default=''}" name="city_id" id="_area_2">
-                      <input type="hidden" value="{$member_array['member_areaid']|default=''}" name="area_id" id="_area_3">
-                      <input type="hidden" name="region" id="region" value="{$member_array.member_areainfo}"/>
+                      <input type="hidden" value="" name="province_id" id="_area_1">
+                      <input type="hidden" value="" name="city_id" id="_area_2">
+                      <input type="hidden" value="" name="area_id" id="_area_3">
+                            <input type="hidden" value="" name="member_townid" id="_area_4">
+                      <input type="hidden" value="" name="member_villageid" id="_area_5">
+                      <input type="hidden" name="member_areaino" id="region" value=""/>
                         </span>
                     </td>
                 </tr>
@@ -47,42 +49,6 @@
 <script type="text/javascript">
     $(function() {
         $("#region").ds_region();
-        $('#user_form').validate({
-            errorPlacement: function(error, element) {
-                error.appendTo(element.parent().parent().find('td:last'));
-            },
-            rules: {
-                member_password: {
-                    maxlength: 20,
-                    minlength: 6
-                },
-                member_email: {
-                    required: true,
-                    email: true,
-                    remote: {
-                        url: ADMINSITEURL+'/Member/ajax.html?branch=check_email',
-                        type: 'get',
-                        data: {
-                            user_name: function() {
-                                return $('#member_email').val();
-                            },
-                            member_id : '{$member_array.member_id}'
-                        }
-                    }
-                }
-            },
-            messages: {
-                member_password: {
-                    maxlength: '{$Think.lang.member_edit_password_tip}',
-                    minlength: '{$Think.lang.member_edit_password_tip}'
-                },
-                member_email: {
-                    required: '{$Think.lang.member_edit_email_null}',
-                    email: '{$Think.lang.member_edit_valid_email}',
-                    remote: '{$Think.lang.member_edit_email_exists}'
-                }
-            }
-        });
     });
     $(function() {
         $('#user_form').validate({
@@ -100,19 +66,18 @@
                         data: {
                             member_phone: function() {
                                 return $('#member_phone').val();
-                            },
-                            member_id:'{$member_array.member_id|default=0}'
+                            }
                         }
                     }
                 }
 
             },
             messages: {
-                member_name: {
+                member_phone: {
                     required: '{$Think.lang.member_add_name_null}',
                     maxlength: '{$Think.lang.member_add_name_length}',
                     minlength: '{$Think.lang.member_add_name_length}',
-                    remote: '{$Think.lang.member_add_name_exists}'
+                    remote: '{$Think.lang.member_add_phone_exists}'
                 }
             }
         });

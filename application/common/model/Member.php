@@ -392,11 +392,11 @@ class Member extends Model
             $result = db('snsalbumclass')->insertGetId($insert);
 
             //添加会员积分
-            if (config('points_isuse')) {
-                model('points')->savePointslog('regist', array(
-                    'pl_memberid' => $insert_id, 'pl_membername' => $data['member_name']
-                ), false);
-            }
+//            if (config('points_isuse')) {
+//                model('points')->savePointslog('regist', array(
+//                    'pl_memberid' => $insert_id, 'pl_membername' => $data['member_name']
+//                ), false);
+//            }
             $this->commit();
             return $insert_id;
         } catch (Exception $e) {
