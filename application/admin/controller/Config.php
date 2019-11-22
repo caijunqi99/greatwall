@@ -240,7 +240,6 @@ class Config extends AdminControl {
             }
         }
     }
-
     /**
      * 获取卖家栏目列表,针对控制器下的栏目
      */

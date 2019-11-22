@@ -32,108 +32,6 @@ class Transaction extends Model{
         $data_log['tl_stage'] = 'system';
         $data_msg['time'] = date('Y-m-d H:i:s');
         switch ($change_type) {
-            case 'order_pay':
-                $data_log['lg_av_amount'] = -$data['amount'];
-                $data_log['lg_desc'] = '下单，支付预存款，订单号: ' . $data['order_sn'];
-                $data_pd['available_predeposit'] = Db::raw('available_predeposit-'.$data['amount']);
-
-                $data_msg['av_amount'] = -$data['amount'];
-                $data_msg['freeze_amount'] = 0;
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
-            case 'order_freeze':
-                $data_log['lg_av_amount'] = -$data['amount'];
-                $data_log['lg_freeze_amount'] = $data['amount'];
-                $data_log['lg_desc'] = '下单，冻结预存款，订单号: ' . $data['order_sn'];
-                $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit+'.$data['amount']);
-                $data_pd['available_predeposit'] = Db::raw('available_predeposit-'.$data['amount']);
-
-                $data_msg['av_amount'] = -$data['amount'];
-                $data_msg['freeze_amount'] = $data['amount'];
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
-            case 'order_cancel':
-                $data_log['lg_av_amount'] = $data['amount'];
-                $data_log['lg_freeze_amount'] = -$data['amount'];
-                $data_log['lg_desc'] = '取消订单，解冻预存款，订单号: ' . $data['order_sn'];
-                $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit-'.$data['amount']);
-                $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
-
-                $data_msg['av_amount'] = $data['amount'];
-                $data_msg['freeze_amount'] = -$data['amount'];
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
-            case 'order_comb_pay':
-                $data_log['lg_freeze_amount'] = -$data['amount'];
-                $data_log['lg_desc'] = '下单，支付被冻结的预存款，订单号: ' . $data['order_sn'];
-                $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit-'.$data['amount']);
-
-                $data_msg['av_amount'] = 0;
-                $data_msg['freeze_amount'] = $data['amount'];
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
-            case 'recharge':
-                $data_log['lg_av_amount'] = $data['amount'];
-                $data_log['lg_desc'] = '充值，充值单号: ' . $data['pdr_sn'];
-                $data_log['lg_admin_name'] = isset($data['admin_name']) ? $data['admin_name'] : '会员' . $data['member_name'] . '在线充值';
-                $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
-
-                $data_msg['av_amount'] = $data['amount'];
-                $data_msg['freeze_amount'] = 0;
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
-
-            case 'refund':
-                $data_log['lg_av_amount'] = $data['amount'];
-                $data_log['lg_desc'] = '确认退款，订单号: ' . $data['order_sn'];
-                $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
-
-                $data_msg['av_amount'] = $data['amount'];
-                $data_msg['freeze_amount'] = 0;
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
-            case 'vr_refund':
-                $data_log['lg_av_amount'] = $data['amount'];
-                $data_log['lg_desc'] = '虚拟兑码退款成功，订单号: ' . $data['order_sn'];
-                $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
-
-                $data_msg['av_amount'] = $data['amount'];
-                $data_msg['freeze_amount'] = 0;
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
-            case 'cash_apply':
-                $data_log['lg_av_amount'] = -$data['amount'];
-                $data_log['lg_freeze_amount'] = $data['amount'];
-                $data_log['lg_desc'] = '申请提现，冻结预存款，提现单号: ' . $data['order_sn'];
-                $data_pd['available_predeposit'] = Db::raw('available_predeposit-'.$data['amount']);
-                $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit+'.$data['amount']);
-
-                $data_msg['av_amount'] = -$data['amount'];
-                $data_msg['freeze_amount'] = $data['amount'];
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
-            case 'cash_pay':
-                $data_log['lg_freeze_amount'] = -$data['amount'];
-                $data_log['lg_desc'] = '提现成功，提现单号: ' . $data['order_sn'];
-                $data_log['lg_admin_name'] = $data['admin_name'];
-                $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit-'.$data['amount']);
-
-                $data_msg['av_amount'] = 0;
-                $data_msg['freeze_amount'] = -$data['amount'];
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
-            case 'cash_del':
-                $data_log['lg_av_amount'] = $data['amount'];
-                $data_log['lg_freeze_amount'] = -$data['amount'];
-                $data_log['lg_desc'] = '取消提现申请，解冻预存款，提现单号: ' . $data['order_sn'];
-                $data_log['lg_admin_name'] = $data['admin_name'];
-                $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
-                $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit-'.$data['amount']);
-
-                $data_msg['av_amount'] = $data['amount'];
-                $data_msg['freeze_amount'] = -$data['amount'];
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
             case 'sys_add_money':
                 $data_log['tl_transaction'] = $data['amount'];
                 $data_log['tl_desc'] = '管理员调节交易码【增加】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['tl_desc'];
@@ -154,48 +52,7 @@ class Transaction extends Model{
                 $data_msg['freeze_amount'] = 0;
                 $data_msg['desc'] = $data_log['tl_desc'];
                 break;
-            case 'sys_freeze_money':
-                $data_log['lg_av_amount'] = -$data['amount'];
-                $data_log['lg_freeze_amount'] = $data['amount'];
-                $data_log['lg_desc'] = '管理员调节储值卡【冻结】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['lg_desc'];
-                $data_log['lg_admin_name'] = $data['admin_name'];
-                $data_pd['available_predeposit'] = Db::raw('available_predeposit-'.$data['amount']);
-                $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit+'.$data['amount']);
 
-                $data_msg['av_amount'] = -$data['amount'];
-                $data_msg['freeze_amount'] = $data['amount'];
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
-            case 'sys_unfreeze_money':
-                $data_log['lg_av_amount'] = $data['amount'];
-                $data_log['lg_freeze_amount'] = -$data['amount'];
-                $data_log['lg_desc'] = '管理员调节储值卡【解冻】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['lg_desc'];
-                $data_log['lg_admin_name'] = $data['admin_name'];
-                $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
-                $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit-'.$data['amount']);
-
-                $data_msg['av_amount'] = $data['amount'];
-                $data_msg['freeze_amount'] = -$data['amount'];
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
-            case 'order_inviter':
-                $data_log['lg_av_amount'] = $data['amount'];
-                $data_log['lg_desc'] = $data['lg_desc'];
-                $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
-
-                $data_msg['av_amount'] = $data['amount'];
-                $data_msg['freeze_amount'] = 0;
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
-            case 'bonus':
-                $data_log['lg_av_amount'] = $data['amount'];
-                $data_log['lg_desc'] = $data['lg_desc'];
-                $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
-
-                $data_msg['av_amount'] = $data['amount'];
-                $data_msg['freeze_amount'] = 0;
-                $data_msg['desc'] = $data_log['lg_desc'];
-                break;
             //end
 
             default:
@@ -215,7 +72,7 @@ class Transaction extends Model{
 
         // 支付成功发送买家消息
         $message = array();
-        $message['code'] = 'predeposit_change';
+        $message['code'] = 'transaction_change';
         $message['member_id'] = $data['member_id'];
         $data_msg['av_amount'] = ds_price_format($data_msg['av_amount']);
         $data_msg['freeze_amount'] = ds_price_format($data_msg['freeze_amount']);

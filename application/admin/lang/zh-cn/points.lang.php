@@ -65,3 +65,26 @@ $lang['points_number_ordermax_tip'] = '例:设置为100，表明每订单赠送�
 $lang['pointslog']='积分调整';
 $lang['points_setting']='积分规则';
 $lang['points_draw']='积分提现';
+
+/**
+ * 提现功能公用
+ */
+$lang['admin_predeposit_cashmanage'] = '提现管理';
+$lang['admin_predeposit_cash_price'] = '提现金额';
+$lang['admin_predeposit_cash_shoukuanname'] = '收款人姓名';
+$lang['admin_predeposit_cash_shoukuanbank'] = '收款银行';
+$lang['admin_predeposit_cash_shoukuanaccount'] = '收款账号';
+$lang['admin_predeposit_cash_help1'] = '未支付的提现单可以更改提现单的支付状态';
+$lang['admin_predeposit_cash_help2'] = '删除按钮可以删除未支付的提现单';
+$lang['admin_predeposit_cash_confirm'] = '您确认已将提现金额支付到买家提现账户吗？';
+/**
+ * 提现信息删除
+ */
+$lang['admin_predeposit_cash_del_success'] = '提现信息删除成功';
+$lang['admin_predeposit_cash_del_fail'] = '提现信息删除失败';
+/**
+ * 提现信息编辑
+ */
+$lang['admin_predeposit_cash_edit_success'] = '提现信息修改成功';
+$lang['admin_predeposit_cash_edit_fail'] = '提现信息修改失败';
+$lang['admin_predeposit_cash_edit_state'] = '修改提现单状态';
