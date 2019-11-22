@@ -18,7 +18,8 @@ class Transaction extends AdminControl {
     const EXPORT_SIZE = 5000;
     public function _initialize() {
         parent::_initialize();
-        Lang::load(APP_PATH . 'admin/lang/'.config('default_lang').'/points.lang.php');
+        Lang::load(APP_PATH . 'admin/lang/'.config('default_lang').'/predeposit.lang.php');
+        Lang::load(APP_PATH . 'admin/lang/'.config('default_lang').'/transaction.lang.php');
     }
 
     public function index() {
@@ -26,15 +27,15 @@ class Transaction extends AdminControl {
             $condition_arr = array();
             $mname = input('param.mname');
             if (!empty($mname)) {
-                $condition_arr['pl_membername'] = array('like', '%' . $mname . '%');
+                $condition_arr['tl_membername'] = array('like', '%' . $mname . '%');
             }
             $aname = input('param.aname');
             if (!empty($aname)) {
-                $condition_arr['pl_adminname'] = array('like', '%' . $aname . '%');
+                $condition_arr['tl_adminname'] = array('like', '%' . $aname . '%');
             }
             $stage = input('param.stage');
             if ($stage) {
-                $condition_arr['pl_stage'] = trim($stage);
+                $condition_arr['tl_stage'] = trim($stage);
             }
             $stime = input('param.stime');
             $etime = input('param.etime');
@@ -43,22 +44,108 @@ class Transaction extends AdminControl {
             $start_unixtime = $if_start_time ? strtotime($stime) : null;
             $end_unixtime = $if_end_time ? strtotime($etime) : null;
             if ($start_unixtime || $end_unixtime) {
-                $condition_arr['pl_addtime'] = array('between', array($start_unixtime, $end_unixtime));
+                $condition_arr['tl_addtime'] = array('between', array($start_unixtime, $end_unixtime));
             }
             
             $search_desc = trim(input('param.description'));
             if (!empty($search_desc)) {
-                $condition_arr['pl_desc'] = array('like', "%" . $search_desc . "%");
+                $condition_arr['tl_desc'] = array('like', "%" . $search_desc . "%");
             }
 
 
-            $points_model = model('points');
-            $list_log = $points_model->getPointslogList($condition_arr, 10, '*', '');
+            $transaction_model = model('transaction');
+            $list_log = $transaction_model->getTransactionlogList($condition_arr, 10, '*', '');
 
-            $this->assign('pointslog', $list_log);
-            $this->assign('show_page', $points_model->page_info->render());
+            $this->assign('transactionlog', $list_log);
+            $this->assign('show_page', $transaction_model->page_info->render());
             $this->setAdminCurItem('index');
             return $this->fetch();
+        }
+    }
+    /*
+    * 调节交易码
+    */
+
+    public function ts_add() {
+        if (!(request()->isPost())) {
+            $member_id = intval(input('param.member_id'));
+            if($member_id>0){
+                $condition['member_id'] = $member_id;
+                $member = model('member')->getMemberInfo($condition);
+                if(!empty($member)){
+                    $this->assign('member_info',$member);
+                }
+            }
+            return $this->fetch();
+        } else {
+            $data = array(
+                'member_id' => input('post.member_id'),
+                'amount' => input('post.amount'),
+                'operatetype' => input('post.operatetype'),
+                'lg_desc' => input('post.lg_desc'),
+            );
+            $predeposit_validate = validate('predeposit');
+            if (!$predeposit_validate->scene('pd_add')->check($data)) {
+                $this->error($predeposit_validate->getError());
+            }
+
+            $money = abs(floatval(input('post.amount')));
+            $memo = trim(input('post.lg_desc'));
+            if ($money <= 0) {
+                $this->error(lang('amount_min'));
+            }
+            //查询会员信息
+            $member_mod = model('member');
+            $member_id = intval(input('post.member_id'));
+            $operatetype = input('post.operatetype');
+            $member_info = $member_mod->getMemberInfo(array('member_id' => $member_id));
+
+            if (!is_array($member_info) || count($member_info) <= 0) {
+                $this->error(lang('user_not_exist'), 'Predeposit/pd_add');
+            }
+            $member_transaction = floatval($member_info['member_transaction']);
+            if ($operatetype == 2 && $money > $member_transaction) {
+                $this->error(lang('avaliable_predeposit_not_enough') . $member_transaction, 'Transaction/ts_add');
+            }
+            $transaction_model = model('transaction');
+            #生成对应订单号
+            $order_sn = makePaySn($member_id);
+            $admininfo = $this->getAdminInfo();
+            $log_msg = "管理员【" . $admininfo['admin_name'] . "】操作会员【" . $member_info['member_name'] . "】交易码，金额为" . $money . ",编号为" . $order_sn;
+            $admin_act = "sys_add_money";
+            switch ($operatetype) {
+                case 1:
+                    $admin_act = "sys_add_money";
+                    $log_msg = "管理员【" . $admininfo['admin_name'] . "】操作会员【" . $member_info['member_name'] . "】交易码【增加】，金额为" . $money . ",编号为" . $order_sn;
+                    break;
+                case 2:
+                    $admin_act = "sys_del_money";
+                    $log_msg = "管理员【" . $admininfo['admin_name'] . "】操作会员【" . $member_info['member_name'] . "】交易码【减少】，金额为" . $money . ",编号为" . $order_sn;
+                    break;
+                default:
+                    $this->error(lang('ds_common_op_fail'), 'Predeposit/pdlog_list');
+                    break;
+            }
+            try {
+                $transaction_model->startTrans();
+                //扣除冻结的预存款
+                $data = array();
+                $data['member_id'] = $member_info['member_id'];
+                $data['member_name'] = $member_info['member_name'];
+                $data['amount'] = $money;
+                $data['order_sn'] = $order_sn;
+                $data['admin_name'] = $admininfo['admin_name'];
+                $data['pdr_sn'] = $order_sn;
+                $data['tl_desc'] = $memo;
+                $transaction_model->changePd($admin_act, $data);
+                $transaction_model->commit();
+                $this->log($log_msg, 1);
+                dsLayerOpenSuccess(lang('ds_common_op_succ'));
+            } catch (Exception $e) {
+                $transaction_model->rollback();
+                $this->log($log_msg, 0);
+                $this->error($e->getMessage(), 'Predeposit/pdlog_list');
+            }
         }
     }
 

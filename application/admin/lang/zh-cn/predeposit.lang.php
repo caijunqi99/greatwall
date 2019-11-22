@@ -84,5 +84,6 @@ $lang['recover_freezen_predeposit_not_enough'] = '可恢复冻结预存款不足
 $lang['pdrecharge_list'] = '充值明细';
 $lang['pdlog_list'] = '预存款明细';
 $lang['pdlog_list_c'] = '储值卡明细';
-$lang['pd_add'] = '预存款调节';
+$lang['pd_add'] = '储值卡调节';
 $lang['pd_add_c'] = '储值卡变更';
+$lang['change_predeposit_now']='当前交易码为';
