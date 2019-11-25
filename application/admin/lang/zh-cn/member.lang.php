@@ -4,6 +4,8 @@
  * index
  */
 $lang['member_index_name'] = '会员';
+$lang['member_index_inviter_code'] = '推荐码';
+$lang['member_index_inviter_member'] = '邀请人';
 $lang['member_index_id'] = '会员ID';
 $lang['member_index_email'] = '电子邮箱';
 $lang['member_index_code'] = '邀请码';
@@ -63,6 +65,7 @@ $lang['change_predeposit']='调节预存款';
 $lang['change_predeposit_c']='变更储值卡';
 $lang['change_points_c']='变更积分';
 $lang['change_code_c']='变更交易码';
+$lang['change_code_c_z']='查看下级';
 $lang['change_bankname']='银行名称';
 $lang['change_bankcard']='银行卡账号';
 
@@ -73,6 +76,12 @@ $lang['change_bankcard']='银行卡账号';
 $lang['member_add_name_exists'] = '会员名有重复，请您换一个';
 $lang['member_add_phone_exists'] = '请先注册成为会员，才能申请成为子公司';
 $lang['member_add_name_null'] = '会员名不能为空';
+$lang['member_add_mobile_null'] = '手机号不能为空';
 $lang['password_add_name_null'] = '密码不能为空';
+$lang['password_add_invite_null'] = '邀请码不能为空';
 $lang['member_add_name_length'] = '用户名必须在3-15字符之间';
+$lang['member_add_mobile_length_c'] = '该手机号码已经是会员，请重新输入';
+$lang['member_add_mobile_length'] = '请输入正确的手机号';
+$lang['member_add_invite_length'] = '请输入正确的邀请码';
+$lang['member_add_invite_length_c'] = '该邀请码不存在，请输入有效的邀请码';
 ?>

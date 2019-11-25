@@ -76,9 +76,21 @@ class Member extends AdminControl {
         //整理会员信息
         if (is_array($member_list) && !empty($member_list)) {
             foreach ($member_list as $k => $v) {
+                $inviter_ids[] = $v['inviter_id'];
                 $member_list[$k]['member_addtime'] = $v['member_addtime'] ? date('Y-m-d H:i:s', $v['member_addtime']) : '';
                 $member_list[$k]['member_logintime'] = $v['member_logintime'] ? date('Y-m-d H:i:s', $v['member_logintime']) : '';
                 $member_list[$k]['member_grade'] = ($t = $member_model->getOneMemberGrade($v['member_exppoints'], false, $member_grade)) ? $t['level_name'] : '';
+            }
+            $cond = array();
+            $cond['member_id'] = [ 'in',$inviter_ids];
+            $inviterList = $member_model->getMemberList($cond, 'member_id,member_mobile,member_name');
+            $leftInviter = array_column($inviterList,null,'member_id');
+            foreach($member_list as $item=>$value){
+                if($value['member_id']==1){
+                    $member_list[$item]['inviter_member'] = "00000000000";
+                }else{
+                    $member_list[$item]['inviter_member'] = $leftInviter[$value['inviter_id']]['member_mobile'];
+                }
             }
         }
         $this->assign('member_grade', $member_grade);
@@ -98,8 +110,9 @@ class Member extends AdminControl {
         if (!request()->isPost()) {
             return $this->fetch();
         } else {
-            //需要完善地方 1.对录入数据进行判断  2.对判断用户名是否存在
             $member_model = model('member');
+            $member_info = $member_model->getMemberInfo(array("inviter_code"=>input('post.inviter_id')));
+            $inviter_id = empty($member_info) ? 0 : $member_info['member_id'];
             $inviter_code = $member_model->_get_inviter_code();
             $data = array(
                 'member_name' => input('post.member_name'),
@@ -110,7 +123,7 @@ class Member extends AdminControl {
                 'member_sex' => input('post.member_sex'),
                 'member_qq' => input('post.member_qq'),
                 'member_ww' => input('post.member_ww'),
-                'inviter_id' => input('post.inviter_id'),
+                'inviter_id' => $inviter_id,
                 'inviter_code' => $inviter_code,
                 'member_addtime' => TIMESTAMP,
                 'member_loginnum' => 0,
@@ -187,6 +200,38 @@ class Member extends AdminControl {
     }
 
     /**
+    *查看下级（一代 二代）
+     */
+    public function inviter(){
+        $member_id = input('param.member_id');
+        if (empty($member_id)) {
+            $this->error(lang('param_error'));
+        }
+        $member_model = model('member');
+        //一代
+        $member_list = $member_model->getMemberList(array("inviter_id"=>$member_id), '*');
+        if(!empty($member_list)){
+            foreach($member_list as $k=>$v){
+                $member_inviterids[] = $v['member_id'];
+                $member_list[$k]['level'] = "一代";
+            }
+            $member_inviterids = implode(",",$member_inviterids);
+            //二代
+            $cond = array();
+            $cond['inviter_id'] = ['in',$member_inviterids];
+            $member_list_two = $member_model->getMemberList($cond);
+            foreach($member_list as $item=>$value){
+                foreach($member_list_two as $i=>$t){
+                    $t["level"] = "二代";
+                    $member_list[] = $t;
+                }
+            }
+        }
+        $this->assign('member_list', $member_list);
+        $this->setAdminCurItem('inviter');
+        return $this->fetch();
+    }
+    /**
      * ajax操作
      */
     public function ajax() {
@@ -222,6 +267,38 @@ class Member extends AdminControl {
                     exit;
                 } else {
                     echo 'false';
+                    exit;
+                }
+                break;
+            /**
+             * 验证手机号是否重复
+             */
+            case 'check_user_mobile':
+                $member_model = model('member');
+                $condition['member_mobile'] = input('param.member_mobile');
+                $condition['member_id'] = array('neq', intval(input('param.member_id')));
+                $list = $member_model->getMemberInfo($condition);
+                if (empty($list)) {
+                    echo 'true';
+                    exit;
+                } else {
+                    echo 'false';
+                    exit;
+                }
+                break;
+            /**
+             * 验证邀请码是否存在
+             */
+            case 'check_user_inviteCode':
+                $member_model = model('member');
+                $condition['inviter_code'] = input('param.inviter_id');
+                $condition['member_id'] = array('neq', intval(input('param.member_id')));
+                $list = $member_model->getMemberInfo($condition);
+                if (empty($list)) {
+                    echo 'false';
+                    exit;
+                } else {
+                    echo 'true';
                     exit;
                 }
                 break;

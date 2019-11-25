@@ -64,11 +64,6 @@
                     <td class="vatop rowform"><input type="text" value="" id="member_qq" name="member_qq" class="txt"></td>
                     <td class="vatop tips"></td>
                 </tr>
-                <tr class="noborder">
-                    <td class="required"><label class="member_ww">{$Think.lang.member_edit_wangwang}:</label></td>
-                    <td class="vatop rowform"><input type="text" value="" id="member_ww" name="member_ww" class="txt"></td>
-                    <td class="vatop tips"></td>
-                </tr>
             </tbody>
             <tfoot>
                 <tr class="tfoot">
@@ -123,7 +118,37 @@
                     digits: true,
                     minlength: 5,
                     maxlength: 11
-                }
+                },
+                member_mobile: {
+                    required: true,
+                    minlength: 11,
+                    maxlength: 11,
+                    remote: {
+                        url: "{:url('Member/ajax',['branch'=>'check_user_mobile'])}",
+                        type: 'get',
+                        data: {
+                            member_mobile: function() {
+                                return $('#member_mobile').val();
+                            },
+                            member_id: '{$member_array.member_id|default=0}'
+                        }
+                    }
+                },
+                inviter_id: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 5,
+                    remote: {
+                        url: "{:url('Member/ajax',['branch'=>'check_user_inviteCode'])}",
+                        type: 'get',
+                        data: {
+                            inviter_id: function() {
+                                return $('#inviter_id').val();
+                            },
+                            member_id:'{$member_array.member_id|default=0}'
+                        }
+                    }
+                },
             },
             messages: {
                 member_name: {
@@ -146,6 +171,18 @@
                     digits: '{$Think.lang.member_edit_qq_wrong}',
                     minlength: '{$Think.lang.member_edit_qq_wrong}',
                     maxlength: '{$Think.lang.member_edit_qq_wrong}'
+                },
+                member_mobile: {
+                    required: '{$Think.lang.member_add_mobile_null}',
+                    maxlength: '{$Think.lang.member_add_mobile_length}',
+                    minlength: '{$Think.lang.member_add_mobile_length}',
+                    remote: '{$Think.lang.member_add_mobile_length_c}'
+                },
+                inviter_id: {
+                    required: '{$Think.lang.password_add_invite_null}',
+                    maxlength: '{$Think.lang.member_add_invite_length}',
+                    minlength: '{$Think.lang.member_add_invite_length}',
+                    remote: '{$Think.lang.member_add_invite_length_c}'
                 }
             }
         });
