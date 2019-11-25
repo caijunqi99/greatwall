@@ -113,11 +113,18 @@ class Companys extends AdminControl {
                 $condition['member_mobile'] = input('param.member_phone');
                 $list = $member_model->getMemberInfo($condition);
                 if (empty($list)) {
-                    echo 'false';
-                    exit;
+                        echo 'false';
+                        exit;
                 } else {
-                    echo 'true';
-                    exit;
+                    $company_model=model('company');
+                    $lists=$company_model->getMemberInfo($condition);
+                    if(empty($lists)) {
+                        echo 'true';
+                        exit;
+                    }else{
+                        echo 'false';
+                        exit;
+                    }
                 }
                 break;
         }

@@ -71,7 +71,7 @@ $lang['change_bankcard']='银行卡账号';
  * 会员添加
  */
 $lang['member_add_name_exists'] = '会员名有重复，请您换一个';
-$lang['member_add_phone_exists'] = '请先注册成为会员，才能申请成为公司';
+$lang['member_add_phone_exists'] = '请先注册成为会员，才能申请成为子公司';
 $lang['member_add_name_null'] = '会员名不能为空';
 $lang['password_add_name_null'] = '密码不能为空';
 $lang['member_add_name_length'] = '用户名必须在3-15字符之间';
