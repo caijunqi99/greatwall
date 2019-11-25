@@ -1,0 +1,40 @@
+{include file="public/header" /}
+
+
+
+<div class="page">
+
+    <!--<div class="explanation" id="explanation">-->
+        <!--<ul>-->
+            <!--<li>下级总人数：</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <table class="ds-default-table">
+        <thead>
+            <tr>
+                <th>会员ID</th>
+                <th>会员手机号</th>
+                <th>推荐码</th>
+                <th>邀请人ID</th>
+                <th>代数</th>
+            </tr>
+        </thead>
+        <tbody>
+            {notempty name="member_list"}
+            {foreach name="member_list" item="v" key="k"}
+            <tr>
+                <td>{$v.member_id}</td>
+                <td>{$v.member_mobile}</td>
+                <td>{$v.inviter_code}</td>
+                <td>{$v.inviter_id}</td>
+                <td>{$v.level}</td>
+            </tr>
+            {/foreach}
+            {else /}
+            <tr class="no_data">
+                <td colspan="15">{$Think.lang.ds_no_record}</td>
+            </tr>
+            {/notempty}
+        </tbody>
+    </table>
+</div>

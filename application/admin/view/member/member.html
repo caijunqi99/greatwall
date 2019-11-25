@@ -67,6 +67,8 @@
         <tr class="thead">
           <th>&nbsp;</th>
           <th colspan="2">{$Think.lang.member_index_name}</th>
+          <th colspan="align-center">{$Think.lang.member_index_inviter_code}</th>
+          <th colspan="align-center">{$Think.lang.member_index_inviter_member}</th>
           <th class="align-center"><span fieldname="logins" ds_type="order_by">{$Think.lang.member_index_login_time}</span></th>
           <th class="align-center"><span fieldname="last_login" ds_type="order_by">{$Think.lang.member_index_last_login}</span></th>
           <th class="align-center">{$Think.lang.member_index_points}</th>
@@ -109,6 +111,8 @@
                <div style="font-size:13px; padding-left:10px">&nbsp;&nbsp;{$v.member_mobile}</div>
                {/if}
               </div></td>
+          <td class="align-center">{$v.inviter_code}</td>
+          <td class="align-center">{$v.inviter_member}</td>
           <td class="align-center">{$v.member_loginnum}</td>
           <td class="w150 align-center"><p>{$v.member_logintime}</p>
             <p>{$v.member_login_ip}</p></td>
@@ -131,6 +135,7 @@
               <a href="javascript:dsLayerOpen('{:url('Predeposit/pd_add',['member_id'=>$v.member_id])}','{$Think.lang.change_predeposit_c}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_predeposit_c}</a>
               <a href="javascript:dsLayerOpen('{:url('Points/pointslog',['member_id'=>$v.member_id])}','{$Think.lang.change_points_c}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_points_c}</a>
               <a href="javascript:dsLayerOpen('{:url('Transaction/ts_add',['member_id'=>$v.member_id])}','{$Think.lang.change_code_c}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_code_c}</a></p>
+              <a href="javascript:dsLayerOpen('{:url('Member/inviter',['member_id'=>$v.member_id])}','{$Think.lang.change_code_c_z}-{$v.member_name}-{$v.member_id}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.change_code_c_z}</a></p>
           </td>
         </tr>
         {/foreach}
