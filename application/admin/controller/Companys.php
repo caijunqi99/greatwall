@@ -75,11 +75,25 @@ class Companys extends AdminControl {
                 'member_areainfo' => input('post.member_areaino'),
                 'company_addtime' => TIMESTAMP,
             );
-            $result = $company_model->addCompany($data);
-            if ($result) {
-                dsLayerOpenSuccess(lang('ds_common_op_succ'));
-            } else {
-                $this->error(lang('member_add_fail'));
+            $datas = array(
+                'company_level' => input('post.member_level'),
+                'member_provinceid' => input('post.province_id'),
+                'member_cityid' => input('post.city_id'),
+                'member_areaid' => input('post.area_id'),
+                'member_townid' => input('post.member_townid'),
+                'member_villageid' => input('post.member_villageid'),
+                'is_del' =>0
+            );
+            $res=$company_model->getMemberInfo($datas);
+            if(empty($res)) {
+                $result = $company_model->addCompany($data);
+                if ($result) {
+                    dsLayerOpenSuccess(lang('ds_common_op_succ'));
+                } else {
+                    $this->error(lang('member_add_fail'));
+                }
+            }else{
+                $this->error(lang('ds_company_error'));
             }
         }
     }
@@ -117,6 +131,7 @@ class Companys extends AdminControl {
                         exit;
                 } else {
                     $company_model=model('company');
+                    $condition['is_del']=0;
                     $lists=$company_model->getMemberInfo($condition);
                     if(empty($lists)) {
                         echo 'true';

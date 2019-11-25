@@ -283,11 +283,11 @@ class AdminControl extends Controller {
                         'text' => lang('ds_scale'),
                         'args' => 'scale,Scale,setting',
                     ),
-//                    'account' => array(
-//                        'ico'=>'&#xe678;',
-//                        'text' => lang('ds_account'),
-//                        'args' => 'qq,Account,setting',
-//                    ),
+                    'account' => array(
+                        'ico'=>'&#xe678;',
+                        'text' => lang('ds_account'),
+                        'args' => 'qq,Account,setting',
+                    ),
                     'upload_set' => array(
                         'ico'=>'&#xe72a;',
                         'text' => lang('ds_upload_set'),
