@@ -334,7 +334,7 @@ class Member extends Model
             $member_info['member_addtime'] = TIMESTAMP;
             $member_info['member_logintime'] = TIMESTAMP;
             $member_info['member_old_logintime'] = TIMESTAMP;
-            $member_info['inviter_code']         = $data['inviter_code'];
+            $member_info['inviter_code']         = $this->_get_inviter_code();
             $member_info['member_login_ip'] = request()->ip();
             $member_info['member_old_login_ip'] = $member_info['member_login_ip'];
             if (isset($data['member_truename'])) {

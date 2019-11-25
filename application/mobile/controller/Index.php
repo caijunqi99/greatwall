@@ -55,8 +55,8 @@ class Index extends MobileMall {
         $datas['menu']       = $adv[5];
         //折扣栏
         $datas['discount'] = [
-            'title '=> $advtitle,
-            'date '=> $adv[6],
+            'title'=> $advtitle,
+            'date'=> $adv[6],
         ];
         output_data($datas);
     }
