@@ -48,7 +48,7 @@
     <table class="ds-default-table">
       <thead>
         <tr class="thead">
-          <th>&nbsp;</th>
+          <!--<th>&nbsp;</th>-->
           <th colspan="align-center">{$Think.lang.member_index_id}</th>
           <th colspan="align-center">{$Think.lang.member_index_mobile}</th>
           <th class="align-center">{$Think.lang.ds_company_level}</th>
@@ -60,16 +60,17 @@
         {notempty name="member_list"}
         {foreach name="member_list" item="v" key="k" }
         <tr class="hover member">
-          <td class="w24"><input type="checkbox" name='del_id[]' value="{$v.company_id}" class="checkitem"></td>
+          <!--<td class="w24"><input type="checkbox" name='del_id[]' value="{$v.company_id}" class="checkitem"></td>-->
           <td><p class="smallfont">{$v.member_id}</p></td>
           <td><p class="smallfont">{$v.member_mobile}</p></td>
-            {if $v.company_level == 1}<td class="align-center">省级</td>
-            {elseif $v.company_level == 2}<td class="align-center">市级</td>
-            {elseif $v.company_level == 3}<td class="align-center">区/县级</td>
-            {elseif $v.company_level == 4}<td class="align-center">镇级</td>
-            {elseif $v.company_level == 5}<td class="align-center">村级</td></tr>
-            {else /}<td class="align-center">无</td>{/if}
-            <td class="align-center">{$v.member_areainfo}</td>
+            <td class="align-center">{if $v.company_level == 1}省级
+                {elseif $v.company_level == 2}市级
+                {elseif $v.company_level == 3}区/县级
+                {elseif $v.company_level == 4}镇级
+                {elseif $v.company_level == 5}村级
+                {else /}无{/if}
+            </td>
+            <td>{$v.member_areainfo}</td>
             <td class="align-center">
                 <a href="javascript:dsLayerOpen('{:url('Companys/del',['company_id'=>$v.company_id])}','{$Think.lang.ds_edit}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.ds_del}</a>
             </td>
@@ -81,17 +82,17 @@
         </tr>
         {/notempty}
       </tbody>
-      <tfoot class="tfoot">
-        {notempty name="member_list"}
-        <tr>
-        <td class="w24"><input type="checkbox" class="checkall" id="checkallBottom"></td>
-          <td colspan="16">
-          <label for="checkallBottom">{$Think.lang.ds_select_all}</label>
-              &nbsp;&nbsp;<a href="JavaScript:void(0);" class="btn btn-small" onclick="submit_delete_batch()"><span>{$Think.lang.member_edit_denylogin}</span></a>
-          </td>
-        </tr>
-        {/notempty}
-      </tfoot>
+      <!--<tfoot class="tfoot">-->
+        <!--{notempty name="member_list"}-->
+        <!--<tr>-->
+        <!--<td class="w24"><input type="checkbox" class="checkall" id="checkallBottom"></td>-->
+          <!--<td colspan="16">-->
+          <!--<label for="checkallBottom">{$Think.lang.ds_select_all}</label>-->
+              <!--&nbsp;&nbsp;<a href="JavaScript:void(0);" class="btn btn-small" onclick="submit_delete_batch()"><span>{$Think.lang.member_edit_denylogin}</span></a>-->
+          <!--</td>-->
+        <!--</tr>-->
+        <!--{/notempty}-->
+      <!--</tfoot>-->
     </table>
     {$show_page}
 
