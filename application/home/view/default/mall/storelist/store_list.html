@@ -207,7 +207,7 @@ function query(name, value){
             {foreach name="store.search_list_goods" item="v" key='k'}
             <li>
                 <a href="{:url('Goods/index',['goods_id'=>$v.goods_id])}" target="_blank" title="{$v.goods_name}">
-                    <img class="lazyload goods-pic" data-original="{:goods_thumb($v,'240')}">
+                    <img class="lazyload goods-pic" data-original="{:goods_thumb($v,'240')}" src="{:goods_thumb($v,'240')}">
                     <div class="mask">
                         <span class="price">¥{$v.goods_price}</span>
                         <span class="sell">{$Think.lang.store_class_index_sold}{$v.goods_salenum}</span>
