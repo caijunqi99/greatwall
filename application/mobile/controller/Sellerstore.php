@@ -21,7 +21,7 @@ class Sellerstore extends MobileSeller
      */
     public function store_info()
     {
-        $this->store_info['store_banner'] = getStoreLogo($this->store_info['store_banner'], 'store_logo');
+        $this->store_info['store_banner'] = get_store_logo($this->store_info['store_banner'], 'store_logo');
         output_data(array('store_info' => $this->store_info));
     }
 
@@ -94,7 +94,7 @@ class Sellerstore extends MobileSeller
 
         $output = array(
             'store_name' => $this->store_info['store_name'],
-            'store_banner' => getStoreLogo($this->store_info['store_banner'], 'store_logo'),
+            'store_banner' => get_store_logo($this->store_info['store_banner'], 'store_logo'),
             'order_amount' => $monthly_sales['orderamount'], 'order_num' => $monthly_sales['ordernum'],
             'click_amount' => $statlist_tmp['amount']
         );

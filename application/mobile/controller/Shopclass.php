@@ -14,7 +14,7 @@ class Shopclass extends MobileMall
         $model_store_class = Model("storeclass");
         //如果只想显示自营店铺，把下面的//去掉即可
         //$condition = array(
-        //   'is_own_shop' => 1,
+        //   'is_platform_store' => 1,
         //);
 
         $lst = $model_store_class->getStoreClassList();

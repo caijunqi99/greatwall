@@ -31,7 +31,7 @@ class Sellergoodsclass extends MobileSeller
         }
 
         $model_goods_class = Model('goods_class');
-        $seller_goods_class = $model_goods_class->getGoodsClass($this->seller_info['store_id'], $gc_id, $deep, $this->seller_info['seller_group_id'], $this->seller_group_info['gc_limits'], $this->store_info['is_own_shop'] && $this->store_info['bind_all_gc']);
+        $seller_goods_class = $model_goods_class->getGoodsClass($this->seller_info['store_id'], $gc_id, $deep, $this->seller_info['seller_group_id'], $this->seller_group_info['gc_limits'], $this->store_info['is_platform_store'] && $this->store_info['bind_all_gc']);
         output_data(array('class_list' => $seller_goods_class));
     }
 

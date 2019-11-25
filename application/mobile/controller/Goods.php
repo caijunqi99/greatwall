@@ -34,7 +34,7 @@ class Goods extends MobileMall {
         if ($gc_id > 0) {
             $condition['gc_id'] = $gc_id;
         } elseif (!empty($keyword)) {
-            $condition['goods_name|goods_jingle'] = array('like', '%' . $keyword . '%');
+            $condition['goods_name|goods_advword'] = array('like', '%' . $keyword . '%');
             if (cookie('hisSearch') == '') {
                 $his_sh_list = array();
             } else {
@@ -57,9 +57,9 @@ class Goods extends MobileMall {
         $price_to = preg_match('/^[\d.]{1,20}$/', $price_to) ? $price_to : null;
 
         //所需字段
-        $fieldstr = "goods_id,goods_commonid,store_id,goods_name,goods_jingle,goods_price,goods_promotion_price,goods_promotion_type,goods_marketprice,goods_image,goods_salenum,evaluation_good_star,evaluation_count";
+        $fieldstr = "goods_id,goods_commonid,store_id,goods_name,goods_advword,goods_price,goods_promotion_price,goods_promotion_type,goods_marketprice,goods_image,goods_salenum,evaluation_good_star,evaluation_count";
 
-        $fieldstr .= ',is_virtual,is_presell,is_fcode,have_gift,goods_jingle,store_id,store_name,is_own_shop';
+        $fieldstr .= ',is_virtual,is_presell,is_goodsfcode,is_have_gift,goods_advword,store_id,store_name,is_platform_store';
 
         //排序方式
         $order = $this->_goods_list_order(input('param.key'), input('param.order'));
@@ -108,7 +108,7 @@ class Goods extends MobileMall {
                 $condition['goods_promotion_price'] = array('elt', $price_to);
             }
             if (input('param.gift') == 1) {
-                $condition['have_gift'] = 1;
+                $condition['is_have_gift'] = 1;
             }
             if (input('param.own_shop') == 1) {
                 $condition['store_id'] = 1;
@@ -147,7 +147,7 @@ class Goods extends MobileMall {
      * 商品列表排序方式
      */
     private function _goods_list_order($key, $order) {
-        $result = 'is_own_shop desc,goods_id desc';
+        $result = 'is_platform_store desc,goods_id desc';
         if (!empty($key)) {
 
             $sequence = 'desc';
@@ -204,7 +204,7 @@ class Goods extends MobileMall {
             }
 
             //商品图片url
-            $goods_list[$key]['goods_image_url'] = cthumb($value['goods_image'], 360, $value['store_id']);
+            $goods_list[$key]['goods_image_url'] = goods_cthumb($value['goods_image'], 360, $value['store_id']);
             $store_info = $model_store->getStoreInfoByID($value['store_id']);
             $goods_list[$key]['store_name'] = $store_info['store_name'];
 
@@ -248,7 +248,7 @@ class Goods extends MobileMall {
             }
 
             //商品图片url
-            $goods_list[$key]['goods_image_url'] = cthumb($value['goods_image'], 360, $value['store_id']);
+            $goods_list[$key]['goods_image_url'] = goods_cthumb($value['goods_image'], 360, $value['store_id']);
 
             unset($goods_list[$key]['goods_promotion_type']);
             unset($goods_list[$key]['goods_promotion_price']);
@@ -299,7 +299,7 @@ class Goods extends MobileMall {
             if (!empty($sole_array[$value['goods_id']])) {
                 $goods_commend['goods_promotion_price'] = $sole_array[$value['goods_id']]['sole_price'];
             }
-            $goods_commend['goods_image_url'] = cthumb($value['goods_image'], 240);
+            $goods_commend['goods_image_url'] = goods_cthumb($value['goods_image'], 240);
             $goods_commend_list[] = $goods_commend;
         }
 
@@ -310,11 +310,11 @@ class Goods extends MobileMall {
         $goods_detail['store_info']['store_name'] = $store_info['store_name'];
         $goods_detail['store_info']['member_id'] = $store_info['member_id'];
         $goods_detail['store_info']['member_name'] = $store_info['member_name'];
-        $goods_detail['store_info']['is_own_shop'] = $store_info['is_own_shop'];
+        $goods_detail['store_info']['is_platform_store'] = $store_info['is_platform_store'];
 
         $goods_detail['store_info']['goods_count'] = $store_info['goods_count'];
 
-        if ($store_info['is_own_shop']) {
+        if ($store_info['is_platform_store']) {
             $goods_detail['store_info']['store_credit'] = array(
                 'store_desccredit' => array(
                     'text' => '描述',

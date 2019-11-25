@@ -39,7 +39,7 @@ class MobileSeller extends MobileHome {
         $this->seller_group_info = $model_seller_group->getSellerGroupInfo(array('group_id' => $this->seller_info['seller_group_id']));
 
         // 店铺等级
-        if (intval($this->store_info['is_own_shop']) === 1) {
+        if (intval($this->store_info['is_platform_store']) === 1) {
             $this->store_grade = array(
                 'sg_id' => '0',
                 'sg_name' => '自营店铺专属等级',

@@ -12,6 +12,17 @@ use think\Model;
  */
 class Goodsclassnav extends Model {
 
+
+    /**
+     * 获取全部设置
+     * @DateTime 2019-11-25
+     * @param    [type]     $condition [description]
+     * @return   [type]                [description]
+     */
+    public function getGoodsclassnav($condition=array(),$field ='*') {
+        return db('goodsclassnav')->field($field)->where($condition)->select();
+    }
+
     /**
      * 根据商品分类id取得数据
      * @access public
@@ -19,8 +30,8 @@ class Goodsclassnav extends Model {
      * @param num $gc_id 分类ID
      * @return array
      */
-    public function getGoodsclassnavInfoByGcId($gc_id) {
-        return db('goodsclassnav')->where(array('gc_id' => $gc_id))->find();
+    public function getGoodsclassnavInfoByGcId($gc_id,$field ='*') {
+        return db('goodsclassnav')->field($field)->where(array('gc_id' => $gc_id))->find();
     }
 
     /**

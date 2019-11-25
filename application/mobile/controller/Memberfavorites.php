@@ -26,7 +26,7 @@ class Memberfavorites extends MobileMember {
         $goods_list = $model_goods->getGoodsList(array('goods_id' => array('in', $favorites_id)), $field);
         foreach ($goods_list as $key => $value) {
             $goods_list[$key]['fav_id'] = $value['goods_id'];
-            $goods_list[$key]['goods_image_url'] = cthumb($value['goods_image'], 240, $value['store_id']);
+            $goods_list[$key]['goods_image_url'] = goods_cthumb($value['goods_image'], 240, $value['store_id']);
         }
 
         output_data(array('favorites_list' => $goods_list), mobile_page($model_favorites->page_info));

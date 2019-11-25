@@ -306,8 +306,8 @@ class Memberorder extends MobileMember {
             $contract_item = Model('contract')->getContractItemByCache();
         }
         foreach ($order_info['extend_order_goods'] as $value) {
-            $value['image_60_url'] = cthumb($value['goods_image'], 60, $value['store_id']);
-            $value['image_url'] = cthumb($value['goods_image'], 240, $value['store_id']);
+            $value['image_60_url'] = goods_cthumb($value['goods_image'], 60, $value['store_id']);
+            $value['image_url'] = goods_cthumb($value['goods_image'], 240, $value['store_id']);
             $value['goods_type_cn'] = orderGoodsType($value['goods_type']);
             $value['goods_url'] = url('goods/index', array('goods_id' => $value['goods_id']));
             //处理消费者保障服务

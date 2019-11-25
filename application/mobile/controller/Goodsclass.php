@@ -26,12 +26,15 @@ class Goodsclass extends MobileMall {
      */
     private function _get_root_class() {
         $model_goods_class = Model('goodsclass');
-        // $model_mb_category = Model('mbcategory');
 
         $goods_class_array = Model('goodsclass')->getGoodsClassForCacheModel();
         $class_list = $model_goods_class->getGoodsclassListByParentId(0);
         // p($goods_class_array);exit;
-        // $mb_categroy = $model_mb_category->getLinkList(array());
+        // 
+
+
+
+        
         // $mb_categroy = array_under_reset($mb_categroy, 'gc_id');
         foreach ($class_list as $key => $value) {
             $class_list[$key]['image'] = goodsclass_image($value['gc_id']);
@@ -46,6 +49,10 @@ class Goodsclass extends MobileMall {
                 $class_list[$key]['text'] .= $goods_class_array[$child_class]['gc_name'] . '/';
             }
             $class_list[$key]['text'] = rtrim($class_list[$key]['text'], '/');
+            if ( !empty($navmenu[$value['gc_id']] ) ) {
+                $class_list[$key]['gc_adv'] = $navmenu[$value['gc_id']];
+            }
+            // $class_list[$key]['gc_adv'] = $navmenu[$value['gc_id']];
         }
 
         output_data(array('class_list' => $class_list));
@@ -87,16 +94,33 @@ class Goodsclass extends MobileMall {
      */
     public function get_child_all() {
         $gc_id = intval(input('param.gc_id'));
+        $model_classnav = Model('Goodsclassnav');
+        // $navmenu  = array_column($classnav,null,'gc_id');
+        $classnav = $model_classnav->getGoodsclassnavInfoByGcId($gc_id,'goodscn_adv1,goodscn_adv1_link,goodscn_adv2,goodscn_adv2_link');
         $data = array();
         if ($gc_id > 0) {
             $data = $this->_get_class_list($gc_id);
             if (!empty($data['class_list'])) {
+                if (!empty($classnav)) {
+                    //把一维数组 刷成二维数组 给APP端
+                    $adv = [
+                        [
+                            'goodscn_adv1'      =>$classnav['goodscn_adv1'],
+                            'goodscn_adv1_link' =>$classnav['goodscn_adv1_link'],
+                        ],
+                        [
+                            'goodscn_adv2'      =>$classnav['goodscn_adv2'],
+                            'goodscn_adv2_link' =>$classnav['goodscn_adv2_link'],
+                        ]
+                    ];
+                    $data['adv_list'] = $adv;
+                }else{
+                    $data['adv_list'] = [];
+                }
                 foreach ($data['class_list'] as $key => $val) {
                     $data['class_list'][$key]['image'] = goodsclass_image($val['gc_id']);
                     $d = $this->_get_class_list($val['gc_id']);
                     $data['class_list'][$key]['child'] = $d['class_list'];
-                    
-
                 }
             }
         }

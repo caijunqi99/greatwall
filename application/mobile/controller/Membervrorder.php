@@ -51,7 +51,7 @@ class Membervrorder extends MobileMember
             //显示评价
             $order_list[$key]['if_evaluation'] = $model_vr_order->getOrderOperateState('evaluation', $order);
 
-            $order_list[$key]['goods_image_url'] = cthumb($order['goods_image'], 240, $order['store_id']);
+            $order_list[$key]['goods_image_url'] = goods_cthumb($order['goods_image'], 240, $order['store_id']);
 
             $order_list[$key]['ownshop'] = in_array($order['store_id'], $ownShopIds);
         }
@@ -85,7 +85,7 @@ class Membervrorder extends MobileMember
         //显示退款
         $order_info['if_refund'] = $model_vr_order->getOrderOperateState('refund', $order_info);
 
-        $order_info['goods_image_url'] = cthumb($order_info['goods_image'], 240, $order_info['store_id']);
+        $order_info['goods_image_url'] = goods_cthumb($order_info['goods_image'], 240, $order_info['store_id']);
 
         $ownShopIds = Model('store')->getOwnShopIds();
         $order_info['ownshop'] = in_array($order_info['store_id'], $ownShopIds);

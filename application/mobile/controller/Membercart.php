@@ -36,7 +36,7 @@ class Membercart extends MobileMember {
 
             $cart_a[$val['store_id']]['goods'][$key]['cart_id'] = $val['cart_id'];
             $cart_a[$val['store_id']]['goods'][$key]['goods_num'] = $val['goods_num'];
-            $cart_a[$val['store_id']]['goods'][$key]['goods_image_url'] = cthumb($val['goods_image'], $val['store_id']);
+            $cart_a[$val['store_id']]['goods'][$key]['goods_image_url'] = goods_cthumb($val['goods_image'], $val['store_id']);
             if (isset($goods_data['goods_spec'])&&$goods_data['goods_spec'] == 'N;') {
                 $cart_a[$val['store_id']]['goods'][$key]['goods_spec'] = '';
             }

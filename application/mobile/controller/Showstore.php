@@ -15,8 +15,8 @@ class Showstore extends MobileMember {
         $condition = array();
         $condition['store_id'] = $this->store_info['store_id'];
         $model_goods = Model('goods'); // 字段
-        $fieldstr = "goods_id,goods_commonid,goods_name,goods_jingle,store_id,store_name,goods_price,goods_promotion_price,goods_marketprice,goods_storage,goods_image,goods_freight,goods_salenum,color_id,evaluation_good_star,evaluation_count,goods_promotion_type";
-        $fieldstr .= ',is_virtual,is_presell,is_fcode,have_gift';
+        $fieldstr = "goods_id,goods_commonid,goods_name,goods_advword,store_id,store_name,goods_price,goods_promotion_price,goods_marketprice,goods_storage,goods_image,goods_freight,goods_salenum,color_id,evaluation_good_star,evaluation_count,goods_promotion_type";
+        $fieldstr .= ',is_virtual,is_presell,is_goodsfcode,is_have_gift';
         //得到最新12个商品列表
         $new_goods_list = $model_goods->getGoodsListByColorDistinct($condition, $fieldstr, 'goods_id desc', 12);
         $condition['goods_commend'] = 1;
@@ -100,7 +100,7 @@ class Showstore extends MobileMember {
         $show_store['goods_list_info']['goods_store']['store_labell'] = $this->store_info['store_label'];
         $show_store['goods_list_info']['goods_store']['store_credit_average'] = $this->store_info['store_credit_average'];
         $show_store['goods_list_info']['goods_store']['store_credit_percent'] = $this->store_info['store_credit_percent'];
-        $show_store['goods_list_info']['goods_store']['store_label'] = getStoreLogo($show_store['goods_list_info']['goods_store']['store_labell'], 'store_logo');
+        $show_store['goods_list_info']['goods_store']['store_label'] = get_store_logo($show_store['goods_list_info']['goods_store']['store_labell'], 'store_logo');
 
         output_data($show_store);
     }
@@ -202,8 +202,8 @@ class Showstore extends MobileMember {
         }
 
         $model_goods = Model('goods');
-        $fieldstr = "goods_id,goods_commonid,goods_name,goods_jingle,store_id,store_name,goods_price,goods_promotion_price,goods_marketprice,goods_storage,goods_image,goods_freight,goods_salenum,color_id,evaluation_good_star,evaluation_count,goods_promotion_type";
-        $fieldstr .= ',is_virtual,is_presell,is_fcode,have_gift';
+        $fieldstr = "goods_id,goods_commonid,goods_name,goods_advword,store_id,store_name,goods_price,goods_promotion_price,goods_marketprice,goods_storage,goods_image,goods_freight,goods_salenum,color_id,evaluation_good_star,evaluation_count,goods_promotion_type";
+        $fieldstr .= ',is_virtual,is_presell,is_goodsfcode,is_have_gift';
 
         $recommended_goods_list = $model_goods->getGoodsListByColorDistinct($condition, $fieldstr, $order, 10);
         $recommended_goods_list = $this->getGoodsMore($recommended_goods_list);
@@ -224,7 +224,7 @@ class Showstore extends MobileMember {
     private function _goods_list_extend($goods_list) {
         foreach ($goods_list as $key => $value) {
             //商品图片url
-            $goods_list[$key]['goods_image_url'] = cthumb($value['goods_image'], 360, $value['store_id']);
+            $goods_list[$key]['goods_image_url'] = goods_cthumb($value['goods_image'], 360, $value['store_id']);
         }
         return $goods_list;
     }

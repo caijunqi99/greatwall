@@ -12,7 +12,7 @@ class Store extends MobileMall {
     }
 
     /**
-     * 店铺信息
+     * 店铺信息 
      */
     public function store_info() {
         $store_id = intval(input('param.store_id'));
@@ -30,7 +30,7 @@ class Store extends MobileMall {
         $store_info['member_id'] = $store_online_info['member_id'];
 
         // 店铺头像
-        $store_info['store_avatar'] = getStoreLogo($store_online_info['store_avatar']);
+        $store_info['store_avatar'] = get_store_logo($store_online_info['store_avatar']);
         // 商品数
         $store_info['goods_count'] = (int) $store_online_info['goods_count'];
 
@@ -46,10 +46,10 @@ class Store extends MobileMall {
         }
 
         // 是否官方店铺
-        $store_info['is_own_shop'] = (bool) $store_online_info['is_own_shop'];
+        $store_info['is_platform_store'] = (bool) $store_online_info['is_platform_store'];
 
         // 动态评分
-        if ($store_info['is_own_shop']) {
+        if ($store_info['is_platform_store']) {
             $store_info['store_credit_text'] = '官方店铺';
         } else {
             $store_info['store_credit_text'] = sprintf(
@@ -209,8 +209,8 @@ class Store extends MobileMall {
             'evaluation_count',
             'is_virtual',
             'is_presell',
-            'is_fcode',
-            'have_gift',
+            'is_goodsfcode',
+            'is_have_gift',
             'goods_addtime',
         ));
     }
@@ -249,7 +249,7 @@ class Store extends MobileMall {
             }
 
             //商品图片url
-            $goods_list[$key]['goods_image_url'] = cthumb($value['goods_image'], 360, $value['store_id']);
+            $goods_list[$key]['goods_image_url'] = goods_cthumb($value['goods_image'], 360, $value['store_id']);
 
             unset($goods_list[$key]['goods_promotion_type']);
             unset($goods_list[$key]['goods_promotion_price']);
@@ -369,7 +369,7 @@ class Store extends MobileMall {
         //开店时间
         $store_info['store_time_text'] = $store_info['store_add_time'] ? @date('Y-m-d', $store_info['store_add_time']) : '';
         // 店铺头像
-        $store_info['store_avatar'] = getStoreLogo($store_online_info['store_avatar']);
+        $store_info['store_avatar'] = get_store_logo($store_online_info['store_avatar']);
         //商品数
         $store_info['goods_count'] = (int) $store_online_info['goods_count'];
         //店铺被收藏次数
@@ -385,7 +385,7 @@ class Store extends MobileMall {
             $store_info['is_favorate'] = false;
         }
         // 是否官方店铺
-        $store_info['is_own_shop'] = (bool) $store_online_info['is_own_shop'];
+        $store_info['is_platform_store'] = (bool) $store_online_info['is_platform_store'];
         // 页头背景图
         $store_info['mb_title_img'] = $store_online_info['mb_title_img'] ? UPLOAD_SITE_URL . '/' . ATTACH_STORE . '/' . $store_online_info['mb_title_img'] : '';
         // 轮播

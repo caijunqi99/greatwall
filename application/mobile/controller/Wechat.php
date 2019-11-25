@@ -203,7 +203,7 @@ class Wechat
             foreach ($reMsg as $v) {
                 $newsData[$k]['Title'] = $v['goods_name'];
                 $newsData[$k]['Description'] = strip_tags($v['goods_name']);
-                $newsData[$k]['PicUrl'] = cthumb($v['goods_image']);
+                $newsData[$k]['PicUrl'] = goods_cthumb($v['goods_image']);
                 $newsData[$k]['Url'] = WAP_SITE_URL . '/tmpl/product_detail.html?goods_id='.$v['goods_id'];
                 $k++;
             }
@@ -225,7 +225,7 @@ class Wechat
     /**关键字商品信息*/
     public function getGoodsByKey($key)
     {
-        $condi = "(goods_name like '%{$key}%' or goods_jingle like '%{$key}%' or store_name like '%{$key}%')";
+        $condi = "(goods_name like '%{$key}%' or goods_advword like '%{$key}%' or store_name like '%{$key}%')";
         $condi .= " and goods_state = 1 and goods_verify = 1";
         $res=db('goods')->where($condi)->limit(4)->field('goods_id,goods_name,goods_image')->select();
         $res=ds_changeArraykey($res,'goods_id');

@@ -41,7 +41,7 @@ class Memberfavoritesstore extends MobileMember {
             $item['store_collect'] = $store['store_collect'];
 
             $item['store_avatar'] = $store['store_avatar'];
-            $item['store_avatar_url'] = getStoreLogo($store['store_avatar']);
+            $item['store_avatar_url'] = get_store_logo($store['store_avatar']);
 
             $store_list[] = $item;
         }

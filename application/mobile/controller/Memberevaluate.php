@@ -25,7 +25,7 @@ class Memberevaluate extends MobileMember
         $store = array();
         $store['store_id'] = $store_info['store_id'];
         $store['store_name'] = $store_info['store_name'];
-        $store['is_own_shop'] = $store_info['is_own_shop'];
+        $store['is_platform_store'] = $store_info['is_platform_store'];
 
         output_data(array('store_info' => $store, 'order_goods' => $order_goods));
     }
@@ -66,7 +66,7 @@ class Memberevaluate extends MobileMember
         $store = array();
         $store['store_id'] = $store_info['store_id'];
         $store['store_name'] = $store_info['store_name'];
-        $store['is_own_shop'] = $store_info['is_own_shop'];
+        $store['is_platform_store'] = $store_info['is_platform_store'];
 
         output_data(array('store_info' => $store, 'evaluate_goods' => $evaluate_goods));
     }

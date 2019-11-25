@@ -71,7 +71,7 @@ class Sellergoods extends MobileSeller
         foreach ($goods_list as $key => $value) {
             $goods_list[$key]['goods_storage_sum'] = $storage_array[$value['goods_commonid']]['sum'];
             $goods_list[$key]['goods_addtime'] = date('Y-m-d', $goods_list[$key]['goods_addtime']);
-            $goods_list[$key]['goods_image'] = cthumb($goods_list[$key]['goods_image']);
+            $goods_list[$key]['goods_image'] = goods_cthumb($goods_list[$key]['goods_image']);
         }
 
         output_data(array('goods_list' => $goods_list), mobile_page($model_goods->page_info));
@@ -160,7 +160,7 @@ class Sellergoods extends MobileSeller
         $common_id = $_POST['goods_commonid'];
         $model_goods = Model('goods');
 
-        $common_list = $model_goods->getGoodsCommonInfoByID($common_id, 'store_id,goods_lock,spec_value,is_virtual,is_fcode,is_presell');
+        $common_list = $model_goods->getGoodsCommonInfoByID($common_id, 'store_id,goods_lock,spec_value,is_virtual,is_goodsfcode,is_presell');
         if ($common_list['store_id'] != $this->store_info['store_id'] || $common_list['goods_lock'] == 1) {
             output_error('参数错误');
         }
@@ -171,7 +171,7 @@ class Sellergoods extends MobileSeller
         $image_array = array();
         if (!empty($image_list)) {
             foreach ($image_list as $val) {
-                $val['goods_image_url'] = cthumb($val['goods_image'], 240);
+                $val['goods_image_url'] = goods_cthumb($val['goods_image'], 240);
                 $image_array[$val['color_id']]['color_id'] = $val['color_id'];
                 $image_array[$val['color_id']]['spec_name'] = $spec_value['1'][$val['color_id']];
                 $image_array[$val['color_id']]['images'][] = $val;

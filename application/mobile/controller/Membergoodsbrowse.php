@@ -37,7 +37,7 @@ class Membergoodsbrowse extends MobileMember {
                     $tmp = array();
                     $tmp = $goods_list[$v['goods_id']];
                     $tmp["browsetime"] = $v['browsetime'];
-                    $tmp["goods_image_url"] = cthumb($goods_list[$v['goods_id']]['goods_image'], 360, $goods_list[$v['goods_id']]['store_id']);
+                    $tmp["goods_image_url"] = goods_cthumb($goods_list[$v['goods_id']]['goods_image'], 360, $goods_list[$v['goods_id']]['store_id']);
                     if (date('Y-m-d', $v['browsetime']) == date('Y-m-d', time())) {
                         $tmp['browsetime_day'] = '今天';
                     } elseif (date('Y-m-d', $v['browsetime']) == date('Y-m-d', (time() - 86400))) {
