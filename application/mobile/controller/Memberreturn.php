@@ -180,7 +180,7 @@ class Memberreturn extends MobileMember
                     $val['delay_state'] = '1';
                 }
                 $val['order_id'] = $v['order_id'];
-                $val['refund_amount'] = dsPriceFormat($v['refund_amount']);
+                $val['refund_amount'] = ds_price_format($v['refund_amount']);
                 $val['refund_sn'] = $v['refund_sn'];
                 $val['return_type'] = $v['return_type'];
                 $val['order_sn'] = $v['order_sn'];
@@ -233,7 +233,7 @@ class Memberreturn extends MobileMember
                 $refund['invoice_no'] = $refund_info['invoice_no'];
             }
             $refund['order_id'] = $refund_info['order_id'];
-            $refund['refund_amount'] = dsPriceFormat($refund_info['refund_amount']);
+            $refund['refund_amount'] = ds_price_format($refund_info['refund_amount']);
             $refund['refund_sn'] = $refund_info['refund_sn'];
             $refund['return_type'] = $refund_info['return_type'];
             $refund['order_sn'] = $refund_info['order_sn'];
@@ -265,9 +265,9 @@ class Memberreturn extends MobileMember
             $detail_array = array();
             if (!empty($detail_info) && $detail_info['refund_state'] == 2) {
                 $detail_array['refund_code'] = orderPaymentName($detail_info['refund_code']);
-                $detail_array['pay_amount'] = dsPriceFormat($detail_info['pay_amount']);
-                $detail_array['pd_amount'] = dsPriceFormat($detail_info['pd_amount']);
-                $detail_array['rcb_amount'] = dsPriceFormat($detail_info['rcb_amount']);
+                $detail_array['pay_amount'] = ds_price_format($detail_info['pay_amount']);
+                $detail_array['pd_amount'] = ds_price_format($detail_info['pd_amount']);
+                $detail_array['rcb_amount'] = ds_price_format($detail_info['rcb_amount']);
             }
             output_data(array('return_info' => $refund, 'pic_list' => $pic_list, 'detail_array' => $detail_array));
         }

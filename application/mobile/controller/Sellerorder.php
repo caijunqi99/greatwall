@@ -70,7 +70,7 @@ class Sellerorder extends MobileSeller
     public function order_ship_price()
     {
         $order_id = intval($_POST['order_id']);
-        $shipping_fee = dsPriceFormat($_POST['shipping_fee']);
+        $shipping_fee = ds_price_format($_POST['shipping_fee']);
         $model_order = Model('order');
         $condition = array();
         $condition['order_id'] = $order_id;

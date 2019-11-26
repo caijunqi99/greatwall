@@ -53,7 +53,7 @@ class Memberbuy extends MobileMember
             if (!empty($data_area) && $data_area['state'] == 'success') {
                 if (is_array($data_area['content'])) {
                     foreach ($data_area['content'] as $store_id => $value) {
-                        $data_area['content'][$store_id] = dsPriceFormat($value);
+                        $data_area['content'][$store_id] = ds_price_format($value);
                     }
                 }
             }
@@ -74,7 +74,7 @@ class Memberbuy extends MobileMember
             if (is_array($result['store_voucher_list'][$key]) && count($result['store_voucher_list'][$key]) > 0) {
                 current($result['store_voucher_list'][$key]);
                 $store_cart_list[$key]['store_voucher_info'] = reset($result['store_voucher_list'][$key]);
-                $store_cart_list[$key]['store_voucher_info']['voucher_price'] = dsPriceFormat($store_cart_list[$key]['store_voucher_info']['voucher_price']);
+                $store_cart_list[$key]['store_voucher_info']['voucher_price'] = ds_price_format($store_cart_list[$key]['store_voucher_info']['voucher_price']);
                 $store_cart_list[$key]['store_voucher_info']['voucher_end_date_text']=date('Y年m月d日',$store_cart_list[$key]['store_voucher_info']['voucher_end_date']);
                 $store_total_list[$key] = $store_cart_list[$key]['store_voucher_info']['voucher_price'];
             }
@@ -100,7 +100,7 @@ class Memberbuy extends MobileMember
         $buy_list['vat_hash'] = $result['vat_hash'];
         $buy_list['inv_info'] = $result['inv_info'];
         $buy_list['available_predeposit'] = isset($result['available_predeposit'])?$result['available_predeposit']:array();
-        $buy_list['available_rc_balance'] = isset($result['available_rc_balance'])?$result['available_rc_balance']:array();
+        // $buy_list['available_rc_balance'] = isset($result['available_rc_balance'])?$result['available_rc_balance']:array();
         if (isset($result['rpt_list']) && !empty($result['rpt_list'])) {
             foreach ($result['rpt_list'] as $k => $v) {
                 unset($result['rpt_list'][$k]['rpacket_id']);
@@ -117,23 +117,23 @@ class Memberbuy extends MobileMember
             $store_total_list = model('buy_1','logic')->reCalcGoodsTotal($store_total_list, $data_area['content'], 'freight');
 
             //返回可用平台红包
-            $result['rpt_list'] = model('buy_1','logic')->getStoreAvailableRptList($this->member_info['member_id'], array_sum($store_total_list), 'rpacket_limit desc');
-            reset($result['rpt_list']);
-            if (is_array($result['rpt_list']) && count($result['rpt_list']) > 0) {
-                $result['rpt_info'] = current($result['rpt_list']);
-                unset($result['rpt_info']['rpacket_id']);
-                unset($result['rpt_info']['rpacket_end_date']);
-                unset($result['rpt_info']['rpacket_owner_id']);
-                unset($result['rpt_info']['rpacket_code']);
-            }
+            // $result['rpt_list'] = model('buy_1','logic')->getStoreAvailableRptList($this->member_info['member_id'], array_sum($store_total_list), 'rpacket_limit desc');
+            // reset($result['rpt_list']);
+            // if (is_array($result['rpt_list']) && count($result['rpt_list']) > 0) {
+            //     $result['rpt_info'] = current($result['rpt_list']);
+            //     unset($result['rpt_info']['rpacket_id']);
+            //     unset($result['rpt_info']['rpacket_end_date']);
+            //     unset($result['rpt_info']['rpacket_owner_id']);
+            //     unset($result['rpt_info']['rpacket_code']);
+            // }
         }
         $rpacket_price=isset($result['rpt_info']['rpacket_price']) ? $result['rpt_info']['rpacket_price']:'';
-        $buy_list['order_amount'] = dsPriceFormat(array_sum($store_total_list) - $rpacket_price);
+        $buy_list['order_amount'] = ds_price_format(array_sum($store_total_list) - $rpacket_price);
         $buy_list['rpt_info'] = isset($result['rpt_info']) ? $result['rpt_info'] : array();
         $buy_list['address_api'] = $data_area ? $data_area : '';
 
         foreach ($store_total_list as $store_id => $value) {
-            $store_total_list[$store_id] = dsPriceFormat($value);
+            $store_total_list[$store_id] = ds_price_format($value);
         }
         $buy_list['store_final_total_list'] = $store_total_list;
 
@@ -328,16 +328,16 @@ class Memberbuy extends MobileMember
         }
         //显示预存款、支付密码、充值卡
         $pay['member_available_pd'] = $this->member_info['available_predeposit'];
-        $pay['member_available_rcb'] = $this->member_info['available_rc_balance'];
+        // $pay['member_available_rcb'] = $this->member_info['available_rc_balance'];
         $pay['member_paypwd'] = $this->member_info['member_paypwd'] ? true : false;
         $pay['pay_sn'] = $pay_sn;
-        $pay['payed_amount'] = dsPriceFormat($pay['payed_rcb_amount'] + $pay['payed_pd_amount']);
+        $pay['payed_amount'] = ds_price_format($pay['payed_rcb_amount'] + $pay['payed_pd_amount']);
         unset($pay['payed_pd_amount']);
         unset($pay['payed_rcb_amount']);
-        $pay['pay_amount'] = dsPriceFormat($pay['pay_diff_amount']);
+        $pay['pay_amount'] = ds_price_format($pay['pay_diff_amount']);
         unset($pay['pay_diff_amount']);
-        $pay['member_available_pd'] = dsPriceFormat($pay['member_available_pd']);
-        $pay['member_available_rcb'] = dsPriceFormat($pay['member_available_rcb']);
+        $pay['member_available_pd'] = ds_price_format($pay['member_available_pd']);
+        $pay['member_available_rcb'] = ds_price_format($pay['member_available_rcb']);
         $pay['payment_list'] = $payment_list ? array_values($payment_list) : array();
         output_data(array('pay_info' => $pay));
     }

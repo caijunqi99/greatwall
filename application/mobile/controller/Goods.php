@@ -305,52 +305,39 @@ class Goods extends MobileMall {
 
         $goods_detail['goods_commend_list'] = $goods_commend_list;
         $store_info = Model('store')->getStoreInfoByID($goods_detail['goods_info']['store_id']);
-
         $goods_detail['store_info']['store_id'] = $store_info['store_id'];
         $goods_detail['store_info']['store_name'] = $store_info['store_name'];
+        $goods_detail['store_info']['store_phone'] = $store_info['store_phone'];
         $goods_detail['store_info']['member_id'] = $store_info['member_id'];
         $goods_detail['store_info']['member_name'] = $store_info['member_name'];
         $goods_detail['store_info']['is_platform_store'] = $store_info['is_platform_store'];
 
         $goods_detail['store_info']['goods_count'] = $store_info['goods_count'];
+        $goods_detail['store_info']['store_credit'] = $store_info['store_credit'];
 
-        if ($store_info['is_platform_store']) {
-            $goods_detail['store_info']['store_credit'] = array(
-                'store_desccredit' => array(
-                    'text' => '描述',
-                    'credit' => 5,
-                    'percent' => '----',
-                    'percent_class' => 'equal',
-                    'percent_text' => '平',
-                ),
-                'store_servicecredit' => array(
-                    'text' => '服务',
-                    'credit' => 5,
-                    'percent' => '----',
-                    'percent_class' => 'equal',
-                    'percent_text' => '平',
-                ),
-                'store_deliverycredit' => array(
-                    'text' => '物流',
-                    'credit' => 5,
-                    'percent' => '----',
-                    'percent_class' => 'equal',
-                    'percent_text' => '平',
-                ),
-            );
-        } else {
-            $storeCredit = array();
-            $percentClassTextMap = array(
-                'equal' => '平',
-                'high' => '高',
-                'low' => '低',
-            );
-            foreach ((array) $store_info['store_credit'] as $k => $v) {
-                $v['percent_text'] = $percentClassTextMap[$v['percent_class']];
-                $storeCredit[$k] = $v;
-            }
-            $goods_detail['store_info']['store_credit'] = $storeCredit;
-        }
+        // $goods_detail['store_info']['store_credit'] = array(
+        //     'store_desccredit' => array(
+        //         'text' => '描述',
+        //         'credit' => 5,
+        //         'percent' => '----',
+        //         'percent_class' => 'equal',
+        //         'percent_text' => '平',
+        //     ),
+        //     'store_servicecredit' => array(
+        //         'text' => '服务',
+        //         'credit' => 5,
+        //         'percent' => '----',
+        //         'percent_class' => 'equal',
+        //         'percent_text' => '平',
+        //     ),  
+        //     'store_deliverycredit' => array(
+        //         'text' => '物流',
+        //         'credit' => 5,
+        //         'percent' => '----',
+        //         'percent_class' => 'equal',
+        //         'percent_text' => '平',
+        //     ),
+        // );
 
         //商品详细信息处理
         $goods_detail = $this->_goods_detail_extend($goods_detail);

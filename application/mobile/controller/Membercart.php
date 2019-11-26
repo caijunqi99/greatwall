@@ -8,7 +8,7 @@ class Membercart extends MobileMember {
 
     public function _initialize() {
         parent::_initialize();
-        Lang::load(APP_PATH . 'mobile\lang\zh-cn\membercart.lang.php');
+        Lang::load(APP_PATH . 'home/lang/'.config('default_lang').'/cart.lang.php');
     }
 
     /**
@@ -18,7 +18,7 @@ class Membercart extends MobileMember {
         $model_cart = Model('cart');
 
         $condition = array('buyer_id' => $this->member_info['member_id']);
-        $cart_list = $model_cart->listCart('db', $condition);
+        $cart_list = $model_cart->getCartList('db', $condition);
 
         // 购物车列表 [得到最新商品属性及促销信息]
         $cart_list = model('buy_1','logic')->getGoodsCartList($cart_list);
@@ -44,7 +44,7 @@ class Membercart extends MobileMember {
                 $cart_a[$val['store_id']]['goods'][$key]['goods_price'] = $goods_data['goods_promotion_price'];
             }
             $cart_a[$val['store_id']]['goods'][$key]['gift_list'] = isset($val['gift_list'])?$val['gift_list']:'';
-            $cart_list[$key]['goods_sum'] = dsPriceFormat($val['goods_price'] * $val['goods_num']);
+            $cart_list[$key]['goods_sum'] = ds_price_format($val['goods_price'] * $val['goods_num']);
             $sum += $cart_list[$key]['goods_sum'];
             $k++;
         }
@@ -55,58 +55,84 @@ class Membercart extends MobileMember {
 
         $cart_b=array_values($cart_l);
 
-        output_data(array('cart_list' => $cart_a, 'sum' => dsPriceFormat($sum), 'cart_count' => count($cart_list),'cart_val'=>$cart_b));
+        output_data(array('cart_list' => $cart_a, 'sum' => ds_price_format($sum), 'cart_count' => count($cart_list),'cart_val'=>$cart_b));
     }
 
     /**
      * 购物车添加
      */
     public function cart_add() {
-        $goods_id = intval($_POST['goods_id']);
-        $quantity = intval($_POST['quantity']);
-        if ($goods_id <= 0 || $quantity <= 0) {
-            output_error('参数错误');
+        $goods_model = model('goods');
+        $logic_buy_1 =  model('buy_1','logic');
+        $goods_id = intval(input('param.goods_id'));
+        $quantity = intval(input('param.quantity'));
+        $bl_id = intval(input('param.bl_id'));
+        if (is_numeric($goods_id) && $goods_id>0) {
+            //商品加入购物车(默认)
+            if ($goods_id <= 0)
+                return;
+            $goods_info = $goods_model->getGoodsOnlineInfoAndPromotionById($goods_id);
+            //抢购
+            $logic_buy_1->getGroupbuyInfo($goods_info, $quantity);
+
+            //限时折扣
+            $logic_buy_1->getXianshiInfo($goods_info, $quantity);
+            
+            //会员等级折扣
+            $logic_buy_1->getMgdiscountInfo($goods_info);
+
+            $this->_check_goods($goods_info, $quantity);
+        } elseif (is_numeric($bl_id)&& $bl_id>0 ) {
+            //优惠套装加入购物车(单套)
+            if (!$this->member_info['member_id']) {
+                exit(json_encode(array('msg' => lang('please_login_first'), 'UTF-8')));
+            }
+            if ($bl_id <= 0)
+                return;
+            $pbundling_model = model('pbundling');
+            $bl_info = $pbundling_model->getBundlingInfo(array('bl_id' => $bl_id));
+            if (empty($bl_info) || $bl_info['bl_state'] == '0') {
+                output_error(lang('recommendations_buy_separately'));
+            }
+
+            //检查每个商品是否符合条件,并重新计算套装总价
+            $bl_goods_list = $pbundling_model->getBundlingGoodsList(array('bl_id' => $bl_id));
+            $goods_id_array = array();
+            $bl_amount = 0;
+            foreach ($bl_goods_list as $goods) {
+                $goods_id_array[] = $goods['goods_id'];
+                $bl_amount += $goods['blgoods_price'];
+            }
+            $goods_model = model('goods');
+            $goods_list = $goods_model->getGoodsOnlineListAndPromotionByIdArray($goods_id_array);
+            foreach ($goods_list as $goods) {
+                $this->_check_goods($goods, 1);
+            }
+
+            //优惠套装作为一条记录插入购物车，图片取套装内的第一个商品图
+            $goods_info = array();
+            
+            $goods_info['store_id'] = $bl_info['store_id'];
+            $goods_info['goods_id'] = $goods_list[0]['goods_id'];
+            $goods_info['goods_name'] = $bl_info['bl_name'];
+            $goods_info['goods_price'] = $bl_amount;
+            $goods_info['goods_num'] = 1;
+            $goods_info['goods_image'] = $goods_list[0]['goods_image'];
+            $goods_info['store_name'] = $bl_info['store_name'];
+            $goods_info['bl_id'] = $bl_id;
+            $quantity = 1;
         }
-
-        $model_goods = Model('goods');
-        $model_cart = Model('cart');
-        $logic_buy_1 = model('buy_1','logic');
-
-        $goods_info = $model_goods->getGoodsOnlineInfoAndPromotionById($goods_id);
-
-        //验证是否可以购买
-        if (empty($goods_info)) {
-            output_error('商品已下架或不存在');
-        }
-
-        //抢购
-        $logic_buy_1->getGroupbuyInfo($goods_info);
-
-        //限时折扣
-        $logic_buy_1->getXianshiInfo($goods_info, $quantity);
-
-        if ($goods_info['store_id'] == $this->member_info['store_id']) {
-            output_error('不能购买自己发布的商品');
-        }
-        if (intval($goods_info['goods_storage']) < 1 || intval($goods_info['goods_storage']) < $quantity) {
-            output_error('库存不足');
-        }
-
-        $param = array();
-        $param['buyer_id'] = $this->member_info['member_id'];
-        $param['store_id'] = $goods_info['store_id'];
-        $param['goods_id'] = $goods_info['goods_id'];
-        $param['goods_name'] = $goods_info['goods_name'];
-        $param['goods_price'] = $goods_info['goods_price'];
-        $param['goods_image'] = $goods_info['goods_image'];
-        $param['store_name'] = $goods_info['store_name'];
-
-        $result = $model_cart->addCart($param, 'db', $quantity);
-        if ($result) {
-            output_data('1');
+        $save_type = 'db';
+        $goods_info['buyer_id'] = $this->member_info['member_id'];
+        $cart_model = model('cart');
+        $insert = $cart_model->addCart($goods_info, $save_type, $quantity);
+        if ($insert) {
+            $data = array('state' => 'true', 'num' => $cart_model->cart_goods_num, 'amount' => ds_price_format($cart_model->cart_all_price));
         } else {
-            output_error('加入购物车失败');
+            $data = array('state' => 'false','message'=>$cart_model->error_message);
         }
+        output_data($data);
+
     }
 
     /**
@@ -132,42 +158,103 @@ class Membercart extends MobileMember {
      * 更新购物车购买数量
      */
     public function cart_edit_quantity() {
-        $cart_id = intval(abs($_POST['cart_id']));
-        $quantity = intval(abs($_POST['quantity']));
+        $cart_id = intval(abs(input('param.cart_id')));
+        $quantity = intval(abs(input('param.quantity')));
+
         if (empty($cart_id) || empty($quantity)) {
-            output_error('参数错误');
+            output_error(lang('cart_update_buy_fail'));
         }
+        $cart_model = model('cart');
+        $goods_model = model('goods');
+        $logic_buy_1 =  model('buy_1','logic');
 
-        $model_cart = Model('cart');
+        //存放返回信息
+        $return = array();
 
-        $cart_info = $model_cart->getCartInfo(array('cart_id' => $cart_id, 'buyer_id' => $this->member_info['member_id']));
+        $cart_info = $cart_model->getCartInfo(array('cart_id' => $cart_id, 'buyer_id' => $this->member_info['member_id']));
+        if ($cart_info['bl_id'] == '0') {
 
-        //检查是否为本人购物车
-        if ($cart_info['buyer_id'] != $this->member_info['member_id']) {
-            output_error('参数错误');
-        }
+            //普通商品
+            $goods_id = intval($cart_info['goods_id']);
+            $goods_info = $logic_buy_1->getGoodsOnlineInfo($goods_id, $quantity);
+            if (empty($goods_info)) {
+                $return['state'] = 'invalid';
+                $return['msg'] = lang('merchandise_off_shelves');
+                $return['subtotal'] = 0;
+                \mall\queue\QueueClient::push('delCart', array('buyer_id' => $this->member_info['member_id'], 'cart_ids' => array($cart_id)));
+                output_error(lang('merchandise_off_shelves'));
+            }
+            
+//            //抢购
+//            $logic_buy_1->getGroupbuyInfo($goods_info, $quantity);
+//            //限时折扣
+//            $logic_buy_1->getXianshiInfo($goods_info, $quantity);
+            
+            $quantity = $goods_info['goods_num'];
 
-        //检查库存是否充足
-        if (!$this->_check_goods_storage($cart_info, $quantity, $this->member_info['member_id'])) {
-            output_error('超出限购数或库存不足');
+            if (intval($goods_info['goods_storage']) < $quantity) {
+                $return['state'] = 'shortage';
+                $return['msg'] = lang('cart_add_too_much');
+                $return['goods_num'] = $goods_info['goods_num'];
+                $return['goods_price'] = $goods_info['goods_price'];
+                $return['subtotal'] = $goods_info['goods_price'] * $quantity;
+                $cart_model->editCart(array('goods_num' => $goods_info['goods_storage']), array('cart_id' => $cart_id, 'buyer_id' => $this->member_info['member_id']));
+                output_data($return);
+                // exit(json_encode($return));
+            }
+        } else {
+
+            //优惠套装商品
+            $pbundling_model = model('pbundling');
+            $bl_goods_list = $pbundling_model->getBundlingGoodsList(array('bl_id' => $cart_info['bl_id']));
+            $goods_id_array = array();
+            foreach ($bl_goods_list as $goods) {
+                $goods_id_array[] = $goods['goods_id'];
+            }
+            $goods_list = $goods_model->getGoodsOnlineListAndPromotionByIdArray($goods_id_array);
+
+            //如果其中有商品下架，删除
+            if (count($goods_list) != count($goods_id_array)) {
+                $return['state'] = 'invalid';
+                $return['msg'] = lang('wheatsuit_no_longer_valid');
+                $return['subtotal'] = 0;
+                \mall\queue\QueueClient::push('delCart', array('buyer_id' => $this->member_info['member_id'], 'cart_ids' => array($cart_id)));
+                output_error(lang('wheatsuit_no_longer_valid'));
+                // exit(json_encode($return));
+            }
+
+            //如果有商品库存不足，更新购买数量到目前最大库存
+            foreach ($goods_list as $goods_info) {
+                if ($quantity > $goods_info['goods_storage']) {
+                    $return['state'] = 'shortage';
+                    $return['msg'] = lang('preferential_suit_understock');
+                    $return['goods_num'] = $goods_info['goods_storage'];
+                    $return['goods_price'] = $cart_info['goods_price'];
+                    $return['subtotal'] = $cart_info['goods_price'] * $quantity;
+                    $cart_model->editCart(array('goods_num' => $goods_info['goods_storage']), array('cart_id' => $cart_id, 'buyer_id' => $this->member_info['member_id']));
+                    output_data($return);
+                    exit(json_encode($return));
+                    break;
+                }
+            }
+            $goods_info['goods_price'] = $cart_info['goods_price'];
         }
 
         $data = array();
         $data['goods_num'] = $quantity;
-
-        $where['cart_id']= $cart_id;
-        $where['buyer_id']=$cart_info['buyer_id'];
-
-        $update = $model_cart->editCart($data, $where);
+        $data['goods_price'] = $goods_info['goods_price'];
+        $update = $cart_model->editCart($data, array('cart_id' => $cart_id, 'buyer_id' => $this->member_info['member_id']));
         if ($update) {
             $return = array();
             $return['quantity'] = $quantity;
-            $return['goods_price'] = dsPriceFormat($cart_info['goods_price']);
-            $return['total_price'] = dsPriceFormat($cart_info['goods_price'] * $quantity);
+            $return['goods_price'] = ds_price_format($goods_info['goods_price']);
+            $return['total_price'] = ds_price_format($goods_info['goods_price'] * $quantity);
             output_data($return);
         } else {
-            output_error('修改失败');
+            output_error(lang('cart_update_buy_fail'));
+            // $return = array('msg' => lang('cart_update_buy_fail'));
         }
+        // exit(json_encode($return));
     }
 
     /**
@@ -225,6 +312,35 @@ class Membercart extends MobileMember {
         // $count = $model_cart->countCartByMemberId($this->member_info['member_id']);
         $data['cart_count'] = 1;
         output_data($data);
+    }
+
+
+    /**
+     * 检查商品是否符合加入购物车条件
+     * @param unknown $goods
+     * @param number $quantity
+     */
+    private function _check_goods($goods_info, $quantity) {
+        if (empty($quantity)) {
+            output_error(lang('param_error'));
+        }
+        if (empty($goods_info)) {
+            output_error(lang('cart_add_goods_not_exists'));
+        }
+        if ($goods_info['store_id'] == $this->member_info['store_id']) {
+            output_error(lang('cart_add_cannot_buy'));
+        }
+        if (intval($goods_info['goods_storage']) < 1) {
+            output_error(lang('cart_add_stock_shortage'));
+        }
+        if (intval($goods_info['goods_storage']) < $quantity) {
+            output_error(lang('cart_add_too_much'));
+        }
+
+        if ($goods_info['is_virtual'] || $goods_info['is_goodsfcode'] || $goods_info['is_presell']) {
+            output_error(lang('please_purchase_directly'));
+        }
+
     }
 
 }
