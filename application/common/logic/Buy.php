@@ -236,9 +236,9 @@ class Buy extends Model
         if (floatval($buyer_info['available_predeposit']) > 0) {
             $result['available_predeposit'] = $buyer_info['available_predeposit'];
         }
-        if (floatval($buyer_info['available_rc_balance']) > 0) {
-            $result['available_rc_balance'] = $buyer_info['available_rc_balance'];
-        }
+        // if (floatval($buyer_info['available_rc_balance']) > 0) {
+        //     $result['available_rc_balance'] = $buyer_info['available_rc_balance'];
+        // }
         $result['member_paypwd'] = $buyer_info['member_paypwd'] ? true : false;
 
         return ds_callback(true, '', $result);

@@ -116,6 +116,11 @@ class Storelist extends MobileMall {
             $list[$k]['goods_count']          =isset($v['goods_count'])?$v['goods_count']:0; //商品总数
             $list[$k]['store_credit_percent'] =$v['store_credit_percent']; //好评率
             $list[$k]['store_credit']         =$v['store_credit']; //描述相符 服务态度 发货速度
+
+            foreach ($v['search_list_goods'] as $key => &$value) {
+                $value['goods_image'] = goods_cthumb($value['goods_image'],240,$value['store_id']);
+            }
+            unset($value);
             $list[$k]['search_list_goods']    =$v['search_list_goods']; //商品列表
         }
         // p($store_list);exit;

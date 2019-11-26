@@ -22,7 +22,7 @@ class Login extends MobileMall
         $username = input('param.username');
         $password = input('param.password');
         $client = input('param.client');
-        
+            
         if (empty($username) || empty($password) || !in_array($client, $this->client_type_array)) {
             output_error('登录失败');
         }
@@ -46,7 +46,6 @@ class Login extends MobileMall
             $array['member_password'] = md5($password);
             $member_info = $model_member->getMemberInfo($array);
         }
-
         if (is_array($member_info) && !empty($member_info)) {
             $token = $this->_get_token($member_info['member_id'], $member_info['member_name'], $client);
             if ($token) {

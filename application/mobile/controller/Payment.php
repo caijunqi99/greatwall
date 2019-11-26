@@ -264,7 +264,7 @@ class Payment extends MobileMall
             //记录消费日志
             \mall\queue\QueueClient::push('addConsume', array(
                 'member_id' => $log_buyer_id, 'member_name' => $log_buyer_name,
-                'consume_amount' => dsPriceFormat($api_pay_amount), 'consume_time' => TIMESTAMP,
+                'consume_amount' => ds_price_format($api_pay_amount), 'consume_time' => TIMESTAMP,
                 'consume_remark' => $log_desc
             ));
         }

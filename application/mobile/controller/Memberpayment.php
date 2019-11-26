@@ -275,7 +275,7 @@ class Memberpayment extends MobileMember
         }else {
             $result['data']['pay_end']=0;
         }
-        $result['data']['api_pay_amount'] = dsPriceFormat($pay_amount);
+        $result['data']['api_pay_amount'] = ds_price_format($pay_amount);
         //临时注释
         //$update = Model('order')->editOrder(array('api_pay_time'=>TIMESTAMP),array('order_id'=>array('in',$pay_order_id_list)));
         //if(!$update) {
@@ -322,7 +322,7 @@ class Memberpayment extends MobileMember
             $result['data']['pay_end']=0;
         }
 
-        $result['data']['api_pay_amount'] = dsPriceFormat($pay_amount);
+        $result['data']['api_pay_amount'] = ds_price_format($pay_amount);
         //临时注释
         //$update = Model('order')->editOrder(array('api_pay_time'=>TIMESTAMP),array('order_id'=>$result['data']['order_id']));
         //if(!$update) {
@@ -330,7 +330,7 @@ class Memberpayment extends MobileMember
         //}       
         //计算本次需要在线支付的订单总金额
         $pay_amount = $result['data']['order_amount'] - $result['data']['pd_amount'] - $result['data']['rcb_amount'];
-        $result['data']['api_pay_amount'] = dsPriceFormat($pay_amount);
+        $result['data']['api_pay_amount'] = ds_price_format($pay_amount);
 
         return $result;
     }

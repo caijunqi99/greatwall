@@ -41,12 +41,12 @@ class Memberrefund extends MobileMember
             $order = array();
             $order['order_id'] = $order_info['order_id'];
             //$order['order_type'] = $order_info['order_type'];
-            $order['order_amount'] = dsPriceFormat($order_info['order_amount']);
+            $order['order_amount'] = ds_price_format($order_info['order_amount']);
             $order['order_sn'] = $order_info['order_sn'];
             $order['store_name'] = $order_info['store_name'];
             $order['store_id'] = $order_info['store_id'];
-            $order['allow_refund_amount'] = dsPriceFormat($order_info['order_amount'] - $book_amount);//可退款金额
-            $order['book_amount'] = dsPriceFormat($book_amount);
+            $order['allow_refund_amount'] = ds_price_format($order_info['order_amount'] - $book_amount);//可退款金额
+            $order['book_amount'] = ds_price_format($book_amount);
 
             $goods_list = array();
             $gift_list = array();
@@ -108,7 +108,7 @@ class Memberrefund extends MobileMember
         }
         else {
             $book_amount = $order_info['refund_amount'];//退款金额
-            $allow_refund_amount = dsPriceFormat($order_info['order_amount'] - $book_amount);//可退款金额
+            $allow_refund_amount = ds_price_format($order_info['order_amount'] - $book_amount);//可退款金额
 
             $refund_array = array();
             $refund_array['refund_type'] = '1';//类型:1为退款,2为退货
@@ -119,7 +119,7 @@ class Memberrefund extends MobileMember
             $refund_array['reason_id'] = '0';
             $refund_array['reason_info'] = '取消订单，全部退款';
             $refund_array['goods_name'] = '订单商品全部退款';
-            $refund_array['refund_amount'] = dsPriceFormat($allow_refund_amount);
+            $refund_array['refund_amount'] = ds_price_format($allow_refund_amount);
             $refund_array['buyer_message'] = $_POST['buyer_message'];
             $refund_array['add_time'] = time();
 
@@ -162,7 +162,7 @@ class Memberrefund extends MobileMember
             $order = array();
             $order['order_id'] = $order_info['order_id'];
             //$order['order_type'] = $order_info['order_type'];
-            $order['order_amount'] = dsPriceFormat($order_info['order_amount']);
+            $order['order_amount'] = ds_price_format($order_info['order_amount']);
             $order['order_sn'] = $order_info['order_sn'];
             $order['store_name'] = $order_info['store_name'];
             $order['store_id'] = $order_info['store_id'];
@@ -177,7 +177,7 @@ class Memberrefund extends MobileMember
             $goods['goods_name'] = $goods_info['goods_name'];
             $goods['goods_type'] = orderGoodsType($goods_info['goods_type']);
             $goods['goods_img_360'] = thumb($goods_info, 360);
-            $goods['goods_price'] = dsPriceFormat($goods_info['goods_price']);
+            $goods['goods_price'] = ds_price_format($goods_info['goods_price']);
             //$goods['goods_spec'] = $goods_info['goods_spec'];
             $goods['goods_num'] = $goods_info['goods_num'];
 
@@ -187,7 +187,7 @@ class Memberrefund extends MobileMember
             if ($order_amount < ($goods_pay_price + $order_refund_amount)) {
                 $goods_pay_price = $order_amount - $order_refund_amount;
             }
-            $goods['goods_pay_price'] = dsPriceFormat($goods_pay_price);
+            $goods['goods_pay_price'] = ds_price_format($goods_pay_price);
             output_data(array('order' => $order, 'goods' => $goods, 'reason_list' => $reason_list));
         }
         else {
@@ -266,7 +266,7 @@ class Memberrefund extends MobileMember
                 $refund_array['return_type'] = '1';
             }
             $refund_array['seller_state'] = '1';//状态:1为待审核,2为同意,3为不同意
-            $refund_array['refund_amount'] = dsPriceFormat($refund_amount);
+            $refund_array['refund_amount'] = ds_price_format($refund_amount);
             $refund_array['goods_num'] = $goods_num;
             $refund_array['buyer_message'] = $_POST['buyer_message'];
             $refund_array['add_time'] = time();
@@ -341,7 +341,7 @@ class Memberrefund extends MobileMember
                 $val = array();
                 $val['refund_id'] = $v['refund_id'];
                 $val['order_id'] = $v['order_id'];
-                $val['refund_amount'] = dsPriceFormat($v['refund_amount']);
+                $val['refund_amount'] = ds_price_format($v['refund_amount']);
                 $val['refund_sn'] = $v['refund_sn'];
                 $val['order_sn'] = $v['order_sn'];
                 $val['add_time'] = date("Y-m-d H:i:s", $v['add_time']);
@@ -405,7 +405,7 @@ class Memberrefund extends MobileMember
             $refund['goods_id'] = $refund_info['goods_id'];
             $refund['goods_name'] = $refund_info['goods_name'];
             $refund['order_id'] = $refund_info['order_id'];
-            $refund['refund_amount'] = dsPriceFormat($refund_info['refund_amount']);
+            $refund['refund_amount'] = ds_price_format($refund_info['refund_amount']);
             $refund['refund_sn'] = $refund_info['refund_sn'];
             $refund['order_sn'] = $refund_info['order_sn'];
             $refund['add_time'] = date("Y-m-d H:i:s", $refund_info['add_time']);
@@ -436,9 +436,9 @@ class Memberrefund extends MobileMember
             $detail_array = array();
             if (!empty($detail_info) && $detail_info['refund_state'] == 2) {
                 $detail_array['refund_code'] = orderPaymentName($detail_info['refund_code']);
-                $detail_array['pay_amount'] = dsPriceFormat($detail_info['pay_amount']);
-                $detail_array['pd_amount'] = dsPriceFormat($detail_info['pd_amount']);
-                $detail_array['rcb_amount'] = dsPriceFormat($detail_info['rcb_amount']);
+                $detail_array['pay_amount'] = ds_price_format($detail_info['pay_amount']);
+                $detail_array['pd_amount'] = ds_price_format($detail_info['pd_amount']);
+                $detail_array['rcb_amount'] = ds_price_format($detail_info['rcb_amount']);
             }
             output_data(array('refund' => $refund, 'pic_list' => $pic_list, 'detail_array' => $detail_array));
         }
