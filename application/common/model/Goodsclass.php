@@ -457,6 +457,11 @@ class Goodsclass extends Model
         }
         return $type_brands;
     }
+
+    public function getHotClass($gcid){
+        return $this::_getGoodsclassnavById($gcid);
+    }
+
     /**
      * 获取商品分类导航
      * @access public

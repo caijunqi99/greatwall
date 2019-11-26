@@ -94,27 +94,34 @@ class Goodsclass extends MobileMall {
      */
     public function get_child_all() {
         $gc_id = intval(input('param.gc_id'));
-        $model_classnav = Model('Goodsclassnav');
-        // $navmenu  = array_column($classnav,null,'gc_id');
-        $classnav = $model_classnav->getGoodsclassnavInfoByGcId($gc_id,'goodscn_adv1,goodscn_adv1_link,goodscn_adv2,goodscn_adv2_link');
+        $model_class = Model('Goodsclass');
+        $classnav = $model_class->getHotClass($gc_id);
         $data = array();
         if ($gc_id > 0) {
             $data = $this->_get_class_list($gc_id);
             if (!empty($data['class_list'])) {
                 if (!empty($classnav)) {
                     //把一维数组 刷成二维数组 给APP端
-                    $adv = [
-                        [
-                            'goodscn_adv1'      =>$classnav['goodscn_adv1'],
-                            'goodscn_adv1_link' =>$classnav['goodscn_adv1_link'],
-                        ],
-                        [
-                            'goodscn_adv2'      =>$classnav['goodscn_adv2'],
-                            'goodscn_adv2_link' =>$classnav['goodscn_adv2_link'],
-                        ]
-                    ];
+                    $adv = [];
+                    $adv[0]=[
+                            'goodscn_adv'      =>isset($classnav['goodscn_adv1'])?$classnav['goodscn_adv1']:'',
+                            'goodscn_adv_link' =>isset($classnav['goodscn_adv1_link'])?$classnav['goodscn_adv1_link']:''
+                        ];
+                    $adv[1]=[
+                            'goodscn_adv'      =>isset($classnav['goodscn_adv2'])?$classnav['goodscn_adv2']:'',
+                            'goodscn_adv_link' =>isset($classnav['goodscn_adv2_link'])?$classnav['goodscn_adv2_link']:''
+                        ];
+                    
+        
+                    //热门推荐
+                    $data['hot_list'] = $classnav['cn_classs'];
+                    //分类轮播图
                     $data['adv_list'] = $adv;
+                    foreach ($data['hot_list'] as $k => $v) {
+                        $data['hot_list'][$k]['image'] = goodsclass_image($v['gc_id']);
+                    }
                 }else{
+                    $data['hot_list'] = [];
                     $data['adv_list'] = [];
                 }
                 foreach ($data['class_list'] as $key => $val) {
