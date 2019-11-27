@@ -107,14 +107,17 @@
           <td class="align-center">
               <img src="{:get_member_idcard_image($v.member_idcard_image3)}" height="100" onclick="openPhoto('{:get_member_idcard_image($v.member_idcard_image3)}')">
           </td>
-            <td class="align-center">{$v.member_idcard}</td>
-            <td class="align-center">{$v.member_idcard}</td>
-            <td class="align-center">{$v.member_idcard}</td>
+            <td class="align-center">{$v.member_areainfo}</td>
+            <td class="align-center">{$v.member_bankname}</td>
+            <td class="align-center">{$v.member_bankcard}</td>
           <td class="align-center">{$Think.lang.member_auth_state[$v.member_auth_state]}</td>
           <td class="align-center">
               {if $v.member_auth_state == 1}
               <a href="javascript:dsLayerConfirm('{:url('MemberAuth/verify',['member_id'=>$v.member_id,'state'=>1])}','{$Think.lang.ds_ensure_operation}')" class="dsui-btn-add"><i class="iconfont"></i>{$Think.lang.ds_pass}</a>
               <a href="javascript:submit_verify({$v.member_id},2)" class="dsui-btn-del"><i class="iconfont"></i>{$Think.lang.ds_refuse}</a>
+              <a href="javascript:dsLayerOpen('{:url('MemberAuth/edit',['member_id'=>$v.member_id])}','{$Think.lang.ds_edit}-{$v.member_name}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.ds_edit}</a>
+              {else /}
+              无
               {/if}
           </td>
         </tr>
