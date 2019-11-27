@@ -351,17 +351,17 @@ class Goods extends MobileMall {
             if (!$goods_detail['goods_info']['is_virtual']) {
                 // 店铺优惠券
                 $condition = array();
-                $condition['voucher_t_state'] = 1;
-                $condition['voucher_t_end_date'] = array('gt', time());
-                $condition['voucher_t_store_id'] = array('in', $store_info['store_id']);
+                $condition['vouchertemplate_state'] = 1;
+                $condition['vouchertemplate_enddate'] = array('gt', time());
+                $condition['vouchertemplate_store_id'] = array('in', $store_info['store_id']);
                 $voucher_template = Model('voucher')->getVoucherTemplateList($condition);
                 if (!empty($voucher_template)) {
                     foreach ($voucher_template as $val) {
                         $param = array();
-                        $param['voucher_t_id'] = $val['voucher_t_id'];
-                        $param['voucher_t_price'] = $val['voucher_t_price'];
-                        $param['voucher_t_limit'] = $val['voucher_t_limit'];
-                        $param['voucher_t_end_date'] = date('Y年m月d日', $val['voucher_t_end_date']);
+                        $param['vouchertemplate_id'] = $val['vouchertemplate_id'];
+                        $param['vouchertemplate_price'] = $val['vouchertemplate_price'];
+                        $param['vouchertemplate_limit'] = $val['vouchertemplate_limit'];
+                        $param['vouchertemplate_enddate'] = date('Y年m月d日', $val['vouchertemplate_enddate']);
                         $goods_detail['voucher'][] = $param;
                     }
                 }
