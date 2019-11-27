@@ -22,6 +22,7 @@ $lang['ds_offpayarea'] = '配送地区';
 $lang['ds_db'] = '数据备份';
 $lang['ds_adminlog'] = '操作日志';
 $lang['ds_companys_manage'] = '子公司';
+$lang['ds_college_manage'] = '商学院';
 $lang['ds_seo_set'] = 'SEO设置';
 $lang['ds_scale']='比例设置';
 //会员
@@ -89,6 +90,7 @@ $lang['ds_bill'] = '结算管理';
 $lang['ds_website'] = '网站';
 $lang['ds_articleclass'] = '文章分类';
 $lang['ds_article'] = '文章管理';
+$lang['ds_article_college'] = '商学院管理';
 $lang['ds_document'] = '会员协议';
 $lang['ds_navigation'] = '导航管理';
 $lang['ds_adv'] = '广告管理';

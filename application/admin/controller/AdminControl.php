@@ -266,6 +266,11 @@ class AdminControl extends Controller {
                         'text' => lang('ds_companys_manage'),
                         'args' => 'company,Companys,dashboard',
                     ),
+                    'college' => array(
+                        'ico'=>'&#xe667;',
+                        'text' => lang('ds_college_manage'),
+                        'args' => 'college,College,dashboard',
+                    ),
                 ),
             ),
             'setting' => array(
