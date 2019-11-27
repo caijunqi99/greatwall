@@ -115,6 +115,40 @@ class MemberAuth extends AdminControl {
     }
 
     /**
+     * 编辑会员认证信息
+     */
+    public function edit(){
+        $member_id = input('param.member_id');
+        if (empty($member_id)) {
+            $this->error(lang('param_error'));
+        }
+        $member_model = model('member');
+        if (!request()->isPost()) {
+            $condition['member_id'] = $member_id;
+            $member_array = $member_model->getMemberInfo($condition);
+            $this->assign('member_array', $member_array);
+            return $this->fetch();
+        } else {
+            $data = array(
+                'member_bankname' => input('post.member_bankname'),
+                'member_bankcard' => input('post.member_bankcard'),
+                'member_villageid' => input('post.village_id'),
+                'member_townid' => input('post.town_id'),
+                'member_cityid' => input('post.city_id'),
+                'member_provinceid' => input('post.province_id'),
+                'member_areaid' => input('post.area_id'),
+                'member_areainfo' => input('post.region'),
+            );
+            $result = $member_model->editMember(array('member_id'=>intval($member_id)),$data);
+            if ($result>=0) {
+                dsLayerOpenSuccess(lang('ds_common_op_succ'));
+            } else {
+                $this->error(lang('ds_common_op_fail'));
+            }
+        }
+    }
+
+    /**
      * 获取卖家栏目列表,针对控制器下的栏目
      */
     protected function getAdminItemList() {

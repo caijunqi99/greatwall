@@ -1,0 +1,94 @@
+{include file="public/header" /}
+
+<div class="page">
+    <form id="user_form" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="member_id" value="{$member_array.member_id}" />
+        <input type="hidden" name="old_member_avatar" value="{$member_array.member_avatar}" />
+        <input type="hidden" name="member_name" value="{$member_array.member_name}" />
+        <table class="ds-default-table">
+            <tbody>
+                <tr class="noborder">
+                    <td class="required w120"><label>{$Think.lang.member_index_name}:</label></td>
+                    <td class="vatop rowform">{$member_array.member_name}</td>
+                    <td class="vatop tips"></td>
+                </tr>
+                <tr class="noborder">
+                    <td class="required"><label>{$Think.lang.member_index_true_name}:</label></td>
+                    <td class="vatop rowform">{$member_array.member_truename}</td>
+                    <td class="vatop tips"></td>
+                </tr>
+                <tr class="noborder">
+                    <td class="required"><label class="member_areainfo">{$Think.lang.member_areainfo}:</label></td>
+                    <td class="vatop rowform"  colspan="2">
+                        <span  class="w400">
+                      <input type="hidden" value="{$member_array['member_provinceid']|default=''}" name="province_id" id="_area_1">
+                      <input type="hidden" value="{$member_array['member_cityid']|default=''}" name="city_id" id="_area_2">
+                      <input type="hidden" value="{$member_array['member_areaid']|default=''}" name="area_id" id="_area_3">
+                            <input type="hidden" value="{$member_array['member_townid']|default=''}" name="town_id" id="_area_4">
+                            <input type="hidden" value="{$member_array['member_villageid']|default=''}" name="village_id" id="_area_5">
+                      <input type="hidden" name="region" id="region" value="{$member_array.member_areainfo}"/>
+                        </span>
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td class="required"><label class="member_bankname">{$Think.lang.change_bankname}:</label></td>
+                    <td class="vatop rowform"><input type="text" value="{$member_array.member_bankname}" id="member_bankname" name="member_bankname" class="txt"></td>
+                    <td class="vatop tips"></td>
+                </tr>
+                <tr class="noborder">
+                    <td class="required"><label class="member_bankcard">{$Think.lang.change_bankcard}:</label></td>
+                    <td class="vatop rowform"><input type="text" value="{$member_array.member_bankcard}" id="member_bankcard" name="member_bankcard" class="txt"></td>
+                    <td class="vatop tips"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="tfoot">
+                    <td colspan="15"><input class="btn" type="submit" value="{$Think.lang.ds_submit}"/></td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+
+    <script type="text/javascript" src="{$Think.PLUGINS_SITE_ROOT}/mlselection.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#region").ds_region();
+            $('#user_form').validate({
+                errorPlacement: function(error, element) {
+                    error.appendTo(element.parent().parent().find('td:last'));
+                },
+                rules: {
+                    member_password: {
+                        maxlength: 20,
+                        minlength: 6
+                    },
+                    member_email: {
+                        required: true,
+                        email: true,
+                        remote: {
+                            url: ADMINSITEURL+'/Member/ajax.html?branch=check_email',
+                            type: 'get',
+                            data: {
+                                user_name: function() {
+                                    return $('#member_email').val();
+                                },
+                                member_id : '{$member_array.member_id}'
+                            }
+                        }
+                    }
+                },
+                messages: {
+                    member_password: {
+                        maxlength: '{$Think.lang.member_edit_password_tip}',
+                        minlength: '{$Think.lang.member_edit_password_tip}'
+                    },
+                    member_email: {
+                        required: '{$Think.lang.member_edit_email_null}',
+                        email: '{$Think.lang.member_edit_valid_email}',
+                        remote: '{$Think.lang.member_edit_email_exists}'
+                    }
+                }
+            });
+        });
+    </script> 
+</div>
