@@ -545,11 +545,11 @@ class AdminControl extends Controller {
                         'text' => lang('ds_bill_manage'),
                         'args' => 'show_statis,Bill,trade',
                     ),
-                    'consulting' => array(
-                        'ico'=>'&#xe71c;',
-                        'text' => lang('ds_consulting'),
-                        'args' => 'Consulting,Consulting,trade',
-                    ),
+//                    'consulting' => array(
+//                        'ico'=>'&#xe71c;',
+//                        'text' => lang('ds_consulting'),
+//                        'args' => 'Consulting,Consulting,trade',
+//                    ),
 //                    'inform' => array(
 //                        'ico'=>'&#xe70c;',
 //                        'text' => lang('ds_inform'),
@@ -586,19 +586,19 @@ class AdminControl extends Controller {
                         'text' => lang('ds_document'),
                         'args' => 'index,Document,website',
                     ),
-                    'Navigation' => array(
-                        'text' => lang('ds_navigation'),
-                        'args' => 'index,Navigation,website',
-                    ),
-                    'Adv' => array(
-                        'text' => lang('ds_adv'),
-                        'args' => 'ap_manage,Adv,website',
-                    ),
-                    'Link' => array(
-                        'ico'=>'&#xe67d;',
-                        'text' => lang('ds_friendlink'),
-                        'args' => 'index,Link,website',
-                    ),
+//                    'Navigation' => array(
+//                        'text' => lang('ds_navigation'),
+//                        'args' => 'index,Navigation,website',
+//                    ),
+//                    'Adv' => array(
+//                        'text' => lang('ds_adv'),
+//                        'args' => 'ap_manage,Adv,website',
+//                    ),
+//                    'Link' => array(
+//                        'ico'=>'&#xe67d;',
+//                        'text' => lang('ds_friendlink'),
+//                        'args' => 'index,Link,website',
+//                    ),
 //                    'Mallconsult' => array(
 //                        'ico'=>'&#xe750;',
 //                        'text' => lang('ds_mall_consult'),
