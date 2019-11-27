@@ -162,7 +162,7 @@ class Memberbuy extends MobileMember
         $post_voucher = explode(',', $_POST['voucher']);
         if (!empty($post_voucher)) {
             foreach ($post_voucher as $value) {
-                list($voucher_t_id, $store_id, $voucher_price) = explode('|', $value);
+                list($vouchertemplate_id, $store_id, $voucher_price) = explode('|', $value);
                 $voucher[$store_id] = $value;
             }
         }
