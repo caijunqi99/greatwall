@@ -17,6 +17,7 @@
                 <th>推荐码</th>
                 <th>邀请人ID</th>
                 <th>代数</th>
+                <th>注册时间</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,7 @@
                 <td>{$v.inviter_code}</td>
                 <td>{$v.inviter_id}</td>
                 <td>{$v.level}</td>
+                <td>{:date('Y-m-d H:i:s',$v.member_addtime)}</td>
             </tr>
             {/foreach}
             {else /}
