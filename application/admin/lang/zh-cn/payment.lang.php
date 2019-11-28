@@ -68,4 +68,10 @@ $lang['payment_index_desc'] = '描述';
 
 $lang['please_open_wechat_payment'] = '请先开启并配置微信扫码支付';
 $lang['please_open_alipay_payment'] = '请先开启并配置支付宝PC支付';
+$lang['account']='账户名称';
+$lang['account_desc']='公司账户名称';
+$lang['bank']='开户银行';
+$lang['bank_desc']='公司开户银行';
+$lang['accountnum']='银行账户';
+$lang['accountnum_desc']='公司银行账户';
 ?>

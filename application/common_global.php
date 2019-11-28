@@ -17,11 +17,7 @@ if (!REWRITE_MODEL) {
     }
 }
 
-//检测是否安装 LSMALL 系统
-if(file_exists("install/") && !file_exists("install/install.lock")){
-    header('Location: '.BASE_SITE_ROOT.'/install/install.php');
-    exit();
-}
+
 //error_reporting(E_ALL ^ E_NOTICE);//显示除去 E_NOTICE 之外的所有错误信息
 
 

@@ -376,7 +376,7 @@ $lang['topnav_edit_password'] = '修改密码';
 $lang['topnav_cache'] ='清除缓存';
 $lang['topnav_hello'] = '您好';
 $lang['topnav_clear_confirm'] = '确定清理全部缓存?';
-$lang['topnav_visit_home'] = '访问首页';
+$lang['topnav_visit_home'] = '店铺登陆';
 
 $lang['system_backend'] = '商城系统后台';
 
