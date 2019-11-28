@@ -133,7 +133,7 @@ class Storelist extends MobileMall {
         if (empty($class_list)) {
             $class_list = Model('Storeclass')->getStoreclassList([]);
         }
-        
+        sort($class_list);
         output_data($class_list);
     }
 

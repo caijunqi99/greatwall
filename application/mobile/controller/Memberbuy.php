@@ -147,15 +147,15 @@ class Memberbuy extends MobileMember
     public function buy_step2()
     {
         $param = array();
-        $param['ifcart'] = $_POST['ifcart'];
-        $param['cart_id'] = explode(',', $_POST['cart_id']);
-        $param['address_id'] = $_POST['address_id'];
-        $param['vat_hash'] = $_POST['vat_hash'];
-        $param['offpay_hash'] = $_POST['offpay_hash'];
+        $param['ifcart']            = $_POST['ifcart'];
+        $param['cart_id']           = explode(',', $_POST['cart_id']);
+        $param['address_id']        = $_POST['address_id'];
+        $param['vat_hash']          = $_POST['vat_hash'];
+        $param['offpay_hash']       = $_POST['offpay_hash'];
         $param['offpay_hash_batch'] = $_POST['offpay_hash_batch'];
-        $param['pay_name'] = $_POST['pay_name'];
-        $param['invoice_id'] = $_POST['invoice_id'];
-        $param['rpt'] = $_POST['rpt'];
+        $param['pay_name']          = $_POST['pay_name'];
+        $param['invoice_id']        = $_POST['invoice_id'];
+        $param['rpt']               = $_POST['rpt'];
 
         //处理代金券
         $voucher = array();
