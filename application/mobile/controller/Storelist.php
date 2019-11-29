@@ -125,12 +125,16 @@ class Storelist extends MobileMall {
         }
         // p($store_list);exit;
         output_data($list);
-        // $this->assign('store_list', $store_list);
 
-        // $this->assign('show_page', $store_model->page_info->render());
+    }
 
-        // p($store_model);exit;
-
+    public function getStoreClassList(){
+        $class_list = rkcache('storeclass', true, 'file');
+        if (empty($class_list)) {
+            $class_list = Model('Storeclass')->getStoreclassList([]);
+        }
+        sort($class_list);
+        output_data($class_list);
     }
 
     /**

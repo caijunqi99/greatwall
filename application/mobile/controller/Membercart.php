@@ -48,10 +48,11 @@ class Membercart extends MobileMember {
             $sum += $cart_list[$key]['goods_sum'];
             $k++;
         }
+        $cart_l = [];
         foreach ($cart_a as $key=>$value){
            $value['goods']=array_values($value['goods']);
            $cart_l[]=$value;
-            }
+        }
 
         $cart_b=array_values($cart_l);
 
@@ -139,7 +140,7 @@ class Membercart extends MobileMember {
      * 购物车删除
      */
     public function cart_del() {
-        $cart_id = intval($_POST['cart_id']);
+        $cart_id = intval(abs(input('param.cart_id')));
 
         $model_cart = Model('cart');
 
@@ -148,10 +149,10 @@ class Membercart extends MobileMember {
             $condition['buyer_id'] = $this->member_info['member_id'];
             $condition['cart_id'] = $cart_id;
 
-            $model_cart->delCart('db', $condition);
+            $result = $model_cart->delCart('db', $condition);
         }
 
-        output_data('1');
+        output_data(['state'=>true]);
     }
 
     /**
@@ -220,7 +221,6 @@ class Membercart extends MobileMember {
                 $return['subtotal'] = 0;
                 \mall\queue\QueueClient::push('delCart', array('buyer_id' => $this->member_info['member_id'], 'cart_ids' => array($cart_id)));
                 output_error(lang('wheatsuit_no_longer_valid'));
-                // exit(json_encode($return));
             }
 
             //如果有商品库存不足，更新购买数量到目前最大库存
@@ -230,10 +230,9 @@ class Membercart extends MobileMember {
                     $return['msg'] = lang('preferential_suit_understock');
                     $return['goods_num'] = $goods_info['goods_storage'];
                     $return['goods_price'] = $cart_info['goods_price'];
-                    $return['subtotal'] = $cart_info['goods_price'] * $quantity;
+                    $return['total_price'] = $cart_info['goods_price'] * $quantity;
                     $cart_model->editCart(array('goods_num' => $goods_info['goods_storage']), array('cart_id' => $cart_id, 'buyer_id' => $this->member_info['member_id']));
                     output_data($return);
-                    exit(json_encode($return));
                     break;
                 }
             }
@@ -252,9 +251,7 @@ class Membercart extends MobileMember {
             output_data($return);
         } else {
             output_error(lang('cart_update_buy_fail'));
-            // $return = array('msg' => lang('cart_update_buy_fail'));
         }
-        // exit(json_encode($return));
     }
 
     /**
@@ -309,8 +306,8 @@ class Membercart extends MobileMember {
      */
     public function cart_count() {
         $model_cart = Model('cart');
-        // $count = $model_cart->countCartByMemberId($this->member_info['member_id']);
-        $data['cart_count'] = 1;
+        $count = $model_cart->getCartCountByMemberId($this->member_info['member_id']);
+        $data['cart_count'] = $count;
         output_data($data);
     }
 
