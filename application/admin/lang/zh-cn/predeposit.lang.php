@@ -73,6 +73,7 @@ $lang['operatetype_3'] = '冻结';
 $lang['operatetype_4'] = '解冻';
 
 $lang['lg_desc'] = '描述信息';
+$lang['lg_return'] = '是否返利';
 $lang['amount_required'] = '金额不能为空';
 $lang['amount_number'] = '请输入数字';
 $lang['amount_min'] = '请输入大于0的数';

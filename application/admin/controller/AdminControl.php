@@ -333,11 +333,11 @@ class AdminControl extends Controller {
 //                        'text' => lang('ds_delivery'),
 //                        'args' => 'index,Delivery,setting',
 //                    ),
-                    'Region' => array(
-                        'ico'=>'&#xe720;',
-                        'text' => lang('ds_region'),
-                        'args' => 'index,Region,setting',
-                    ),
+//                    'Region' => array(
+//                        'ico'=>'&#xe720;',
+//                        'text' => lang('ds_region'),
+//                        'args' => 'index,Region,setting',
+//                    ),
                     'offpayarea' => array(
                         'ico'=>'&#xe720;',
                         'text' => lang('ds_offpayarea'),
@@ -370,6 +370,11 @@ class AdminControl extends Controller {
                         'text' => lang('member_auth'),
                         'args' => 'index,member_auth,member',
                     ),
+                    'Region' => array(
+                        'ico'=>'&#xe720;',
+                        'text' => lang('ds_region'),
+                        'args' => 'index,Region,member',
+                    ),
                     'membergrade' => array(
                         'ico'=>'&#xe6a3;',
                         'text' => lang('ds_membergrade'),
@@ -385,15 +390,15 @@ class AdminControl extends Controller {
                         'text' => lang('ds_notice'),
                         'args' => 'index,Notice,member',
                     ),
-                    'points' => array(
-                        'ico'=>'&#xe6f5;',
-                        'text' => lang('ds_points'),
-                        'args' => 'index,Points,member',
-                    ),
                     'predeposit' => array(
                         'ico'=>'&#xe6e2;',
                         'text' => lang('ds_predeposit_c'),
                         'args' => 'pdrecharge_list,Predeposit,member',
+                    ),
+                    'points' => array(
+                        'ico'=>'&#xe6f5;',
+                        'text' => lang('ds_points'),
+                        'args' => 'index,Points,member',
                     ),
                     'transaction' => array(
                         'ico'=>'&#xe72a;',

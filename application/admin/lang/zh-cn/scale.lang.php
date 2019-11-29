@@ -10,3 +10,4 @@ $lang['release_scale']='冻结积分每天释放比例';
 $lang['commission']='用户可用积分提现手续费比例';
 $lang['way']='用户返给推荐人的方式';
 $lang['companyway']='用户返给子公司的方式';
+$lang['withdraw']='用户可用积分达到多少可提现';
