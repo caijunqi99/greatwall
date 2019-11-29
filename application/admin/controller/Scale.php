@@ -34,6 +34,7 @@ class Scale extends AdminControl {
             $update_array['village_scale'] = input('post.village_scale');
             $update_array['release'] = intval(input('post.release'));
             $update_array['release_scale'] = input('post.release_scale');
+            $update_array['withdraw'] = input('post.withdraw');
             $update_array['commission'] = input('post.commission');
             $update_array['way']=input('post.way');
             $update_array['companyway']=input('post.companyway');
