@@ -24,7 +24,7 @@ class Company extends Model
      * @param string $field 字段
      * @return array
      */
-    public function getMemberInfo($condition, $field = '*')
+    public function getCompanyInfo($condition, $field = '*')
     {
         $res = db('company')->field($field)->where($condition)->find();
         return $res;

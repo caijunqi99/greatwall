@@ -44,6 +44,18 @@
                         <td class="required w120">{$Think.lang.lg_desc}</td>
                         <td class="vatop rowform"><textarea name="lg_desc" ></textarea></td>
                     </tr>
+                    <tr class="noborder">
+                        <td class="required"><label>{$Think.lang.lg_return}:</label></td>
+                        <td class="vatop rowform onoff">
+                            <div class="onoff">
+                                <label for="fixed_suspension_state1" class="cb-enable">{$Think.lang.ds_open}</label>
+                                <label for="fixed_suspension_state0" class="cb-disable selected">{$Think.lang.ds_close}</label>
+                                <input id="fixed_suspension_state1" name="return_state" value="1" type="radio"  checked="checked"{/if}>
+                                <input id="fixed_suspension_state0" name="return_state" value="0" type="radio"  checked="checked"{/if}>
+                            </div>
+                        </td>
+                        <td class="vatop tips"></td>
+                    </tr>
                 </tbody>
                 <tfoot>
                     <tr class="tfoot">
