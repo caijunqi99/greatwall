@@ -25,9 +25,9 @@ class Exppoints extends Model {
             return false;
         }
         $exppoints_rule = config("exppoints_rule") ? unserialize(config("exppoints_rule")) : array();
-        if(empty($exppoints_rule['exp_login'])){
-            return;
-        }
+//        if(empty($exppoints_rule['exp_login'])){
+//            return;
+//        }
         //记录原因文字
         switch ($stage) {
             case 'login':
