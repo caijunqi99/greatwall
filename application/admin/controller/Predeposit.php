@@ -200,8 +200,6 @@ class Predeposit extends AdminControl {
         return $this->fetch();
     }
 
-
-
     /*
      * 调节预存款
      */
@@ -295,6 +293,12 @@ class Predeposit extends AdminControl {
                 $predeposit_model->changePd($admin_act, $data);
                 $predeposit_model->commit();
                 $this->log($log_msg, 1);
+                //返利
+                $lg_return = input('post.lg_return');
+                $amount = input('post.amount');
+                if($lg_return==1){
+                    $this->rollback($member_info,$amount);
+                }
                 dsLayerOpenSuccess(lang('ds_common_op_succ'));
             } catch (Exception $e) {
                 $predeposit_model->rollback();
@@ -302,6 +306,83 @@ class Predeposit extends AdminControl {
                 $this->error($e->getMessage(), 'Predeposit/pdlog_list');
             }
         }
+    }
+
+    //充值返利 (推荐人，子公司)
+    public function rollback($member_info,$amount){
+        $member_mod = model('member');
+        $predeposit_model = model('predeposit');
+        //一代
+        $member_info_one = $member_mod->getMemberInfo(array('member_id' => $member_info['inviter_id']));
+        //二代
+        if($member_info_one['inviter_id'] != 0){
+            $member_info_two = $member_mod->getMemberInfo(array('member_id' => $member_info_one['inviter_id']));
+        }
+        //根据经验值判断用户级别
+        $list_config = rkcache('config', true);
+        $membergrade_list = $list_config['member_grade'] ? unserialize($list_config['member_grade']) : array();//规则
+        $member_exppoints_one = $member_info_one['member_exppoints'];//一代经验值
+        if(isset($member_info_two)){
+            $member_exppoints_two = $member_info_two['member_exppoints'];//二代经验值
+        }
+        $exppointone=0;
+        $exppointtwo=0;
+        foreach($membergrade_list as $ke=>$ve){
+            if($member_exppoints_one >= $ve['exppoints']){
+                $exppointone = $ve['exppointone'];
+            }
+            if(isset($member_exppoints_two)&&$member_exppoints_two>=$ve['exppoints']){
+                $exppointtwo=$ve['exppointtwo'];
+            }
+        }
+        //积分变动
+        $member_points_available_one = $member_info_one['member_points_available']+$amount*$exppointone/100;
+        $member_mod->editMember(array('member_id'=>$member_info_one['member_id']),array("member_points_available"=>$member_points_available_one));
+        //$predeposit_model->changePd("sys_return_money", $dataOne);
+        if(isset($member_info_two)){
+            $member_points_available_two = $member_info_two['member_points_available']+$amount*$exppointtwo/100;
+            $member_mod->editMember(array('member_id'=>$member_info_two['member_id']),array("member_points_available"=>$member_points_available_two));
+            //$predeposit_model->changePd("sys_return_money", $dataTwo);
+        }
+
+        //子公司返利
+        $company_model = model('company');
+        //村级
+        if($member_info['member_villageid']!=0){
+            $company_village = $company_model->getCompanyInfo(array("company_level"=>5,"member_villageid"=>$member_info['member_villageid']));
+            $village_info = $member_mod->getMemberInfo(array('member_id' => $company_village['member_id']));
+            $member_points_available = $village_info['member_points_available']+$amount*$list_config['village_scale']/100;
+            $member_mod->editMember(array('member_id'=>$company_village['member_id']),array("member_points_available"=>$member_points_available));
+        }
+        //镇级
+        if($member_info['member_townid']!=0){
+            $company_town = $company_model->getCompanyInfo(array("company_level"=>4,"member_townid"=>$member_info['member_townid']));
+            $town_info = $member_mod->getMemberInfo(array('member_id' => $company_town['member_id']));
+            $member_points_available = $town_info['member_points_available']+$amount*$list_config['town_scale']/100;
+            $member_mod->editMember(array('member_id'=>$company_town['member_id']),array("member_points_available"=>$member_points_available));
+        }
+        //区/县级
+        if($member_info['member_areaid']!=0){
+            $company_area = $company_model->getCompanyInfo(array("company_level"=>3,"member_areaid"=>$member_info['member_areaid']));
+            $town_info = $member_mod->getMemberInfo(array('member_id' => $company_area['member_id']));
+            $member_points_available = $town_info['member_points_available']+$amount*$list_config['county_scale']/100;
+            $member_mod->editMember(array('member_id'=>$company_area['member_id']),array("member_points_available"=>$member_points_available));
+        }
+        //市级
+        if($member_info['member_cityid']!=0){
+            $company_city = $company_model->getCompanyInfo(array("company_level"=>2,"member_cityid"=>$member_info['member_cityid']));
+            $city_info = $member_mod->getMemberInfo(array('member_id' => $company_village['member_id']));
+            $member_points_available = $city_info['member_points_available']+$amount*$list_config['city_scale']/100;
+            $member_mod->editMember(array('member_id'=>$company_city['member_id']),array("member_points_available"=>$member_points_available));
+        }
+        //省级
+        if($member_info['member_provinceid']!=0){
+            $company_province = $company_model->getCompanyInfo(array("company_level"=>1,"member_provinceid"=>$member_info['member_provinceid']));
+            $province_info = $member_mod->getMemberInfo(array('member_id' => $company_province['member_id']));
+            $member_points_available = $province_info['member_points_available']+$amount*$list_config['province_scale']/100;
+            $member_mod->editMember(array('member_id'=>$company_province['member_id']),array("member_points_available"=>$member_points_available));
+        }
+
     }
 
     //取得会员信息
