@@ -73,7 +73,26 @@
                     <span class="err"></span>
                 </dd>
             </dl>
-
+            <dl>
+                <dt>{$Think.lang.way}</dt>
+                <dd>
+                    <select id="way" name="way">
+                        <option value ="1" <?php if($list_config['way']==1){ ?>selected="selected"<?php } ?>>可用积分</option>
+                        <option value ="2" <?php if($list_config['way']==2){ ?>selected="selected"<?php } ?>>冻结积分</option>
+                    </select>
+                    <span class="err"></span>
+                </dd>
+            </dl>
+            <dl>
+                <dt>{$Think.lang.companyway}</dt>
+                <dd>
+                    <select id="companyway" name="companyway">
+                        <option value ="1" <?php if($list_config['companyway']==1){ ?>selected="selected"<?php } ?>>可用积分</option>
+                        <option value ="2" <?php if($list_config['companyway']==2){ ?>selected="selected"<?php } ?>>冻结积分</option>
+                    </select>
+                    <span class="err"></span>
+                </dd>
+            </dl>
 
 
 

@@ -118,7 +118,6 @@ class Exppoints extends AdminControl
                 $insert_arr['explog_points'] = $data['exppoints_num'];
             }
             $insert_arr['explog_desc'] = $data['exppoints_desc'];
-
             $result = model('exppoints')->saveExppointslog('system', $insert_arr);
             if ($result) {
                 dsLayerOpenSuccess(lang('ds_common_op_succ'));
