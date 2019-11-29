@@ -311,7 +311,6 @@ class Predeposit extends AdminControl {
     //充值返利 (推荐人，子公司)
     public function rollback($member_info,$amount){
         $member_mod = model('member');
-        $predeposit_model = model('predeposit');
         //一代
         $member_info_one = $member_mod->getMemberInfo(array('member_id' => $member_info['inviter_id']));
         //二代
@@ -339,21 +338,31 @@ class Predeposit extends AdminControl {
         //积分记录表
         $insert_arr['pl_memberid'] = $member_info_one['member_id'];
         $insert_arr['pl_membername'] = $member_info_one['member_name'];
-        $insert_arr['pl_points'] = 0;
-        $insert_arr['pl_pointsav'] = $amount*$exppointone/100;
-        $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原积分为：".$member_info_one['member_points_available'];
+        if($list_config['way']==1) {
+            $insert_arr['pl_points'] = 0;
+            $insert_arr['pl_pointsav'] = $amount * $exppointone / 100;
+            $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原可用积分为：".$member_info_one['member_points_available'];
+        }else if($list_config['way']==2){
+            $insert_arr['pl_points'] = $amount * $exppointone / 100;
+            $insert_arr['pl_pointsav'] = 0;
+            $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$member_info_one['member_points_available'];
+        }
         $insert_arr['pl_adminname'] = session('admin_name');
         model('points')->savePointslog('system', $insert_arr);
-        //$predeposit_model->changePd("sys_return_money", $dataOne);
         if(isset($member_info_two)){
             $insert_arrs['pl_memberid'] = $member_info_two['member_id'];
             $insert_arrs['pl_membername'] = $member_info_two['member_name'];
-            $insert_arrs['pl_points'] = 0;
-            $insert_arrs['pl_pointsav'] = $amount*$exppointtwo/100;
-            $insert_arrs['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原积分为：".$member_info_two['member_points_available'];
+            if($list_config['way']==1) {
+               $insert_arrs['pl_points'] = 0;
+               $insert_arrs['pl_pointsav'] = $amount*$exppointtwo/100;
+                $insert_arrs['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原可用积分为：".$member_info_two['member_points_available'];
+            }elseif($list_config['way']==2){
+                $insert_arrs['pl_points'] = $amount * $exppointtwo / 100;
+                $insert_arrs['pl_pointsav'] = 0;
+                $insert_arrs['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$member_info_two['member_points_available'];
+            }
             $insert_arrs['pl_adminname'] = session('admin_name');
             model('points')->savePointslog('system', $insert_arrs);
-            //$predeposit_model->changePd("sys_return_money", $dataTwo);
         }
 
         //子公司返利
@@ -362,36 +371,91 @@ class Predeposit extends AdminControl {
         if($member_info['member_villageid']!=0){
             $company_village = $company_model->getCompanyInfo(array("company_level"=>5,"member_villageid"=>$member_info['member_villageid']));
             $village_info = $member_mod->getMemberInfo(array('member_id' => $company_village['member_id']));
-            $member_points_available = $village_info['member_points_available']+$amount*$list_config['village_scale']/100;
-            $member_mod->editMember(array('member_id'=>$company_village['member_id']),array("member_points_available"=>$member_points_available));
+            $insert_arr['pl_memberid'] = $village_info['member_id'];
+            $insert_arr['pl_membername'] = $village_info['member_name'];
+            if($list_config['companyway']==1) {
+                $insert_arr['pl_points'] = 0;
+                $insert_arr['pl_pointsav'] = $amount * $list_config['village_scale'] / 100;
+                $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原可用积分为：".$village_info['member_points_available'];
+            }elseif($list_config['companyway']==2){
+                $insert_arr['pl_points'] = $amount * $list_config['village_scale'] / 100;
+                $insert_arr['pl_pointsav'] = 0;
+                $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$village_info['member_points_available'];
+            }
+            $insert_arr['pl_adminname'] = session('admin_name');
+            model('points')->savePointslog('system', $insert_arr);
         }
         //镇级
         if($member_info['member_townid']!=0){
             $company_town = $company_model->getCompanyInfo(array("company_level"=>4,"member_townid"=>$member_info['member_townid']));
             $town_info = $member_mod->getMemberInfo(array('member_id' => $company_town['member_id']));
-            $member_points_available = $town_info['member_points_available']+$amount*$list_config['town_scale']/100;
-            $member_mod->editMember(array('member_id'=>$company_town['member_id']),array("member_points_available"=>$member_points_available));
+            $insert_arrtown['pl_memberid'] = $town_info['member_id'];
+            $insert_arrtown['pl_membername'] = $town_info['member_name'];
+            if($list_config['companyway']==1) {
+                $insert_arrtown['pl_points'] = 0;
+                $insert_arrtown['pl_pointsav'] = $amount * $list_config['town_scale'] / 100;
+                $insert_arrtown['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原可用积分为：".$town_info['member_points_available'];
+            }elseif($list_config['companyway']==2){
+                $insert_arrtown['pl_points'] = $amount * $list_config['town_scale'] / 100;
+                $insert_arrtown['pl_pointsav'] = 0;
+                $insert_arrtown['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$town_info['member_points_available'];
+            }
+            $insert_arrtown['pl_adminname'] = session('admin_name');
+            model('points')->savePointslog('system', $insert_arrtown);
         }
         //区/县级
         if($member_info['member_areaid']!=0){
             $company_area = $company_model->getCompanyInfo(array("company_level"=>3,"member_areaid"=>$member_info['member_areaid']));
-            $town_info = $member_mod->getMemberInfo(array('member_id' => $company_area['member_id']));
-            $member_points_available = $town_info['member_points_available']+$amount*$list_config['county_scale']/100;
-            $member_mod->editMember(array('member_id'=>$company_area['member_id']),array("member_points_available"=>$member_points_available));
+            $area_info = $member_mod->getMemberInfo(array('member_id' => $company_area['member_id']));
+            $insert_arrarea['pl_memberid'] = $area_info['member_id'];
+            $insert_arrarea['pl_membername'] = $area_info['member_name'];
+            if($list_config['companyway']==1) {
+            $insert_arrarea['pl_points'] = 0;
+            $insert_arrarea['pl_pointsav'] = $amount*$list_config['county_scale']/100;
+                $insert_arrarea['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原可用积分为：".$area_info['member_points_available'];
+            }elseif($list_config['companyway']==2){
+                $insert_arrarea['pl_points'] = $amount*$list_config['county_scale']/100;
+                $insert_arrarea['pl_pointsav'] = 0;
+                $insert_arrarea['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$area_info['member_points_available'];
+            }
+            $insert_arrarea['pl_adminname'] = session('admin_name');
+            model('points')->savePointslog('system', $insert_arrarea);
         }
         //市级
         if($member_info['member_cityid']!=0){
             $company_city = $company_model->getCompanyInfo(array("company_level"=>2,"member_cityid"=>$member_info['member_cityid']));
-            $city_info = $member_mod->getMemberInfo(array('member_id' => $company_village['member_id']));
-            $member_points_available = $city_info['member_points_available']+$amount*$list_config['city_scale']/100;
-            $member_mod->editMember(array('member_id'=>$company_city['member_id']),array("member_points_available"=>$member_points_available));
+            $city_info = $member_mod->getMemberInfo(array('member_id' => $company_city['member_id']));
+            $insert_arrcity['pl_memberid'] = $city_info['member_id'];
+            $insert_arrcity['pl_membername'] = $city_info['member_name'];
+            if($list_config['companyway']==1) {
+            $insert_arrcity['pl_points'] = 0;
+            $insert_arrcity['pl_pointsav'] = $amount*$list_config['city_scale']/100;
+                $insert_arrcity['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原可用积分为：".$city_info['member_points_available'];
+            }elseif($list_config['companyway']==2){
+                $insert_arrcity['pl_points'] = $amount*$list_config['city_scale']/100;
+                $insert_arrcity['pl_pointsav'] = 0;
+                $insert_arrcity['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$city_info['member_points_available'];
+            }
+            $insert_arrcity['pl_adminname'] = session('admin_name');
+            model('points')->savePointslog('system', $insert_arrcity);
         }
         //省级
         if($member_info['member_provinceid']!=0){
             $company_province = $company_model->getCompanyInfo(array("company_level"=>1,"member_provinceid"=>$member_info['member_provinceid']));
             $province_info = $member_mod->getMemberInfo(array('member_id' => $company_province['member_id']));
-            $member_points_available = $province_info['member_points_available']+$amount*$list_config['province_scale']/100;
-            $member_mod->editMember(array('member_id'=>$company_province['member_id']),array("member_points_available"=>$member_points_available));
+            $insert_arrpro['pl_memberid'] = $province_info['member_id'];
+            $insert_arrpro['pl_membername'] = $province_info['member_name'];
+            if($list_config['companyway']==1) {
+            $insert_arrpro['pl_points'] = 0;
+            $insert_arrpro['pl_pointsav'] = $amount*$list_config['province_scale']/100;
+                $insert_arrpro['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原可用积分为：".$province_info['member_points_available'];
+            }elseif($list_config['companyway']==2){
+                $insert_arrpro['pl_points'] = $amount*$list_config['province_scale']/100;
+                $insert_arrpro['pl_pointsav'] = 0;
+                $insert_arrpro['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$province_info['member_points_available'];
+            }
+            $insert_arrpro['pl_adminname'] = session('admin_name');
+            model('points')->savePointslog('system', $insert_arrpro);
         }
 
     }
