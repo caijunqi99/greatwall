@@ -294,7 +294,7 @@ class Predeposit extends AdminControl {
                 $predeposit_model->commit();
                 $this->log($log_msg, 1);
                 //返利
-                $lg_return = input('post.lg_return');
+                $lg_return = input('post.return_state');
                 $amount = input('post.amount');
                 if($lg_return==1){
                     $this->rollback($member_info,$amount);
@@ -336,12 +336,23 @@ class Predeposit extends AdminControl {
             }
         }
         //积分变动
-        $member_points_available_one = $member_info_one['member_points_available']+$amount*$exppointone/100;
-        $member_mod->editMember(array('member_id'=>$member_info_one['member_id']),array("member_points_available"=>$member_points_available_one));
+        //积分记录表
+        $insert_arr['pl_memberid'] = $member_info_one['member_id'];
+        $insert_arr['pl_membername'] = $member_info_one['member_name'];
+        $insert_arr['pl_points'] = 0;
+        $insert_arr['pl_pointsav'] = $amount*$exppointone/100;
+        $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原积分为：".$member_info_one['member_points_available'];
+        $insert_arr['pl_adminname'] = session('admin_name');
+        model('points')->savePointslog('system', $insert_arr);
         //$predeposit_model->changePd("sys_return_money", $dataOne);
         if(isset($member_info_two)){
-            $member_points_available_two = $member_info_two['member_points_available']+$amount*$exppointtwo/100;
-            $member_mod->editMember(array('member_id'=>$member_info_two['member_id']),array("member_points_available"=>$member_points_available_two));
+            $insert_arrs['pl_memberid'] = $member_info_two['member_id'];
+            $insert_arrs['pl_membername'] = $member_info_two['member_name'];
+            $insert_arrs['pl_points'] = 0;
+            $insert_arrs['pl_pointsav'] = $amount*$exppointtwo/100;
+            $insert_arrs['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原积分为：".$member_info_two['member_points_available'];
+            $insert_arrs['pl_adminname'] = session('admin_name');
+            model('points')->savePointslog('system', $insert_arrs);
             //$predeposit_model->changePd("sys_return_money", $dataTwo);
         }
 
