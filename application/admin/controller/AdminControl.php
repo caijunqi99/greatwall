@@ -685,6 +685,10 @@ class AdminControl extends Controller {
                         'text' => lang('appadv'),
                         'args' => 'index,Appadv,mobile',
                     ),
+                    'version' => array(
+                        'text' => lang('version'),
+                        'args' => 'index,Version,mobile',
+                    ),
                 ),
             ),
 //            'wechat' => array(

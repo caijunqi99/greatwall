@@ -1,0 +1,247 @@
+{include file="public/header" /}
+<script src="{$Think.PLUGINS_SITE_ROOT}/layer/layui.js"></script>
+<link rel="stylesheet" href="{$Think.PLUGINS_SITE_ROOT}/layer/css/layui.css">
+<script type="text/javascript">
+    var SITE_URL = "{$Think.config.url_domain_root}";
+    var ADMIN_URL = "{$Think.config.url_domain_root}";
+</script>
+<style>
+    .layui-table-tool-self{
+     position: static;
+        float: right;
+        font-size: 24px;
+}
+</style>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+
+
+
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>版本管理</h3>
+            </div>
+            {include file="public/admin_items" /}
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation" style="width:100%;box-sizing: border-box;">
+        <div class="title" id="checkZoom">
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示" class="arrow"></span>
+        </div>
+        <ul>
+            <li>版本号必须大于以前版本，升级内容可以为空，为空表示没有升级内容，且下载地址必须正确</li>
+        </ul>
+    </div>
+    <div class="layui-tab">
+        <ul class="layui-tab-title">
+            <li id="data_1" data-id="1">{$Think.lang.member_version_android}</li>
+            <li id="data_2" data-id="2">{$Think.lang.member_version_ios}</li>
+        </ul>
+
+        <div class="layui-tab-content">
+            <div class="layui-tab-item" id="tab-item1">
+                <form method="get" id='form_admin' class="layui-form">
+                    <table class="layui-table">
+                        <colgroup>
+                            <col >
+                            <col >
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr class="thead">
+                                <th colspan="7">
+                                    <div class="layui-table-tool-self">
+                                        <a class="layui-btn layui-btn-sm " lay-event="getCheckData" id="send_android">发送Android更新包</a>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <thead>
+                        <tr class="thead">
+                            <th class="align-center">序号</th>
+                            <th class="align-center">更新内容</th>
+                            <th class="align-center">更新方式</th>
+                            <th class="align-center">版本号</th>
+                            <th class="align-center">渠道标识</th>
+                            <th class="align-center">安装包名</th>
+                            <th class="align-center">更新时间</th>
+                        </tr>
+                        </thead>
+                        <tbody id="html">
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="layui-tab-item " id="tab-item2">
+                <form method="get" id='form_admin2' class="layui-form">
+                    <table class="layui-table">
+                        <colgroup>
+                            <col >
+                            <col >
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr class="thead">
+                            <th colspan="6">
+                                <div class="layui-table-tool-self">
+                                    <a class="layui-btn layui-btn-sm " lay-event="getCheckData" id="send_ios">发送IOS更新包</a>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <thead>
+                        <tr class="thead">
+                            <th class="align-center">序号</th>
+                            <th class="align-center">更新内容</th>
+                            <th class="align-center">更新方式</th>
+                            <th class="align-center">版本号</th>
+                            <th class="align-center">下载地址</th>
+                            <th class="align-center">更新时间</th>
+                        </tr>
+                        </thead>
+                        <tbody id="html2">
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>
+<script>
+    layui.use(['form','laypage', 'layer'], function(){
+        var form = layui.form,
+            laypage = layui.laypage
+            ,layer = layui.layer;
+        //分页
+        laypage.render({
+            elem: 'page'
+            ,count: '<?php echo $list_count;?>'
+            ,limit:1000
+            ,layout: ['count', 'prev', 'page', 'next',  'skip']
+            ,jump: function(obj){
+                // console.log(obj);
+                var page = obj.curr,
+                    page_count = obj.limit;
+                $.ajax({
+                    type:'POST',
+                    url:ADMINSITEURL+'/version/get_version_list.html?type=1',
+                    data:{type:1},
+                    success:function(data){
+                        data = jQuery.parseJSON(data);
+                        $('#html').html(data.html);
+                        $('#data_1').attr('class','layui-this');
+                        $('#tab-item1').attr('class','layui-show');
+                    }
+                })
+
+            }
+        });
+
+        $('.layui-tab-title li').click(function(){
+            var type_id =$(this).attr('data-id');
+
+            if(type_id == 1){
+                //分页
+                laypage.render({
+                    elem: 'page'
+                    ,count: '<?php echo $list_count;?>'
+                    ,limit:1000
+                    ,layout: ['count', 'prev', 'page', 'next',  'skip']
+                    ,jump: function(obj){
+                        // console.log(obj);
+                        var page = obj.curr,
+                            page_count = obj.limit;
+
+                        $.ajax({
+                            type:'POST',
+                            url:ADMINSITEURL+'/version/get_version_list.html?type='+type_id,
+                            data:{type:1},
+                            success:function(data){
+                                data = jQuery.parseJSON(data);
+                                $('#tab-item1').show();
+                                $('#html').html(data.html);
+                                $('#tab-item2').hide();
+                                $('#data_1').attr('class','layui-this')
+                                $('#data_2').removeClass('layui-this')
+                                $('#tab-item1').attr('class','layui-show');
+                                $('#tab-item2').removeClass('layui-show')
+                            }
+                        })
+                    }
+                });
+            }else if(type_id == 2){
+                //分页
+                laypage.render({
+                    elem: 'page2'
+                    ,count: '<?php echo $list_count2;?>'
+                    ,limit:1000
+                    ,layout: ['count', 'prev', 'page', 'next',  'skip']
+                    ,jump: function(obj){
+                        // console.log(obj);
+                        var page = obj.curr,
+                            page_count = obj.limit;
+                        $.ajax({
+                            type:'POST',
+                            url:ADMINSITEURL+'/version/get_version_list.html?type='+type_id,
+                            data:{type:1},
+                            success:function(data){
+                                data = jQuery.parseJSON(data);
+                                $('#tab-item2').show();
+                                $('#html2').html(data.html);
+                                $('#tab-item1').hide();
+                                $('#data_2').attr('class','layui-this');
+                                $('#data_1').removeClass('layui-this');
+                                $('#tab-item2').attr('class','layui-show');
+                                $('#tab-item1').removeClass('layui-show');
+                            }
+                        })
+                    }
+                });
+            }
+
+        });
+
+        $('#send_android,#send_android2').click(function(){
+            //页面层
+            layer.open({
+                type: 2,
+                title:'添加Android版本号',
+                area: ['1000px', '750px'],
+                fixed: false, //不固定
+                maxmin: true,
+                content: ADMINSITEURL+'/version/android_version.html',
+                end: function () {
+                    location.reload();
+                }
+            });
+        });
+        $('#send_ios,#send_ios2').click(function(){
+            //页面层
+            layer.open({
+                type: 2,
+                title:'添加IOS版本号',
+                area: ['1000px', '750px'],
+                fixed: false, //不固定
+                maxmin: true,
+                content: ADMINSITEURL+'/version/ios_version.html',
+                end: function () {
+                    $("#data_2").click();
+                }
+            });
+        })
+
+    });
+</script>
+
+
+
+
+
+
