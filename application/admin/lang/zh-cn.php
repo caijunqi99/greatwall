@@ -160,6 +160,15 @@ $lang['ds_stataftersale'] = '售后分析';
 $lang['mobile'] = '手机端';
 $lang['mb_feedback'] = '意见反馈';
 $lang['appadv'] = 'APP广告';
+$lang['version'] = '版本管理';
+$lang['member_version_android'] = 'Android版本更新记录';
+$lang['member_version_ios'] = 'IOS版本更新记录';
+$lang['version_android_num'] = 'Android版本号';
+$lang['version_ios_num'] = 'IOS版本号';
+$lang['version_android_download'] = 'Android下载地址';
+$lang['version_ios_download'] = 'IOS下载地址';
+$lang['version_android_content'] = 'Android升级内容';
+$lang['version_ios_content'] = 'IOS升级内容';
 
 //微信端
 $lang['wechat'] = '微信';

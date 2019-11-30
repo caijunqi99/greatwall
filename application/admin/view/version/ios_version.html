@@ -1,0 +1,166 @@
+{include file="public/header" /}
+<script src="{$Think.PLUGINS_SITE_ROOT}/layer/layui.js"></script>
+<link rel="stylesheet" href="{$Think.PLUGINS_SITE_ROOT}/layer/css/layui.css">
+<script type="text/javascript">
+    var SITE_URL = "{$Think.config.url_domain_root}";
+    var ADMIN_URL = "{$Think.config.url_domain_root}";
+</script>
+<style>
+    .layui-input{
+        width: 80%;
+    }
+    .layui-textarea{
+        width: 80%;
+    }
+    .layui-form-select .layui-edge{
+        right: 190px;
+    }
+    .layui-form-select dl{
+        min-width: 80%;
+    }
+    .layui-form-label{
+        width: 90px;
+    }
+    .layui-input-block{
+        margin-left: 115px;
+    }
+    .error{
+        color: red;
+        margin-top: 5px;
+        display: none;
+    }
+</style>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<!-- 操作说明 -->
+<div class="explanation" id="explanation" style="width:100%;box-sizing: border-box;">
+    <div class="title" id="checkZoom">
+        <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+        <span id="explanationZoom" title="收起提示" class="arrow"></span>
+    </div>
+    <ul>
+        <li>版本号必须大于以前版本，升级内容可以为空，为空表示没有升级内容，且下载地址必须正确</li>
+    </ul>
+</div>
+<div style="margin-top: 20px;width: 100%;">
+    <form class="layui-form">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: #E00515;">*</span>更新版本号</label>
+            <div class="layui-input-block">
+                <input type="text" id="version_num" name="version_num"   lay-verify="version_num" autocomplete="off" placeholder="请输入版本号" class="layui-input">
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: #E00515;">*</span>更新方式</label>
+            <div class="layui-input-block">
+                <select name="mode" id="mode" >
+                    <option value="1" selected>建议更新</option>
+                    <option value="2">强制更新</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: #E00515;">*</span>更新链接地址</label>
+            <div class="layui-input-block">
+                <input type="text" id="url" name="url"   lay-verify="url" autocomplete="off" placeholder="请输入链接地址" class="layui-input">
+            </div>
+
+        </div>
+
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">更新内容</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入备注内容" id="description" name="description" class="layui-textarea"></textarea>
+                <p class="error"></p>
+            </div>
+        </div>
+        <div style="margin: 20px;margin-left: 245px;">
+            <button type="button" class="layui-btn" id="true" >确认修改</button>
+        </div>
+    </form>
+</div>
+<script>
+    var index = parent.layer.getFrameIndex(window.name);
+    layui.use(['form'], function() {
+        var form = layui.form;
+        layui.use(['upload'],function(){
+
+            var upload = layui.upload;
+            //执行实例
+            var uploadInst = upload.render({
+                elem: '#upload-change' //绑定元素
+                , url: ADMIN_URL + 'apk_file_upload.html' //上传接口
+                , accept: 'file' //普通文件
+                , method: 'POST'
+                ,data:{}
+                , auto: false  //是否自主上传
+                , bindAction: '#true'  //确认上传按钮
+                , exts: 'apk' //只允许上传文件类型
+                , size: 0
+                ,choose: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+                    var flag = true;
+                    obj.preview(function(index, file, result){
+                        $('input[name=package_name]').val(file.name);
+                        return flag;
+                    });
+                }
+                , done: function (res) {
+                    // console.log(res);
+                    parent.layer.closeAll('loading');
+                    //上传完毕回调
+                    if(res.code == 0){
+                        layer.full(index);
+                    }else{
+                        parent.layer.msg(res.msg,{icon:2});
+                    }
+                }
+                , error: function () {
+                    //请求异常回调
+                    parent.layer.closeAll('loading');
+                    parent.layer.msg('网络异常，请稍后重试！');
+                }
+            });
+        });
+
+        $('#true').click(function(){
+            $(this).attr('disabled','disabled');
+            var type=2;
+            var version_num = $('#version_num').val();
+            var mode = $('#mode').find('option:selected').val();
+            var url = $('#url').val();
+            var description = $('#description').val();
+            if(version_num == ''){
+                layer.msg('请填写版本号',{icon:2,time:2000});return false;
+            }
+
+            if(url == ''){
+                layer.msg('请填写下载链接地址',{icon:2,time:2000});return false;
+            }
+            $.ajax({
+                type:'POST',
+                url:ADMIN_URL+'updateVersion.html',
+                data:{type:type,version_num:version_num,mode:mode,url:url,description:description},
+                dataType: 'json',
+                success: function(response){
+                    if(response['code'] == 200){
+                        layer.msg(response['msg'],{icon:1,time:2000},function(){
+                            parent.layer.close(index);
+                        })
+                    }else{
+                        layer.msg(response['msg'],{icon:2});return false;
+                    }
+                }
+            })
+        });
+    });
+</script>
+
+
+
+
+
+
+
