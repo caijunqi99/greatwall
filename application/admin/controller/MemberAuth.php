@@ -65,7 +65,7 @@ class MemberAuth extends AdminControl {
             default:
                 $condition.=' AND member_auth_state IN (1,2,3)';
         }
-        $member_list = $member_model->getMemberList($condition, '*', 10, 'member_id desc');
+        $member_list = $member_model->getMemberListAuth($condition, '*', 10, 'member_id desc');
         //整理会员信息
         if (is_array($member_list) && !empty($member_list)) {
             foreach ($member_list as $k => $v) {

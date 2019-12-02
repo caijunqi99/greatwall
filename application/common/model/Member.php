@@ -71,6 +71,25 @@ class Member extends Model
         }
     }
 
+    /*
+     * 联查认证信息
+     * */
+    public function getMemberListAuth($condition = array(), $field = '*', $pagesize = 0, $order = 'member_id desc')
+    {
+        if ($pagesize) {
+            $member_list = db('member')->alias("m")
+                ->join('__MEMBERBANK__ me','m.member_id=me.member_id')
+                ->field("m.*,me.memberbank_truename,me.memberbank_name,me.memberbank_no")
+                ->where($condition)->order($order)->paginate($pagesize,false,['query' => request()->param()]
+            );
+            $this->page_info = $member_list;
+            return $member_list->items();
+        }
+        else {
+            return db('member')->field($field)->where($condition)->order($order)->select();
+        }
+    }
+
     /**
      * 会员数量
      * @access public
