@@ -36,53 +36,56 @@ class Memberbuy extends MobileMember
         //得到购买数据
         $ifcart=!empty($_POST['ifcart'])?true:false;
         $result = $logic_buy->buyStep1($cart_id, $ifcart, $this->member_info['member_id'], $this->member_info['store_id']);
-
         if (!$result['code']) {
             output_error($result['msg']);
         }
         else {
             $result = $result['data'];
         }
-
-        if (isset($_POST['address_id'])&&intval($_POST['address_id']) > 0)
-        {
+        $data_area = [];
+        if (isset($_POST['address_id'])&&intval($_POST['address_id']) > 0){
             $result['address_info'] = Model('address')->getDefaultAddressInfo(array('address_id' => intval($_POST['address_id']), 'member_id' => $this->member_info['member_id']));
-        }
-        if ($result['address_info']) {
-            $data_area = $logic_buy->changeAddr($result['freight_list'], $result['address_info']['city_id'], $result['address_info']['area_id'], $this->member_info['member_id']);
-            if (!empty($data_area) && $data_area['state'] == 'success') {
-                if (is_array($data_area['content'])) {
-                    foreach ($data_area['content'] as $store_id => $value) {
-                        $data_area['content'][$store_id] = ds_price_format($value);
+            if ($result['address_info']) {
+                $data_area = $logic_buy->changeAddr($result['freight_list'], $result['address_info']['city_id'], $result['address_info']['area_id'], $this->member_info['member_id']);
+                if (!empty($data_area) && $data_area['state'] == 'success') {
+                    if (is_array($data_area['content'])) {
+                        foreach ($data_area['content'] as $store_id => $value) {
+                            $data_area['content'][$store_id] = ds_price_format($value);
+                        }
                     }
                 }
-            }
-            else {
-                output_error('地区请求失败');
+                else {
+                    output_error('地区请求失败');
+                }
             }
         }
+        
 
         //整理数据
         $store_cart_list = array();
         $store_total_list = $result['store_goods_total'];
+        
+
         foreach ($result['store_cart_list'] as $key => $value) {
             $store_cart_list[$key]['goods_list'] = $value;
             $store_cart_list[$key]['store_goods_total'] = $result['store_goods_total'][$key];
 
             $store_cart_list[$key]['store_mansong_rule_list'] = isset($result['store_mansong_rule_list'][$key])?$result['store_mansong_rule_list'][$key]:'';
-
-            if (is_array($result['store_voucher_list'][$key]) && count($result['store_voucher_list'][$key]) > 0) {
+            // 不需要代金券
+            if (isset($result['store_voucher_list'][$key]) && is_array($result['store_voucher_list'][$key]) && count($result['store_voucher_list'][$key]) > 0) {
                 current($result['store_voucher_list'][$key]);
+
                 $store_cart_list[$key]['store_voucher_info'] = reset($result['store_voucher_list'][$key]);
                 $store_cart_list[$key]['store_voucher_info']['voucher_price'] = ds_price_format($store_cart_list[$key]['store_voucher_info']['voucher_price']);
                 $store_cart_list[$key]['store_voucher_info']['voucher_end_date_text']=date('Y年m月d日',$store_cart_list[$key]['store_voucher_info']['voucher_end_date']);
                 $store_total_list[$key] = $store_cart_list[$key]['store_voucher_info']['voucher_price'];
+
             }
             else {
                 $store_cart_list[$key]['store_voucher_info'] = array();
             }
 
-            $store_cart_list[$key]['store_voucher_list'] = $result['store_voucher_list'][$key];
+            $store_cart_list[$key]['store_voucher_list'] = isset($result['store_voucher_list'][$key])?$result['store_voucher_list'][$key]:[];
             if (!empty($result['cancel_calc_sid_list'][$key])) {
                 $store_cart_list[$key]['freight'] = '0';
                 $store_cart_list[$key]['freight_message'] = $result['cancel_calc_sid_list'][$key]['desc'];
@@ -100,7 +103,7 @@ class Memberbuy extends MobileMember
         $buy_list['vat_hash'] = $result['vat_hash'];
         $buy_list['inv_info'] = $result['inv_info'];
         $buy_list['available_predeposit'] = isset($result['available_predeposit'])?$result['available_predeposit']:array();
-        // $buy_list['available_rc_balance'] = isset($result['available_rc_balance'])?$result['available_rc_balance']:array();
+        $buy_list['available_rc_balance'] = isset($result['available_rc_balance'])?$result['available_rc_balance']:array();
         if (isset($result['rpt_list']) && !empty($result['rpt_list'])) {
             foreach ($result['rpt_list'] as $k => $v) {
                 unset($result['rpt_list'][$k]['rpacket_id']);
@@ -112,7 +115,7 @@ class Memberbuy extends MobileMember
         $buy_list['rpt_list'] = isset($result['rpt_list']) ? $result['rpt_list'] : array();
         $buy_list['zk_list'] = isset($result['zk_list'])?$result['zk_list']:array();
 
-        if ($data_area['content']) {
+        if (isset($data_area['content']) ){
 
             $store_total_list = model('buy_1','logic')->reCalcGoodsTotal($store_total_list, $data_area['content'], 'freight');
 
@@ -147,45 +150,47 @@ class Memberbuy extends MobileMember
     public function buy_step2()
     {
         $param = array();
-        $param['ifcart']            = $_POST['ifcart'];
-        $param['cart_id']           = explode(',', $_POST['cart_id']);
-        $param['address_id']        = $_POST['address_id'];
-        $param['vat_hash']          = $_POST['vat_hash'];
-        $param['offpay_hash']       = $_POST['offpay_hash'];
-        $param['offpay_hash_batch'] = $_POST['offpay_hash_batch'];
-        $param['pay_name']          = $_POST['pay_name'];
-        $param['invoice_id']        = $_POST['invoice_id'];
-        $param['rpt']               = $_POST['rpt'];
-
+        $param['ifcart']            = input('param.ifcart');
+        $param['cart_id']           = explode(',', input('param.cart_id'));
+        $param['address_id']        = input('param.address_id');
+        $param['vat_hash']          = input('param.vat_hash');
+        $param['offpay_hash']       = input('param.offpay_hash');
+        $param['offpay_hash_batch'] = input('param.offpay_hash_batch');
+        $param['pay_name']          = input('param.pay_name');
+        $param['invoice_id']        = input('param.invoice_id');
+        $param['rpt']               = input('param.rpt');
+        
         //处理代金券
         $voucher = array();
-        $post_voucher = explode(',', $_POST['voucher']);
+        $post_voucher = explode(',', input('param.voucher'));
         if (!empty($post_voucher)) {
             foreach ($post_voucher as $value) {
                 list($vouchertemplate_id, $store_id, $voucher_price) = explode('|', $value);
                 $voucher[$store_id] = $value;
             }
         }
+
         $param['voucher'] = $voucher;
 
-        $_POST['pay_message'] = trim($_POST['pay_message'], ',');
-        $_POST['pay_message'] = explode(',', $_POST['pay_message']);
+        $_POST['pay_message'] = trim(input('param.pay_message'), ',');
+        $_POST['pay_message'] = explode(',', input('param.pay_message'));
         $param['pay_message'] = array();
-        if (is_array($_POST['pay_message']) && $_POST['pay_message']) {
-            foreach ($_POST['pay_message'] as $v) {
+
+        if (is_array(input('param.pay_message')) && input('param.pay_message')) {
+            foreach (input('param.pay_message') as $v) {
                 if (strpos($v, '|') !== false) {
                     $v = explode('|', $v);
                     $param['pay_message'][$v[0]] = $v[1];
                 }
             }
         }
-        $param['pd_pay'] = $_POST['pd_pay'];
-        $param['rcb_pay'] = $_POST['rcb_pay'];
-        $param['password'] = $_POST['password'];
-        $param['fcode'] = $_POST['fcode'];
+        $param['pd_pay'] = input('param.pd_pay');
+        $param['rcb_pay'] = input('param.rcb_pay');
+        $param['password'] = input('param.password');
+        $param['fcode'] = input('param.fcode');
         $param['order_from'] = 2;
         $logic_buy = model('buy','logic');
-
+        
         //得到会员等级
        /* $model_member = Model('member');
         $member_info = $model_member->getMemberInfoByID($this->member_info['member_id']);
@@ -250,7 +255,7 @@ class Memberbuy extends MobileMember
     public function pay()
     {
         $pay_sn = $_POST['pay_sn'];
-        if (!preg_match('/^\d{18}$/', $pay_sn)) {
+        if (!preg_match('/^\d{20}$/', $pay_sn)) {
             output_error('该订单不存在');
         }
 
@@ -308,9 +313,14 @@ class Memberbuy extends MobileMember
         if (empty($pay['pay_diff_amount'])) {
             output_error('订单重复支付');
         }
-
-        $payment_list = model('mbpayment')->getMbPaymentOpenList();
-
+        $condition = [];
+        $condition['payment_code'] = 'predeposit';
+        $payment_list = model('payment')->getPaymentOpenList();
+        foreach ($payment_list as $k => $value) {
+            if ($value['payment_code']!='predeposit' ||$value['payment_code']!='payment-online' ) {
+                unset($payment_list[$k]);
+            }
+        }
         if (!empty($payment_list)) {
             foreach ($payment_list as $k => $value) {
                 unset($payment_list[$k]['payment_id']);
@@ -319,13 +329,17 @@ class Memberbuy extends MobileMember
                 unset($payment_list[$k]['payment_state_text']);
             }
         }
-        if(in_array($this->member_info['client_type'],array('ios','android'))){
-            foreach ($payment_list as $k => $value) {
-               if(!strpos($payment_list[$k]['payment_code'],'app')){
-                   unset($payment_list[$k]);
-               }
-            }
-        }
+        
+
+        // if(in_array($this->member_info['member_clienttype'],array('ios','android'))){
+        //     foreach ($payment_list as $k => $value) {
+        //        if(!strpos($payment_list[$k]['payment_code'],'app')){
+        //            unset($payment_list[$k]);
+        //        }
+        //     }
+        // }
+        sort($payment_list);
+        // p($payment_list);exit;
         //显示预存款、支付密码、充值卡
         $pay['member_available_pd'] = $this->member_info['available_predeposit'];
         // $pay['member_available_rcb'] = $this->member_info['available_rc_balance'];
