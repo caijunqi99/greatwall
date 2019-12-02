@@ -325,7 +325,7 @@ class Order extends Model {
      * @return int
      */
     public function getOrderStateNewCount($condition = array()) {
-        $condition['order_state'] = ORDER_STATE_NEW;
+        $condition['order_state'] = "10";
         return $this->getOrderCount($condition);
     }
 
@@ -337,7 +337,7 @@ class Order extends Model {
      * @return int
      */
     public function getOrderStatePayCount($condition = array()) {
-        $condition['order_state'] = ORDER_STATE_PAY;
+        $condition['order_state'] = "20";
         return $this->getOrderCount($condition);
     }
 
@@ -349,7 +349,7 @@ class Order extends Model {
      * @return int
      */
     public function getOrderStateSendCount($condition = array()) {
-        $condition['order_state'] = ORDER_STATE_SEND;
+        $condition['order_state'] = "30";
         return $this->getOrderCount($condition);
     }
 
@@ -361,7 +361,7 @@ class Order extends Model {
      * @return type
      */
     public function getOrderStateEvalCount($condition = array()) {
-        $condition['order_state'] = ORDER_STATE_SUCCESS;
+        $condition['order_state'] = "40";
         $condition['evaluation_state'] = 0;
 		$condition['refund_state'] = 0;
         return $this->getOrderCount($condition);
@@ -375,7 +375,7 @@ class Order extends Model {
      * @return int
      */
     public function getOrderStateTradeCount($condition = array()) {
-        $condition['order_state'] = array(array('neq', ORDER_STATE_CANCEL), array('neq', ORDER_STATE_SUCCESS), 'and');
+        $condition['order_state'] = array(array('neq', "0"), array('neq', "40"), 'and');
         return $this->getOrderCount($condition);
     }
 
