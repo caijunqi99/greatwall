@@ -120,6 +120,12 @@ function toPay(a, e, p) {
                             $("#" + i).attr("checked", true).parents("label").addClass("checked")
                         }
                     }
+                    if (i == "predeposit" && t) {
+                        if (payment_code == "") {
+                            payment_code = i;
+                            $("#" + i).attr("checked", true).parents("label").addClass("checked")
+                        }
+                    }
                 }
             }
             $("#alipay").click(function() {

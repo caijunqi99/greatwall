@@ -31,6 +31,10 @@ class Goods extends MobileMall {
         $keyword = input('param.keyword');
         $barcode = input('param.barcode');
         $b_id = intval(input('param.b_id'));
+        $store_id = intval(input('param.store_id',0));
+        if ($store_id>0) {
+            // $condition['store_id'] = $store_id;
+        }
         if ($gc_id > 0) {
             $condition['gc_id'] = $gc_id;
         } elseif (!empty($keyword)) {

@@ -582,23 +582,25 @@ class Buy extends Model
 
         //是否开增值税发票
         $input_if_vat = $this->buyDecrypt($post['vat_hash'], $this->_member_info['member_id']);
-        if (!in_array($input_if_vat, array('allow_vat', 'deny_vat'))) {
-            exception('订单保存出现异常[值税发票出现错误]，请重试');
-        }
+        // if (!in_array($input_if_vat, array('allow_vat', 'deny_vat'))) {
+        //     exception('订单保存出现异常[值税发票出现错误]，请重试');
+        // }
         $input_if_vat = ($input_if_vat == 'allow_vat') ? true : false;
 
         //是否支持货到付款
         $input_if_offpay = $this->buyDecrypt($post['offpay_hash'], $this->_member_info['member_id']);
-        if (!in_array($input_if_offpay, array('allow_offpay', 'deny_offpay'))) {
-            exception('订单保存出现异常[货到付款验证错误]，请重试');
-        }
+        // p($input_if_offpay);exit;
+        // if (!in_array($input_if_offpay, array('allow_offpay', 'deny_offpay'))) {
+        //     exception('订单保存出现异常[货到付款验证错误]，请重试');
+        // }
         $input_if_offpay = ($input_if_offpay == 'allow_offpay') ? true : false;
 
-        // 是否支持货到付款 具体到各个店铺
+        // // 是否支持货到付款 具体到各个店铺
         $input_if_offpay_batch = $this->buyDecrypt($post['offpay_hash_batch'], $this->_member_info['member_id']);
-        if (!is_array($input_if_offpay_batch)) {
-            exception('订单保存出现异常[部分店铺付款方式出现异常]，请重试');
-        }
+        // if (!is_array($input_if_offpay_batch)) {
+        //     exception('订单保存出现异常[部分店铺付款方式出现异常]，请重试');
+        // }
+        $input_if_offpay_batch = ($input_if_offpay_batch == 'allow_offpay') ? true : false;
 
         //付款方式:在线支付/货到付款(online/offline)
         if (!in_array($post['pay_name'], array('online', 'offline'))) {
@@ -824,7 +826,6 @@ class Buy extends Model
 
         //收货人信息
         list($reciver_info, $reciver_name) = $this->_logic_buy_1->getReciverAddr($input_address_info);
-
         foreach ($store_cart_list as $store_id => $goods_list) {
 
             //取得本店优惠额度(后面用来计算每件商品实际支付金额，结算需要)
@@ -873,7 +874,7 @@ class Buy extends Model
 
             $order_common['order_id'] = $order_id;
             $order_common['store_id'] = $store_id;
-            $order_common['order_message'] = $input_pay_message[$store_id];
+            $order_common['order_message'] = isset($input_pay_message[$store_id])?$input_pay_message[$store_id]:'';
 
             //代金券
             if (isset($input_voucher_list[$store_id])) {
