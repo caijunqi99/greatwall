@@ -59,6 +59,7 @@ class Memberfund extends MobileMember {
         $where['pdr_member_id'] = $this->member_info['member_id'];
         $model_pd = Model('predeposit');
         $list = $model_pd->getPdRechargeList($where, $this->pagesize, '*', 'pdr_id desc');
+
         if ($list) {
             foreach ($list as $k => $v) {
                 $v['pdr_add_time_text'] = @date('Y-m-d H:i:s', $v['pdr_add_time']);
@@ -79,7 +80,7 @@ class Memberfund extends MobileMember {
         $list = $model_pd->getPdCashList($where, $this->pagesize, '*', 'pdc_id desc');
         if ($list) {
             foreach ($list as $k => $v) {
-                $v['pdc_add_time_text'] = @date('Y-m-d H:i:s', $v['pdc_add_time']);
+                $v['pdc_add_time_text'] = @date('Y-m-d H:i:s', $v['pdc_addtime']);
                 $v['pdc_payment_time_text'] = @date('Y-m-d H:i:s', $v['pdc_payment_time']);
                 $v['pdc_payment_state_text'] = $v['pdc_payment_state'] == 1 ? '已支付' : '未支付';
                 $list[$k] = $v;
@@ -120,7 +121,7 @@ class Memberfund extends MobileMember {
         if (!$info) {
             output_error('参数错误');
         }
-        $info['pdc_add_time_text'] = $info['pdc_add_time'] ? @date('Y-m-d H:i:s', $info['pdc_add_time']) : '';
+        $info['pdc_add_time_text'] = $info['pdc_addtime'] ? @date('Y-m-d H:i:s', $info['pdc_addtime']) : '';
         $info['pdc_payment_time_text'] = $info['pdc_payment_time'] ? @date('Y-m-d H:i:s', $info['pdc_payment_time']) : '';
         $info['pdc_payment_state_text'] = $info['pdc_payment_state'] == 1 ? '已支付' : '未支付';
         output_data(array('info' => $info));
