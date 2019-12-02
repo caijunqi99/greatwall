@@ -95,17 +95,17 @@ class Index extends MobileMall {
      * 默认搜索词列表
      */
     public function search_key_list() {
-        $list = @explode(',', config('hot_search'));
+        $list = @explode('，', config('hot_search'));
         if (!$list || !is_array($list)) {
             $list = array();
         }
-        if (cookie('hisSearch') != '') {
-            $his_search_list = explode('~', cookie('hisSearch'));
-        }
-        if (!$his_search_list || !is_array($his_search_list)) {
-            $his_search_list = array();
-        }
-        output_data(array('list' => $list, 'his_list' => $his_search_list));
+//        if (cookie('hisSearch') != '') {
+//            $his_search_list = explode('~', cookie('hisSearch'));
+//        }
+//        if (!$his_search_list || !is_array($his_search_list)) {
+//            $his_search_list = array();
+//        }
+        output_data(array('list' => $list));
     }
 
     /**

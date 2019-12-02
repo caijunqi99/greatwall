@@ -99,18 +99,18 @@
                                 <th class="align-center">{$Think.lang.product_price}</th>
                                 <th class="align-center">{$Think.lang.goods_pay_price}</th>
                                 <th class="align-center">{$Think.lang.product_num}</th>
-                                <th class="align-center">{$Think.lang.vrorder_commis_rate}</th>
-                                <th class="align-center">{$Think.lang.vrorder_commis_price}</th>
+                                <!--<th class="align-center">{$Think.lang.vrorder_commis_rate}</th>-->
+                                <!--<th class="align-center">{$Think.lang.vrorder_commis_price}</th>-->
                             </tr>
                             {foreach name="$order_info.extend_order_goods" item="goods"}
                             <tr>
-                                <td class="w60 picture"><div class="size-56x56"><span class="thumb size-56x56"><i></i><a href="{:url('/Home/Goods/index',['goods_id'=>$goods.goods_id])}" target="_blank"><img  src="{:goods_cthumb($goods.goods_image)}" width="60" height="60"/> </a></span></div></td>
-                                <td class="w50pre"><p><a href="{:url('/Home/Goods/index',['goods_id'=>$goods.goods_id])}" target="_blank">{$goods.goods_name}</a></p><p><?php echo get_order_goodstype($goods['goods_type']);?></p></td>
+                                <td class="w60 picture"><div class="size-56x56"><span class="thumb size-56x56"><i></i><img  src="{:goods_cthumb($goods.goods_image)}" width="60" height="60"/> </span></div></td>
+                                <td class="w50pre"><p>{$goods.goods_name}</p><p><?php echo get_order_goodstype($goods['goods_type']);?></p></td>
                                 <td class="w96 align-center"><span class="red_common">{$Think.lang.currency}{$goods.goods_price}</span></td>
                                 <td class="w96 align-center"><span class="red_common">{$Think.lang.currency}{$goods.goods_pay_price}</span></td>
                                 <td class="w96 align-center">{$goods.goods_num}</td>
-                                <td class="w96 align-center"><?php echo $goods['commis_rate'] == 200 ? '' : $goods['commis_rate'].'%';?></td>
-                                <td class="w96 align-center"><?php echo $goods['commis_rate'] == 200 ? '' : ds_price_format($goods['goods_pay_price']*$goods['commis_rate']/100);?></td>
+                                <!--<td class="w96 align-center"><?php echo $goods['commis_rate'] == 200 ? '' : $goods['commis_rate'].'%';?></td>-->
+                                <!--<td class="w96 align-center"><?php echo $goods['commis_rate'] == 200 ? '' : ds_price_format($goods['goods_pay_price']*$goods['commis_rate']/100);?></td>-->
                             </tr>
                            {/foreach}
                         </tbody>
