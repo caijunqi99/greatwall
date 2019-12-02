@@ -32,7 +32,7 @@ class Memberauth extends MobileMall
             $member_info = $member_model->getMemberInfo($condition);
             $bankinfo = $memberbank_model -> getMemberbankInfo($condition);
             $logindata = array(
-                'userid' => $member_info['member_id'],'member_auth_state' => $member_info['member_auth_state'],'idcard'=>$member_info['member_idcard'],
+                'member_id' => $member_info['member_id'],'member_auth_state' => $member_info['member_auth_state'],'idcard'=>$member_info['member_idcard'],
                 'member_provinceid'=>$member_info['member_provinceid'],'member_cityid'=>$member_info['member_cityid'],'member_areaid'=>$member_info['member_areaid'],
                 'member_townid'=>$member_info['member_townid'],'member_villageid'=>$member_info['member_villageid'],'member_areainfo'=>$member_info['member_areainfo'],
                 'member_idcard_image2' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image2'],'member_idcard_image3' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image3'],
