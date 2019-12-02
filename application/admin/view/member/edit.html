@@ -23,14 +23,14 @@
                     <td class="vatop tips">{$Think.lang.member_edit_password_keep}</td>
                 </tr>
                 <tr class="noborder">
-                    <td class="required"><label class="validation" for="member_email">{$Think.lang.member_index_email}:</label></td>
-                    <td class="vatop rowform"><input type="text" value="{$member_array.member_email}" id="member_email" name="member_email" class="txt"></td>
-                    <td class="vatop tips">{$Think.lang.member_index_email}</td>
-                </tr>
-                <tr class="noborder">
                     <td class="required"><label for="member_truename">{$Think.lang.member_index_true_name}:</label></td>
                     <td class="vatop rowform"><input type="text" value="{$member_array.member_truename}" id="member_truename" name="member_truename" class="txt"></td>
                     <td class="vatop tips"></td>
+                </tr>
+                <tr class="noborder">
+                    <td class="required"><label for="member_email">{$Think.lang.member_index_email}:</label></td>
+                    <td class="vatop rowform"><input type="text" value="{$member_array.member_email}" id="member_email" name="member_email" class="txt"></td>
+                    <td class="vatop tips">{$Think.lang.member_index_email}</td>
                 </tr>
                 <tr class="noborder">
                     <td class="required"><label>{$Think.lang.member_edit_sex}:</label></td>
@@ -77,11 +77,6 @@
                 <tr class="noborder">
                     <td class="required"><label class="member_qq">QQ:</label></td>
                     <td class="vatop rowform"><input type="text" value="{$member_array.member_qq}" id="member_qq" name="member_qq" class="txt"></td>
-                    <td class="vatop tips"></td>
-                </tr>
-                <tr class="noborder">
-                    <td class="required"><label class="member_ww">{$Think.lang.member_edit_wangwang}:</label></td>
-                    <td class="vatop rowform"><input type="text" value="{$member_array.member_ww}" id="member_ww" name="member_ww" class="txt"></td>
                     <td class="vatop tips"></td>
                 </tr>
                 <tr class="noborder">
@@ -215,7 +210,6 @@
                         minlength: 6
                     },
                     member_email: {
-                        required: true,
                         email: true,
                         remote: {
                             url: ADMINSITEURL+'/Member/ajax.html?branch=check_email',
@@ -235,7 +229,6 @@
                         minlength: '{$Think.lang.member_edit_password_tip}'
                     },
                     member_email: {
-                        required: '{$Think.lang.member_edit_email_null}',
                         email: '{$Think.lang.member_edit_valid_email}',
                         remote: '{$Think.lang.member_edit_email_exists}'
                     }
