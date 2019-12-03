@@ -38,6 +38,23 @@ class Member extends MobileMember {
 //        $condition['refund_state'] = array('lt', 3);
 //        $member_info['return'] = Model('refundreturn')->getRefundReturnCount($condition);
     }
+    public function wallet() {
+        $member_info = array();
+        $member_info['user_name'] = $this->member_info['member_name'];
+        $member_info['avator'] = get_member_avatar_for_id($this->member_info['member_id']);
+        $member_info['member_points'] = $this->member_info['member_points'];
+        $member_info['member_points_available'] = $this->member_info['member_points_available'];
+        $member_info['available_predeposit'] = $this->member_info['available_predeposit'];
+        $member_info['member_transaction'] = $this->member_info['member_transaction'];
+        $member_gradeinfo = Model('member')->getOneMemberGrade(intval($this->member_info['member_exppoints']));
+        $member_info['level_name'] = $member_gradeinfo['level_name'];
+        $member_info['mobile'] = encrypt_show($this->member_info['member_mobile'], 4, 4);
+        $member_info['inviter_code'] = $this->member_info['inviter_code'];
+        $data['member_id']=$this->member_info['member_id'];
+        $company=Model('company')->getCompanyInfo($data);
+        $member_info['company']=$company;
+        output_data(array('member_info' => $member_info));
+    }
 
     public function my_asset() {
         $fields_arr = array('point', 'predepoit', 'available_rc_balance', 'redpacket', 'voucher');
