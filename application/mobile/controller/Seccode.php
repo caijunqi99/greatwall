@@ -31,9 +31,9 @@ class Seccode {
     public function check() {
         $captch=input('param.captcha');
         if(captcha_check($captch)){
-           output_data(1);
+           output_data(['state'=>TRUE]);
         } else {
-            output_error('验证码错误',['code'=>'']);
+            output_error('验证码错误');
         }
     }
 

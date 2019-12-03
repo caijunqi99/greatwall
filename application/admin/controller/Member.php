@@ -220,12 +220,10 @@ class Member extends AdminControl {
             $cond = array();
             $cond['inviter_id'] = ['in',$member_inviterids];
             $member_list_two = $member_model->getMemberList($cond);
-            foreach($member_list as $item=>$value){
-                foreach($member_list_two as $i=>$t){
-                    $t["level"] = "二代";
-                    $member_list[] = $t;
-                }
+            foreach($member_list_two as $i=>$t){
+                $member_list_two[$i]["level"] = "二代";
             }
+            $member_list=array_merge($member_list,$member_list_two);
         }
         $this->assign('member_list', $member_list);
         $this->setAdminCurItem('inviter');

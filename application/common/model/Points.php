@@ -125,8 +125,9 @@ class Points extends Model {
         if (isset($insertarr['pl_adminname'])) {
             $value_array['pl_adminname'] = $insertarr['pl_adminname'];
         }
+        $insertarr['pl_pointsav'] = isset($insertarr['pl_pointsav'])?$insertarr['pl_pointsav']:0;
         $value_array['pl_points'] = $insertarr['pl_points'];
-        $value_array['pl_pointsav'] = isset($insertarr['pl_pointsav'])?$insertarr['pl_pointsav']:0;
+        $value_array['pl_pointsav'] = $insertarr['pl_pointsav'];
         $value_array['pl_addtime'] = TIMESTAMP;
         $value_array['pl_desc'] = $insertarr['pl_desc'];
         $value_array['pl_stage'] = $stage;

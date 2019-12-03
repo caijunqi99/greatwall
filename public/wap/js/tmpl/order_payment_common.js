@@ -55,6 +55,7 @@ function toPay(a, e, p) {
             function() {
                 password = $(this).val();
             });
+            console.log(password);
             rcb_pay = 0;
             $("#useRCBpay").click(function() {
                 if ($(this).prop("checked")) {
@@ -135,6 +136,7 @@ function toPay(a, e, p) {
                     payment_code = "wxpay_jsapi";
             });
             $("#toPay").click(function() {
+
                 if (payment_code == "") {
                     $.sDialog({
                         skin: "red",

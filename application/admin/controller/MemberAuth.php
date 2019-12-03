@@ -126,12 +126,19 @@ class MemberAuth extends AdminControl {
         if (!request()->isPost()) {
             $condition['member_id'] = $member_id;
             $member_array = $member_model->getMemberInfo($condition);
+            $memberbank_model = model('memberbank');
+            $memberbank_array = $memberbank_model->getMemberbankInfo($condition);
+            $member_array = array_merge($member_array,$memberbank_array);
             $this->assign('member_array', $member_array);
             return $this->fetch();
         } else {
+            $memberbank_model = model('memberbank');
+            $bank_array = array(
+                'memberbank_name' => input('post.member_bankname'),
+                'memberbank_no' => input('post.member_bankcard'),
+            );
+            $memberbank_model->editMemberbank($bank_array,array("member_id"=>$member_id));
             $data = array(
-                'member_bankname' => input('post.member_bankname'),
-                'member_bankcard' => input('post.member_bankcard'),
                 'member_villageid' => input('post.village_id'),
                 'member_townid' => input('post.town_id'),
                 'member_cityid' => input('post.city_id'),

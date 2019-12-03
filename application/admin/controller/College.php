@@ -27,11 +27,22 @@ class College extends AdminControl {
         if ($search_ac_id) {
             $condition['ac_id'] = $search_ac_id;
         }
+        $search_type = input('param.search_ac_type');
+        if(is_null($search_type)){
+            $search_type = 2;
+        }elseif($search_type==1){
+            $search_type = 1;
+            $condition['article_type'] = 1;
+        }elseif($search_type==0){
+            $search_type = 0;
+            $condition['article_type'] = 0;
+        }
         $search_title = trim(input('param.search_title'));
         if ($search_title) {
             $condition['article_title'] = array('like', "%" . $search_title . "%");
         }
         $article_model = model('article');
+
         $article_list = $article_model->getArticleList($condition, 10);
 
         $articleclass_model = model('articleclass');
@@ -62,12 +73,12 @@ class College extends AdminControl {
                 }
             }
         }
-
         $this->assign('article_list', $article_list);
         $this->assign('show_page', $article_model->page_info->render());
         $this->assign('search_title', $search_title);
         $this->assign('search_ac_id', $search_ac_id);
-        
+        $this->assign('search_ac_type', $search_type);
+
         $this->assign('filtered', $condition ? 1 : 0); //是否有查询条件
         
         $this->setAdminCurItem('college');
@@ -81,6 +92,7 @@ class College extends AdminControl {
                 'article_title' => '',
                 'ac_id' => input('param.ac_id'),
                 'article_url' => '',
+                'article_type' => 0,
                 'article_show' => 0,
                 'article_sort' => 0,
                 'article_content' => '',
@@ -101,7 +113,7 @@ class College extends AdminControl {
                 'article_time' => TIMESTAMP,
             );
             $data['article_show'] = intval(input('post.article_show'));
-
+            $data['article_type'] = intval(input('post.article_type'));
             $article_validate = validate('article');
             if (!$article_validate->scene('add')->check($data)) {
                 $this->error($article_validate->getError());
@@ -169,6 +181,7 @@ class College extends AdminControl {
                 'article_time' => TIMESTAMP,
             );
             $data['article_show'] = intval(input('post.article_show'));
+            $data['article_type'] = intval(input('post.article_type'));
             $article_validate = validate('article');
             if (!$article_validate->scene('edit')->check($data)) {
                 $this->error($article_validate->getError());

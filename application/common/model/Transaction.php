@@ -36,6 +36,7 @@ class Transaction extends Model{
                 $data_log['tl_transaction'] = $data['amount'];
                 $data_log['tl_desc'] = '管理员调节交易码【增加】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['tl_desc'];
                 $data_log['tl_adminname'] = $data['admin_name'];
+                $data_log['tl_adminid'] = $data['admin_id'];
                 $data_pd['member_transaction'] = Db::raw('member_transaction+'.$data['amount']);
 
                 $data_msg['av_amount'] = $data['amount'];
@@ -46,6 +47,7 @@ class Transaction extends Model{
                 $data_log['tl_transaction'] = -$data['amount'];
                 $data_log['tl_desc'] = '管理员调节交易码【减少】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['tl_desc'];
                 $data_log['tl_adminname'] = $data['admin_name'];
+                $data_log['tl_adminid'] = $data['admin_id'];
                 $data_pd['member_transaction'] = Db::raw('member_transaction-'.$data['amount']);
 
                 $data_msg['av_amount'] = -$data['amount'];
