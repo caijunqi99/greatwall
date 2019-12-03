@@ -135,6 +135,7 @@ class Transaction extends AdminControl {
                 $data['amount'] = $money;
                 $data['order_sn'] = $order_sn;
                 $data['admin_name'] = $admininfo['admin_name'];
+                $data['admin_id'] = $admininfo['admin_id'];
                 $data['pdr_sn'] = $order_sn;
                 $data['tl_desc'] = $memo;
                 $transaction_model->changePd($admin_act, $data);
