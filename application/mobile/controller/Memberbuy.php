@@ -317,18 +317,19 @@ class Memberbuy extends MobileMember
         $condition['payment_code'] = 'predeposit';
         $payment_list = model('payment')->getPaymentOpenList();
         foreach ($payment_list as $k => $value) {
-            if ($value['payment_code']!='predeposit' ||$value['payment_code']!='payment-online' ) {
+            if ($value['payment_code']!='predeposit') {
                 unset($payment_list[$k]);
             }
         }
-        if (!empty($payment_list)) {
-            foreach ($payment_list as $k => $value) {
-                unset($payment_list[$k]['payment_id']);
-                unset($payment_list[$k]['payment_config']);
-                unset($payment_list[$k]['payment_state']);
-                unset($payment_list[$k]['payment_state_text']);
-            }
-        }
+        
+        // if (!empty($payment_list)) {
+        //     foreach ($payment_list as $k => $value) {
+        //         unset($payment_list[$k]['payment_id']);
+        //         unset($payment_list[$k]['payment_config']);
+        //         unset($payment_list[$k]['payment_state']);
+        //         unset($payment_list[$k]['payment_state_text']);
+        //     }
+        // }
         
 
         // if(in_array($this->member_info['member_clienttype'],array('ios','android'))){
@@ -367,7 +368,7 @@ class Memberbuy extends MobileMember
         $buyer_info = Model('member')->getMemberInfoByID($this->member_info['member_id'], 'member_paypwd');
         if ($buyer_info['member_paypwd'] != '') {
             if ($buyer_info['member_paypwd'] === md5($_POST['password'])) {
-                output_data('1');
+                output_data(['state'=>true]);
             }
         }
         output_error('支付密码验证失败');

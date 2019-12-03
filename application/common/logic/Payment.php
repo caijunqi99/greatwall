@@ -144,7 +144,6 @@ class Payment extends Model
             return ds_callback(false, '系统不支持选定的支付方式');
         }
         $inc_file = PLUGINS_PATH . DS . 'payments' . DS . $payment_info['payment_code'] . DS . $payment_info['payment_code'] . '.php';
-        p($inc_file);exit;
         if (!file_exists($inc_file)) {
             return ds_callback(false, '系统不支持选定的支付方式');
         }

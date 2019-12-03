@@ -387,9 +387,9 @@ class Member extends Model
             }
 
             //  手机注册登录绑定
-            if (isset($data['member_mobilebind'])) {
+            if (isset($data['member_mobile'])) {
                 $member_info['member_mobile'] = $data['member_mobile'];
-                $member_info['member_mobilebind'] = $data['member_mobilebind'];
+                $member_info['member_mobilebind'] = 1;
             }
             if (isset($data['member_wxunionid'])) {
                 $member_info['member_wxunionid'] = $data['member_wxunionid'];
