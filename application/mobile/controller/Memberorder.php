@@ -268,12 +268,11 @@ class Memberorder extends MobileMember {
 
         //显示评价
         $order_info['if_evaluation'] = $model_order->getOrderOperateState('evaluation', $order_info);
-
         //显示分享
-        $order_info['if_share'] = $model_order->getOrderOperateState('share', $order_info);
+        // $order_info['if_share'] = $model_order->getOrderOperateState('share', $order_info);
 
-        $order_info['ownshop'] = $model_order->getOrderOperateState('share', $order_info);
-
+        // $order_info['ownshop'] = $model_order->getOrderOperateState('share', $order_info);
+        
         //显示系统自动取消订单日期
         if ($order_info['order_state'] == ORDER_STATE_NEW) {
             $order_info['order_cancel_day'] = $order_info['add_time'] + ORDER_AUTO_CANCEL_DAY * 24* 3600;
@@ -308,7 +307,7 @@ class Memberorder extends MobileMember {
         foreach ($order_info['extend_order_goods'] as $value) {
             $value['image_60_url'] = goods_cthumb($value['goods_image'], 60, $value['store_id']);
             $value['image_url'] = goods_cthumb($value['goods_image'], 240, $value['store_id']);
-            $value['goods_type_cn'] = orderGoodsType($value['goods_type']);
+            $value['goods_type_cn'] = get_order_goodstype($value['goods_type']);
             $value['goods_url'] = url('goods/index', array('goods_id' => $value['goods_id']));
             //处理消费者保障服务
             if (isset($value['goods_contractid']) && $contract_item) {

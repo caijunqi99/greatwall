@@ -15,28 +15,12 @@ class Memberpayment extends MobileMember
         parent::_initialize();
         Lang::load(APP_PATH . 'mobile\lang\zh-cn\memberpayment.lang.php');
 
-        if (request()->action() != 'payment_list' && !input('param.payment_code')) {
-            $payment_code = 'alipay';
-        }
-        else {
-            $payment_code = input('param.payment_code');
-        }
-        $model_mb_payment = Model('mbpayment');
-        $condition = array();
-        $condition['payment_code'] = $payment_code;
-        $mb_payment_info = $model_mb_payment->getMbPaymentOpenInfo($condition);
-        if (!$mb_payment_info) {
-            output_error('支付方式未开启');
-        }
-        else {
-            $this->payment_code = $payment_code;
-            $this->payment_config = $mb_payment_info['payment_config'];
-
-            $inc_file = APP_PATH . DIR_MOBILE . DS . 'api' . DS . 'payment' . DS . $this->payment_code . DS . $this->payment_code . '.php';
-            if (!is_file($inc_file)) {
-                output_error('支付接口出错，请联系管理员！');
-            }
-            require_once($inc_file);
+        $payment_code = input('param.payment_code');
+        
+        $logic_payment = model('payment', 'logic');
+        $result = $logic_payment->getPaymentInfo($payment_code);
+        if (!$result['code']) {
+            output_error($result['msg']);
         }
     }
 
@@ -47,12 +31,16 @@ class Memberpayment extends MobileMember
     {
         @header("Content-type: text/html; charset=UTF-8");
         $pay_sn = input('param.pay_sn');
-        if (!preg_match('/^\d{18}$/', $pay_sn)) {
+        if (!preg_match('/^\d{20}$/', $pay_sn)) {
             output_error('支付单号错误');
         }
+        
         $pay_info = $this->_get_real_order_info($pay_sn, input('param.'));
         if (isset($pay_info['error'])) {
-            exit($pay_info['error']);
+            output_error($pay_info['error']);
+        }else{
+            //手机支付完成，储值卡支付
+            output_data($pay_info['data']);
         }
         if($pay_info['data']['pay_end']==1) {
             //站内支付了全款
@@ -99,10 +87,8 @@ class Memberpayment extends MobileMember
         if ($buyer_info['member_paypwd'] == '' || $buyer_info['member_paypwd'] != md5($post['password'])) {
             return $order_list;
         }
-
-        if ($buyer_info['available_rc_balance'] == 0) {
-            $post['rcb_pay'] = null;
-        }
+        //没有充值卡支付类型
+        $post['rcb_pay'] = null;
         if ($buyer_info['available_predeposit'] == 0) {
             $post['pd_pay'] = null;
         }
@@ -113,10 +99,7 @@ class Memberpayment extends MobileMember
         try {
             $model_member->startTrans();
             $logic_buy_1 = model('buy_1', 'logic');
-            //使用充值卡支付
-            if (!empty($post['rcb_pay'])) {
-                $order_list = $logic_buy_1->rcbPay($order_list, $post, $buyer_info);
-            }
+
 
             //使用预存款支付
             if (!empty($post['pd_pay'])) {
@@ -124,7 +107,7 @@ class Memberpayment extends MobileMember
             }
 
             //特殊订单站内支付处理
-            $logic_buy_1->extendInPay($order_list);
+            // $logic_buy_1->extendInPay($order_list);
 
             $model_member->commit();
         } catch (Exception $e) {
@@ -249,10 +232,11 @@ class Memberpayment extends MobileMember
 
         //取订单信息
         $result = $logic_payment->getRealOrderInfo($pay_sn, $this->member_info['member_id']);
+        
         if (!$result['code']) {
             return array('error' => $result['msg']);
         }
-
+        
         //站内余额支付
         if ($rcb_pd_pay) {
             $result['data']['order_list'] = $this->_pd_pay($result['data']['order_list'], $rcb_pd_pay);
