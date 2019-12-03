@@ -51,34 +51,82 @@ class Member extends MobileMember {
         $member_info['mobile'] = encrypt_show($this->member_info['member_mobile'], 4, 4);
         $member_info['inviter_code'] = $this->member_info['inviter_code'];
         $data['member_id']=$this->member_info['member_id'];
+        $data['is_del']=0;
         $company=Model('company')->getCompanyInfo($data);
-        $member_info['company']=$company;
+        $company_level=$company['company_level'];
+        if($company_level==1){
+            $member_info['company_level']='省级子公司';
+        }elseif($company_level==2){
+            $member_info['company_level']='市级子公司';
+        }elseif($company_level==3){
+            $member_info['company_level']='县级子公司';
+        }elseif($company_level==4){
+            $member_info['company_level']='镇级子公司';
+        }elseif($company_level==5){
+            $member_info['company_level']='村级子公司';
+        }else{
+            $member_info['company_level']='0';
+        }
         output_data(array('member_info' => $member_info));
     }
 
     public function my_asset() {
-        $fields_arr = array('point', 'predepoit', 'available_rc_balance', 'redpacket', 'voucher');
+        $fields_arr = array('point', 'available', 'predepoit', 'transaction','redpacket','voucher');
         $fields_str = trim(input('fields'));
         if ($fields_str) {
             $fields_arr = explode(',', $fields_str);
         }
         $member_info = array();
+        //冻结积分
         if (in_array('point', $fields_arr)) {
             $member_info['point'] = $this->member_info['member_points'];
         }
+        //可用积分
+        if (in_array('available', $fields_arr)) {
+            $available = $this->member_info['member_points_available'];
+            $list_setting = rkcache('config', true);
+            $availables=$list_setting['withdraw'];
+            $member_info['available']=$available;
+            if($available>=$availables) {
+                $member_info['awable']=$available;
+            }else{
+                $member_info['awable']=0.00;
+            }
+            $member_info['commission']=$list_setting['commission'];
+        }
+        //储值卡
         if (in_array('predepoit', $fields_arr)) {
             $member_info['predepoit'] = $this->member_info['available_predeposit'];
         }
-        if (in_array('available_rc_balance', $fields_arr)) {
-            $member_info['available_rc_balance'] = $this->member_info['available_rc_balance'];
-        }
-       /* if (in_array('redpacket', $fields_arr)) {
-            $member_info['redpacket'] = Model('redpacket')->getCurrentAvailableRedpacketCount($this->member_info['member_id']);
-        }*/
-        if (in_array('voucher', $fields_arr)) {
-            $member_info['voucher'] = Model('voucher')->getCurrentAvailableVoucherCount($this->member_info['member_id']);
+        //交易码
+        if (in_array('transaction', $fields_arr)) {
+            $member_info['transaction'] = $this->member_info['member_transaction'];
         }
         output_data($member_info);
+    }
+    //用户头像上传
+    public function upload()
+    {
+        $member_id = $this->member_info['member_id'];
+        //上传图片
+        if (!empty($_FILES['pic']['tmp_name'])) {
+            $file_object= request()->file('pic');
+            $base_url=BASE_UPLOAD_PATH . '/' . ATTACH_AVATAR . '/';
+            //$ext = strtolower(pathinfo($_FILES['pic']['name'], PATHINFO_EXTENSION));
+            $file_name='avatar_'.$member_id.".jpg";
+            $info = $file_object->rule('uniqid')->validate(['ext' => ALLOW_IMG_EXT])->move($base_url,$file_name);
+            //print_r($info->getFilename());exit;
+            if ($info) {
+                model('member')->editMember(array('member_id' => $member_id), array('member_avatar' => $file_name));
+                $img=UPLOAD_SITE_URL . '/' . ATTACH_AVATAR .'/'.$file_name;
+                output_data(array('result' => 1,'avatar'=>$img));
+            }else{
+                output_data($file_object->getError());
+            }
+        } else {
+            output_data(lang('upload_failed_replace_pictures'));
+        }
+
     }
 
 }

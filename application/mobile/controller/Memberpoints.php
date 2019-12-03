@@ -17,14 +17,36 @@ class Memberpoints extends MobileMember
     {
         $condition_arr = $list_log = array();
         $condition_arr['pl_memberid'] = $this->member_info['member_id'];
-
         //分页
         $points_model = Model('points');
         $list_log = $points_model->getPointsLogList($condition_arr, $this->pagesize, '*', '');
         if (!empty($list_log)) {
             foreach ($list_log as $key => $value) {
-                $list_log[$key]['stagetext'] = $this->insertarr($value['pl_stage']);
-                $list_log[$key]['addtimetext'] = date('Y-m-d H:i:s', $value['pl_addtime']);
+                //$list_log[$key]['stagetext'] = $this->insertarr($value['pl_stage']);
+                $list_log[$key]['addtimetext'] = date('Y-m-d', $value['pl_addtime']);
+                if($value['pl_points']!=0){
+                    if($value['pl_points']>0){
+                        $desc="冻结积分增加".$value['pl_points']."积分";
+                    }else{
+                        $desc="冻结积分减少".$value['pl_points']."积分";
+                    }
+                    if($value['pl_pointsav']!=0){
+                        if($value['pl_pointsav']>0){
+                            $desc=$desc."，可用积分增加".$value['pl_pointsav']."积分";
+                        }else{
+                            $desc=$desc."，可用积分减少".$value['pl_pointsav']."积分";
+                        }
+                    }
+                }else{
+                    if($value['pl_pointsav']!=0){
+                        if($value['pl_pointsav']>0){
+                            $desc="可用积分增加".$value['pl_pointsav']."积分";
+                        }else{
+                            $desc="可用积分减少".$value['pl_pointsav']."积分";
+                        }
+                    }
+                }
+                $list_log[$key]['pl_desc']=$desc;
             }
         }
         output_data(array('log_list' => $list_log), mobile_page($points_model->page_info));

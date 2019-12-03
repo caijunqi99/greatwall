@@ -16,7 +16,7 @@ class Memberfund extends MobileMember {
     }
 
     /**
-     * 预存款日志列表
+     * 储值卡日志列表
      */
     public function predepositlog() {
         $model_predeposit = Model('predeposit');
@@ -26,11 +26,38 @@ class Memberfund extends MobileMember {
         $list = $model_predeposit->getPdLogList($where, $this->pagesize, '*', 'lg_id desc');
         if ($list) {
             foreach ($list as $k => $v) {
-                $v['lg_add_time_text'] = @date('Y-m-d H:i:s', $v['lg_add_time']);
+                $v['lg_add_time_text'] = @date('Y-m-d', $v['lg_addtime']);
                 $list[$k] = $v;
+                if($v['lg_av_amount']>0){
+                    $list[$k]['lg_desc']="储值卡增加".$v['lg_av_amount']."元";
+                }else{
+                    $list[$k]['lg_desc']="储值卡减少".$v['lg_av_amount']."元";
+                }
             }
         }
         output_data(array('list' => $list), mobile_page($model_predeposit->page_info));
+    }
+    /**
+     * 交易码日志列表
+     */
+    public function transactionlog() {
+        $model_transaction = Model('transaction');
+        $where = array();
+        $where['tl_memberid'] = $this->member_info['member_id'];
+        $where['tl_transaction'] = array('neq', 0);
+        $list = $model_transaction->getTransactionlogList($where, $this->pagesize, '*', 'tl_id desc');
+        if ($list) {
+            foreach ($list as $k => $v) {
+                $v['tl_add_time_text'] = @date('Y-m-d', $v['tl_addtime']);
+                $list[$k] = $v;
+                if($v['tl_transaction']>0){
+                    $list[$k]['tl_desc']="交易码增加".$v['tl_transaction'];
+                }else{
+                    $list[$k]['tl_desc']="交易码减少".$v['tl_transaction'];
+                }
+            }
+        }
+        output_data(array('list' => $list), mobile_page($model_transaction->page_info));
     }
 
     /**
