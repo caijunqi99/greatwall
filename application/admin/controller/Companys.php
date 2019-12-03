@@ -84,7 +84,7 @@ class Companys extends AdminControl {
                 'member_villageid' => input('post.member_villageid'),
                 'is_del' =>0
             );
-            $res=$company_model->getMemberInfo($datas);
+            $res=$company_model->getCompanyInfo($datas);
             if(empty($res)) {
                 $result = $company_model->addCompany($data);
                 if ($result) {
