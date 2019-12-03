@@ -81,6 +81,46 @@ class Member extends MobileMember {
         output_data($member_info);
     }
 
+    /*
+    * 获取推荐下级信息
+    * */
+    public function inviter(){
+        $member_id = input('param.member_id');
+        if (empty($member_id)) {
+            $this->error(lang('param_error'));
+        }
+        $member_model = model('member');
+        //一代
+        $member_list = $member_model->getMemberList(array("inviter_id"=>$member_id), '*');
+        if(!empty($member_list)){
+            foreach($member_list as $k=>$v){
+                $member_inviterids[] = $v['member_id'];
+                $member_list[$k]['level'] = "一代";
+                $member_list[$k]['member_addtime'] = date("Y-m-d H:i:s",$v['member_addtime']);
+            }
+            $member_inviterids = implode(",",$member_inviterids);
+            //二代
+            $cond = array();
+            $cond['inviter_id'] = ['in',$member_inviterids];
+            $member_list_two = $member_model->getMemberList($cond);
+            foreach($member_list_two as $i=>$t){
+                $member_list_two[$i]["level"] = "二代";
+                $member_list_two[$i]["member_addtime"] = date("Y-m-d H:i:s",$t['member_addtime']);
+            }
+            $countOne = count($member_list,COUNT_NORMAL);//直推人数
+            $countTwo = count($member_list_two,COUNT_NORMAL);
+            $allcount = $countOne+$countTwo;
+            $member_info = $member_model->getMemberInfo(array("member_id"=>$member_id));
+            $member_list=array_merge($member_list,$member_list_two);
+            $inviterdata = array(
+                'datainfo' =>$member_list,'countOne'=>$countOne,'countAll'=>$allcount,'inviterlink'=>$member_info['inviter_code']
+            );
+
+            output_data($inviterdata);
+        }
+        p($countTwo);die;
+    }
+
 }
 
 ?>

@@ -45,7 +45,16 @@
                     </td>
                     <td class="vatop tips">{$Think.lang.article_add_img_wrong}</td>
                 </tr>
-                
+                <tr class="noborder">
+                    <td class="required">{$Think.lang.article_type}</td>
+                    <td class="vatop rowform onoff">
+                        <label for="article_type1" class="cb-enable {if $article.article_type == '1'}selected{/if}" ><span>{$Think.lang.ds_video}</span></label>
+                        <label for="article_type2" class="cb-disable {if $article.article_type == '0'}selected{/if}" ><span>{$Think.lang.ds_article}</span></label>
+                        <input id="article_type1" name="article_type" {if $article.article_type == '1'}checked="checked"{/if}  value="1" type="radio">
+                        <input id="article_type2" name="article_type" {if $article.article_type == '0'}checked="checked"{/if} value="0" type="radio">
+                    </td>
+                    <td class="vatop tips"></td>
+                </tr>
                 <tr class="noborder"> 
                     <td class="required">{$Think.lang.article_show}</td>
                     <td class="vatop rowform onoff">
@@ -62,7 +71,7 @@
                     <td class="vatop tips"></td>
                 </tr>
                 <tr class="noborder"> 
-                    <td class="required">{$Think.lang.article_content}</td>
+                    <td class="required">{$Think.lang.article_content_z}</td>
                     {:build_editor(['name'=>'article_content','content'=>htmlspecialchars_decode($article.article_content)])}
                     <td class="vatop rowform" colspan="2"><textarea name="article_content" id="article_content" style="width:100%;"></textarea></td>
                 </tr>	

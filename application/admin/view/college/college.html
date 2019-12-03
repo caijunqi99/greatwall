@@ -19,6 +19,16 @@
                 <dt>{$Think.lang.article_title}</dt>
                 <dd><input type="text" value="{$Request.param.search_title}" name="search_title" class="txt"></dd>
             </dl>
+            <dl>
+                <dt>{$Think.lang.article_type}</dt>
+                <dd>
+                    <select name="search_ac_type">
+                        <option value="2" <?php if($search_ac_type==='' ){ ?>selected<?php } ?>>{$Think.lang.ds_please_choose}...</option>
+                        <option value="0" <?php if($search_ac_type===0){ ?>selected<?php } ?>>{$Think.lang.ds_article}</option>
+                        <option value="1" <?php if($search_ac_type==1){ ?>selected<?php } ?>>{$Think.lang.ds_video}</option>
+                    </select>
+                </dd>
+            </dl>
             <div class="btn_group">
                 <input type="submit" class="btn" value="{$Think.lang.ds_search}">
                 {if $filtered}
@@ -33,6 +43,7 @@
             <tr>
                 <th>{$Think.lang.article_sort}</th>
                 <th>{$Think.lang.article_title}</th>
+                <th>{$Think.lang.article_type}</th>
                 <th>{$Think.lang.article_show}</th>
                 <th>{$Think.lang.article_time}</th>
                 <th>{$Think.lang.ds_handle}</th>
@@ -44,6 +55,7 @@
             <tr id="ds_row_{$article.article_id}">
                 <td>{$article.article_sort}</td>
                 <td>{$article.article_title}</td>
+                <td>{if $article.article_type eq '1'}{$Think.lang.ds_video}{else}{$Think.lang.ds_article}{/if}</td>
                 <td>{if $article.article_show eq '1'}{$Think.lang.ds_yes}{else}{$Think.lang.ds_no}{/if}</td>
                 <td>{$article.article_time}</td>
                 <td>
