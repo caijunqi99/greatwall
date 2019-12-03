@@ -47,8 +47,8 @@ class Memberchat extends MobileMember {
         }
         $add_time = date("Y-m-d");
         $add_time30 = strtotime($add_time)-60*60*24*30;
-        $member_list = $model_chat->getRecentList(array('f_id'=> $member_id,'add_time'=>array('egt',$add_time30)),10,$member_list);
-        $member_list = $model_chat->getRecentFromList(array('t_id'=> $member_id,'add_time'=>array('egt',$add_time30)),10,$member_list);
+        $member_list = $model_chat->getRecentList(array('f_id'=> $member_id,'chatmsg_addtime'=>array('egt',$add_time30)),10,$member_list);
+        $member_list = $model_chat->getRecentFromList(array('t_id'=> $member_id,'chatmsg_addtime'=>array('egt',$add_time30)),10,$member_list);
         $member_info = array();
         $member_info = $model_chat->getMember($member_id);
         $node_info = array();

@@ -17,25 +17,26 @@ class Member extends MobileMember {
 
         $member_info['user_name'] = $this->member_info['member_name'];
         $member_info['avator'] = get_member_avatar_for_id($this->member_info['member_id']);
-        $member_info['point'] = $this->member_info['member_points'];
+        //$member_info['point'] = $this->member_info['member_points'];
         $member_gradeinfo = Model('member')->getOneMemberGrade(intval($this->member_info['member_exppoints']));
+
         $member_info['level_name'] = $member_gradeinfo['level_name'];
 
         $member_info['favorites_store'] = Model('favorites')->getStoreFavoritesCountByMemberId($this->member_info['member_id']);
         $member_info['favorites_goods'] = Model('favorites')->getGoodsFavoritesCountByMemberId($this->member_info['member_id']);
-        output_data(array('member_info' => $member_info));
+        $member_info['mobile'] = encrypt_show($this->member_info['member_mobile'], 4, 4);
         // 交易提醒
         $model_order = Model('order');
         $member_info['order_nopay_count'] = $model_order->getOrderCountByID('buyer', $this->member_info['member_id'], 'NewCount');
-        $member_info['order_noreceipt_count'] = $model_order->getOrderCountByID('buyer', $this->member_info['member_id'], 'SendCount');
-        $member_info['order_notakes_count'] = $model_order->getOrderCountByID('buyer', $this->member_info['member_id'], 'TakesCount');
+        $member_info['order_noreceipt_count'] = $model_order->getOrderCountByID('buyer', $this->member_info['member_id'], 'PayCount');
+        $member_info['order_notakes_count'] = $model_order->getOrderCountByID('buyer', $this->member_info['member_id'], 'SendCount');
         $member_info['order_noeval_count'] = $model_order->getOrderCountByID('buyer', $this->member_info['member_id'], 'EvalCount');
-
+        output_data(array('member_info' => $member_info));
         // 售前退款
-        $condition = array();
-        $condition['buyer_id'] = $this->member_info['member_id'];
-        $condition['refund_state'] = array('lt', 3);
-        $member_info['return'] = Model('refundreturn')->getRefundReturnCount($condition);
+//        $condition = array();
+//        $condition['buyer_id'] = $this->member_info['member_id'];
+//        $condition['refund_state'] = array('lt', 3);
+//        $member_info['return'] = Model('refundreturn')->getRefundReturnCount($condition);
     }
 
     public function my_asset() {
