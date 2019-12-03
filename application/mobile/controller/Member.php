@@ -166,7 +166,6 @@ class Member extends MobileMember {
 
             output_data($inviterdata);
         }
-        p($countTwo);die;
     }
 
 }

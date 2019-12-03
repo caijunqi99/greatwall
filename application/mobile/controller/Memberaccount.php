@@ -359,7 +359,7 @@ class Memberaccount extends MobileMember
      */
     public function modify_password_step4()
     {
-        $this->_modify_pwd_limit_check();
+        $this->_modify_password_limit_check();
         output_data('1');
     }
 
@@ -403,6 +403,44 @@ class Memberaccount extends MobileMember
         $update = $model_member->editMember(array('member_id' => $this->member_info['member_id']), array('member_paypwd' => md5($data['password'])));
         $message = $update ? lang('password_set_successfully') : lang('password_setting_failed');
         
+        if ($update) {
+            output_data(['state'=>$update,'msg'=>$message]);
+        } else {
+            output_data($message);
+        }
+
+    }
+    private function _modify_password_limit_check()
+    {
+        $verify_code = input('post.auth_code');
+        $validate_data = array(
+            'verify_code' => $verify_code,
+        );
+        $verify_code_validate = validate('verify_code');
+        if (!$verify_code_validate->scene('verify_code_search')->check($validate_data)) {
+            output_error($verify_code_validate->getError());
+        }
+        $verify_code_model = model('verify_code');
+        if (!$verify_code_model->getVerifyCodeInfo(array('verify_code_type' => 6, 'verify_code_user_type' => 1, 'verify_code_user_id' => $this->member_info['member_id'], 'verify_code' => $verify_code, 'verify_code_add_time' => array('>', TIMESTAMP - VERIFY_CODE_INVALIDE_MINUTE * 1800)))) {
+            output_error(lang('validation_fails'));
+        }
+        //身份验证后，需要在30分钟内完成修改密码操作
+        $model_member = Model('member');
+
+        $data = array(
+            'password' => input('post.password'),
+            'confirm_password' => input('post.confirm_password'),
+        );
+        $membersecurity_validate = validate('membersecurity');
+        if (!$membersecurity_validate->scene('modify_paypwd')->check($data)) {
+            output_error($membersecurity_validate->getError());
+        }
+        if ($data['password'] != $data['confirm_password']) {
+            output_error(lang('two_password_inconsistencies'));
+        }
+        $update = $model_member->editMember(array('member_id' => $this->member_info['member_id']), array('member_password' => md5($data['password'])));
+        $message = $update ? lang('password_set_successfully') : lang('password_setting_failed');
+
         if ($update) {
             output_data(['state'=>$update,'msg'=>$message]);
         } else {
