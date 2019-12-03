@@ -72,7 +72,20 @@ class Store extends MobileMall {
             }
         }
 
+        output_data(array(
+            'store_info' => $store_info,
+            // 'rec_goods_list_count' => count($goods_list),
+            // 'rec_goods_list' => $goods_list,
+        ));
+    }
+
+    /**
+     * 获取店铺首页推荐商品
+     * @DateTime 2019-12-02
+     */
+    public function GetStoreCommentGoods(){
         //店主推荐
+        $store_id = intval(input('param.store_id'));
         $where = array();
         $where['store_id'] = $store_id;
         $where['goods_commend'] = 1;
@@ -82,7 +95,7 @@ class Store extends MobileMall {
         $goods_list = $model_goods->getGoodsListByColorDistinct($where, $goods_fields, 'goods_id desc', 0, 20);
         $goods_list = $this->_goods_list_extend($goods_list);
         output_data(array(
-            'store_info' => $store_info,
+            // 'store_info' => $store_info,
             'rec_goods_list_count' => count($goods_list),
             'rec_goods_list' => $goods_list,
         ));

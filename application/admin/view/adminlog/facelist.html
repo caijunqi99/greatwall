@@ -57,9 +57,8 @@
 <script type="text/javascript">
     
     function checkError(id,act) {
-        var uniqid = this.attr('id');
-        console.log(uniqid);
-        return;
+        var uniqid = $(this).attr('id');
+        console.log(uniqid)
         $.ajax({
             url: "{:url('Adminlog/getLog')}",
             type: 'GET',

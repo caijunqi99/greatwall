@@ -39,7 +39,6 @@ class Buy extends BaseMember {
         } else {
             $result = $result['data'];
         }
-        
         //商品金额计算(分别对每个商品/优惠套装小计、每个店铺小计)
         $this->assign('store_cart_list', $result['store_cart_list']);
         $this->assign('store_goods_total', $result['store_goods_total']);
@@ -194,7 +193,7 @@ class Buy extends BaseMember {
             }
             foreach ($payment_list as $key => $payment) {
                 if(in_array($payment['payment_code'], array('predeposit','offline'))){
-                    unset($payment_list[$key]);
+                    // unset($payment_list[$key]);
                 }
             }
             $this->assign('payment_list', $payment_list);

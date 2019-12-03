@@ -131,17 +131,20 @@ class Payment extends Model
      */
     public function getPaymentInfo($payment_code)
     {
-        if (in_array($payment_code, array('offline', 'predeposit')) || empty($payment_code)) {
+        if (in_array($payment_code, array('offline')) || empty($payment_code)) {
             return ds_callback(false, '系统不支持选定的支付方式');
         }
+
         $payment_model = model('payment');
         $condition = array();
         $condition['payment_code'] = $payment_code;
         $payment_info = $payment_model->getPaymentOpenInfo($condition);
+
         if (empty($payment_info)) {
             return ds_callback(false, '系统不支持选定的支付方式');
         }
         $inc_file = PLUGINS_PATH . DS . 'payments' . DS . $payment_info['payment_code'] . DS . $payment_info['payment_code'] . '.php';
+        p($inc_file);exit;
         if (!file_exists($inc_file)) {
             return ds_callback(false, '系统不支持选定的支付方式');
         }

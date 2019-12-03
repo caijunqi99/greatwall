@@ -304,7 +304,7 @@ class Predeposit extends Model {
         switch ($change_type) {
             case 'order_pay':
                 $data_log['lg_av_amount'] = -$data['amount'];
-                $data_log['lg_desc'] = '下单，支付预存款，订单号: ' . $data['order_sn'];
+                $data_log['lg_desc'] = '下单，支付储值卡，订单号: ' . $data['order_sn'];
                 $data_pd['available_predeposit'] = Db::raw('available_predeposit-'.$data['amount']);
 
                 $data_msg['av_amount'] = -$data['amount'];
@@ -314,7 +314,7 @@ class Predeposit extends Model {
             case 'order_freeze':
                 $data_log['lg_av_amount'] = -$data['amount'];
                 $data_log['lg_freeze_amount'] = $data['amount'];
-                $data_log['lg_desc'] = '下单，冻结预存款，订单号: ' . $data['order_sn'];
+                $data_log['lg_desc'] = '下单，冻结储值卡，订单号: ' . $data['order_sn'];
                 $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit+'.$data['amount']);
                 $data_pd['available_predeposit'] = Db::raw('available_predeposit-'.$data['amount']);
 
@@ -325,7 +325,7 @@ class Predeposit extends Model {
             case 'order_cancel':
                 $data_log['lg_av_amount'] = $data['amount'];
                 $data_log['lg_freeze_amount'] = -$data['amount'];
-                $data_log['lg_desc'] = '取消订单，解冻预存款，订单号: ' . $data['order_sn'];
+                $data_log['lg_desc'] = '取消订单，解冻储值卡，订单号: ' . $data['order_sn'];
                 $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit-'.$data['amount']);
                 $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
 
@@ -335,7 +335,7 @@ class Predeposit extends Model {
                 break;
             case 'order_comb_pay':
                 $data_log['lg_freeze_amount'] = -$data['amount'];
-                $data_log['lg_desc'] = '下单，支付被冻结的预存款，订单号: ' . $data['order_sn'];
+                $data_log['lg_desc'] = '下单，支付被冻结的储值卡，订单号: ' . $data['order_sn'];
                 $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit-'.$data['amount']);
 
                 $data_msg['av_amount'] = 0;
@@ -374,7 +374,7 @@ class Predeposit extends Model {
             case 'cash_apply':
                 $data_log['lg_av_amount'] = -$data['amount'];
                 $data_log['lg_freeze_amount'] = $data['amount'];
-                $data_log['lg_desc'] = '申请提现，冻结预存款，提现单号: ' . $data['order_sn'];
+                $data_log['lg_desc'] = '申请提现，冻结储值卡，提现单号: ' . $data['order_sn'];
                 $data_pd['available_predeposit'] = Db::raw('available_predeposit-'.$data['amount']);
                 $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit+'.$data['amount']);
 
@@ -395,7 +395,7 @@ class Predeposit extends Model {
             case 'cash_del':
                 $data_log['lg_av_amount'] = $data['amount'];
                 $data_log['lg_freeze_amount'] = -$data['amount'];
-                $data_log['lg_desc'] = '取消提现申请，解冻预存款，提现单号: ' . $data['order_sn'];
+                $data_log['lg_desc'] = '取消提现申请，解冻储值卡，提现单号: ' . $data['order_sn'];
                 $data_log['lg_admin_name'] = $data['admin_name'];
                 $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
                 $data_pd['freeze_predeposit'] = Db::raw('freeze_predeposit-'.$data['amount']);

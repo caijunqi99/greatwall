@@ -278,6 +278,7 @@ $(function() {
                 if (r <= 0) {
                     r = 0
                 }
+                console.log(r.toFixed(2));
                 $("#totalPrice,#onlineTotal").html(r.toFixed(2))
             }
         })

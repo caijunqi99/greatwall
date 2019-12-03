@@ -766,6 +766,74 @@ class Predeposit extends AdminControl {
         $excel_obj->addWorksheet($excel_obj->charset(lang('exp_mx_rz'), CHARSET));
         $excel_obj->generateXML($excel_obj->charset(lang('exp_mx_rz'), CHARSET) . input('param.curpage') . '-' . date('Y-m-d-H', TIMESTAMP));
     }
+    /**
+     * 查看提现信息
+     */
+    public function pdcash_view() {
+        $id = intval(input('param.id'));
+        if ($id <= 0) {
+            $this->error(lang('admin_predeposit_parameter_error'), 'Predeposit/pdcash_list');
+        }
+        $predeposit_model = model('predeposit');
+        $condition = array();
+        $condition['pdc_id'] = $id;
+        $info = $predeposit_model->getPdcashInfo($condition);
+        if (!is_array($info) || count($info) < 0) {
+            $this->error(lang('admin_predeposit_record_error'), 'Predeposit/pdcash_list');
+        }
+        $this->assign('info', $info);
+        return $this->fetch();
+    }
+    /**
+     * 更改提现为支付状态
+     */
+    public function pdcash_pay() {
+        $id = intval(input('param.id'));
+        if ($id <= 0) {
+            $this->error(lang('admin_predeposit_parameter_error'),'Predeposit/pdcash_list');
+        }
+        $predeposit_model = model('predeposit');
+        $condition = array();
+        $condition['pdc_id'] = $id;
+        $condition['pdc_payment_state'] = 0;
+        $info = $predeposit_model->getPdcashInfo($condition);
+        if (!is_array($info) || count($info) < 0) {
+            $this->error(lang('admin_predeposit_record_error'), 'Predeposit/pdcash_list');
+        }
+        //查询用户信息
+        $member_model = model('member');
+        $member_info = $member_model->getMemberInfo(array('member_id' => $info['pdc_member_id']));
+
+        $update = array();
+        $admininfo = $this->getAdminInfo();
+        $update['pdc_payment_state'] = 1;
+        $update['pdc_payment_admin'] = $admininfo['admin_name'];
+        $update['pdc_payment_time'] = TIMESTAMP;
+        $log_msg = lang('admin_predeposit_cash_edit_state') . ',' . lang('admin_predeposit_cs_sn') . ':' . $info['pdc_sn'];
+
+        try {
+            $predeposit_model->startTrans();
+            $result = $predeposit_model->editPdcash($update, $condition);
+            if (!$result) {
+                $this->error(lang('admin_predeposit_cash_edit_fail'));
+            }
+            //扣除冻结的预存款
+            $data = array();
+            $data['member_id'] = $member_info['member_id'];
+            $data['member_name'] = $member_info['member_name'];
+            $data['amount'] = $info['pdc_amount'];
+            $data['order_sn'] = $info['pdc_sn'];
+            $data['admin_name'] = $admininfo['admin_name'];
+            $predeposit_model->changePd('cash_pay', $data);
+            $predeposit_model->commit();
+            $this->log($log_msg, 1);
+            dsLayerOpenSuccess(lang('admin_predeposit_cash_edit_success'));
+        } catch (Exception $e) {
+            $predeposit_model->rollback();
+            $this->log($log_msg, 0);
+            $this->error($e->getMessage(), 'Predeposit/pdcash_list');
+        }
+    }
 
 
     /**
