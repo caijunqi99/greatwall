@@ -13,6 +13,16 @@
                     <td class="vatop rowform"><textarea name="marketmanage_detail">{$marketmanage.marketmanage_detail|default=''}</textarea></td>
                     <td class="vatop tips"></td>
                 </tr>
+                <tr class="noborder">
+                    <td class="required w120">用户等级</td>
+                    <td class="vatop rowform">
+                        <select id="marketmanage_grade" name="marketmanage_grade">
+                            <?php foreach($level as $v){ ?>
+                            <option value="{$v.level}" <?php if($marketmanage['marketmanage_grade']==$v['level']){ ?>selected<?php } ?>>{$v.level_name}</option>
+                            <?php } ?>
+                        </select></td>
+                    <td class="vatop tips"></td>
+                </tr>
                 <tr class="noborder"> 
                     <td class="required w120">{$Think.lang.ds_begin_time}</td>
                     <td class="vatop rowform"><input id="marketmanage_begintime" name="marketmanage_begintime" value="{$marketmanage.marketmanage_begintime|date='Y-m-d H:i',###}" class="input-txt" type="text"></td>
