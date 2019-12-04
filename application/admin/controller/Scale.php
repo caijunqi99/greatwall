@@ -38,6 +38,7 @@ class Scale extends AdminControl {
             $update_array['commission'] = input('post.commission');
             $update_array['way']=input('post.way');
             $update_array['companyway']=input('post.companyway');
+            $update_array['inter']=input('post.inter');
             $result = $config_model->editConfig($update_array);
             if ($result) {
                 $this->log(lang('ds_edit').lang('scale_set'),1);
