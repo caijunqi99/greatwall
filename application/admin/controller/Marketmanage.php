@@ -47,6 +47,7 @@ class Marketmanage extends AdminControl {
                 'marketmanage_point'=>0,
                 'marketmanage_begintime' => TIMESTAMP,
                 'marketmanage_endtime' => TIMESTAMP+3600*24*7,
+                'marketmanage_grade'=>1,
             );
             $this->assign('marketmanage', $marketmanage);
 

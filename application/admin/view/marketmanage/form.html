@@ -17,7 +17,6 @@
                     <td class="required w120">用户等级</td>
                     <td class="vatop rowform">
                         <select id="marketmanage_grade" name="marketmanage_grade">
-                            <option value="0">请选择</option>
                             <?php foreach($level as $v){ ?>
                             <option value="{$v.level}" <?php if($marketmanage['marketmanage_grade']==$v['level']){ ?>selected<?php } ?>>{$v.level_name}</option>
                             <?php } ?>
