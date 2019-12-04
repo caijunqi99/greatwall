@@ -691,43 +691,43 @@ class AdminControl extends Controller {
                     ),
                 ),
             ),
-//            'wechat' => array(
-//                'name' => 'wechat',
-//                'text' => lang('wechat'),
-//                'show' => TRUE,
-//                'children' => array(
-//                    'wechat_setting' => array(
-//                        'ico'=>'&#xe6e0;',
-//                        'text' => lang('wechat_setting'),
-//                        'args' => 'setting,Wechat,wechat',
-//                    ),
-//                    'wechat_template_message' => array(
-//                        'ico'=>'&#xe6e0;',
-//                        'text' => lang('wechat_template_message'),
-//                        'args' => 'template_message,Wechat,wechat',
-//                    ),
-//                    'wechat_menu' => array(
-//                        'ico'=>'&#xe679;',
-//                        'text' => lang('wechat_menu'),
-//                        'args' => 'menu,Wechat,wechat',
-//                    ),
-//                    'wechat_keywords' => array(
-//                        'ico'=>'&#xe672;',
-//                        'text' => lang('wechat_keywords'),
-//                        'args' => 'k_text,Wechat,wechat',
-//                    ),
-//                    'wechat_member' => array(
-//                        'ico'=>'&#xe729;',
-//                        'text' => lang('wechat_member'),
-//                        'args' => 'member,Wechat,wechat',
-//                    ),
-//                    'wechat_push' => array(
-//                        'ico'=>'&#xe71b;',
-//                        'text' => lang('wechat_push'),
-//                        'args' => 'SendList,Wechat,wechat',
-//                    ),
-//                ),
-//            ),
+            'wechat' => array(
+                'name' => 'wechat',
+                'text' => lang('wechat'),
+                'show' => TRUE,
+                'children' => array(
+                    'wechat_setting' => array(
+                        'ico'=>'&#xe6e0;',
+                        'text' => lang('wechat_setting'),
+                        'args' => 'setting,Wechat,wechat',
+                    ),
+                    'wechat_template_message' => array(
+                        'ico'=>'&#xe6e0;',
+                        'text' => lang('wechat_template_message'),
+                        'args' => 'template_message,Wechat,wechat',
+                    ),
+                    'wechat_menu' => array(
+                        'ico'=>'&#xe679;',
+                        'text' => lang('wechat_menu'),
+                        'args' => 'menu,Wechat,wechat',
+                    ),
+                    'wechat_keywords' => array(
+                        'ico'=>'&#xe672;',
+                        'text' => lang('wechat_keywords'),
+                        'args' => 'k_text,Wechat,wechat',
+                    ),
+                    'wechat_member' => array(
+                        'ico'=>'&#xe729;',
+                        'text' => lang('wechat_member'),
+                        'args' => 'member,Wechat,wechat',
+                    ),
+                    'wechat_push' => array(
+                        'ico'=>'&#xe71b;',
+                        'text' => lang('wechat_push'),
+                        'args' => 'SendList,Wechat,wechat',
+                    ),
+                ),
+            ),
             'flea' => array(
                 'name' => 'flea',
                 'text' => lang('flea'),
