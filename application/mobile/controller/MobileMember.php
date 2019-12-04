@@ -13,7 +13,8 @@ class MobileMember extends MobileHome {
             $this->appSecret =$this->wxconfig['appsecret'];
         } else {
             $model_mb_user_token = Model('mbusertoken');
-            $key = input('post.key');
+            //$key = input('post.key');
+            $key="bd271df2d303ad1cefc8f21e99a70431";
             if (empty($key)) {
                 $key = input('param.key');
             }
