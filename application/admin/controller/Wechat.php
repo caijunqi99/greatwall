@@ -28,7 +28,7 @@ class Wechat extends AdminControl {
             $wx_config = $wechat_model->getOneWxconfig();
             $this->assign('wx_config', $wx_config);
             //接口地址
-            $wx_apiurl = HTTP_TYPE . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php')) . 'Api/Wechat/index';
+            $wx_apiurl = HTTP_TYPE . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php')) . 'Mobile/Wechat/index';
             $this->assign('wx_apiurl', $wx_apiurl);
             return $this->fetch();
         } else {
