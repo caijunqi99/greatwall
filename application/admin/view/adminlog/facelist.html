@@ -31,14 +31,14 @@
         {foreach name="lst" item="value"}
         {foreach name="$value.data" item="val"}
         {foreach name="$val.data" item="v" key='k'}
-        <tr class="hover member" id="log_{$k+1}">
-          <td class="align-center">{$k+1}</td>
+        <tr class="hover member" id="log_{$v.date}">
+          <td class="align-center">{$val.id}</td>
           <td class="align-center">{$v.id}</td>
           <td class="align-center">{$val.value}</td>
           <td class="w150 align-center"><p>{:TransByte($v.size)}</p></td>
           <td class="align-center">
-              <a href="javascript:checkError('{$v.id}','check');" id="{$k+1}" class="dsui-btn-edit"><i class="iconfont"></i>查看内容</a>
-              <a href="javascript:checkError('{$v.id}','del');" class="dsui-btn-del"><i class="iconfont"></i>删除</a>
+              <a href="javascript:checkError('{$v.id}','check','{$v.date}');" id="{$k+1}" class="dsui-btn-edit"><i class="iconfont"></i>查看内容</a>
+              <a href="javascript:checkError('{$v.id}','del','{$v.date}');" ids="{$val.id}_{$k+1}" class="dsui-btn-del"><i class="iconfont"></i>删除</a>
           </td>
         </tr>
         {/foreach}
@@ -56,9 +56,12 @@
 </div>
 <script type="text/javascript">
     
-    function checkError(id,act) {
-        var uniqid = $(this).attr('id');
-        console.log(uniqid)
+    function checkError(id,act,t) {
+        if (act == 'del') {
+          if (!confirm('确认删除此日志？')) {
+            return false;
+          }
+        }
         $.ajax({
             url: "{:url('Adminlog/getLog')}",
             type: 'GET',
@@ -85,6 +88,7 @@
                     });
                     break;
                 case 'del':
+                    $('#log_'+t).hide();
                     layer.msg('缓存日志删除成功!');
                     break;
             }

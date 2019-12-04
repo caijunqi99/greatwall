@@ -39,17 +39,17 @@ class Goods extends MobileMall {
             $condition['gc_id'] = $gc_id;
         } elseif (!empty($keyword)) {
             $condition['goods_name|goods_advword'] = array('like', '%' . $keyword . '%');
-            if (cookie('hisSearch') == '') {
-                $his_sh_list = array();
-            } else {
-                $his_sh_list = explode('~', cookie('hisSearch'));
-            }
-            if (strlen($keyword) <= 20 && !in_array($keyword, $his_sh_list)) {
-                if (array_unshift($his_sh_list, $keyword) > 8) {
-                    array_pop($his_sh_list);
-                }
-            }
-            cookie('hisSearch', implode('~', $his_sh_list), time() + 2592000);
+            // if (cookie('hisSearch') == '') {
+            //     $his_sh_list = array();
+            // } else {
+            //     $his_sh_list = explode('~', cookie('hisSearch'));
+            // }
+            // if (strlen($keyword) <= 20 && !in_array($keyword, $his_sh_list)) {
+            //     if (array_unshift($his_sh_list, $keyword) > 8) {
+            //         array_pop($his_sh_list);
+            //     }
+            // }
+            // cookie('hisSearch', implode('~', $his_sh_list), time() + 2592000);
         } elseif (!empty($barcode)) {
             $condition['goods_barcode'] = $barcode;
         } elseif ($b_id > 0) {

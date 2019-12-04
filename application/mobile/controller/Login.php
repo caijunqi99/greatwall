@@ -140,7 +140,7 @@ class Login extends MobileMall
         $log_type         = input('param.log_type');//短信类型:1为注册,2为登录,3为找回密码
         $model_member     = Model('member');
         $register_info    = array();
-        $register_info['member_name']       = $username;
+        $register_info['member_name']       = create_guid();
         $register_info['member_mobile']     = $username;
         $register_info['member_mobilebind'] = 1;
         $register_info['member_password']   = $password;

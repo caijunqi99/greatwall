@@ -7,7 +7,17 @@ require __DIR__ . '/common_goods.php';
 /* 图片上传、生成缩略图、删除等操作调用 */
 require __DIR__ . '/common_upload.php';
 
-
+/**
+ * 生成新用户名
+ * @DateTime 2019-12-04
+ * @return   [type]     [description]
+ */
+function create_guid() { 
+    $charid = strtoupper(md5(uniqid(mt_rand(), true))); 
+    $hyphen = chr(45);// "-" 
+    $uuid = substr($charid, 0, 8);
+    return '新用户_'.$uuid; 
+}
 
 
 /**

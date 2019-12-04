@@ -83,6 +83,8 @@ class Adminlog extends AdminControl
         switch ($act) {
             case 'check':
                 $text = $api->cat($filename);
+                $text = str_replace('---------------------------------------------------------------','<br/>',$text);
+                p($text);exit;
                 break;
             case 'del':
                 $text = $api->rm($filename);
