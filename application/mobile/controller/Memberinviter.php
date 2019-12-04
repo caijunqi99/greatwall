@@ -47,7 +47,7 @@ class Memberinviter extends MobileMember {
         $refer_qrcode_logo = BASE_UPLOAD_PATH . '/' . ATTACH_INVITER . '/' . $member_info['member_id'] . '_poster.png';
         if (!file_exists($qrcode_path)) {
             import('qrcode.phpqrcode', EXTEND_PATH);
-            \QRcode::png(WAP_SITE_URL . '/tmpl/member/register.html?refer_id=' . $member_info['member_id'], $qrcode_path);
+            \QRcode::png(WAP_SITE_URL . '/tmpl/member/register.html?inviter_id=' . $member_info['member_id'], $qrcode_path);
         }
         $qrcode = imagecreatefromstring(file_get_contents($qrcode_path));
         //背景图片
