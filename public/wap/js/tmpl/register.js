@@ -1,9 +1,9 @@
 $(function() {
-    var e = getCookie("key");
-    if (e) {
-        window.location.href = WapSiteUrl + "/tmpl/member/member.html";
-        return
-    }
+    //var e = getCookie("key");
+    //if (e) {
+    //    window.location.href = WapSiteUrl + "/tmpl/member/member.html";
+    //    return
+    //}
     if(getQueryString("inviter_id")){
         $.getJSON(ApiUrl + "/Login/get_inviter/index.html?inviter_id="+getQueryString("inviter_id"), function(e) {
             var t = e.result;
