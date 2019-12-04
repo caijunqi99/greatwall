@@ -50,6 +50,10 @@ class Marketmanage extends AdminControl {
             );
             $this->assign('marketmanage', $marketmanage);
 
+            $list_config = rkcache('config', true);
+            $level = $list_config['member_grade'] ? unserialize($list_config['member_grade']) : array();
+            $this->assign('level',$level);
+
             $marketmanageaward_list = array();
             for ($i = 1; $i <= 4; $i++) {
                 $marketmanageaward_list[] = array(
@@ -111,6 +115,7 @@ class Marketmanage extends AdminControl {
                 'marketmanage_addtime' => TIMESTAMP,
                 'marketmanage_failed' => input('param.marketmanage_failed'),
                 'marketmanage_type' => $this->marketmanage_type,
+                'marketmanage_grade' => intval(input('param.marketmanage_grade')),
             );
             //添加营销活动
             $marketmanage_id = model('marketmanage')->addMarketmanage($data_marketmanage);
@@ -141,6 +146,9 @@ class Marketmanage extends AdminControl {
             $this->assign('marketmanage', $marketmanage);
             $this->assign('marketmanageaward_list', $marketmanage_model->getMarketmanageAwardList($condition));
 
+            $list_config = rkcache('config', true);
+            $level = $list_config['member_grade'] ? unserialize($list_config['member_grade']) : array();
+            $this->assign('level',$level);
             //获取正在进行中的奖品红包活动
             $condition = array();
             $condition['bonus_type'] = 3;
@@ -185,6 +193,7 @@ class Marketmanage extends AdminControl {
                 'marketmanage_joincount' => intval(input('param.marketmanage_joincount')),
                 'marketmanage_point' => intval(input('param.marketmanage_point_type')) == 0 ? 0 : intval(input('param.marketmanage_point')),
                 'marketmanage_failed' => input('param.marketmanage_failed'),
+                'marketmanage_grade' => intval(input('param.marketmanage_grade')),
             );
             //编辑营销活动
             model('marketmanage')->editMarketmanage(array('marketmanage_id' => $marketmanage_id), $data_marketmanage);
