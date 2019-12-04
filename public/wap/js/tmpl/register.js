@@ -40,7 +40,7 @@ $(function() {
         var a = $("input[name=password_confirm]").val();
         var i = $("input[name=email]").val();
         var inviter_id = $("input[name=inviter_id]").val();
-        var t = "mobile";
+        var t = "wap";
         if ($.sValid()) {
             $.ajax({type: "post", url: ApiUrl + "/Login/register.html", data: {username: e, password: r, password_confirm: a, email: i, client: t,inviter_id:inviter_id}, dataType: "json", success: function(e) {
                     if (e.code==200) {
