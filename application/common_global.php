@@ -145,4 +145,9 @@ define('ORDER_EVALUATE_TIME', 1296000);
 //抢购订单状态
 define('OFFLINE_ORDER_CANCEL_TIME', 3);//单位为天
 
+define('MOBILE_SITE_URL', 'https://'.$_SERVER['HTTP_HOST'].substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php')).'mobile');
+define('SHOP_SITE_URL', 'https://'.$_SERVER['HTTP_HOST'].substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php')).'home');
+define('WAP_SITE_URL', 'https://'.$_SERVER['HTTP_HOST'].substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php')).'wap');
+
+define('APP_SITE_URL', 'https://'.$_SERVER['HTTP_HOST'].substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php')).'app');
 ?>

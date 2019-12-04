@@ -20,7 +20,7 @@ class Memberinviter extends MobileMember {
         $wx_error_msg='';
   
         if(!file_exists(BASE_UPLOAD_PATH . '/' . ATTACH_INVITER . '/' . $member_info['member_id'] . '_weixin.png')){
-            $config = model('wechat')->WxConfig();
+            $config = model('wechat')->getOneWxconfig();
             $wechat=new WechatApi($config);
             $expire_time = $config['expires_in'];
             if($expire_time > time()){
@@ -58,8 +58,7 @@ class Memberinviter extends MobileMember {
         $QR_width = imagesx($qrcode);
         $QR_height = imagesy($qrcode);
         imagecopyresampled($inviter_back, $qrcode, 65, 170, 0, 0, 190, 190, $QR_width, $QR_height);
-
-        $portrait = imagecreatefromstring(file_get_contents(getMemberAvatar($member_info['member_avatar'])));
+        $portrait = imagecreatefromstring(file_get_contents(get_member_avatar_for_id($member_info['member_avatar'])));
 
         $QR_width2 = imagesx($portrait);
         $QR_height2 = imagesy($portrait);
