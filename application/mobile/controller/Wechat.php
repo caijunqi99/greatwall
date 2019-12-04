@@ -16,7 +16,7 @@ class Wechat
     public function index()
     {
         //获取配置信息
-        $wxConfig = model('wechat')->WxConfig();
+        $wxConfig = model('wechat')->getOneWxconfig();
         $this->weixin = new WechatApi($wxConfig);
         $this->weixin->valid();
         $this->type = $this->weixin->getRev()->getRevType();  //获取消息类型MsgType
