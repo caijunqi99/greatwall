@@ -36,7 +36,7 @@
 .joint-login ul li .qq { background-image: url(../images/qq.png); border-color: #4FC0E8; }
 .joint-login ul li .weixin { background-image: url(../images/weixin.png); border-color: #43A510; }
 /*注册类型切换*/
-.register-tab ul li { width: 50%;}
+.register-tab ul li { width: 100%;}
 .register-tab i.reg { background-image: url(../images/reg_r.png);}
 .register-tab i.regm { background-image: url(../images/regm_r.png);}
 

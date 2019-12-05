@@ -19,7 +19,7 @@
   <div class="header-wrap">
     <!--<div class="header-l"><a href="../../index.html"><i class="home"></i></a></div>-->
     <div class="header-title">
-      <h1>会员注册</h1>
+      <h1>绿色长城会员注册</h1>
     </div>
     <!--<div class="header-r"> <a id="header-nav" href="login.html" class="text">登录</a> </div>-->
   </div>
@@ -27,18 +27,33 @@
 <div class="nctouch-main-layout fixed-Width">
   <div class="nctouch-single-nav mb5 register-tab">
     <ul>
-      <li class="selected"><a href="javascript: void(0);"><i class="reg"></i>普通注册</a></li>
-      <li><a href="register_mobile.html"><i class="regm"></i>手机注册</a></li>
+      <li class="selected"><a href="javascript: void(0);"><i class="reg"></i>手机号注册</a></li>
     </ul>
   </div>
   <div class="nctouch-inp-con">
     <form action="" method ="">
       <ul class="form-box">
         <li class="form-item">
-          <h4>用&nbsp;户&nbsp;名</h4>
+          <h4>手&nbsp;机&nbsp;名</h4>
           <div class="input-box">
-            <input type="text" placeholder="请输入6-20个字符" class="inp" name="username" id="username" oninput="writeClear($(this));"/>
+            <input type="text" placeholder="请输入手机号" class="inp" name="username" id="username" oninput="writeClear($(this));"/>
             <span class="input-del"></span></div>
+        </li>
+        <li class="form-item">
+          <h4>验&nbsp;证&nbsp;码</h4>
+          <div class="input-box">
+            <input type="text" id="captcha" name="captcha" maxlength="4" size="10" class="inp" autocomplete="off" placeholder="输入4位验证码" oninput="writeClear($(this));" />
+            <span class="input-del code"></span><a href="javascript:void(0)" id="refreshcode" class="code-img"><img border="0" id="codeimage" name="codeimage"></a>
+          </div>
+        </li>
+        <li class="form-item">
+          <h4>动&nbsp;态&nbsp;码</h4>
+          <div class="input-box">
+            <input type="text" pattern="[0-9]*" placeholder="请输入短信动态验证码！" class="inp" name="mobilecode" id="mobilecode" oninput="writeClear($(this));" maxlength="6"/>
+            <span class="input-del code"></span> <span class="code-countdown" style=" display: none;">
+            <p>重新获取验证码</p>
+            <p>（等待<em>59</em>秒后）</p>
+            </span> <span class="code-again"><a href="javascript: void(0);" id="again">获取动态码</a></span> </div>
         </li>
         <li class="form-item">
           <h4>设置密码</h4>
@@ -52,12 +67,12 @@
             <input type="password" placeholder="请再次输入密码" class="inp" name="password_confirm" id="password_confirm" oninput="writeClear($(this));"/>
             <span class="input-del"></span></div>
         </li>
-        <li class="form-item">
-          <h4>邮&#12288;&#12288;箱</h4>
-          <div class="input-box">
-            <input type="email" placeholder="请输入常用邮箱地址" class="inp" name="email" id="email" oninput="writeClear($(this));"/>
-            <span class="input-del"></span></div>
-        </li>
+        <!--<li class="form-item">-->
+          <!--<h4>邮&#12288;&#12288;箱</h4>-->
+          <!--<div class="input-box">-->
+            <!--<input type="email" placeholder="请输入常用邮箱地址" class="inp" name="email" id="email" oninput="writeClear($(this));"/>-->
+            <!--<span class="input-del"></span></div>-->
+        <!--</li>-->
       </ul>
       <div class="remember-form">
         <input id="checkbox" type="checkbox" checked="" class="checkbox">
@@ -75,9 +90,11 @@
           <div class="input-box">
             <input name='inviter_id' type='hidden' value='<%=member.member_id%>'>
             <span style="line-height:1.95rem"><%=member.member_name%></span>
+            <input name='inviter_code' type='hidden' value='<%=member.inviter_code%>'>
         </li>
         
     </script>
+<div class="form-notes">绑定手机不收任何费用，一个手机只能绑定一个账号。</div>
 <!--<footer id="footer" class="bottom"></footer>-->
 <script type="text/javascript" src="../../js/config.js"></script> 
 <script type="text/javascript" src="../../js/zepto.min.js"></script> 
@@ -86,5 +103,6 @@
 <script type="text/javascript" src="../../js/simple-plugin.js"></script> 
 <!--<script type="text/javascript" src="../../js/tmpl/footer.js"></script>-->
 <script type="text/javascript" src="../../js/tmpl/register.js"></script>
+
 </body>
 </html>
