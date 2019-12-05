@@ -57,8 +57,8 @@ class Memberinviter extends MobileMember {
 
         $QR_width = imagesx($qrcode);
         $QR_height = imagesy($qrcode);
-        imagecopyresampled($inviter_back, $qrcode, 65, 170, 0, 0, 190, 190, $QR_width, $QR_height);
-        $portrait = imagecreatefromstring(file_get_contents(get_member_avatar_for_id($member_info['member_avatar'])));
+        imagecopyresampled($inviter_back, $qrcode, 85, 170, 0, 0, 190, 190, $QR_width, $QR_height);
+        $portrait = imagecreatefromstring(file_get_contents(get_member_avatar_for_id($member_info['member_id'])));
 
         $QR_width2 = imagesx($portrait);
         $QR_height2 = imagesy($portrait);
