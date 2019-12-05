@@ -70,40 +70,117 @@ class Member extends MobileMember {
         output_data(array('member_info' => $member_info));
     }
 
+    /*
+     * 获取可提现金额/银行卡
+     * */
     public function my_asset() {
-        $fields_arr = array('point', 'available', 'predepoit', 'transaction','redpacket','voucher');
-        $fields_str = trim(input('fields'));
-        if ($fields_str) {
-            $fields_arr = explode(',', $fields_str);
-        }
-        $member_info = array();
-        //冻结积分
-        if (in_array('point', $fields_arr)) {
-            $member_info['point'] = $this->member_info['member_points'];
-        }
-        //可用积分
-        if (in_array('available', $fields_arr)) {
-            $available = $this->member_info['member_points_available'];
-            $list_setting = rkcache('config', true);
-            $availables=$list_setting['withdraw'];
-            $member_info['available']=$available;
-            if($available>=$availables) {
-                $member_info['awable']=$available;
-            }else{
-                $member_info['awable']=0.00;
+        if(empty($this->member_info['member_paypwd'])){
+            output_error('请先设置支付密码，再申请提现');
+        }elseif($this->member_info['member_auth_state']!=3){
+            output_error('请先实名认证');
+        }else{
+            $fields_arr = array('point', 'available', 'predepoit', 'transaction','redpacket','voucher');
+            $fields_str = trim(input('fields'));
+            if ($fields_str) {
+                $fields_arr = explode(',', $fields_str);
             }
-            $member_info['commission']=$list_setting['commission'];
-        }
-        //储值卡
-        if (in_array('predepoit', $fields_arr)) {
-            $member_info['predepoit'] = $this->member_info['available_predeposit'];
-        }
-        //交易码
-        if (in_array('transaction', $fields_arr)) {
-            $member_info['transaction'] = $this->member_info['member_transaction'];
+            $member_info = array();
+            //最低可提现积分
+            $list_config = rkcache('config', true);
+            $member_info['withdraw'] = $list_config['withdraw'];//规则
+            //冻结积分
+            if (in_array('point', $fields_arr)) {
+                $member_info['point'] = $this->member_info['member_points'];
+            }
+            //可用积分
+            if (in_array('available', $fields_arr)) {
+                $available = $this->member_info['member_points_available'];
+                $list_setting = rkcache('config', true);
+                $availables=$list_setting['withdraw'];
+                $member_info['available']=$available;
+                if($available>=$availables) {
+                    $member_info['awable']=$available;
+                }else{
+                    $member_info['awable']=0.00;
+                }
+                $member_info['commission']=$list_setting['commission'];
+            }
+            //储值卡
+            if (in_array('predepoit', $fields_arr)) {
+                $member_info['predepoit'] = $this->member_info['available_predeposit'];
+            }
+            //交易码
+            if (in_array('transaction', $fields_arr)) {
+                $member_info['transaction'] = $this->member_info['member_transaction'];
+            }
+            //银行卡信息
+            $member_id = $this->member_info['member_id'];
+            $bank_model = Model("memberbank");
+            $bank = $bank_model->getMemberbankInfo(array("member_id"=>$member_id,"memberbank_type"=>"bank"));
+            $member_info['memberbank_name'] = $bank['memberbank_name'];
+            $member_info['memberbank_no'] = $bank['memberbank_no'];
+            $member_info['memberbank_truename'] = $bank['memberbank_truename'];
+            $member_info['member_mobile'] = $bank['member_mobile'];
         }
         output_data($member_info);
     }
+
+    /*
+     * 申请提现
+    * */
+    public function my_withdraw(){
+        $amount = input('param.amount');
+        if (empty($amount)) {
+            output_error('积分参数有误');
+        }
+        //可用积分验证
+        if($amount>$this->member_info['member_points_available']){
+            output_error('提现金额超过可用积分');
+        }
+        //最低提现积分验证
+        $list_config = rkcache('config', true);
+        $withdraw = $list_config['withdraw'];//规则
+        if($amount < $withdraw){
+            output_error('提现金额未达到最低可提现积分数量');
+        }
+        //积分扣减
+        $member_points_available = $this->member_info['member_points_available'] - $amount;
+        $member_model = Model("Member");
+        $member_id = $this->member_info['member_id'];
+        $member_model->editMember(array("member_id"=>$member_id),array("member_points_available"=>$member_points_available));
+        //添加积分日志
+        $pointslog_model = Model("points");
+        $data = array(
+            "pl_memberid" => $member_id,
+            "pl_membername" => $this->member_info['member_name'],
+            "pl_pointsav" => "-".$amount,
+            "pl_addtime" => TIMESTAMP,
+            "pl_desc" => "用户申请提现，提现积分为".$amount,
+            "pl_stage" => "withdraw",
+        );
+        $pointslog_model->addPointslog($data);
+        //提现管理
+        $commission = input('param.commission');//手续费比例
+        $predeposit_model = model('predeposit');
+        $datacash = array();
+        $pdc_sn = makePaySn(session('member_id'));
+        $datacash['pdc_sn'] = $pdc_sn;
+        $datacash['pdc_member_id'] = 1;
+        $datacash['pdc_member_name'] = $this->member_info['member_name'];
+        $datacash['pdc_amount'] = $amount-$amount*$commission/100;
+        $datacash['pdc_bank_name'] = input('param.memberbank_name');
+        $datacash['pdc_bank_no'] = input('param.memberbank_no');
+        $datacash['pdc_bank_user'] = input('param.memberbank_truename');
+        $datacash['pdc_addtime'] = TIMESTAMP;
+        $datacash['pdc_payment_state'] = 0;
+        $predeposit_model->addPdcash($datacash);
+        $cashinfo = array(
+            "pdc_amount" =>$amount-$amount*$commission/100,
+            "pdc_bank_name" => input('param.memberbank_name'),"pdc_bank_no"=>input('param.memberbank_no'),"pdc_bank_user"=>input('param.memberbank_truename')
+        );
+        output_data($cashinfo);
+    }
+
     //用户头像上传
     public function upload()
     {
@@ -130,12 +207,41 @@ class Member extends MobileMember {
     }
 
     /*
+     * 个人资料编辑
+     * */
+    public function my_edit(){
+        $member_model = Model("member");
+        $memberinfo = $this->member_info;
+        $member_id = $memberinfo['member_id'];
+        if(input('param.commit')==1){
+            $data = array();
+            if(input('param.member_name')){
+                $data['member_name'] = input('param.member_name');
+            }
+            if(input('param.member_sex')){
+                $data['member_sex'] = input('param.member_sex');
+            }
+            if(input('param.member_email')){
+                $data['member_email'] = input('param.member_email');
+            }
+            $member_model->editMember(array("member_id"=>$member_id),$data);
+            $memberdata = array(
+                "member_msg" => "修改信息"
+            );
+            output_data($memberdata);
+        }
+        $memberinfo['member_avatar'] = UPLOAD_SITE_URL . "/home/avatar/".$memberinfo['member_avatar'];
+        output_data($memberinfo);
+
+    }
+
+    /*
     * 获取推荐下级信息
     * */
     public function inviter(){
         $member_id = input('param.member_id');
         if (empty($member_id)) {
-            $this->error(lang('param_error'));
+            output_error('member_id参数有误');
         }
         $member_model = model('member');
         //一代
