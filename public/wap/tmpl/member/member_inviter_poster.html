@@ -32,18 +32,17 @@
     </style>
 <div class="nctouch-main-layout feedback">
     <p class='label'>邀请注册链接</p>
-    <p><input value='' id='foo' type='text'><a href="javascript:void" class='btn' data-clipboard-action="copy" data-clipboard-target="#foo">复制</a></p>
+    <p><input value='' id='foo' type='text' readonly><a href="javascript:void" class='btn' data-clipboard-action="copy" data-clipboard-target="#foo">复制</a></p>
     
     <div id="poster" style="text-align: center;"></div>
 </div>
-<footer id="footer" class="bottom"></footer>
+
 
 <script type="text/javascript" src="../../js/config.js"></script> 
 <script type="text/javascript" src="../../js/zepto.min.js"></script> 
 <script type="text/javascript" src="../../js/common.js"></script> 
 <script type="text/javascript" src="../../js/template.js"></script>
-<script type="text/javascript" src="../../js/simple-plugin.js"></script> 
-<script type="text/javascript" src="../../js/tmpl/footer.js"></script> 
+<script type="text/javascript" src="../../js/simple-plugin.js"></script>
 <script type="text/javascript" src="../../../static/plugins/clipboard.min.js"></script> 
 <script type="text/javascript" src="../../js/tmpl/member_inviter_poster.js"></script>
 <script>
@@ -60,14 +59,14 @@ $(function(){
 <script type="text/html" id="member_poster">
     
     
-    <p class='label'>推广公众号二维码</p>
-    <p class='center'>
-        <% if(refer_qrcode_weixin){ %>
-        <img src='<%=refer_qrcode_weixin;%>' style='max-width:50%;' />
-        <% }else{ %>
-        生成二维码失败<br><%=wx_error_msg;%>
-        <%}%>
-    </p>
+    <!--<p class='label'>推广公众号二维码</p>-->
+    <!--<p class='center'>-->
+        <!--<% if(refer_qrcode_weixin){ %>-->
+        <!--<img src='<%=refer_qrcode_weixin;%>' style='max-width:50%;' />-->
+        <!--<% }else{ %>-->
+        <!--生成二维码失败<br><%=wx_error_msg;%>-->
+        <!--<%}%>-->
+    <!--</p>-->
     <p class='label'>推广注册海报</p>
     <p class='center'><img src='<%=refer_qrcode_logo;%>' style='max-width:80%;' /></p>
 </script>
