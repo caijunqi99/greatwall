@@ -72,7 +72,7 @@ class Memberinviter extends MobileMember {
         $textcolors = imagecolorallocate($inviter_back, 0, 0, 0);
         imagefttext($inviter_back, 16, 0, 140, 265, $textcolors, ROOT_PATH . '/public/font/msyh.ttf', mb_convert_encoding($code, "html-entities", "utf-8"));
         imagepng($inviter_back, $refer_qrcode_logo);
-        output_data(array('refer_qrcode_logo' => UPLOAD_SITE_URL. '/' . ATTACH_INVITER . '/' . $member_info['member_id'] . '_poster.png','inviter_url'=>WAP_SITE_URL.'/tmpl/member/register.html?inviter_id=' . $member_info['member_id'],'refer_qrcode_weixin'=>$refer_qrcode_weixin,'wx_error_msg'=>$wx_error_msg));
+        output_data(array('refer_qrcode_logo' => UPLOAD_SITE_URL. '/' . ATTACH_INVITER . '/' . $member_info['member_id'] . '_poster.png','inviter_url'=>MOBILE_SITE_URL.'/r/m?q=' . $member_info['inviter_code'],'refer_qrcode_weixin'=>$refer_qrcode_weixin,'wx_error_msg'=>$wx_error_msg));
     }
 public function user(){
         $model_member = Model('member');
