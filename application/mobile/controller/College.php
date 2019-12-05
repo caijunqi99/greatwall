@@ -43,7 +43,7 @@ class College extends MobileMall
     public function detail(){
         $article_id = input('param.article_id');
         if (empty($article_id)) {
-            $this->error(lang('param_error'));
+            output_error('参数有误');
         }
         $article_model = model('article');
         $condition['article_id'] = $article_id;
