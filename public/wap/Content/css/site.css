@@ -7362,11 +7362,10 @@ section[role=main].subpage.active .navbar-fixed-top {
 .erweima_box>div {
     width: 48%;
 }
-
 .erweima_andriod {
     float: left;
     position: absolute;
-    top:55%;
+    top:360px;
     left:28%;
     height:50px;
     width:100%;
@@ -7375,10 +7374,11 @@ section[role=main].subpage.active .navbar-fixed-top {
 }
 
 .erweima_iphone {
-    float: right;
+    float: left;
     position: absolute;
-    right: 25%;
+    left: 28%;
     bottom: 25%;
+    top:430px;
 }
 
 .erweima_box>div img.erweima {
