@@ -7365,17 +7365,19 @@ section[role=main].subpage.active .navbar-fixed-top {
 
 .erweima_andriod {
     float: left;
-    position: absolute;
-    right: 100px;
-    bottom: 345px;
+    position:fixed;
+    top: 60%;
+    left: 52%;
+    transform: translate(-50%, -50%);
 
 }
 
 .erweima_iphone {
     float: right;
-    position: absolute;
-    right: 100px;
-    bottom: 265px;
+    position:fixed;
+    top: 70%;
+    left: 52%;
+    transform: translate(-50%, -50%);
 }
 
 .erweima_box>div img.erweima {
