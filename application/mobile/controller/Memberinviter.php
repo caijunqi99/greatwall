@@ -20,7 +20,7 @@ class Memberinviter extends MobileMember {
         $wx_error_msg='';
   
         if(!file_exists(BASE_UPLOAD_PATH . '/' . ATTACH_INVITER . '/' . $member_info['member_id'] . '_weixin.png')){
-            $config = model('wechat')->WxConfig();
+            $config = model('wechat')->getOneWxconfig();
             $wechat=new WechatApi($config);
             $expire_time = $config['expires_in'];
             if($expire_time > time()){
@@ -47,7 +47,7 @@ class Memberinviter extends MobileMember {
         $refer_qrcode_logo = BASE_UPLOAD_PATH . '/' . ATTACH_INVITER . '/' . $member_info['member_id'] . '_poster.png';
         if (!file_exists($qrcode_path)) {
             import('qrcode.phpqrcode', EXTEND_PATH);
-            \QRcode::png(WAP_SITE_URL . '/tmpl/member/register.html?refer_id=' . $member_info['member_id'], $qrcode_path);
+            \QRcode::png(WAP_SITE_URL . '/tmpl/member/register.html?inviter_id=' . $member_info['member_id'], $qrcode_path);
         }
         $qrcode = imagecreatefromstring(file_get_contents($qrcode_path));
         //背景图片
@@ -57,22 +57,22 @@ class Memberinviter extends MobileMember {
 
         $QR_width = imagesx($qrcode);
         $QR_height = imagesy($qrcode);
-        imagecopyresampled($inviter_back, $qrcode, 65, 170, 0, 0, 190, 190, $QR_width, $QR_height);
-
-        $portrait = imagecreatefromstring(file_get_contents(getMemberAvatar($member_info['member_avatar'])));
+        imagecopyresampled($inviter_back, $qrcode, 55, 270, 0, 0, 250, 250, $QR_width, $QR_height);
+        $portrait = imagecreatefromstring(file_get_contents(get_member_avatar_for_id($member_info['member_id'])));
 
         $QR_width2 = imagesx($portrait);
         $QR_height2 = imagesy($portrait);
-        imagecopyresampled($inviter_back, $portrait, 20, 20, 0, 0, 80, 80, $QR_width2, $QR_height2);
+        imagecopyresampled($inviter_back, $portrait, 45, 120, 0, 0, 50, 50, $QR_width2, $QR_height2);
 
         //此处是给图片载入文字
         $text = '我是'.$member_info['member_name'];
-        $textcolor = imagecolorallocate($inviter_back, 255, 50, 37);
-        imagefttext($inviter_back, 16, 0, 120, 50, $textcolor, ROOT_PATH . '/public/font/msyh.ttf', mb_convert_encoding($text, "html-entities", "utf-8"));
-
-
+        $textcolor = imagecolorallocate($inviter_back, 255, 255, 255);
+        imagefttext($inviter_back, 16, 0, 120, 150, $textcolor, ROOT_PATH . '/public/font/msyh.ttf', mb_convert_encoding($text, "html-entities", "utf-8"));
+        $code = $member_info['inviter_code'];
+        $textcolors = imagecolorallocate($inviter_back, 0, 0, 0);
+        imagefttext($inviter_back, 16, 0, 140, 265, $textcolors, ROOT_PATH . '/public/font/msyh.ttf', mb_convert_encoding($code, "html-entities", "utf-8"));
         imagepng($inviter_back, $refer_qrcode_logo);
-        output_data(array('refer_qrcode_logo' => UPLOAD_SITE_URL. '/' . ATTACH_INVITER . '/' . $member_info['member_id'] . '_poster.png','inviter_url'=>WAP_SITE_URL.'/tmpl/member/register.html?inviter_id=' . $member_info['member_id'],'refer_qrcode_weixin'=>$refer_qrcode_weixin,'wx_error_msg'=>$wx_error_msg));
+        output_data(array('refer_qrcode_logo' => UPLOAD_SITE_URL. '/' . ATTACH_INVITER . '/' . $member_info['member_id'] . '_poster.png','inviter_url'=>MOBILE_SITE_URL.'/r/m?q=' . $member_info['inviter_code'],'refer_qrcode_weixin'=>$refer_qrcode_weixin,'wx_error_msg'=>$wx_error_msg));
     }
 public function user(){
         $model_member = Model('member');

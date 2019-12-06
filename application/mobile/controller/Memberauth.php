@@ -22,7 +22,7 @@ class Memberauth extends MobileMall
         $member_id = input('param.member_id');
         $commit = input('param.commit');
         if (empty($member_id)) {
-            $this->error(lang('param_error'));
+            output_error('member_id参数有误');
         }
         $member_model = model('member');
         $memberbank_model = model('memberbank');
