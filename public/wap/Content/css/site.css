@@ -7366,8 +7366,11 @@ section[role=main].subpage.active .navbar-fixed-top {
 .erweima_andriod {
     float: left;
     position: absolute;
-    right: 25%;
-    bottom: 35%;
+    top:55%;
+    left:28%;
+    height:50px;
+    width:100%;
+    z-index:100;
 
 }
 
