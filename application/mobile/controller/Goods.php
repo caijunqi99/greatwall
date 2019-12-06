@@ -409,7 +409,8 @@ class Goods extends MobileMall {
 
         //整理商品图片
         unset($goods_detail['goods_image']);
-        $goods_detail['goods_image'] = implode(',', $goods_detail['goods_image_mobile']);
+        // $goods_detail['goods_image'] = implode(',', $goods_detail['goods_image_mobile']);
+        $goods_detail['goods_image'] = $goods_detail['goods_image_mobile'];
         unset($goods_detail['goods_image_mobile']);
 
         //商品链接
