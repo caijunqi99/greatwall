@@ -466,6 +466,15 @@ class Predeposit extends Model {
                 $data_msg['freeze_amount'] = 0;
                 $data_msg['desc'] = $data_log['lg_desc'];
                 break;
+            case 'pointransform_add':
+                $data_log['lg_av_amount'] = $data['amount'];
+                $data_log['lg_desc'] = $data['lg_desc'];
+                $data_pd['available_predeposit'] = Db::raw('available_predeposit+'.$data['amount']);
+
+                $data_msg['av_amount'] = $data['amount'];
+                $data_msg['freeze_amount'] = 0;
+                $data_msg['desc'] = $data_log['lg_desc'];
+                break;
             //end
 
             default:

@@ -29,7 +29,7 @@ class Transaction extends Model{
         $data_log['tl_memberid'] = $data['member_id'];
         $data_log['tl_membername'] = $data['member_name'];
         $data_log['tl_addtime'] = TIMESTAMP;
-        $data_log['tl_stage'] = 'system';
+        $data_log['tl_stage'] = isset($data['tl_stage'])?$data['tl_stage']:'system';
         $data_msg['time'] = date('Y-m-d H:i:s');
         switch ($change_type) {
             case 'sys_add_money':
@@ -48,6 +48,24 @@ class Transaction extends Model{
                 $data_log['tl_desc'] = '管理员调节交易码【减少】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['tl_desc'];
                 $data_log['tl_adminname'] = $data['admin_name'];
                 $data_log['tl_adminid'] = $data['admin_id'];
+                $data_pd['member_transaction'] = Db::raw('member_transaction-'.$data['amount']);
+
+                $data_msg['av_amount'] = -$data['amount'];
+                $data_msg['freeze_amount'] = 0;
+                $data_msg['desc'] = $data_log['tl_desc'];
+                break;
+            case 'pointransform_add':
+                $data_log['tl_transaction'] = $data['amount'];
+                $data_log['tl_desc'] = $data['tl_desc'];
+                $data_pd['member_transaction'] = Db::raw('member_transaction+'.$data['amount']);
+
+                $data_msg['av_amount'] = $data['amount'];
+                $data_msg['freeze_amount'] = 0;
+                $data_msg['desc'] = $data_log['tl_desc'];
+                break;
+            case 'pointransform_del':
+                $data_log['tl_transaction'] = -$data['amount'];
+                $data_log['tl_desc'] = $data['tl_desc'];
                 $data_pd['member_transaction'] = Db::raw('member_transaction-'.$data['amount']);
 
                 $data_msg['av_amount'] = -$data['amount'];

@@ -273,17 +273,17 @@ class Goods extends MobileMall {
         $model_goods = Model('goods');
         $goods_detail = $model_goods->getGoodsDetail($goods_id);
 
-        if (isset($goods_detail['goods_info']['mobile_body']) ) {
-            $goods_detail['goods_info']['mobile_body'] = '<!DOCTYPE html>
-            <html>
-            <head>
-                <title>商品说明</title>
-            </head>
-            <body>
-            '.$goods_detail['goods_info']['mobile_body'].'
-            </body>
-            </html>';
-        }
+        // if (isset($goods_detail['goods_info']['mobile_body']) ) {
+        //     $goods_detail['goods_info']['mobile_body'] = '<!DOCTYPE html>
+        //     <html>
+        //     <head>
+        //         <title>商品说明</title>
+        //     </head>
+        //     <body>
+        //     '.$goods_detail['goods_info']['mobile_body'].'
+        //     </body>
+        //     </html>';
+        // }
         //halt($goods_detail);
         if (empty($goods_detail)) {
             output_error('商品不存在');
