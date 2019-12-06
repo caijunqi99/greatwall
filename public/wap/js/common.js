@@ -21,6 +21,10 @@ function setCookie(name, value, days) {
 }
 function getCookie(e) {
     var t = document.cookie;
+    if(!t){
+        t = getQueryString('key');
+        if(t.length==32) return t;
+    }
     var a = t.split("; ");
     for (var n = 0; n < a.length; n++) {
         var r = a[n].split("=");
