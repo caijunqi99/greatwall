@@ -273,17 +273,17 @@ class Goods extends MobileMall {
         $model_goods = Model('goods');
         $goods_detail = $model_goods->getGoodsDetail($goods_id);
 
-        if (isset($goods_detail['goods_info']['mobile_body']) ) {
-            $goods_detail['goods_info']['mobile_body'] = '<!DOCTYPE html>
-            <html>
-            <head>
-                <title>商品说明</title>
-            </head>
-            <body>
-            '.$goods_detail['goods_info']['mobile_body'].'
-            </body>
-            </html>';
-        }
+        // if (isset($goods_detail['goods_info']['mobile_body']) ) {
+        //     $goods_detail['goods_info']['mobile_body'] = '<!DOCTYPE html>
+        //     <html>
+        //     <head>
+        //         <title>商品说明</title>
+        //     </head>
+        //     <body>
+        //     '.$goods_detail['goods_info']['mobile_body'].'
+        //     </body>
+        //     </html>';
+        // }
         //halt($goods_detail);
         if (empty($goods_detail)) {
             output_error('商品不存在');
@@ -409,7 +409,8 @@ class Goods extends MobileMall {
 
         //整理商品图片
         unset($goods_detail['goods_image']);
-        $goods_detail['goods_image'] = implode(',', $goods_detail['goods_image_mobile']);
+        // $goods_detail['goods_image'] = implode(',', $goods_detail['goods_image_mobile']);
+        $goods_detail['goods_image'] = $goods_detail['goods_image_mobile'];
         unset($goods_detail['goods_image_mobile']);
 
         //商品链接

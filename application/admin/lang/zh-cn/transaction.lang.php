@@ -38,12 +38,13 @@ $lang['admin_points_stage_order'] = '订单消费';
 $lang['admin_points_stage_system'] = '系统调整';
 $lang['admin_points_stage_rebate'] = '推荐返利';
 $lang['admin_points_stage_pointorder'] = '礼品兑换';
+$lang['admin_points_stage_marketmanage'] = '购物抽奖';
 $lang['admin_points_stage_app'] = '积分兑换';
 $lang['admin_points_stage_signin'] = '签到';
 $lang['admin_points_stage_inviter'] = '推荐注册';
 $lang['admin_points_addtime'] = '添加时间';
 $lang['admin_points_log_help1'] = '交易码管理，展示了会员、管理员、操作积分数（交易码，无符号表示增加，“-”表示减少，）、添加时间等信息';
-
+$lang['admin_points_stage_pointransform'] = '积分互转';
 
 
 

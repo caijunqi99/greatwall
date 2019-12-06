@@ -98,7 +98,12 @@ class Points extends Model {
                 //$insertarr['pl_points'] = $insertarr['rebate_amount'];
                 break;
             case 'marketmanage':
-                break;    
+                if (!isset($insertarr['pl_desc'])) {
+                    $insertarr['pl_desc'] = '抽奖获取积分';
+                }
+                break; 
+            case 'pointransform':
+                break;  
             case 'other':
                 break;
         }
@@ -132,6 +137,7 @@ class Points extends Model {
         $value_array['pl_desc'] = $insertarr['pl_desc'];
         $value_array['pl_stage'] = $stage;
         $result = false;
+        // p($value_array);exit;
         //if ($value_array['pl_points'] != '0') {
             $result = self::addPointslog($value_array);
        //}

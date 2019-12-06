@@ -99,9 +99,9 @@ class Marketmanage extends AdminControl {
                     'vouchertemplate_id'=> isset($_POST['vouchertemplate_id_' . $i]) ? intval($_POST['vouchertemplate_id_' . $i]) : 0,
                 );
             }
-            //中奖概率之和应小于 400%
+            //中奖概率之和应小于 400%  
             if($total_marketmanageaward_probability>400){
-                $this->error(lang('marketmanageaward_probability_error'));
+                // $this->error(lang('marketmanageaward_probability_error'));
             }
             
 
@@ -183,7 +183,7 @@ class Marketmanage extends AdminControl {
             }
             //中奖概率应小于 400%
             if($total_marketmanageaward_probability>400){
-                $this->error(lang('marketmanageaward_probability_error'));
+                // $this->error(lang('marketmanageaward_probability_error'));
             }
             $data_marketmanage = array(
                 'marketmanage_name' => input('param.marketmanage_name'),
