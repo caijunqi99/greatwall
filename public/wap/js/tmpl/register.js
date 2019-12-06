@@ -58,7 +58,7 @@ $(function() {
                             updateCookieCart(e.result.key);
                             addCookie("username", e.result.username);
                             addCookie("key", e.result.key);
-                            location.href = WapSiteUrl + "/tmpl/member/member.html"
+                            location.href = WapSiteUrl + "/erweima.html"
                         }
                         errorTipsHide()
                     } else {
