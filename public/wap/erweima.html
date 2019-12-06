@@ -19,41 +19,28 @@
     <link rel="stylesheet" href="content/css/col.css" />
     <link rel="stylesheet" href="content/css/site.css" />
     <!--[if lt IE 9]>
-      <script src="Content/jsplugins/html5shiv.js"></script>
-      <script src="Content/jsplugins/respond.js"></script>
+      <script src="content/jsplugins/html5shiv.js"></script>
+      <script src="content/jsplugins/respond.js"></script>
     <![endif]-->
 
-    <style>
-        body {
-            background: #f9f9f9;
-            background-image:url('content/img/back.png');
-            height: 100%;
-            width: 100%;
-            background-size: cover;
-            position: absolute;
-            overflow: hidden;
-        }
-        a:link{color:#fff;}
-		a:visited{color:#fff;}
-		a:hover{color:#fff;}
-		a:active{color:#fff;}
-</style>
+
 </head>
 
 <body>
-    <div class="erweima_cont">
+    <div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">
+        <img src="Content/img/back.png" height="100%" width="100%" style="left:0; top:0;">
         <!-- <h1 class="xjh_h1">想见孩APP下载</h1> -->
         <div class="erweima_box clearfix">
             <div class="erweima_andriod">
                 <!-- <img src="content/img/erweima_android.jpg" class="erweima erweima1" id="erweimashibie" ontouchstart="touchevent2($(this))" ontouchend="touchendevent()" alt=""> -->
                 <p class="erweima_p erweima_p1">
-                    <a href=""><img src="content/img/android.jpg" alt="" width="25"> 下载android版</a>
+                    <a href="" style="color: #fff"><img src="content/img/android.jpg" alt="" width="25"> 下载android版</a>
                 </p>
             </div>
             <div class="erweima_iphone">
                 <!-- <img src="content/img/erweima_ios.jpg" class="erweima" ontouchstart="touchevent($(this))" ontouchend="touchendevent()" alt=""> -->
                 <p class="erweima_p erweima_p2">
-                    <a href=""><img src="content/img/iphone.jpg" alt="" width="25"> 下载iPhone版</a>
+                    <a href="" style="color: #fff"><img src="content/img/iphone.jpg" alt="" width="25"> 下载iPhone版</a>
                 </p>
             </div>
         </div>
