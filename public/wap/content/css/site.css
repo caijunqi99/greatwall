@@ -7365,7 +7365,7 @@ section[role=main].subpage.active .navbar-fixed-top {
 .erweima_andriod {
     float: left;
     position: absolute;
-    top:380px;
+    top:400px;
     left:28%;
     height:50px;
     width:100%;
@@ -7378,7 +7378,7 @@ section[role=main].subpage.active .navbar-fixed-top {
     position: absolute;
     left: 28%;
     bottom: 25%;
-    top:450px;
+    top:470px;
 }
 
 .erweima_box>div img.erweima {
