@@ -9,6 +9,7 @@
                 <th>{$Think.lang.ds_member_name}</th>
                 <th>{$Think.lang.marketmanagelog_time}</th>
                 <th>{$Think.lang.marketmanagelog_win}</th>
+                <th>中奖说明</th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,7 @@
                 <td>{$marketmanagelog.member_name|default=''}</td>
                 <td>{$marketmanagelog.marketmanagelog_time|date="Y-m-d H:i:s",###}</td>
                 <td>{if $marketmanagelog.marketmanagelog_win}{$Think.lang.ds_yes}{else/}{$Think.lang.ds_no}{/if}</td>
+                <td>{$marketmanagelog.marketmanagelog_remark}</td>
             </tr>
             {/foreach}
             {else /}
