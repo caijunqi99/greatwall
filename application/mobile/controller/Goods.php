@@ -22,7 +22,8 @@ class Goods extends MobileMall {
         $model_goods = Model('goods');
         $model_search = Model('search');
 //        $_GET['is_book'] = 0;
-
+        $param = input('param.');
+        
         //查询条件
         $condition = array();
         // ==== 暂时不显示定金预售商品，手机端未做。  ====
@@ -66,7 +67,7 @@ class Goods extends MobileMall {
             $condition['goods_promotion_price'] = array('elt', $price_to);
         }
 
-        // 排序
+        // //排序方式
         $order = (isset($param['order'])&&(int) $param['order'] == 1) ? 'asc' : 'desc';
         if(isset($param['key'])) {
             switch (trim($param['key'])) {
@@ -97,9 +98,6 @@ class Goods extends MobileMall {
         $fieldstr = "goods_id,goods_commonid,store_id,goods_name,goods_advword,goods_price,goods_promotion_price,goods_promotion_type,goods_marketprice,goods_image,goods_salenum,evaluation_good_star,evaluation_count";
 
         $fieldstr .= ',is_virtual,is_presell,is_goodsfcode,is_have_gift,goods_advword,store_id,store_name,is_platform_store';
-
-        //排序方式
-        $order = $this->_goods_list_order(input('param.key'), input('param.order'));
 
         //全文搜索搜索参数
         $indexer_searcharr = input('param.');
