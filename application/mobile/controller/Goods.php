@@ -28,38 +28,71 @@ class Goods extends MobileMall {
         // ==== 暂时不显示定金预售商品，手机端未做。  ====
         //$condition['is_book'] = 0;
         $gc_id = intval(input('param.gc_id'));
-        $keyword = input('param.keyword');
+        $keyword = isset($param['keyword'])?trim((string) $param['keyword']):'';
         $barcode = input('param.barcode');
         $b_id = intval(input('param.b_id'));
         $store_id = intval(input('param.store_id',0));
-        if ($store_id>0) {
-            // $condition['store_id'] = $store_id;
-        }
+        
         if ($gc_id > 0) {
             $condition['gc_id'] = $gc_id;
         } elseif (!empty($keyword)) {
             $condition['goods_name|goods_advword'] = array('like', '%' . $keyword . '%');
-            // if (cookie('hisSearch') == '') {
-            //     $his_sh_list = array();
-            // } else {
-            //     $his_sh_list = explode('~', cookie('hisSearch'));
-            // }
-            // if (strlen($keyword) <= 20 && !in_array($keyword, $his_sh_list)) {
-            //     if (array_unshift($his_sh_list, $keyword) > 8) {
-            //         array_pop($his_sh_list);
-            //     }
-            // }
-            // cookie('hisSearch', implode('~', $his_sh_list), time() + 2592000);
         } elseif (!empty($barcode)) {
             $condition['goods_barcode'] = $barcode;
         } elseif ($b_id > 0) {
             $condition['brand_id'] = $b_id;
         }
-        $price_from = input('param.price_from');
-        $price_to = input('param.price_to');
-        $price_from = preg_match('/^[\d.]{1,20}$/', $price_from) ? $price_from : null;
-        $price_to = preg_match('/^[\d.]{1,20}$/', $price_to) ? $price_to : null;
+        //促销类型
+        if (isset($param['prom_type'])) {
+            switch ($param['prom_type']) {
+                case 'xianshi':
+                    $condition['goods_promotion_type'] = 2;
+                    break;
+                case 'groupbuy':
+                    $condition['goods_promotion_type'] = 1;
+                    break;
+            }
+        }
+        if ($keyword != '') {
+            $condition['goods_name'] = array('like', '%' . $keyword . '%');
+        }
+        $price_from = preg_match('/^[\d.]{1,20}$/', isset($param['price_from'])) ? $param['price_from'] : null;
+        $price_to = preg_match('/^[\d.]{1,20}$/', isset($param['price_to'])) ? $param['price_to'] : null;
+        if ($price_from && $price_from) {
+            $condition['goods_promotion_price'] = array('between', "{$price_from},{$price_to}");
+        } elseif ($price_from) {
+            $condition['goods_promotion_price'] = array('egt', $price_from);
+        } elseif ($price_to) {
+            $condition['goods_promotion_price'] = array('elt', $price_to);
+        }
 
+        // 排序
+        $order = (isset($param['order'])&&(int) $param['order'] == 1) ? 'asc' : 'desc';
+        if(isset($param['key'])) {
+            switch (trim($param['key'])) {
+                case '1':
+                    $order = 'goods_id ' . $order;
+                    break;
+                case '2':
+                    $order = 'goods_promotion_price ' . $order;
+                    break;
+                case '3':
+                    $order = 'goods_salenum ' . $order;
+                    break;
+                case '4':
+                    $order = 'goods_collect ' . $order;
+                    break;
+                case '5':
+                    $order = 'goods_click ' . $order;
+                    break;
+                default:
+                    $order = 'goods_id DESC';
+                    break;
+            }
+        }else{
+            $order = 'goods_id DESC';
+        }
+        
         //所需字段
         $fieldstr = "goods_id,goods_commonid,store_id,goods_name,goods_advword,goods_price,goods_promotion_price,goods_promotion_type,goods_marketprice,goods_image,goods_salenum,evaluation_good_star,evaluation_count";
 
