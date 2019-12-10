@@ -28,7 +28,7 @@
 
 <body>
     <div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">
-        <img src="content/img/back.png" height="100%" width="100%" style="left:0; top:0; z-index:-1;background-size: cover"> </div>
+        <img src="content/img/back.png" height="100%" width="100%" style="left:0; top:0;"></div>
         <!-- <h1 class="xjh_h1">想见孩APP下载</h1> -->
         <div class="erweima_box clearfix">
             <div class="erweima_andriod">
@@ -44,10 +44,30 @@
                 </p>
             </div>
         </div>
-
+    
 
     <script src="content/jsplugins/jquery.js"></script>
+    <script>
+        var Oimg = $("#erweimashibie");
+        var andriodsrc = $("#erweimashibie").attr("src");
 
+        function touchevent(obj) {
+            var src_str = obj.attr("src");
+            Oimg.attr("src", src_str);
+            setTimeout(function(){
+                $("#erweimashibie").attr("src", andriodsrc);
+            }, 1000)
+        }
+
+        function touchevent2(obj) {
+            obj.attr("src", andriodsrc);
+
+        }
+
+        function touchendevent() {
+
+        }
+    </script>
 </body>
 
 </html>

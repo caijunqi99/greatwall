@@ -6,7 +6,7 @@
 -- Database : ls_mall
 -- 
 -- Part : #1
--- Date : 2019-11-05 20:14:12
+-- Date : 2019-12-09 15:15:09
 -- -----------------------------
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -69,8 +69,12 @@ CREATE TABLE `ls_address` (
   `address_latitude` varchar(20) DEFAULT '' COMMENT '纬度',
   PRIMARY KEY (`address_id`),
   KEY `member_id` (`member_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='买家地址信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='买家地址信息表';
 
+-- -----------------------------
+-- Records of `ls_address`
+-- -----------------------------
+INSERT INTO `ls_address` VALUES ('2', '9', 'qwe', '36', '37', '北京 北京市 东城区', 'qwe', '', '', '0', '0', '116.422397', '39.934828');
 
 -- -----------------------------
 -- Table structure for `ls_admin`
@@ -90,7 +94,7 @@ CREATE TABLE `ls_admin` (
 -- -----------------------------
 -- Records of `ls_admin`
 -- -----------------------------
-INSERT INTO `ls_admin` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1572950150', '1', '1', '0');
+INSERT INTO `ls_admin` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1575875360', '79', '1', '0');
 
 -- -----------------------------
 -- Table structure for `ls_adminlog`
@@ -105,12 +109,589 @@ CREATE TABLE `ls_adminlog` (
   `adminlog_ip` char(15) NOT NULL COMMENT '管理员操作IP',
   `adminlog_url` varchar(50) NOT NULL DEFAULT '' COMMENT 'controller/action',
   PRIMARY KEY (`adminlog_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理员操作日志';
+) ENGINE=InnoDB AUTO_INCREMENT=1074 DEFAULT CHARSET=utf8 COMMENT='管理员操作日志';
 
 -- -----------------------------
 -- Records of `ls_adminlog`
 -- -----------------------------
-INSERT INTO `ls_adminlog` VALUES ('1', '1', 'admin', '编辑站点设置', '1572955521', '127.0.0.1', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('496', '1', 'admin', '管理员【admin】操作会员【caijunqi】预存款【增加】，金额为1,编号为19112618381143331011', '1574764691', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('497', '1', 'admin', '管理员【admin】操作会员【caijunqi】预存款【增加】，金额为1,编号为19112714050456584011', '1574834704', '113.47.196.248', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('498', '1', 'admin', '编辑站点设置', '1574836971', '117.100.7.203', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('499', '1', 'admin', '管理员【admin】操作会员【caijunqi】预存款【增加】，金额为1,编号为19112809470644168011', '1574905626', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('500', '1', 'admin', '编辑商品分类[花椒苗]', '1574907686', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('501', '1', 'admin', '编辑商品分类[香椿苗]', '1574907743', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('502', '1', 'admin', '编辑商品分类[红薯苗]', '1574907780', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('503', '1', 'admin', '编辑商品分类[西红柿苗]', '1574907895', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('504', '1', 'admin', '编辑商品分类[辣椒苗]', '1574907945', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('505', '1', 'admin', '编辑商品分类[黄瓜苗]', '1574907989', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('506', '1', 'admin', '编辑商品分类[茄子苗]', '1574908029', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('507', '1', 'admin', '编辑商品分类[黑鱼苗]', '1574908073', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('508', '1', 'admin', '编辑商品分类[草鱼苗]', '1574908123', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('509', '1', 'admin', '编辑商品分类[牡丹苗]', '1574908187', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('510', '1', 'admin', '编辑商品分类[玫瑰苗]', '1574908225', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('511', '1', 'admin', '编辑商品分类[月季苗]', '1574908296', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('512', '1', 'admin', '编辑商品分类[菊花苗]', '1574908347', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('513', '1', 'admin', '编辑商品分类[杜鹃苗]', '1574908380', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('514', '1', 'admin', '编辑商品分类[睡莲种苗]', '1574908421', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('515', '1', 'admin', '编辑商品分类[八仙花种苗]', '1574908461', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('516', '1', 'admin', '编辑商品分类[康乃馨种苗]', '1574908527', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('517', '1', 'admin', '编辑商品分类[鸵鸟苗]', '1574908562', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('518', '1', 'admin', '编辑商品分类[竹鼠苗]', '1574908602', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('519', '1', 'admin', '编辑商品分类[孔雀苗]', '1574908658', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('520', '1', 'admin', '编辑商品分类[豪猪苗]', '1574908699', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('521', '1', 'admin', '编辑商品分类[鳄鱼苗]', '1574908730', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('522', '1', 'admin', '编辑商品分类[土鸡]', '1574908770', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('523', '1', 'admin', '编辑商品分类[鸭]', '1574908831', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('524', '1', 'admin', '编辑商品分类[鸡]', '1574908892', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('525', '1', 'admin', '编辑商品分类[鹅]', '1574908944', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('526', '1', 'admin', '编辑商品分类[肉鸡]', '1574908990', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('527', '1', 'admin', '编辑商品分类[肉鹅]', '1574909021', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('528', '1', 'admin', '编辑商品分类[鸽子]', '1574909132', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('529', '1', 'admin', '编辑商品分类[麻鸭]', '1574909207', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('530', '1', 'admin', '编辑商品分类[野鸡]', '1574909264', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('531', '1', 'admin', '编辑商品分类[山鸡]', '1574909295', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('532', '1', 'admin', '编辑商品分类[肉羊]', '1574909352', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('533', '1', 'admin', '编辑商品分类[肉牛]', '1574909389', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('534', '1', 'admin', '编辑商品分类[生猪]', '1574909419', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('535', '1', 'admin', '编辑商品分类[母猪]', '1574909451', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('536', '1', 'admin', '编辑商品分类[肉兔]', '1574909492', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('537', '1', 'admin', '编辑商品分类[黄牛]', '1574909559', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('538', '1', 'admin', '编辑商品分类[香猪]', '1574909597', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('539', '1', 'admin', '编辑商品分类[肉狗]', '1574909665', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('540', '1', 'admin', '编辑商品分类[种猪]', '1574909738', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('541', '1', 'admin', '编辑商品分类[种羊]', '1574909798', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('542', '1', 'admin', '编辑商品分类[鸡蛋]', '1574909863', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('543', '1', 'admin', '编辑商品分类[鸭蛋]', '1574910009', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('544', '1', 'admin', '编辑商品分类[鹅蛋]', '1574910082', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('545', '1', 'admin', '编辑商品分类[种蛋]', '1574910140', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('546', '1', 'admin', '编辑商品分类[松花蛋]', '1574910171', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('547', '1', 'admin', '编辑商品分类[牛杂]', '1574910238', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('548', '1', 'admin', '编辑商品分类[羊杂]', '1574910276', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('549', '1', 'admin', '编辑商品分类[牛头]', '1574910314', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('550', '1', 'admin', '编辑商品分类[牛蹄]', '1574910380', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('551', '1', 'admin', '编辑商品分类[牛腱]', '1574910413', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('552', '1', 'admin', '编辑商品分类[牛脊骨]', '1574910444', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('553', '1', 'admin', '编辑商品分类[毛肚]', '1574910473', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('554', '1', 'admin', '编辑商品分类[牛筋]', '1574910544', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('555', '1', 'admin', '编辑商品分类[牛肉]', '1574910578', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('556', '1', 'admin', '编辑商品分类[羊肉]', '1574910609', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('557', '1', 'admin', '编辑商品分类[猪肉]', '1574910648', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('558', '1', 'admin', '编辑商品分类[牛排]', '1574910685', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('559', '1', 'admin', '编辑商品分类[羊排]', '1574910714', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('560', '1', 'admin', '编辑商品分类[牛肉干]', '1574910780', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('561', '1', 'admin', '编辑商品分类[腊肉]', '1574910824', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('562', '1', 'admin', '编辑商品分类[香肠]', '1574910875', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('563', '1', 'admin', '编辑商品分类[火腿]', '1574910910', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('564', '1', 'admin', '编辑商品分类[冻牛肉]', '1574910958', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('565', '1', 'admin', '编辑商品分类[冻猪肉]', '1574911003', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('566', '1', 'admin', '编辑商品分类[冻鸡肉]', '1574911035', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('567', '1', 'admin', '编辑商品分类[冰冻乳鸽]', '1574911066', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('568', '1', 'admin', '编辑商品分类[奶制品]', '1574911103', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('569', '1', 'admin', '编辑商品分类[羊奶]', '1574911137', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('570', '1', 'admin', '编辑商品分类[奶渣]', '1574911239', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('571', '1', 'admin', '编辑商品分类[牛奶]', '1574911275', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('572', '1', 'admin', '编辑商品分类[驼奶]', '1574911329', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('573', '1', 'admin', '编辑商品分类[酥油]', '1574911361', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('574', '1', 'admin', '编辑商品分类[乳扇]', '1574911392', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('575', '1', 'admin', '编辑商品分类[驴奶]', '1574911459', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('576', '1', 'admin', '编辑站点设置', '1574930194', '127.0.0.1', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('577', '1', 'admin', '编辑站点设置', '1574930281', '127.0.0.1', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('578', '1', 'admin', '编辑站点设置', '1574930328', '127.0.0.1', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('579', '1', 'admin', '编辑站点设置', '1574930340', '127.0.0.1', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('580', '1', 'admin', '编辑站点设置', '1574930386', '127.0.0.1', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('581', '1', 'admin', '编辑站点设置', '1574930525', '127.0.0.1', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('582', '1', 'admin', '编辑经验值管理规则设置', '1574954913', '127.0.0.1', 'Exppoints&expsetting');
+INSERT INTO `ls_adminlog` VALUES ('583', '1', 'admin', '编辑经验值管理规则设置', '1574954951', '127.0.0.1', 'Exppoints&expsetting');
+INSERT INTO `ls_adminlog` VALUES ('584', '1', 'admin', '编辑比例设置', '1574993987', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('585', '1', 'admin', '编辑比例设置', '1574994006', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('586', '1', 'admin', '编辑比例设置', '1574994020', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('587', '1', 'admin', '编辑比例设置', '1574994070', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('588', '1', 'admin', '编辑比例设置', '1574994077', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('589', '1', 'admin', '编辑比例设置', '1574994386', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('590', '1', 'admin', '编辑比例设置', '1574994392', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('591', '1', 'admin', '编辑比例设置', '1574994712', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('592', '1', 'admin', '编辑比例设置', '1574994721', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('593', '1', 'admin', '编辑比例设置', '1574994734', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('594', '1', 'admin', '编辑比例设置', '1574994744', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('595', '1', 'admin', '编辑比例设置', '1574996209', '117.100.7.203', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('596', '1', 'admin', '编辑比例设置', '1574996244', '117.100.7.203', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('597', '1', 'admin', '编辑比例设置', '1574996257', '117.100.7.203', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('598', '1', 'admin', '编辑比例设置', '1575000395', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('599', '1', 'admin', '编辑比例设置', '1575000406', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('600', '1', 'admin', '编辑比例设置', '1575000412', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('601', '1', 'admin', '广告成功删除[1]', '1575009893', '127.0.0.1', 'Adv&adv_del');
+INSERT INTO `ls_adminlog` VALUES ('602', '1', 'admin', '编辑商品分类[人参]', '1575010427', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('603', '1', 'admin', '编辑商品分类[天麻]', '1575010481', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('604', '1', 'admin', '编辑商品分类[黄精]', '1575010514', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('605', '1', 'admin', '编辑商品分类[三七]', '1575010541', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('606', '1', 'admin', '编辑商品分类[丹参]', '1575010571', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('607', '1', 'admin', '编辑商品分类[黄芩]', '1575010625', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('608', '1', 'admin', '编辑商品分类[重楼]', '1575010653', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('609', '1', 'admin', '编辑商品分类[当归]', '1575010684', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('610', '1', 'admin', '编辑商品分类[白术]', '1575010713', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('611', '1', 'admin', '编辑商品分类[土茯苓]', '1575010742', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('612', '1', 'admin', '编辑商品分类[白芷]', '1575010773', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('613', '1', 'admin', '编辑商品分类[沙参]', '1575010809', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('614', '1', 'admin', '编辑商品分类[甘草]', '1575010840', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('615', '1', 'admin', '编辑商品分类[天冬]', '1575010871', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('616', '1', 'admin', '编辑商品分类[玉竹]', '1575010980', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('617', '1', 'admin', '编辑商品分类[太子参]', '1575011009', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('618', '1', 'admin', '编辑商品分类[大黄]', '1575011059', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('619', '1', 'admin', '编辑商品分类[玛卡]', '1575011102', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('620', '1', 'admin', '编辑商品分类[五味子]', '1575011131', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('621', '1', 'admin', '编辑商品分类[金樱子]', '1575011471', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('622', '1', 'admin', '编辑商品分类[草果]', '1575011509', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('623', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915110474873012', '1575011464', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('624', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915140749717012', '1575011647', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('625', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915153409445012', '1575011734', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('626', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915163625323012', '1575011796', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('627', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915165354324012', '1575011813', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('628', '1', 'admin', '编辑商品分类[罗汉果]', '1575011904', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('629', '1', 'admin', '编辑商品分类[佛手]', '1575011955', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('630', '1', 'admin', '编辑商品分类[栀子]', '1575011984', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('631', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915190238524012', '1575011942', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('632', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915193174735012', '1575011971', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('633', '1', 'admin', '编辑商品分类[决明子]', '1575012031', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('634', '1', 'admin', '编辑商品分类[酸枣仁]', '1575012063', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('635', '1', 'admin', '删除商品分类[ID:223]', '1575012112', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('636', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915211505361012', '1575012075', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('637', '1', 'admin', '编辑商品分类[小茴香]', '1575012145', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('638', '1', 'admin', '编辑商品分类[核桃仁]', '1575012182', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('639', '1', 'admin', '编辑商品分类[苍耳子]', '1575012224', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('640', '1', 'admin', '编辑商品分类[女贞子]', '1575012255', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('641', '1', 'admin', '编辑商品分类[桑葚]', '1575012284', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('642', '1', 'admin', '编辑商品分类[沙棘]', '1575012316', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('643', '1', 'admin', '编辑商品分类[槟榔]', '1575012368', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('644', '1', 'admin', '编辑商品分类[艾叶]', '1575012409', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('645', '1', 'admin', '编辑商品分类[金线莲]', '1575012454', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('646', '1', 'admin', '编辑商品分类[独脚金]', '1575012489', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('647', '1', 'admin', '编辑商品分类[回春草]', '1575012522', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('648', '1', 'admin', '编辑商品分类[三叶青]', '1575012552', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('649', '1', 'admin', '编辑商品分类[卷柏]', '1575012586', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('650', '1', 'admin', '编辑商品分类[雪莲花]', '1575012616', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('651', '1', 'admin', '编辑商品分类[八仙草]', '1575012653', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('652', '1', 'admin', '编辑商品分类[穿心草]', '1575012691', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('653', '1', 'admin', '编辑商品分类[白花丹]', '1575012725', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('654', '1', 'admin', '编辑商品分类[鹿茸]', '1575012761', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('655', '1', 'admin', '编辑商品分类[鸡宝]', '1575012811', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('656', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915324630912012', '1575012766', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('657', '1', 'admin', '编辑商品分类[燕窝]', '1575012856', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('658', '1', 'admin', '编辑商品分类[地龙]', '1575012891', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('659', '1', 'admin', '编辑商品分类[九香虫]', '1575012926', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('660', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915350473527012', '1575012904', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('661', '1', 'admin', '编辑商品分类[海龙]', '1575012958', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('662', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915352767083012', '1575012927', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('663', '1', 'admin', '编辑商品分类[五灵脂]', '1575012990', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('664', '1', 'admin', '编辑商品分类[牛骨]', '1575013020', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('665', '1', 'admin', '编辑商品分类[鸡内金]', '1575013056', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('666', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915365563684012', '1575013015', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('667', '1', 'admin', '编辑商品分类[鹿筋]', '1575013109', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('668', '1', 'admin', '编辑商品分类[石决明]', '1575013166', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('669', '1', 'admin', '编辑商品分类[蚕沙]', '1575013336', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('670', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112915415124025012', '1575013311', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('671', '1', 'admin', '编辑商品分类[珍珠母]', '1575013368', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('672', '1', 'admin', '删除商品分类[ID:248]', '1575013396', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('673', '1', 'admin', '编辑商品分类[陈皮]', '1575013427', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('674', '1', 'admin', '编辑商品分类[青皮]', '1575013481', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('675', '1', 'admin', '编辑商品分类[秦皮]', '1575013517', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('676', '1', 'admin', '编辑商品分类[三加皮]', '1575013579', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('677', '1', 'admin', '编辑商品分类[山桂皮]', '1575013607', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('678', '1', 'admin', '编辑商品分类[橙皮]', '1575013643', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('679', '1', 'admin', '编辑商品分类[四方木]', '1575013677', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('680', '1', 'admin', '编辑商品分类[木棉皮]', '1575013718', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('681', '1', 'admin', '编辑商品分类[止泻木皮]', '1575013749', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('682', '1', 'admin', '编辑商品分类[鸭脚木皮]', '1575013780', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('683', '1', 'admin', '编辑商品分类[枣树皮]', '1575013811', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('684', '1', 'admin', '编辑商品分类[核桃]', '1575013837', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('685', '1', 'admin', '编辑商品分类[栗子]', '1575013867', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('686', '1', 'admin', '编辑商品分类[瓜子]', '1575013910', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('687', '1', 'admin', '编辑商品分类[桂圆]', '1575013939', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('688', '1', 'admin', '编辑商品分类[莲子]', '1575013970', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('689', '1', 'admin', '编辑商品分类[松子]', '1575013996', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('690', '1', 'admin', '编辑商品分类[杏仁]', '1575014029', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('691', '1', 'admin', '编辑商品分类[麻子]', '1575014055', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('692', '1', 'admin', '编辑商品分类[巴旦木]', '1575014152', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('693', '1', 'admin', '编辑商品分类[夏威夷果]', '1575014186', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('694', '1', 'admin', '编辑商品分类[红枣]', '1575014225', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('695', '1', 'admin', '编辑商品分类[枸杞]', '1575014252', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('696', '1', 'admin', '编辑商品分类[地瓜干]', '1575014281', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('697', '1', 'admin', '编辑商品分类[葡萄干]', '1575014309', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('698', '1', 'admin', '编辑商品分类[果脯]', '1575014354', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('699', '1', 'admin', '编辑商品分类[菠萝蜜]', '1575014386', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('700', '1', 'admin', '编辑商品分类[百香果干]', '1575014433', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('701', '1', 'admin', '编辑商品分类[蜂蜜]', '1575014471', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('702', '1', 'admin', '编辑商品分类[丸子]', '1575014526', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('703', '1', 'admin', '编辑商品分类[糖果]', '1575014555', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('704', '1', 'admin', '编辑商品分类[咸菜]', '1575014586', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('705', '1', 'admin', '编辑商品分类[麻花]', '1575014646', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('706', '1', 'admin', '编辑商品分类[月饼]', '1575014701', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('707', '1', 'admin', '编辑商品分类[年糕]', '1575014741', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('708', '1', 'admin', '编辑商品分类[豆丝]', '1575014785', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('709', '1', 'admin', '编辑商品分类[板栗]', '1575014821', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('710', '1', 'admin', '编辑商品分类[鸡蛋]', '1575014856', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('711', '1', 'admin', '编辑商品分类[阿胶枣]', '1575014891', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('712', '1', 'admin', '编辑商品分类[锅盔]', '1575014920', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('713', '1', 'admin', '编辑商品分类[西米]', '1575014951', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('714', '1', 'admin', '编辑商品分类[粉条]', '1575014991', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('715', '1', 'admin', '编辑商品分类[山茶油]', '1575015024', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('716', '1', 'admin', '编辑商品分类[玉米面]', '1575015059', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('717', '1', 'admin', '编辑商品分类[粉皮]', '1575015091', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('718', '1', 'admin', '编辑商品分类[饼干]', '1575015124', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('719', '1', 'admin', '编辑商品分类[土豆粉]', '1575015158', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('720', '1', 'admin', '编辑商品分类[水饺]', '1575015198', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('721', '1', 'admin', '编辑商品分类[芝麻油]', '1575015229', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('722', '1', 'admin', '编辑商品分类[凉皮]', '1575015316', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('723', '1', 'admin', '编辑商品分类[莜面]', '1575015553', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('724', '1', 'admin', '编辑商品分类[馒头]', '1575015627', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('725', '1', 'admin', '编辑商品分类[花椒]', '1575015660', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('726', '1', 'admin', '编辑商品分类[冰糖]', '1575015694', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('727', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112916205942290012', '1575015659', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('728', '1', 'admin', '编辑商品分类[豆腐乳]', '1575015740', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('729', '1', 'admin', '编辑商品分类[味精]', '1575015787', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('730', '1', 'admin', '编辑商品分类[香辣酱]', '1575015820', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('731', '1', 'admin', '编辑商品分类[芥末]', '1575015887', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('732', '1', 'admin', '编辑商品分类[虾油]', '1575015928', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('733', '1', 'admin', '编辑商品分类[小麦酱]', '1575015979', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('734', '1', 'admin', '编辑商品分类[黄花菜]', '1575016094', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('735', '1', 'admin', '编辑商品分类[萝卜干]', '1575016163', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('736', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112916323663620012', '1575016356', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('737', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112916350887023012', '1575016508', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('738', '1', 'admin', '广告信息修改成功[]', '1575016579', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('739', '1', 'admin', '编辑商品分类[黄瓜干]', '1575016580', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('740', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112916360173181012', '1575016561', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('741', '1', 'admin', '广告信息修改成功[]', '1575016617', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('742', '1', 'admin', '广告信息修改成功[]', '1575016630', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('743', '1', 'admin', '广告信息修改成功[]', '1575016646', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('744', '1', 'admin', '广告信息修改成功[]', '1575016661', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('745', '1', 'admin', '广告信息修改成功[]', '1575016674', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('746', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112916372557337012', '1575016645', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('747', '1', 'admin', '编辑商品分类[南瓜干]', '1575016714', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('748', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112916383615742012', '1575016716', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('749', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112916384541288012', '1575016725', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('750', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112916391702767012', '1575016757', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('751', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112916411075973012', '1575016870', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('752', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112916423587676012', '1575016955', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('753', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112916425596044012', '1575016975', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('754', '1', 'admin', '删除商品分类[ID:415]', '1575017171', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('755', '1', 'admin', '编辑商品分类[芋头干]', '1575017203', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('756', '1', 'admin', '删除商品分类[ID:418]', '1575017237', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('757', '1', 'admin', '编辑商品分类[桂花干]', '1575017263', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('758', '1', 'admin', '编辑商品分类[苦瓜干]', '1575017292', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('759', '1', 'admin', '编辑商品分类[白酒]', '1575017325', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('760', '1', 'admin', '编辑商品分类[果酒]', '1575017360', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('761', '1', 'admin', '编辑商品分类[红酒]', '1575017412', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('762', '1', 'admin', '编辑商品分类[矿泉水]', '1575017455', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('763', '1', 'admin', '编辑商品分类[啤酒]', '1575017496', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('764', '1', 'admin', '编辑商品分类[水果茶]', '1575017537', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('765', '1', 'admin', '编辑商品分类[可乐]', '1575017572', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('766', '1', 'admin', '删除商品分类[ID:436]', '1575017602', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('767', '1', 'admin', '编辑商品分类[竹筒酒]', '1575017628', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('768', '1', 'admin', '编辑商品分类[玉米芯]', '1575017671', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('769', '1', 'admin', '编辑商品分类[稻壳]', '1575017707', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('770', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112916545939272012', '1575017699', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('771', '1', 'admin', '编辑商品分类[稻草]', '1575017761', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('772', '1', 'admin', '编辑商品分类[花生壳]', '1575017820', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('773', '1', 'admin', '删除商品分类[ID:444]', '1575017842', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('774', '1', 'admin', '删除商品分类[ID:447]', '1575017855', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('775', '1', 'admin', '编辑商品分类[玉米]', '1575017902', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('776', '1', 'admin', '编辑商品分类[大米]', '1575018092', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('777', '1', 'admin', '编辑商品分类[小米]', '1575018149', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('778', '1', 'admin', '广告信息修改成功[]', '1575018150', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('779', '1', 'admin', '广告信息修改成功[]', '1575018309', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('780', '1', 'admin', '广告信息修改成功[]', '1575018315', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('781', '1', 'admin', '广告信息修改成功[]', '1575018322', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('782', '1', 'admin', '广告信息修改成功[]', '1575018329', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('783', '1', 'admin', '广告信息修改成功[]', '1575018335', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('784', '1', 'admin', '编辑商品分类[稻谷]', '1575018378', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('785', '1', 'admin', '添加成功[问问]', '1575018454', '117.100.7.203', 'Appadv&appadv_add');
+INSERT INTO `ls_adminlog` VALUES ('786', '1', 'admin', '添加成功[问问]', '1575018470', '117.100.7.203', 'Appadv&appadv_add');
+INSERT INTO `ls_adminlog` VALUES ('787', '1', 'admin', '添加成功[问问]', '1575018478', '117.100.7.203', 'Appadv&appadv_add');
+INSERT INTO `ls_adminlog` VALUES ('788', '1', 'admin', '添加成功[问问]', '1575018485', '117.100.7.203', 'Appadv&appadv_add');
+INSERT INTO `ls_adminlog` VALUES ('789', '1', 'admin', '编辑商品分类[谷子]', '1575018505', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('790', '1', 'admin', '编辑商品分类[大麦]', '1575018540', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('791', '1', 'admin', '编辑商品分类[薏米]', '1575018566', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('792', '1', 'admin', '编辑商品分类[燕麦]', '1575018595', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('793', '1', 'admin', '编辑商品分类[荞麦]', '1575018625', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('794', '1', 'admin', '编辑商品分类[花生]', '1575018662', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('795', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112917111034429012', '1575018670', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('796', '1', 'admin', '编辑商品分类[芝麻]', '1575018725', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('797', '1', 'admin', '编辑商品分类[葵花]', '1575018771', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('798', '1', 'admin', '编辑商品分类[油瓜]', '1575018810', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('799', '1', 'admin', '删除商品分类[ID:294]', '1575018832', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('800', '1', 'admin', '编辑商品分类[亚麻籽]', '1575018854', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('801', '1', 'admin', '广告信息修改成功[]', '1575018937', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('802', '1', 'admin', '编辑商品分类[菜籽]', '1575018977', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('803', '1', 'admin', '广告信息修改成功[]', '1575019054', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('804', '1', 'admin', '广告信息修改成功[]', '1575019158', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('805', '1', 'admin', '删除商品分类[ID:326]', '1575019190', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('806', '1', 'admin', '广告信息修改成功[]', '1575019249', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('807', '1', 'admin', '编辑商品分类[山茶油果]', '1575019266', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('808', '1', 'admin', '编辑商品分类[黄豆]', '1575019304', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('809', '1', 'admin', '删除商品分类[ID:301]', '1575019324', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('810', '1', 'admin', '编辑商品分类[黑豆]', '1575019351', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('811', '1', 'admin', '编辑商品分类[红豆]', '1575019384', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('812', '1', 'admin', '广告信息修改成功[]', '1575019409', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('813', '1', 'admin', '编辑商品分类[绿豆]', '1575019428', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('814', '1', 'admin', '编辑商品分类[竹豆]', '1575019467', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('815', '1', 'admin', '广告信息修改成功[]', '1575019485', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('816', '1', 'admin', '编辑商品分类[江豆]', '1575019507', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('817', '1', 'admin', '删除商品分类[ID:336]', '1575019539', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('818', '1', 'admin', '编辑商品分类[辣椒种子]', '1575019593', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('819', '1', 'admin', '编辑商品分类[韭菜种子]', '1575019629', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('820', '1', 'admin', '编辑商品分类[南瓜种子]', '1575019662', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('821', '1', 'admin', '广告信息修改成功[]', '1575019686', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('822', '1', 'admin', '编辑商品分类[西红柿种子]', '1575019695', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('823', '1', 'admin', '编辑商品分类[黄瓜种子]', '1575019723', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('824', '1', 'admin', '编辑商品分类[大葱种子]', '1575019767', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('825', '1', 'admin', '编辑商品分类[萝卜种子]', '1575019797', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('826', '1', 'admin', '编辑商品分类[白菜种子]', '1575019830', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('827', '1', 'admin', '编辑商品分类[半夏种子]', '1575019871', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('828', '1', 'admin', '编辑商品分类[柴胡种子]', '1575019899', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('829', '1', 'admin', '编辑商品分类[灵芝]', '1575019943', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('830', '1', 'admin', '广告信息修改成功[]', '1575019960', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('831', '1', 'admin', '编辑商品分类[黑木耳]', '1575019970', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('832', '1', 'admin', '编辑商品分类[蘑菇]', '1575020002', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('833', '1', 'admin', '编辑商品分类[虫草]', '1575020036', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('834', '1', 'admin', '编辑商品分类[平菇]', '1575020070', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('835', '1', 'admin', '编辑商品分类[鲜香菇]', '1575020105', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('836', '1', 'admin', '编辑商品分类[干香菇]', '1575020141', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('837', '1', 'admin', '编辑商品分类[羊肚菌]', '1575020171', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('838', '1', 'admin', '广告信息修改成功[]', '1575020190', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('839', '1', 'admin', '编辑商品分类[猴头菇]', '1575020199', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('840', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112917355752910012', '1575020157', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('841', '1', 'admin', '编辑商品分类[竹荪]', '1575020230', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('842', '1', 'admin', '编辑商品分类[茶树菇]', '1575020262', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('843', '1', 'admin', '广告成功删除[9]', '1575020277', '117.100.7.203', 'Appadv&adv_del');
+INSERT INTO `ls_adminlog` VALUES ('844', '1', 'admin', '编辑商品分类[牛肝菌]', '1575020290', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('845', '1', 'admin', '广告成功删除[7]', '1575020305', '117.100.7.203', 'Appadv&adv_del');
+INSERT INTO `ls_adminlog` VALUES ('846', '1', 'admin', '编辑商品分类[菌棒]', '1575020319', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('847', '1', 'admin', '删除商品分类[ID:779]', '1575020350', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('848', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112917382053610012', '1575020300', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('849', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112917402295290012', '1575020422', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('850', '1', 'admin', '编辑商品分类[白芷种子]', '1575020508', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('851', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112917413349738012', '1575020493', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('852', '1', 'admin', '编辑商品分类[天冬种子]', '1575020545', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('853', '1', 'admin', '编辑商品分类[黄芩种子]', '1575020572', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('854', '1', 'admin', '编辑商品分类[三七种子]', '1575020603', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('855', '1', 'admin', '编辑商品分类[沙参种子]', '1575020638', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('856', '1', 'admin', '编辑商品分类[五味子种子]', '1575020670', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('857', '1', 'admin', '编辑商品分类[枫树种子]', '1575020701', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('858', '1', 'admin', '编辑商品分类[槐树种子]', '1575020729', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('859', '1', 'admin', '编辑商品分类[花椒种子]', '1575020756', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('860', '1', 'admin', '编辑商品分类[紫藤种子]', '1575020786', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('861', '1', 'admin', '编辑商品分类[松树种子]', '1575020818', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('862', '1', 'admin', '编辑商品分类[牵牛花种子]', '1575020845', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('863', '1', 'admin', '删除商品分类[ID:699]', '1575020890', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('864', '1', 'admin', '编辑商品分类[毛豆种子]', '1575020917', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('865', '1', 'admin', '编辑商品分类[桃树种子]', '1575020949', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('866', '1', 'admin', '编辑商品分类[西瓜种子]', '1575020980', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('867', '1', 'admin', '编辑商品分类[甜瓜种子]', '1575021007', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('868', '1', 'admin', '编辑商品分类[苹果种子]', '1575021045', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('869', '1', 'admin', '编辑商品分类[甘蔗种子]', '1575021074', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('870', '1', 'admin', '编辑商品分类[草莓种子]', '1575021113', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('871', '1', 'admin', '编辑商品分类[梨树种子]', '1575021163', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('872', '1', 'admin', '编辑商品分类[红参果种子]', '1575021199', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('873', '1', 'admin', '编辑商品分类[芒果种子]', '1575021242', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('874', '1', 'admin', '编辑商品分类[无花果种子]', '1575021296', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('875', '1', 'admin', '编辑商品分类[牡丹种子]', '1575021331', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('876', '1', 'admin', '编辑商品分类[凤仙花种子]', '1575021370', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('877', '1', 'admin', '编辑商品分类[一串红种子]', '1575021402', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('878', '1', 'admin', '编辑商品分类[百合种子]', '1575021436', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('879', '1', 'admin', '编辑商品分类[康乃馨种子]', '1575021485', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('880', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112917571686346012', '1575021436', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('881', '1', 'admin', '编辑商品分类[孔雀草种子]', '1575021515', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('882', '1', 'admin', '编辑商品分类[蝴蝶兰种子]', '1575021549', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('883', '1', 'admin', '编辑商品分类[芋头花种子]', '1575021583', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('884', '1', 'admin', '编辑商品分类[茉莉种子]', '1575021613', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('885', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112917592255373012', '1575021562', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('886', '1', 'admin', '编辑商品分类[蔷薇种子]', '1575021648', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('887', '1', 'admin', '编辑商品分类[玉米种子]', '1575021685', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('888', '1', 'admin', '编辑商品分类[花生种子]', '1575021715', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('889', '1', 'admin', '编辑商品分类[小麦种子]', '1575021766', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('890', '1', 'admin', '编辑商品分类[高粱种子]', '1575021795', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('891', '1', 'admin', '编辑商品分类[大豆种子]', '1575021824', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('892', '1', 'admin', '编辑商品分类[葵花种子]', '1575021858', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('893', '1', 'admin', '编辑商品分类[马铃薯种子]', '1575021894', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('894', '1', 'admin', '编辑商品分类[绿豆种子]', '1575021923', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('895', '1', 'admin', '编辑商品分类[核桃种子]', '1575021958', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('896', '1', 'admin', '编辑商品分类[板栗种子]', '1575021992', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('897', '1', 'admin', '编辑商品分类[桂圆种子]', '1575022024', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('898', '1', 'admin', '编辑商品分类[腰果种子]', '1575022054', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('899', '1', 'admin', '编辑商品分类[夏威夷果种子]', '1575022081', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('900', '1', 'admin', '编辑商品分类[巴旦木种子]', '1575022111', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('901', '1', 'admin', '编辑商品分类[开心果种子]', '1575022141', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('902', '1', 'admin', '编辑商品分类[莲花种子]', '1575022168', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('903', '1', 'admin', '删除商品分类[ID:737]', '1575022177', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('904', '1', 'admin', '删除商品分类[ID:738]', '1575022193', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('905', '1', 'admin', '编辑分类导航，水果', '1575022268', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('906', '1', 'admin', '编辑分类导航，蔬菜', '1575022283', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('907', '1', 'admin', '编辑商品分类[小龙虾]', '1575022300', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('908', '1', 'admin', '编辑商品分类[龙虾]', '1575022337', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('909', '1', 'admin', '编辑商品分类[虾仁]', '1575022360', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('910', '1', 'admin', '编辑商品分类[对虾]', '1575022395', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('911', '1', 'admin', '编辑商品分类[皮皮虾]', '1575022433', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('912', '1', 'admin', '编辑分类导航，种苗', '1575022453', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('913', '1', 'admin', '编辑分类导航，禽畜牧蛋肉', '1575022465', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('914', '1', 'admin', '编辑商品分类[南美白对虾]', '1575022466', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('915', '1', 'admin', '编辑分类导航，水产', '1575022482', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('916', '1', 'admin', '编辑分类导航，中药材', '1575022493', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('917', '1', 'admin', '编辑商品分类[河虾]', '1575022494', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('918', '1', 'admin', '编辑商品分类[虾尾]', '1575022532', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('919', '1', 'admin', '编辑商品分类[北极虾]', '1575022570', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('920', '1', 'admin', '编辑商品分类[斑节虾]', '1575022598', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('921', '1', 'admin', '编辑商品分类[草虾]', '1575022652', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('922', '1', 'admin', '编辑商品分类[基围虾]', '1575022695', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('923', '1', 'admin', '编辑商品分类[立虾]', '1575022725', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('924', '1', 'admin', '编辑商品分类[白米虾]', '1575022764', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('925', '1', 'admin', '编辑商品分类[生蚝]', '1575022793', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('926', '1', 'admin', '编辑商品分类[扇贝]', '1575022850', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('927', '1', 'admin', '编辑商品分类[田螺]', '1575022888', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('928', '1', 'admin', '编辑分类导航，禽畜牧蛋肉', '1575022897', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('929', '1', 'admin', '编辑分类导航，水产', '1575022912', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('930', '1', 'admin', '删除商品分类[ID:185]', '1575022918', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('931', '1', 'admin', '编辑分类导航，中药材', '1575022931', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('932', '1', 'admin', '编辑分类导航，坚果干果', '1575022943', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('933', '1', 'admin', '编辑商品分类[蛤蜊]', '1575022944', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('934', '1', 'admin', '编辑分类导航，农副/副食', '1575022955', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('935', '1', 'admin', '编辑分类导航，粮油作物', '1575022965', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('936', '1', 'admin', '编辑分类导航，种子', '1575022976', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('937', '1', 'admin', '编辑分类导航，食用菌', '1575022984', '117.100.7.203', 'Goodsclass&nav_edit');
+INSERT INTO `ls_adminlog` VALUES ('938', '1', 'admin', '编辑商品分类[鲍鱼]', '1575022984', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('939', '1', 'admin', '编辑商品分类[石螺]', '1575023031', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('940', '1', 'admin', '删除商品分类[ID:601]', '1575023061', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('941', '1', 'admin', '删除商品分类[ID:602]', '1575023064', '117.100.7.203', 'Goodsclass&goods_class_del');
+INSERT INTO `ls_adminlog` VALUES ('942', '1', 'admin', '编辑商品分类[鲜贝]', '1575023079', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('943', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112918304068943012', '1575023440', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('944', '1', 'admin', '管理员【admin】操作会员【caijunqi】预存款【增加】，金额为100,编号为19112918325036015011', '1575023570', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('945', '1', 'admin', '编辑比例设置', '1575023686', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('946', '1', 'admin', '管理员【admin】操作会员【koko】预存款【增加】，金额为100,编号为19112918351281794012', '1575023712', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('947', '1', 'admin', '管理员【admin】操作会员【yang】预存款【增加】，金额为10000,编号为19112918520515164008', '1575024725', '117.100.7.203', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('948', '1', 'admin', '编辑比例设置', '1575025343', '117.100.7.203', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('949', '1', 'admin', '编辑比例设置', '1575025303', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('950', '1', 'admin', '编辑比例设置', '1575025365', '117.100.7.203', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('951', '1', 'admin', '编辑比例设置', '1575025384', '117.100.7.203', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('952', '1', 'admin', '编辑商品分类[泥鳅苗]', '1575025698', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('953', '1', 'admin', '编辑商品分类[虾苗]', '1575025827', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('954', '1', 'admin', '编辑商品分类[鲫鱼苗]', '1575025882', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('955', '1', 'admin', '编辑商品分类[甲鱼苗]', '1575026016', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('956', '1', 'admin', '编辑商品分类[鲤鱼苗]', '1575026067', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('957', '1', 'admin', '编辑商品分类[鲶鱼苗]', '1575026118', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('958', '1', 'admin', '编辑商品分类[龙虾苗]', '1575026228', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('959', '1', 'admin', '编辑商品分类[草鱼]', '1575026262', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('960', '1', 'admin', '编辑商品分类[鲤鱼]', '1575026529', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('961', '1', 'admin', '编辑商品分类[鲫鱼]', '1575026583', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('962', '1', 'admin', '编辑商品分类[泥鳅]', '1575026666', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('963', '1', 'admin', '编辑商品分类[鲶鱼]', '1575026746', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('964', '1', 'admin', '编辑商品分类[鲳鱼]', '1575028909', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('965', '1', 'admin', '编辑商品分类[黑鱼]', '1575028966', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('966', '1', 'admin', '编辑商品分类[罗非鱼]', '1575029012', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('967', '1', 'admin', '编辑商品分类[黄颡]', '1575029095', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('968', '1', 'admin', '编辑商品分类[鲈鱼]', '1575029134', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('969', '1', 'admin', '编辑商品分类[黄鳝]', '1575029197', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('970', '1', 'admin', '编辑商品分类[鲢鱼]', '1575029230', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('971', '1', 'admin', '编辑商品分类[青鱼]', '1575029266', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('972', '1', 'admin', '编辑商品分类[刀鱼]', '1575029309', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('973', '1', 'admin', '编辑商品分类[黄花鱼]', '1575029370', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('974', '1', 'admin', '编辑商品分类[带鱼]', '1575029418', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('975', '1', 'admin', '编辑商品分类[乌贼]', '1575029455', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('976', '1', 'admin', '编辑商品分类[银鳕鱼]', '1575029492', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('977', '1', 'admin', '编辑商品分类[龙利鱼]', '1575029527', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('978', '1', 'admin', '编辑商品分类[金枪鱼]', '1575029572', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('979', '1', 'admin', '编辑商品分类[刀鱼]', '1575029641', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('980', '1', 'admin', '编辑商品分类[鲤鱼]', '1575029693', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('981', '1', 'admin', '编辑商品分类[炮弹鱼]', '1575029780', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('982', '1', 'admin', '编辑商品分类[剑鱼]', '1575029831', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('983', '1', 'admin', '编辑商品分类[牛尾鱼]', '1575029868', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('984', '1', 'admin', '编辑商品分类[鱿鱼]', '1575029912', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('985', '1', 'admin', '编辑商品分类[海参]', '1575029941', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('986', '1', 'admin', '编辑商品分类[海蛰]', '1575029976', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('987', '1', 'admin', '编辑商品分类[章鱼]', '1575030034', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('988', '1', 'admin', '编辑商品分类[海胆]', '1575030065', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('989', '1', 'admin', '编辑商品分类[海肠]', '1575030103', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('990', '1', 'admin', '编辑商品分类[水母]', '1575030137', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('991', '1', 'admin', '编辑商品分类[沙虫]', '1575030189', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('992', '1', 'admin', '编辑商品分类[笔管鱼]', '1575030223', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('993', '1', 'admin', '编辑商品分类[泥丁]', '1575030349', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('994', '1', 'admin', '编辑商品分类[鱼干]', '1575030393', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('995', '1', 'admin', '编辑商品分类[干虾]', '1575030431', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('996', '1', 'admin', '编辑商品分类[虾皮]', '1575030464', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('997', '1', 'admin', '编辑商品分类[花胶]', '1575030495', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('998', '1', 'admin', '编辑商品分类[瑶柱]', '1575030525', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('999', '1', 'admin', '编辑商品分类[刺龟皮]', '1575030557', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1000', '1', 'admin', '编辑商品分类[东江鱼]', '1575030601', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1001', '1', 'admin', '编辑商品分类[海鼓干]', '1575030740', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1002', '1', 'admin', '编辑商品分类[生蚝肉]', '1575030776', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1003', '1', 'admin', '编辑商品分类[海带丝]', '1575030806', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1004', '1', 'admin', '编辑商品分类[虾酱]', '1575030850', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1005', '1', 'admin', '编辑商品分类[墨鱼仔]', '1575030882', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1006', '1', 'admin', '编辑商品分类[田螺肉]', '1575030914', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1007', '1', 'admin', '编辑商品分类[虾球]', '1575030943', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1008', '1', 'admin', '编辑商品分类[章鱼酱]', '1575030975', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1009', '1', 'admin', '编辑商品分类[青蛙]', '1575031076', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1010', '1', 'admin', '编辑商品分类[牛蛙]', '1575031109', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1011', '1', 'admin', '编辑商品分类[娃娃鱼]', '1575031162', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1012', '1', 'admin', '编辑商品分类[蟾蜍]', '1575031194', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1013', '1', 'admin', '编辑商品分类[鳄鱼]', '1575031231', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1014', '1', 'admin', '编辑商品分类[石蛙]', '1575031273', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1015', '1', 'admin', '编辑商品分类[跳跳鱼]', '1575031335', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1016', '1', 'admin', '编辑商品分类[木瓜]', '1575033211', '117.100.7.203', 'Goodsclass&goods_class_edit');
+INSERT INTO `ls_adminlog` VALUES ('1017', '1', 'admin', '广告信息修改成功[]', '1575033569', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1018', '1', 'admin', '广告信息修改成功[]', '1575033740', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1019', '1', 'admin', '广告信息修改成功[]', '1575033903', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1020', '1', 'admin', '广告信息修改成功[]', '1575034045', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1021', '1', 'admin', '广告信息修改成功[]', '1575034332', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1022', '1', 'admin', '广告信息修改成功[]', '1575034785', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1023', '1', 'admin', '广告信息修改成功[]', '1575034944', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1024', '1', 'admin', '广告信息修改成功[]', '1575037436', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1025', '1', 'admin', '广告信息修改成功[]', '1575037515', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1026', '1', 'admin', '广告信息修改成功[]', '1575037572', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1027', '1', 'admin', '广告信息修改成功[]', '1575037627', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1028', '1', 'admin', '广告信息修改成功[]', '1575037745', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1029', '1', 'admin', '广告信息修改成功[]', '1575037786', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1030', '1', 'admin', '广告信息修改成功[]', '1575039390', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1031', '1', 'admin', '广告信息修改成功[]', '1575039438', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1032', '1', 'admin', '广告信息修改成功[]', '1575039491', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1033', '1', 'admin', '广告信息修改成功[]', '1575039531', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1034', '1', 'admin', '广告信息修改成功[]', '1575039549', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1035', '1', 'admin', '广告信息修改成功[]', '1575039629', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1036', '1', 'admin', '广告信息修改成功[]', '1575039656', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1037', '1', 'admin', '广告信息修改成功[]', '1575039708', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1038', '1', 'admin', '广告信息修改成功[]', '1575039735', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1039', '1', 'admin', '广告信息修改成功[]', '1575039742', '117.100.7.203', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1040', '1', 'admin', '广告信息修改成功[]', '1575039721', '127.0.0.1', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1041', '1', 'admin', '广告信息修改成功[]', '1575039753', '127.0.0.1', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1042', '1', 'admin', '广告信息修改成功[]', '1575039759', '127.0.0.1', 'Appadv&adv_edit');
+INSERT INTO `ls_adminlog` VALUES ('1043', '1', 'admin', '取消了订单,订单编号:2000000000000101', '1575254111', '127.0.0.1', 'Order&change_state');
+INSERT INTO `ls_adminlog` VALUES ('1044', '1', 'admin', '修改提现单状态,提现单号:19120210422733490011', '1575254878', '127.0.0.1', 'Predeposit&pdcash_pay');
+INSERT INTO `ls_adminlog` VALUES ('1045', '1', 'admin', '编辑站点设置', '1575258894', '127.0.0.1', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('1046', '1', 'admin', '编辑站点设置', '1575259295', '127.0.0.1', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('1047', '1', 'admin', '编辑站点设置', '1575259409', '127.0.0.1', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('1048', '1', 'admin', '编辑站点设置', '1575259738', '127.0.0.1', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('1049', '1', 'admin', '编辑站点设置', '1575259778', '127.0.0.1', 'Config&base');
+INSERT INTO `ls_adminlog` VALUES ('1050', '1', 'admin', '管理员【admin】操作会员【caijunqi】预存款【增加】，金额为100,编号为19120218261218585011', '1575282372', '117.100.7.203', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('1051', '1', 'admin', '发送通知', '1575341934', '127.0.0.1', 'Notice&notice');
+INSERT INTO `ls_adminlog` VALUES ('1052', '1', 'admin', '添加文章分类[文章]', '1575342077', '127.0.0.1', 'Articleclass&article_class_add');
+INSERT INTO `ls_adminlog` VALUES ('1053', '1', 'admin', '添加文章分类[视频]', '1575342087', '127.0.0.1', 'Articleclass&article_class_add');
+INSERT INTO `ls_adminlog` VALUES ('1054', '1', 'admin', '编辑营销营销中心', '1575343127', '127.0.0.1', 'Operation&setting');
+INSERT INTO `ls_adminlog` VALUES ('1055', '1', 'admin', '管理员【admin】操作会员【caijunqi】交易码【增加】，金额为1,编号为19120313513309549011', '1575352293', '127.0.0.1', 'Transaction&ts_add');
+INSERT INTO `ls_adminlog` VALUES ('1056', '1', 'admin', '管理员【admin】操作会员【caijunqi】交易码【增加】，金额为1,编号为19120313565910228011', '1575352619', '127.0.0.1', 'Transaction&ts_add');
+INSERT INTO `ls_adminlog` VALUES ('1057', '1', 'admin', '管理员【admin】操作会员【caijunqi】交易码【减少】，金额为1,编号为19120318355159851011', '1575369351', '127.0.0.1', 'Transaction&ts_add');
+INSERT INTO `ls_adminlog` VALUES ('1058', '1', 'admin', '修改提现单状态,提现单号:19120311433204189011', '1575378583', '117.100.7.203', 'Predeposit&pdcash_pay');
+INSERT INTO `ls_adminlog` VALUES ('1059', '1', 'admin', '编辑比例设置', '1575425564', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('1060', '1', 'admin', '编辑比例设置', '1575425731', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('1061', '1', 'admin', '编辑比例设置', '1575425746', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('1062', '1', 'admin', '编辑比例设置', '1575426181', '117.100.9.85', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('1063', '1', 'admin', '编辑比例设置', '1575426197', '117.100.9.85', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('1064', '1', 'admin', '编辑比例设置', '1575426205', '117.100.9.85', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('1065', '1', 'admin', '编辑比例设置', '1575426243', '117.100.9.85', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('1066', '1', 'admin', '管理员【admin】操作会员【caijunqi】预存款【增加】，金额为100,编号为19120410414130610011', '1575427301', '127.0.0.1', 'Predeposit&pd_add');
+INSERT INTO `ls_adminlog` VALUES ('1067', '1', 'admin', '编辑大转盘[ID4]', '1575452219', '127.0.0.1', 'Marketmanage&edit');
+INSERT INTO `ls_adminlog` VALUES ('1068', '1', 'admin', '编辑大转盘[ID4]', '1575452360', '127.0.0.1', 'Marketmanage&edit');
+INSERT INTO `ls_adminlog` VALUES ('1069', '1', 'admin', '编辑大转盘[ID3]', '1575452366', '127.0.0.1', 'Marketmanage&edit');
+INSERT INTO `ls_adminlog` VALUES ('1070', '1', 'admin', '编辑大转盘[ID2]', '1575452372', '127.0.0.1', 'Marketmanage&edit');
+INSERT INTO `ls_adminlog` VALUES ('1071', '1', 'admin', '编辑大转盘[ID1]', '1575452377', '127.0.0.1', 'Marketmanage&edit');
+INSERT INTO `ls_adminlog` VALUES ('1072', '1', 'admin', '编辑比例设置', '1575525574', '127.0.0.1', 'Scale&scale');
+INSERT INTO `ls_adminlog` VALUES ('1073', '1', 'admin', '编辑比例设置', '1575525663', '127.0.0.1', 'Scale&scale');
 
 -- -----------------------------
 -- Table structure for `ls_adv`
@@ -134,7 +715,6 @@ CREATE TABLE `ls_adv` (
 -- -----------------------------
 -- Records of `ls_adv`
 -- -----------------------------
-INSERT INTO `ls_adv` VALUES ('1', '1', '首页轮播图1', '', '5a4341aeb0372.jpg', '1199116800', '1830268800', '0', '1', '0', '');
 INSERT INTO `ls_adv` VALUES ('2', '1', '首页轮播图2', '', '5a4341c011073.jpg', '1199116800', '1830268800', '0', '1', '0', '');
 INSERT INTO `ls_adv` VALUES ('3', '2', '首页促销图-1', '', '5a4355443eaad.jpg', '1199116800', '1830268800', '0', '1', '0', '');
 INSERT INTO `ls_adv` VALUES ('4', '2', '首页促销图-2', '', '5a43555f3590a.jpg', '1199116800', '1830268800', '0', '1', '0', '');
@@ -149,7 +729,7 @@ INSERT INTO `ls_adv` VALUES ('12', '4', '首页-楼层2底部广告', '', '5c075
 INSERT INTO `ls_adv` VALUES ('13', '5', '首页-楼层3底部广告', '', '5c0755264e32d.jpg', '1514304000', '1830268800', '0', '1', '0', '');
 INSERT INTO `ls_adv` VALUES ('14', '6', '首页-楼层4底部广告', '', '5c0755356c311.jpg', '1514304000', '1830268800', '0', '1', '0', '');
 INSERT INTO `ls_adv` VALUES ('15', '7', '首页-楼层5底部广告', '', '5c07551683f36.jpg', '1514304000', '1830268800', '0', '1', '0', '');
-INSERT INTO `ls_adv` VALUES ('16', '8', '首页-楼层1侧边广告', '', '5c07553eeca3a.jpg', '1514304000', '1830268800', '0', '1', '0', '');
+INSERT INTO `ls_adv` VALUES ('16', '8', '首页-楼层1侧边广告', '', '5c07553eeca3a.jpg', '1514304000', '1830268800', '0', '1', '1', '');
 INSERT INTO `ls_adv` VALUES ('17', '9', '首页-楼层2侧边广告', '', '5c07555395d8f.png', '1514304000', '1830268800', '0', '1', '0', '');
 INSERT INTO `ls_adv` VALUES ('18', '10', '首页-楼层3侧边广告', '', '5c07553eeca3a.jpg', '1514304000', '1830268800', '0', '1', '0', '');
 INSERT INTO `ls_adv` VALUES ('19', '11', '首页-楼层4侧边广告', '', '5c07555395d8f.png', '1514304000', '1830268800', '0', '1', '0', '');
@@ -162,7 +742,7 @@ INSERT INTO `ls_adv` VALUES ('31', '15', '商城拼团', 'mall/pintuan_list.html
 INSERT INTO `ls_adv` VALUES ('32', '15', '积分兑换', 'mall/pointspro_list.html', '5a4600c518da86.png', '1514476800', '1546012800', '0', '1', '0', '');
 INSERT INTO `ls_adv` VALUES ('33', '15', '附近店铺', 'mall/store_nearby.html', '5a4600c518da87.png', '1514476800', '1546012800', '0', '1', '0', '');
 INSERT INTO `ls_adv` VALUES ('34', '15', '商城帮助', 'mall/article_class.html', '5a4600c518da88.png', '1514476800', '1546012800', '0', '1', '0', '');
-INSERT INTO `ls_adv` VALUES ('35', '21', '首页-顶部广告图1', '', '5d5f86eb3119b.jpg', '1566489600', '1974816000', '0', '1', '2', '#db001c');
+INSERT INTO `ls_adv` VALUES ('35', '21', '首页-顶部广告图1', '', '5d5f86eb3119b.jpg', '1566489600', '1974816000', '0', '1', '4', '#db001c');
 
 -- -----------------------------
 -- Table structure for `ls_advposition`
@@ -239,7 +819,7 @@ CREATE TABLE `ls_albumpic` (
   `store_id` int(10) unsigned NOT NULL COMMENT '店铺id',
   `apic_uploadtime` int(10) unsigned NOT NULL COMMENT '图片上传时间',
   PRIMARY KEY (`apic_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8 COMMENT='相册图片表';
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8 COMMENT='相册图片表';
 
 -- -----------------------------
 -- Records of `ls_albumpic`
@@ -361,6 +941,9 @@ INSERT INTO `ls_albumpic` VALUES ('114', '1_2017092902201298747.jpg', '', '1', '
 INSERT INTO `ls_albumpic` VALUES ('115', '1_2017092902341762945.jpg', '', '1', '1_2017092902341762945.jpg', '0', '430x430', '1', '1506623657');
 INSERT INTO `ls_albumpic` VALUES ('116', '1_2017092902405679397.jpg', '', '1', '1_2017092902405679397.jpg', '0', '430x430', '1', '1506624056');
 INSERT INTO `ls_albumpic` VALUES ('117', '1_2017092902485560056.jpg', '', '1', '1_2017092902485560056.jpg', '0', '430x430', '1', '1506624535');
+INSERT INTO `ls_albumpic` VALUES ('118', 'alioss_1_2019112710074492037.jpg', '', '1', 'alioss_1_2019112710074492037.jpg', '81334', '1080x2160', '1', '1574820464');
+INSERT INTO `ls_albumpic` VALUES ('119', 'alioss_1_2019120615504452348.png', '', '1', 'alioss_1_2019120615504452348.png', '31559', '260x60', '1', '1575618644');
+INSERT INTO `ls_albumpic` VALUES ('120', 'alioss_1_2019120615504617761.png', '', '1', 'alioss_1_2019120615504617761.png', '41048', '260x60', '1', '1575618646');
 
 -- -----------------------------
 -- Table structure for `ls_appadv`
@@ -378,7 +961,7 @@ CREATE TABLE `ls_appadv` (
   `adv_sort` int(10) unsigned DEFAULT '255' COMMENT 'APP广告图片排序',
   `adv_enabled` tinyint(1) unsigned DEFAULT '1' COMMENT 'APP广告是否有效',
   PRIMARY KEY (`adv_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='APP广告表';
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COMMENT='APP广告表';
 
 -- -----------------------------
 -- Records of `ls_appadv`
@@ -386,12 +969,34 @@ CREATE TABLE `ls_appadv` (
 INSERT INTO `ls_appadv` VALUES ('1', '1', '首页轮播图', '', '', '5a460095839c8.jpg', '1514476800', '1599012800', '255', '1');
 INSERT INTO `ls_appadv` VALUES ('2', '1', '首页轮播图', '', '', '5a4600a260e0f.jpg', '1514476800', '1599012800', '255', '1');
 INSERT INTO `ls_appadv` VALUES ('3', '1', '首页轮播图', '', '', '5a4600c518da8.jpg', '1514476800', '1599012800', '255', '1');
-INSERT INTO `ls_appadv` VALUES ('4', '2', '首页促销左(320X260)', '', '', '5a44c828b411b.jpg', '1514476800', '1599012800', '255', '1');
-INSERT INTO `ls_appadv` VALUES ('5', '2', '首页促销右上(320X130)', '', '', '5a44c84ace6ca.jpg', '1514476800', '1599012800', '255', '1');
-INSERT INTO `ls_appadv` VALUES ('6', '2', '首页促销右下(320X130)', '', '', '5a44c85ca3b46.jpg', '1514476800', '1599012800', '255', '1');
-INSERT INTO `ls_appadv` VALUES ('7', '4', '首页横图广告1', 'store', '1', '5cb590f2ae5c6.gif', '1555344000', '1902412800', '1', '1');
-INSERT INTO `ls_appadv` VALUES ('8', '4', '首页横图广告2', 'store', '1', '5cb5980bbac26.jpg', '1555344000', '1902412800', '2', '1');
-INSERT INTO `ls_appadv` VALUES ('9', '4', '首页横图广告3', 'store', '1', '5cb59d7e78073.gif', '1555344000', '1902412800', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('4', '2', '首页促销左(320X260)', 'goods', '3', '5a44c828b411b.jpg', '1514476800', '1598976000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('5', '2', '首页促销右上1(320X130)', 'goods', '6', '5de12b3112b32.jpg', '1514476800', '1598976000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('6', '2', '首页促销右下1(320X130)', 'goods', '4', '5de129fc4f2fe.jpg', '1514476800', '1598976000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('8', '4', '首页横图广告2', 'store', '1', '5de12040a7bc5.jpg', '1555344000', '1902412800', '2', '1');
+INSERT INTO `ls_appadv` VALUES ('10', '5', '五谷', 'class', '1', '5de11b8cd8749.png', '1573488000', '1605024000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('11', '5', '蔬菜', 'class', '2', '5de0e1b9b23f0.png', '1573488000', '1605024000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('12', '5', '种苗', 'class', '3', '5de0e22e74ffe.png', '1573488000', '1605024000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('13', '5', '水产', 'class', '3', '5de11c2f232a5.png', '1573488000', '1605024000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('14', '5', '水果', 'class', '4', '5de11cbe00f04.png', '1573488000', '1605024000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('15', '5', '中药', 'class', '5', '5de0e391dcd59.png', '1573488000', '1605024000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('16', '6', '左侧超值好货1', 'goods', '128', '', '1573488000', '1605024000', '1', '1');
+INSERT INTO `ls_appadv` VALUES ('17', '6', '左侧超值好货2', 'goods', '7', '', '1573488000', '1605024000', '2', '1');
+INSERT INTO `ls_appadv` VALUES ('18', '6', '左侧超值好货3', 'goods', '15', '', '1573488000', '1605024000', '3', '1');
+INSERT INTO `ls_appadv` VALUES ('19', '6', '左侧超值好货4', 'goods', '16', '', '1573488000', '1605024000', '4', '1');
+INSERT INTO `ls_appadv` VALUES ('20', '6', '左侧超值好货5', 'goods', '100', '', '1573488000', '1605024000', '5', '1');
+INSERT INTO `ls_appadv` VALUES ('21', '6', '左侧超值好货6', 'goods', '101', '', '1573488000', '1605024000', '6', '1');
+INSERT INTO `ls_appadv` VALUES ('22', '6', '右侧超值好货1', 'goods', '36', '', '1573488000', '1605024000', '7', '1');
+INSERT INTO `ls_appadv` VALUES ('23', '6', '右侧超值好货2', 'goods', '37', '', '1573488000', '1605024000', '8', '1');
+INSERT INTO `ls_appadv` VALUES ('24', '6', '右侧超值好货3', 'goods', '105', '', '1573488000', '1605024000', '9', '1');
+INSERT INTO `ls_appadv` VALUES ('25', '6', '右侧超值好货4', 'goods', '104', '', '1573488000', '1605024000', '10', '1');
+INSERT INTO `ls_appadv` VALUES ('28', '2', '首页促销右上2(320X130)', 'goods', '5', '5de12a8421944.jpg', '1514476800', '1598976000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('29', '2', '首页促销右下2(320X130)', 'goods', '3', '5de0d8c6c80f1.jpg', '1514476800', '1598976000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('30', '2', '首页促销右上3(320X130)', 'goods', '4', '5de12b5ace5d0.jpg', '1514476800', '1598976000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('31', '2', '首页促销右下3(320X130)', 'goods', '5', '5de0d8e25e80b.jpg', '1514476800', '1598976000', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('32', '5', '干果', '', '', '5de11ae1e46b5.png', '1574956800', '1606492800', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('33', '5', '农副', '', '', '5de11fa157b91.png', '1574956800', '1606492800', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('34', '5', '种子', '', '', '5de11ddc92534.png', '1574956800', '1606492800', '255', '1');
+INSERT INTO `ls_appadv` VALUES ('35', '5', '食用菌', '', '', '5de0e69e315f2.png', '1574956800', '1606492800', '255', '1');
 
 -- -----------------------------
 -- Table structure for `ls_appadvposition`
@@ -405,7 +1010,7 @@ CREATE TABLE `ls_appadvposition` (
   `ap_width` int(10) DEFAULT '0' COMMENT 'APP广告位宽度',
   `ap_height` int(10) DEFAULT '0' COMMENT 'APP广告位高度',
   PRIMARY KEY (`ap_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='APP广告位表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='APP广告位表';
 
 -- -----------------------------
 -- Records of `ls_appadvposition`
@@ -414,6 +1019,8 @@ INSERT INTO `ls_appadvposition` VALUES ('1', '首页轮播图', '首页轮播图
 INSERT INTO `ls_appadvposition` VALUES ('2', '首页促销', '首页促销', '1', '375', '160');
 INSERT INTO `ls_appadvposition` VALUES ('3', '首页导航图', '', '1', '60', '60');
 INSERT INTO `ls_appadvposition` VALUES ('4', '首页横图广告', '', '1', '375', '115');
+INSERT INTO `ls_appadvposition` VALUES ('5', '首页导航', '', '1', '200', '200');
+INSERT INTO `ls_appadvposition` VALUES ('6', '首页商品推荐', '', '1', '300', '200');
 
 -- -----------------------------
 -- Table structure for `ls_area`
@@ -428,7 +1035,7 @@ CREATE TABLE `ls_area` (
   `area_region` varchar(3) DEFAULT NULL COMMENT '大区名称',
   PRIMARY KEY (`area_id`),
   KEY `area_parent_id` (`area_parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45056 DEFAULT CHARSET=utf8 COMMENT='地区表';
+) ENGINE=InnoDB AUTO_INCREMENT=45068 DEFAULT CHARSET=utf8 COMMENT='地区表';
 
 -- -----------------------------
 -- Records of `ls_area`
@@ -3763,6 +4370,10 @@ INSERT INTO `ls_area` VALUES ('5022', '阿拉尔市', '490', '0', '3', '');
 INSERT INTO `ls_area` VALUES ('5023', '图木舒克市', '491', '0', '3', '');
 INSERT INTO `ls_area` VALUES ('5024', '五家渠市', '492', '0', '3', '');
 INSERT INTO `ls_area` VALUES ('45055', '海外', '35', '0', '2', '');
+INSERT INTO `ls_area` VALUES ('45060', '红道乡', '1400', '0', '4', '');
+INSERT INTO `ls_area` VALUES ('45061', '古坡村', '45060', '0', '5', '');
+INSERT INTO `ls_area` VALUES ('45066', '太平镇', '2717', '255', '4', '');
+INSERT INTO `ls_area` VALUES ('45067', '后白寨村', '45066', '255', '5', '');
 
 -- -----------------------------
 -- Table structure for `ls_arrivalnotice`
@@ -3797,48 +4408,51 @@ CREATE TABLE `ls_article` (
   `article_content` text COMMENT '内容',
   `article_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章发布时间',
   `article_pic` varchar(255) NOT NULL DEFAULT '' COMMENT '文章主图',
+  `article_type` int(11) NOT NULL DEFAULT '0' COMMENT '类型 默认0（0文章； 1视频）',
   PRIMARY KEY (`article_id`),
   KEY `ac_id` (`ac_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COMMENT='文章表';
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COMMENT='文章表';
 
 -- -----------------------------
 -- Records of `ls_article`
 -- -----------------------------
-INSERT INTO `ls_article` VALUES ('6', '2', '', '1', '255', '如何注册成为会员', '如何注册成为会员', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('7', '2', '', '1', '255', '如何搜索', '如何搜索', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('8', '2', '', '1', '255', '忘记密码', '忘记密码', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('9', '2', '', '1', '255', '我要买', '我要买', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('10', '2', '', '1', '255', '查看已购买商品', '查看已购买商品', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('11', '3', '', '1', '255', '如何管理店铺', '如何管理店铺', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('12', '3', '', '1', '255', '查看售出商品', '查看售出商品', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('13', '3', '', '1', '255', '如何发货', '如何发货', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('14', '3', '', '1', '255', '商城商品推荐', '商城商品推荐', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('15', '3', '', '1', '255', '如何申请开店', '如何申请开店', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('16', '4', '', '1', '255', '如何注册支付宝', '如何注册支付宝', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('17', '4', '', '1', '255', '在线支付', '在线支付', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('18', '6', '', '1', '255', '会员修改密码', '会员修改密码', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('19', '6', '', '1', '255', '会员修改个人资料', '会员修改个人资料', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('20', '6', '', '1', '255', '商品发布', '商品发布', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('21', '6', '', '1', '255', '修改收货地址', '修改收货地址', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('22', '7', '', '1', '255', '关于我们', '关于我们', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('23', '7', '', '1', '255', '联系我们', '联系我们', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('24', '7', '', '1', '255', '招聘英才', '招聘英才', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('25', '7', '', '1', '255', '合作及洽谈', '合作及洽谈', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('26', '5', '', '1', '255', '联系卖家', '联系卖家', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('28', '4', '', '1', '255', '分期付款', '分期付款<br />', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('29', '4', '', '1', '255', '邮局汇款', '邮局汇款<br />', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('30', '4', '', '1', '255', '公司转账', '公司转账<br />', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('31', '5', '', '1', '255', '退换货政策', '退换货政策', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('32', '5', '', '1', '255', '退换货流程', '退换货流程', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('33', '5', '', '1', '255', '返修/退换货', '返修/退换货', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('34', '5', '', '1', '255', '退款申请', '退款申请', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('35', '1', 'http://www.csdeshang.com/', '1', '1', '火爆销售中', '火爆销售中<br />', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('36', '1', '', '1', '255', '管理功能说明', '管理功能说明', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('37', '1', '', '1', '255', '如何扩充水印字体库', '如何扩充水印字体库', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('38', '1', '', '1', '255', '提示信息', '提示信息', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('39', '2', '', '1', '255', '积分细则', '积分细则积分细则', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('40', '2', '', '1', '255', '积分兑换说明', '积分兑换说明', '1435672310', '');
-INSERT INTO `ls_article` VALUES ('41', '1', '', '1', '255', '功能使用说明', '功能使用说明', '1435672310', '');
+INSERT INTO `ls_article` VALUES ('6', '2', '', '1', '255', '如何注册成为会员', '如何注册成为会员', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('7', '2', '', '1', '255', '如何搜索', '如何搜索', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('8', '2', '', '1', '255', '忘记密码', '忘记密码', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('9', '2', '', '1', '255', '我要买', '我要买', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('10', '2', '', '1', '255', '查看已购买商品', '查看已购买商品', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('11', '3', '', '1', '255', '如何管理店铺', '如何管理店铺', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('12', '3', '', '1', '255', '查看售出商品', '查看售出商品', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('13', '3', '', '1', '255', '如何发货', '如何发货', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('14', '3', '', '1', '255', '商城商品推荐', '商城商品推荐', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('15', '3', '', '1', '255', '如何申请开店', '如何申请开店', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('16', '4', '', '1', '255', '如何注册支付宝', '如何注册支付宝', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('17', '4', '', '1', '255', '在线支付', '在线支付', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('18', '6', '', '1', '255', '会员修改密码', '会员修改密码', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('19', '6', '', '1', '255', '会员修改个人资料', '会员修改个人资料', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('20', '6', '', '1', '255', '商品发布', '商品发布', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('21', '6', '', '1', '255', '修改收货地址', '修改收货地址', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('22', '7', '', '1', '255', '关于我们', '关于我们', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('23', '7', '', '1', '255', '联系我们', '联系我们', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('24', '7', '', '1', '255', '招聘英才', '招聘英才', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('25', '7', '', '1', '255', '合作及洽谈', '合作及洽谈', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('26', '5', '', '1', '255', '联系卖家', '联系卖家', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('28', '4', '', '1', '255', '分期付款', '分期付款<br />', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('29', '4', '', '1', '255', '邮局汇款', '邮局汇款<br />', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('30', '4', '', '1', '255', '公司转账', '公司转账<br />', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('31', '5', '', '1', '255', '退换货政策', '退换货政策', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('32', '5', '', '1', '255', '退换货流程', '退换货流程', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('33', '5', '', '1', '255', '返修/退换货', '返修/退换货', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('34', '5', '', '1', '255', '退款申请', '退款申请', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('35', '9', 'https://oss.bayi-shop.com/70389ac45457033beecbe86c008c6fb5.mp4', '1', '1', '商学院', '&lt;p&gt;商学院&lt;/p&gt;', '1575342120', '', '0');
+INSERT INTO `ls_article` VALUES ('36', '1', '', '1', '255', '管理功能说明', '管理功能说明', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('37', '1', '', '1', '255', '如何扩充水印字体库', '如何扩充水印字体库', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('38', '1', '', '1', '255', '提示信息', '提示信息', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('39', '2', '', '1', '255', '积分细则', '积分细则积分细则', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('40', '2', '', '1', '255', '积分兑换说明', '积分兑换说明', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('41', '1', '', '1', '255', '功能使用说明', '功能使用说明', '1435672310', '', '0');
+INSERT INTO `ls_article` VALUES ('47', '8', 'http://shop.com/admin/index/index.html', '1', '0', '韩国哈哈哈', '&lt;p&gt;第三方老快&lt;/p&gt;', '1575344880', '', '1');
+INSERT INTO `ls_article` VALUES ('48', '8', 'http://shop.com/admin/index/index.html', '1', '0', '啊啊士大夫', '&lt;p&gt;爱的施工方&lt;/p&gt;', '1575359075', '', '0');
 
 -- -----------------------------
 -- Table structure for `ls_articleclass`
@@ -3852,7 +4466,7 @@ CREATE TABLE `ls_articleclass` (
   `ac_sort` tinyint(3) unsigned NOT NULL DEFAULT '255' COMMENT '文章分类排序',
   PRIMARY KEY (`ac_id`),
   KEY `ac_parent_id` (`ac_parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='文章分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='文章分类表';
 
 -- -----------------------------
 -- Records of `ls_articleclass`
@@ -3864,6 +4478,7 @@ INSERT INTO `ls_articleclass` VALUES ('4', 'payment', '支付方式', '0', '255'
 INSERT INTO `ls_articleclass` VALUES ('5', 'sold', '售后服务', '0', '255');
 INSERT INTO `ls_articleclass` VALUES ('6', 'service', '客服中心', '0', '255');
 INSERT INTO `ls_articleclass` VALUES ('7', 'about', '关于我们', '0', '255');
+INSERT INTO `ls_articleclass` VALUES ('8', 'college', '商学院', '0', '1');
 
 -- -----------------------------
 -- Table structure for `ls_attribute`
@@ -3985,8 +4600,31 @@ CREATE TABLE `ls_cart` (
   `bl_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '组合套装ID',
   PRIMARY KEY (`cart_id`),
   KEY `member_id` (`buyer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='购物车数据表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='购物车数据表';
 
+-- -----------------------------
+-- Records of `ls_cart`
+-- -----------------------------
+INSERT INTO `ls_cart` VALUES ('1', '9', '1', '自营店铺', '128', '荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金 全网通 香槟金 32G', '998.00', '1', '1_2017092120144795113.jpg', '0');
+INSERT INTO `ls_cart` VALUES ('2', '11', '1', '自营店铺', '127', '新西兰进口牛奶纽仕兰高钙低脂纯牛奶250ml*24盒*1箱', '89.00', '1', '1_2017092902485560056.jpg', '0');
+
+-- -----------------------------
+-- Table structure for `ls_channel`
+-- -----------------------------
+DROP TABLE IF EXISTS `ls_channel`;
+CREATE TABLE `ls_channel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `channel_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '渠道名称',
+  `channel` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '渠道标识',
+  `description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '备注',
+  `time` int(11) DEFAULT NULL COMMENT '添加或更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- -----------------------------
+-- Records of `ls_channel`
+-- -----------------------------
+INSERT INTO `ls_channel` VALUES ('1', '官网', '绿色长城', '测试', '1542771427');
 
 -- -----------------------------
 -- Table structure for `ls_chatlog`
@@ -4022,6 +4660,35 @@ CREATE TABLE `ls_chatmsg` (
   PRIMARY KEY (`m_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='消息表';
 
+
+-- -----------------------------
+-- Table structure for `ls_company`
+-- -----------------------------
+DROP TABLE IF EXISTS `ls_company`;
+CREATE TABLE `ls_company` (
+  `company_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '公司id',
+  `member_id` int(11) NOT NULL DEFAULT '0' COMMENT '会员id',
+  `member_mobile` varchar(11) NOT NULL DEFAULT '0' COMMENT '手机号',
+  `company_level` int(11) NOT NULL DEFAULT '0' COMMENT '公司级别（1省级；2市级；3县级；4镇级；5村级）',
+  `member_provinceid` int(11) NOT NULL DEFAULT '0' COMMENT '省ID',
+  `member_cityid` int(11) NOT NULL DEFAULT '0' COMMENT '市ID',
+  `member_areaid` int(11) NOT NULL DEFAULT '0' COMMENT '区/县 ID',
+  `member_townid` int(11) NOT NULL DEFAULT '0' COMMENT '镇ID',
+  `member_villageid` int(11) DEFAULT '0' COMMENT '村ID',
+  `member_areainfo` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '地区内容',
+  `company_addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `is_del` int(11) NOT NULL DEFAULT '0' COMMENT '是否删除 0 未删除  1已删除',
+  PRIMARY KEY (`company_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COMMENT='分公司表';
+
+-- -----------------------------
+-- Records of `ls_company`
+-- -----------------------------
+INSERT INTO `ls_company` VALUES ('39', '10', '15210356018', '5', '4', '93', '1400', '45060', '45061', '山西 临汾市 蒲县 红道乡 古坡村', '1575020123', '0');
+INSERT INTO `ls_company` VALUES ('40', '9', '15213659841', '4', '4', '93', '1400', '45060', '0', '山西 临汾市 蒲县 红道乡', '1575020372', '0');
+INSERT INTO `ls_company` VALUES ('41', '1', '11111111111', '3', '4', '93', '1400', '0', '0', '山西 临汾市 蒲县', '1575020461', '0');
+INSERT INTO `ls_company` VALUES ('42', '11', '18511310658', '2', '1', '36', '0', '0', '0', '北京 北京市', '1575340316', '1');
+INSERT INTO `ls_company` VALUES ('43', '11', '18511310658', '2', '1', '36', '0', '0', '0', '北京 北京市', '1575341556', '0');
 
 -- -----------------------------
 -- Table structure for `ls_complain`
@@ -4105,23 +4772,23 @@ CREATE TABLE `ls_config` (
   `value` text,
   `remark` varchar(100) DEFAULT '解释,备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=723 DEFAULT CHARSET=utf8 COMMENT='配置参数表';
+) ENGINE=InnoDB AUTO_INCREMENT=737 DEFAULT CHARSET=utf8 COMMENT='配置参数表';
 
 -- -----------------------------
 -- Records of `ls_config`
 -- -----------------------------
-INSERT INTO `ls_config` VALUES ('1', 'site_name', '绿色长城商城', '商城名称');
-INSERT INTO `ls_config` VALUES ('2', 'site_phone', '3', '商城客服服务电话');
+INSERT INTO `ls_config` VALUES ('1', 'site_name', '绿色长城', '商城名称');
+INSERT INTO `ls_config` VALUES ('2', 'site_phone', '0438-2736666', '商城客服服务电话');
 INSERT INTO `ls_config` VALUES ('3', 'site_state', '1', '商城状态');
 INSERT INTO `ls_config` VALUES ('4', 'site_logo', 'site_logo.png', '商城logo图');
 INSERT INTO `ls_config` VALUES ('5', 'member_logo', 'member_logo.png', '默认会员图');
-INSERT INTO `ls_config` VALUES ('6', 'seller_center_logo', 'seller_center_logo.jpg', '默认卖家中心logo');
+INSERT INTO `ls_config` VALUES ('6', 'seller_center_logo', 'seller_center_logo.png', '默认卖家中心logo');
 INSERT INTO `ls_config` VALUES ('7', 'site_mobile_logo', 'site_mobile_logo.png', '默认商城手机端logo');
 INSERT INTO `ls_config` VALUES ('8', 'site_logowx', 'site_logowx.jpg', '微信商城二维码');
-INSERT INTO `ls_config` VALUES ('9', 'icp_number', '2', 'ICP备案号');
+INSERT INTO `ls_config` VALUES ('9', 'icp_number', '吉ICP备19005354号', 'ICP备案号');
 INSERT INTO `ls_config` VALUES ('10', 'site_tel400', '40002541852', '解释,备注');
-INSERT INTO `ls_config` VALUES ('11', 'site_email', '858761000@qq.com', '电子邮件');
-INSERT INTO `ls_config` VALUES ('12', 'flow_static_code', 'Copyright © 2013-2019 绿色长城开源系统 版权所有 保留一切权利', '底部版权信息');
+INSERT INTO `ls_config` VALUES ('11', 'site_email', '604840631@qq.com', '电子邮件');
+INSERT INTO `ls_config` VALUES ('12', 'flow_static_code', 'Copyright © 2013-2019 绿色长城系统 版权所有 保留一切权利', '底部版权信息');
 INSERT INTO `ls_config` VALUES ('13', 'closed_reason', '商城暂时关闭', '商城关闭原因');
 INSERT INTO `ls_config` VALUES ('14', 'guest_comment', '1', '是否允许游客咨询');
 INSERT INTO `ls_config` VALUES ('15', 'captcha_status_login', '1', '会员登录是否需要验证码');
@@ -4136,8 +4803,8 @@ INSERT INTO `ls_config` VALUES ('25', 'fixed_suspension_state', '1', '是否开�
 INSERT INTO `ls_config` VALUES ('26', 'fixed_suspension_img', 'fixed_suspension_img.png', '首次访问悬浮图像');
 INSERT INTO `ls_config` VALUES ('27', 'fixed_suspension_url', '#', '悬浮图像跳转地址');
 INSERT INTO `ls_config` VALUES ('31', 'store_joinin_pic', 'a:2:{s:3:\"pic\";a:3:{i:1;s:18:\"store_joinin_1.jpg\";i:2;s:18:\"store_joinin_2.jpg\";i:3;s:18:\"store_joinin_3.jpg\";}s:8:\"show_txt\";s:6:\"测试\";}', '解释,备注');
-INSERT INTO `ls_config` VALUES ('40', 'smscf_wj_username', '', '短信平台账号');
-INSERT INTO `ls_config` VALUES ('41', 'smscf_wj_key', '', '短信平台密钥');
+INSERT INTO `ls_config` VALUES ('40', 'smscf_wj_username', 'LTAI4FrzbN7XKo7QK7joUxmE', '短信平台账号');
+INSERT INTO `ls_config` VALUES ('41', 'smscf_wj_key', '4XGCBqau1lpv7JJKdTqQCYs9ujbeTO', '短信平台密钥');
 INSERT INTO `ls_config` VALUES ('51', 'email_host', 'smtp.126.com', '邮箱地址');
 INSERT INTO `ls_config` VALUES ('52', 'email_port', '25', '邮箱端口');
 INSERT INTO `ls_config` VALUES ('53', 'email_addr', '', '邮箱发件人地址');
@@ -4145,12 +4812,12 @@ INSERT INTO `ls_config` VALUES ('54', 'email_id', '', '身份验证用户名');
 INSERT INTO `ls_config` VALUES ('55', 'email_pass', '', '用户名密码');
 INSERT INTO `ls_config` VALUES ('56', 'email_secure', '', '邮箱发送协议');
 INSERT INTO `ls_config` VALUES ('60', 'setup_date', '2019-11-05 10:35:23', '安装时间');
-INSERT INTO `ls_config` VALUES ('61', 'upload_type', 'local', '图片上传保存方式');
-INSERT INTO `ls_config` VALUES ('62', 'alioss_accessid', '', 'accessid');
-INSERT INTO `ls_config` VALUES ('63', 'alioss_accesssecret', '', 'oss_accesssecret');
-INSERT INTO `ls_config` VALUES ('64', 'alioss_bucket', '', 'oss_bucket');
-INSERT INTO `ls_config` VALUES ('65', 'alioss_endpoint', '', 'oss_endpoint');
-INSERT INTO `ls_config` VALUES ('66', 'aliendpoint_type', '0', 'aliendpoint_type');
+INSERT INTO `ls_config` VALUES ('61', 'upload_type', 'alioss', '图片上传保存方式');
+INSERT INTO `ls_config` VALUES ('62', 'alioss_accessid', 'LTAI4FrzbN7XKo7QK7joUxmE', 'accessid');
+INSERT INTO `ls_config` VALUES ('63', 'alioss_accesssecret', '4XGCBqau1lpv7JJKdTqQCYs9ujbeTO', 'oss_accesssecret');
+INSERT INTO `ls_config` VALUES ('64', 'alioss_bucket', 'bayishop', 'oss_bucket');
+INSERT INTO `ls_config` VALUES ('65', 'alioss_endpoint', 'oss.bayi-shop.com', 'oss_endpoint');
+INSERT INTO `ls_config` VALUES ('66', 'aliendpoint_type', '1', 'aliendpoint_type');
 INSERT INTO `ls_config` VALUES ('70', 'node_site_url', '', '站内IM服务器地址');
 INSERT INTO `ls_config` VALUES ('71', 'node_site_use', '0', '是否启用im');
 INSERT INTO `ls_config` VALUES ('80', 'flea_site_title', '', '');
@@ -4160,42 +4827,42 @@ INSERT INTO `ls_config` VALUES ('83', 'flea_loginpic', '', '');
 INSERT INTO `ls_config` VALUES ('91', 'order_auto_receive_day', '7', '自动确认收货的天数');
 INSERT INTO `ls_config` VALUES ('92', 'order_auto_cancel_day', '3', '自动取消订单的天数');
 INSERT INTO `ls_config` VALUES ('93', 'code_invalid_refund', '7', '兑换码过期自动退款的天数');
-INSERT INTO `ls_config` VALUES ('101', 'qq_isuse', '1', '是否使用QQ互联');
+INSERT INTO `ls_config` VALUES ('101', 'qq_isuse', '0', '是否使用QQ互联');
 INSERT INTO `ls_config` VALUES ('102', 'qq_appid', '', 'qq互联id');
 INSERT INTO `ls_config` VALUES ('103', 'qq_appkey', '', 'qq秘钥');
-INSERT INTO `ls_config` VALUES ('111', 'sina_isuse', '1', '是的使用微博登录');
+INSERT INTO `ls_config` VALUES ('111', 'sina_isuse', '0', '是的使用微博登录');
 INSERT INTO `ls_config` VALUES ('112', 'sina_wb_akey', '', '新浪id');
 INSERT INTO `ls_config` VALUES ('113', 'sina_wb_skey', '', '新浪秘钥');
-INSERT INTO `ls_config` VALUES ('121', 'sms_register', '0', '是否手机注册');
-INSERT INTO `ls_config` VALUES ('122', 'sms_login', '0', '是否手机登录');
-INSERT INTO `ls_config` VALUES ('123', 'sms_password', '0', '是否手机找回密码');
+INSERT INTO `ls_config` VALUES ('121', 'sms_register', '1', '是否手机注册');
+INSERT INTO `ls_config` VALUES ('122', 'sms_login', '1', '是否手机登录');
+INSERT INTO `ls_config` VALUES ('123', 'sms_password', '1', '是否手机找回密码');
 INSERT INTO `ls_config` VALUES ('131', 'weixin_isuse', '', '是否微信登录');
 INSERT INTO `ls_config` VALUES ('132', 'weixin_appid', '', '微信appid');
 INSERT INTO `ls_config` VALUES ('133', 'weixin_secret', '', '微信appserite');
 INSERT INTO `ls_config` VALUES ('135', 'complain_time_limit', '864000', '商品详情页咨询文字提示');
 INSERT INTO `ls_config` VALUES ('136', 'malbum_max_sum', '10', '个人相册数量');
-INSERT INTO `ls_config` VALUES ('137', 'hot_search', '', '热门搜索关键字');
+INSERT INTO `ls_config` VALUES ('137', 'hot_search', '红薯，蜜薯，柑橘，苹果', '热门搜索关键字');
 INSERT INTO `ls_config` VALUES ('138', 'image_allow_ext', 'gif,jpg,jpeg,bmp,png,swf', '允许后缀');
-INSERT INTO `ls_config` VALUES ('139', 'image_max_filesize', '1024', '允许上传最大值');
-INSERT INTO `ls_config` VALUES ('140', 'expresscf_kdn_id', '', '快递鸟-用户ID');
-INSERT INTO `ls_config` VALUES ('141', 'expresscf_kdn_key', '', '快递鸟-API key');
-INSERT INTO `ls_config` VALUES ('201', 'flea_isuse', '1', '闲置市场');
-INSERT INTO `ls_config` VALUES ('202', 'promotion_allow', '1', '商品促销');
-INSERT INTO `ls_config` VALUES ('203', 'groupbuy_allow', '1', '抢购');
+INSERT INTO `ls_config` VALUES ('139', 'image_max_filesize', '512000', '允许上传最大值');
+INSERT INTO `ls_config` VALUES ('140', 'expresscf_kdn_id', '1602146', '快递鸟-用户ID');
+INSERT INTO `ls_config` VALUES ('141', 'expresscf_kdn_key', '744e3f4f-d23c-414f-935f-5dbd6fea9c8f', '快递鸟-API key');
+INSERT INTO `ls_config` VALUES ('201', 'flea_isuse', '0', '闲置市场');
+INSERT INTO `ls_config` VALUES ('202', 'promotion_allow', '0', '商品促销');
+INSERT INTO `ls_config` VALUES ('203', 'groupbuy_allow', '0', '抢购');
 INSERT INTO `ls_config` VALUES ('204', 'points_isuse', '1', '开启积分机制');
-INSERT INTO `ls_config` VALUES ('205', 'pointshop_isuse', '1', '积分中心');
-INSERT INTO `ls_config` VALUES ('206', 'pointprod_isuse', '1', '积分兑换');
-INSERT INTO `ls_config` VALUES ('207', 'voucher_allow', '1', '代金券');
-INSERT INTO `ls_config` VALUES ('208', 'mgdiscount_allow', '1', '会员等级折扣');
+INSERT INTO `ls_config` VALUES ('205', 'pointshop_isuse', '0', '积分中心');
+INSERT INTO `ls_config` VALUES ('206', 'pointprod_isuse', '0', '积分兑换');
+INSERT INTO `ls_config` VALUES ('207', 'voucher_allow', '0', '代金券');
+INSERT INTO `ls_config` VALUES ('208', 'mgdiscount_allow', '0', '会员等级折扣');
 INSERT INTO `ls_config` VALUES ('209', 'mgdiscount_price', '1', '会员等级折扣价格');
-INSERT INTO `ls_config` VALUES ('230', 'points_reg', '5', '注册赠送积分数');
-INSERT INTO `ls_config` VALUES ('231', 'points_login', '10', '登录赠送积分数');
-INSERT INTO `ls_config` VALUES ('232', 'points_comments', '10', '评论赠送积分数');
+INSERT INTO `ls_config` VALUES ('230', 'points_reg', '0', '注册赠送积分数');
+INSERT INTO `ls_config` VALUES ('231', 'points_login', '0', '登录赠送积分数');
+INSERT INTO `ls_config` VALUES ('232', 'points_comments', '0', '评论赠送积分数');
 INSERT INTO `ls_config` VALUES ('233', 'points_signin', '10', '会员签到赠送积分');
-INSERT INTO `ls_config` VALUES ('234', 'points_invite', '10', '邀请注册积分');
-INSERT INTO `ls_config` VALUES ('235', 'points_rebate', '1', '返佣比例');
-INSERT INTO `ls_config` VALUES ('236', 'points_orderrate', '4', '消费额与赠送积分比例');
-INSERT INTO `ls_config` VALUES ('237', 'points_ordermax', '4', '每单最多赠送积分');
+INSERT INTO `ls_config` VALUES ('234', 'points_invite', '0', '邀请注册积分');
+INSERT INTO `ls_config` VALUES ('235', 'points_rebate', '0', '返佣比例');
+INSERT INTO `ls_config` VALUES ('236', 'points_orderrate', '1', '消费额与赠送积分比例');
+INSERT INTO `ls_config` VALUES ('237', 'points_ordermax', '0', '每单最多赠送积分');
 INSERT INTO `ls_config` VALUES ('238', 'points_signin_isuse', '1', '开启签到送积分');
 INSERT INTO `ls_config` VALUES ('239', 'points_signin_cycle', '7', '签到持续周期');
 INSERT INTO `ls_config` VALUES ('240', 'points_signin_reward', '7', '签到持续周期额外奖励');
@@ -4222,19 +4889,19 @@ INSERT INTO `ls_config` VALUES ('369', 'promotion_bargain_price', '10', '砍价�
 INSERT INTO `ls_config` VALUES ('370', 'voucher_storetimes_limit', '20', '代金券活动数');
 INSERT INTO `ls_config` VALUES ('371', 'voucher_buyertimes_limit', '20', '卖家最大领取数');
 INSERT INTO `ls_config` VALUES ('380', 'delivery_isuse', '1', '物流自提是否开启');
-INSERT INTO `ls_config` VALUES ('390', 'goods_verify', '0', '商品审核');
+INSERT INTO `ls_config` VALUES ('390', 'goods_verify', '1', '商品审核');
 INSERT INTO `ls_config` VALUES ('401', 'stat_pricerange', 'a:3:{i:0;a:2:{s:1:\"s\";s:1:\"5\";s:1:\"e\";s:2:\"10\";}i:1;a:2:{s:1:\"s\";s:2:\"11\";s:1:\"e\";s:2:\"20\";}i:2;a:2:{s:1:\"s\";s:2:\"21\";s:1:\"e\";s:2:\"25\";}}', '统计商品价格区间');
 INSERT INTO `ls_config` VALUES ('402', 'stat_orderpricerange', 'a:1:{i:0;a:2:{s:1:\"s\";s:2:\"21\";s:1:\"e\";s:2:\"30\";}}', '订单金额区间');
 INSERT INTO `ls_config` VALUES ('501', 'expset', 'a:4:{s:9:\"login_exp\";s:3:\"151\";s:11:\"comment_exp\";s:1:\"1\";s:7:\"buy_exp\";s:1:\"1\";s:11:\"buy_exp_max\";s:2:\"50\";}', '解释,备注');
-INSERT INTO `ls_config` VALUES ('502', 'exppoints_rule', 'a:4:{s:9:\"exp_login\";s:2:\"20\";s:12:\"exp_comments\";s:2:\"10\";s:13:\"exp_orderrate\";s:2:\"10\";s:12:\"exp_ordermax\";s:2:\"10\";}', '解释,备注');
-INSERT INTO `ls_config` VALUES ('601', 'member_grade', 'a:4:{i:1;a:3:{s:5:\"level\";i:1;s:10:\"level_name\";s:2:\"V1\";s:9:\"exppoints\";i:0;}i:2;a:3:{s:5:\"level\";i:2;s:10:\"level_name\";s:2:\"V2\";s:9:\"exppoints\";i:150;}i:3;a:3:{s:5:\"level\";i:3;s:10:\"level_name\";s:2:\"V3\";s:9:\"exppoints\";i:200;}i:4;a:3:{s:5:\"level\";i:4;s:10:\"level_name\";s:2:\"V4\";s:9:\"exppoints\";i:500;}}', '解释,备注');
+INSERT INTO `ls_config` VALUES ('502', 'exppoints_rule', 'a:4:{s:9:\"exp_login\";i:0;s:12:\"exp_comments\";i:0;s:13:\"exp_orderrate\";i:1;s:12:\"exp_ordermax\";i:0;}', '解释,备注');
+INSERT INTO `ls_config` VALUES ('601', 'member_grade', 'a:4:{i:1;a:5:{s:5:\"level\";i:1;s:10:\"level_name\";s:12:\"普通用户\";s:11:\"exppointone\";s:1:\"0\";s:11:\"exppointtwo\";s:1:\"0\";s:9:\"exppoints\";i:0;}i:2;a:5:{s:5:\"level\";i:2;s:10:\"level_name\";s:12:\"银牌用户\";s:11:\"exppointone\";s:1:\"5\";s:11:\"exppointtwo\";s:1:\"0\";s:9:\"exppoints\";i:1000;}i:3;a:5:{s:5:\"level\";i:3;s:10:\"level_name\";s:12:\"金牌用户\";s:11:\"exppointone\";s:2:\"10\";s:11:\"exppointtwo\";s:1:\"0\";s:9:\"exppoints\";i:5000;}i:4;a:5:{s:5:\"level\";i:4;s:10:\"level_name\";s:9:\"VIP用户\";s:11:\"exppointone\";s:2:\"20\";s:11:\"exppointtwo\";s:3:\"2.5\";s:9:\"exppoints\";i:10000;}}', '解释,备注');
 INSERT INTO `ls_config` VALUES ('701', 'inviter_back', 'inviter_back.png', '会员推广背景图片');
 INSERT INTO `ls_config` VALUES ('702', 'inviter_ratio_1', '0.5', '会员一级推广佣金比例');
 INSERT INTO `ls_config` VALUES ('703', 'inviter_ratio_2', '0.3', '会员二级推广佣金比例');
 INSERT INTO `ls_config` VALUES ('704', 'inviter_ratio_3', '0.2', '会员三级推广佣金比例');
-INSERT INTO `ls_config` VALUES ('705', 'baidu_ak', '22bb7221fc279a484895afcc6a0bb33a', '百度地图AK密钥');
+INSERT INTO `ls_config` VALUES ('705', 'baidu_ak', 'qu7GGLct6CbsGuVdR8dOpbRGFW650t3e', '百度地图AK密钥');
 INSERT INTO `ls_config` VALUES ('706', 'inviter_open', '1', '推广开关');
-INSERT INTO `ls_config` VALUES ('707', 'inviter_level', '3', '推广级别');
+INSERT INTO `ls_config` VALUES ('707', 'inviter_level', '2', '推广级别');
 INSERT INTO `ls_config` VALUES ('708', 'inviter_show', '1', '详情页显示推广佣金');
 INSERT INTO `ls_config` VALUES ('709', 'inviter_return', '1', '推广员返佣');
 INSERT INTO `ls_config` VALUES ('710', 'inviter_view', '0', '推广员审核');
@@ -4246,10 +4913,24 @@ INSERT INTO `ls_config` VALUES ('715', 'store_withdraw_min', '100', '店铺最�
 INSERT INTO `ls_config` VALUES ('716', 'store_withdraw_max', '10000', '店铺最大提现金额（元）');
 INSERT INTO `ls_config` VALUES ('717', 'auto_register', '0', '自动注册');
 INSERT INTO `ls_config` VALUES ('718', 'business_licence', '', '营业执照');
-INSERT INTO `ls_config` VALUES ('719', 'member_auth', '0', '实名认证');
+INSERT INTO `ls_config` VALUES ('719', 'member_auth', '1', '实名认证');
 INSERT INTO `ls_config` VALUES ('720', 'wechat_tm_order_pay', '', '微信模板消息：订单待发货提醒');
 INSERT INTO `ls_config` VALUES ('721', 'wechat_tm_order_send', '', '微信模板消息：订单发货通知');
 INSERT INTO `ls_config` VALUES ('722', 'wechat_tm_order_refund', '', '微信模板消息：退款审核通知');
+INSERT INTO `ls_config` VALUES ('723', 'city_scale', '0.25', '市级分公司比例');
+INSERT INTO `ls_config` VALUES ('724', 'county_scale', '0.5', '区/县级分公司比例');
+INSERT INTO `ls_config` VALUES ('725', 'town_scale', '2.5', '镇级分公司比例');
+INSERT INTO `ls_config` VALUES ('726', 'village_scale', '10', '村级分公司比例');
+INSERT INTO `ls_config` VALUES ('727', 'province_scale', '0', '省级分公司比例');
+INSERT INTO `ls_config` VALUES ('728', 'release', '5000', '冻结积分达到开始释放为可用积分');
+INSERT INTO `ls_config` VALUES ('729', 'release_scale', '3', '冻结积分每天释放比例');
+INSERT INTO `ls_config` VALUES ('730', 'commission', '5', '用户提现手续费比例');
+INSERT INTO `ls_config` VALUES ('731', 'inviter_code_len', '5', '推荐码长度');
+INSERT INTO `ls_config` VALUES ('732', 'way', '1', '用户返给推荐人的方式：1，可用积分；2，冻结积分');
+INSERT INTO `ls_config` VALUES ('733', 'companyway', '1', '用户返给子公司的方式：1，可用积分；2，冻结积分');
+INSERT INTO `ls_config` VALUES ('734', 'withdraw', '100', '用户可用积分达到多少可提现');
+INSERT INTO `ls_config` VALUES ('735', 'inter', '1', '可用积分转为交易码比例');
+INSERT INTO `ls_config` VALUES ('736', 'marketmanageaward_probability', '10000', '抽奖比率');
 
 -- -----------------------------
 -- Table structure for `ls_consult`
@@ -4544,8 +5225,15 @@ CREATE TABLE `ls_exppointslog` (
   `explog_desc` varchar(100) NOT NULL COMMENT '经验值操作描述',
   `explog_stage` varchar(50) NOT NULL COMMENT '经验值操作状态',
   PRIMARY KEY (`explog_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='经验值日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='经验值日志表';
 
+-- -----------------------------
+-- Records of `ls_exppointslog`
+-- -----------------------------
+INSERT INTO `ls_exppointslog` VALUES ('1', '11', 'caijunqi', '1', '1574954921', '', 'system');
+INSERT INTO `ls_exppointslog` VALUES ('2', '11', 'caijunqi', '1', '1574955082', '', 'system');
+INSERT INTO `ls_exppointslog` VALUES ('3', '11', 'caijunqi', '1', '1574955185', '', 'system');
+INSERT INTO `ls_exppointslog` VALUES ('4', '11', 'caijunqi', '997', '1574955097', '', 'system');
 
 -- -----------------------------
 -- Table structure for `ls_express`
@@ -4567,52 +5255,52 @@ CREATE TABLE `ls_express` (
 -- Records of `ls_express`
 -- -----------------------------
 INSERT INTO `ls_express` VALUES ('1', '安信达', '0', 'AXD', 'A', '2', 'http://www.anxinda.com', '0');
-INSERT INTO `ls_express` VALUES ('2', '包裹平邮', '1', 'YZPY', 'B', '2', 'http://yjcx.chinapost.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('3', 'CCES', '1', 'CCES', 'C', '2', 'http://www.cces.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('4', '传喜物流', '1', 'CXHY', 'C', '2', 'http://www.cxcod.com', '0');
-INSERT INTO `ls_express` VALUES ('5', 'DHL快递', '1', 'DHL', 'D', '2', 'http://www.cn.dhl.com', '0');
-INSERT INTO `ls_express` VALUES ('6', '大田物流', '1', 'DTWL', 'D', '2', 'http://www.dtw.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('7', '德邦物流', '1', 'DBL', 'D', '2', 'http://www.deppon.com', '0');
-INSERT INTO `ls_express` VALUES ('8', 'EMS', '1', 'EMS', 'E', '2', 'http://www.ems.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('9', 'EMS国际', '1', 'EMSGJ', 'E', '2', '###', '0');
-INSERT INTO `ls_express` VALUES ('10', '飞康达', '1', 'FKD', 'F', '2', 'http://www.fkd.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('11', 'FedEx(国际)', '1', 'FKD_GJ', 'F', '2', 'http://fedex.com/cn', '0');
-INSERT INTO `ls_express` VALUES ('12', '凡客如风达', '1', 'rufengda', 'F', '2', 'http://www.rufengda.com', '0');
-INSERT INTO `ls_express` VALUES ('13', '迦递快递', '1', 'GAI', 'G', '2', 'https://www.trackingmore.com', '0');
-INSERT INTO `ls_express` VALUES ('14', '广通', '1', 'GTONG', 'G', '2', 'http://gto315.com', '0');
-INSERT INTO `ls_express` VALUES ('15', '共速达', '1', 'GSD', 'G', '2', 'http://www.gongsuda.com/mall/Search.aspx', '0');
-INSERT INTO `ls_express` VALUES ('16', '华宇物流', '1', 'HOAU', 'H', '2', 'http://www.hoau.net', '0');
-INSERT INTO `ls_express` VALUES ('17', '京东快递', '1', 'JD', 'J', '2', 'http://www.jdwl.com', '0');
-INSERT INTO `ls_express` VALUES ('18', '佳吉快运', '1', 'JJKY', 'J', '2', 'http://www.jiaji.com', '0');
-INSERT INTO `ls_express` VALUES ('19', '佳怡物流', '1', 'JYWL', 'J', '2', 'http://www.jiayi56.com', '0');
-INSERT INTO `ls_express` VALUES ('20', '急先达', '1', 'JXD', 'J', '2', 'http://www.joust.cn', '0');
-INSERT INTO `ls_express` VALUES ('21', '快捷速递', '1', 'FAST', 'K', '2', 'http://www.fastexpress.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('22', '龙邦快递', '1', 'LB', 'L', '2', 'http://www.lbex.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('23', '联邦快递', '1', 'FEDEX', 'L', '2', 'http://cndxp.apac.fedex.com/dxp.html', '0');
-INSERT INTO `ls_express` VALUES ('24', '联昊通', '1', 'LHT', 'L', '2', 'http://www.lhtex.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('25', '全一快递', '1', 'UAPEX', 'Q', '2', 'http://www.apex100.com', '0');
-INSERT INTO `ls_express` VALUES ('26', '全峰快递', '1', 'QFKD', 'Q', '2', 'http://www.qfkd.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('27', '全日通', '1', 'QRT', 'Q', '2', 'http://www.at-express.com', '0');
-INSERT INTO `ls_express` VALUES ('28', '申通快递', '1', 'STO', 'S', '2', 'http://www.sto.cn', '0');
-INSERT INTO `ls_express` VALUES ('29', '顺丰快递', '1', 'SF', 'S', '1', 'http://www.sf-express.com', '0');
-INSERT INTO `ls_express` VALUES ('30', '速尔快递', '1', 'SURE', 'S', '2', 'http://www.sure56.com', '0');
-INSERT INTO `ls_express` VALUES ('31', 'TNT快递', '1', 'TNT', 'T', '2', 'http://www.tnt.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('32', '天天快递', '1', 'HHTT', 'T', '2', 'http://www.ttkdex.com', '0');
-INSERT INTO `ls_express` VALUES ('33', '天地华宇', '1', 'HOAU', 'T', '2', 'http://www.hoau.net', '0');
-INSERT INTO `ls_express` VALUES ('34', 'UPS快递', '1', 'UPS', 'U', '2', 'http://www.ups.com/cn', '0');
-INSERT INTO `ls_express` VALUES ('35', 'USPS', '1', 'USPS', 'U', '2', 'http://www.kuaidi100.com/all/usps.shtml', '0');
-INSERT INTO `ls_express` VALUES ('36', '迅驰物流', '1', 'XCWL', 'X', '2', 'https://cn.made-in-china.com', '0');
-INSERT INTO `ls_express` VALUES ('37', '信丰物流', '1', 'XFEX', 'X', '2', 'http://www.xf-express.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('38', '希优特', '1', 'XYT', 'X', '2', 'http://www.hqepay.com', '0');
-INSERT INTO `ls_express` VALUES ('39', '新杰物流', '1', 'XJ', 'X', '2', 'http://www.sunjex.com/', '0');
+INSERT INTO `ls_express` VALUES ('2', '包裹平邮', '0', 'YZPY', 'B', '2', 'http://yjcx.chinapost.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('3', 'CCES', '0', 'CCES', 'C', '2', 'http://www.cces.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('4', '传喜物流', '0', 'CXHY', 'C', '2', 'http://www.cxcod.com', '0');
+INSERT INTO `ls_express` VALUES ('5', 'DHL快递', '0', 'DHL', 'D', '2', 'http://www.cn.dhl.com', '0');
+INSERT INTO `ls_express` VALUES ('6', '大田物流', '0', 'DTWL', 'D', '2', 'http://www.dtw.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('7', '德邦物流', '0', 'DBL', 'D', '2', 'http://www.deppon.com', '0');
+INSERT INTO `ls_express` VALUES ('8', 'EMS', '0', 'EMS', 'E', '2', 'http://www.ems.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('9', 'EMS国际', '0', 'EMSGJ', 'E', '2', '###', '0');
+INSERT INTO `ls_express` VALUES ('10', '飞康达', '0', 'FKD', 'F', '2', 'http://www.fkd.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('11', 'FedEx(国际)', '0', 'FKD_GJ', 'F', '2', 'http://fedex.com/cn', '0');
+INSERT INTO `ls_express` VALUES ('12', '凡客如风达', '0', 'rufengda', 'F', '2', 'http://www.rufengda.com', '0');
+INSERT INTO `ls_express` VALUES ('13', '迦递快递', '0', 'GAI', 'G', '2', 'https://www.trackingmore.com', '0');
+INSERT INTO `ls_express` VALUES ('14', '广通', '0', 'GTONG', 'G', '2', 'http://gto315.com', '0');
+INSERT INTO `ls_express` VALUES ('15', '共速达', '0', 'GSD', 'G', '2', 'http://www.gongsuda.com/mall/Search.aspx', '0');
+INSERT INTO `ls_express` VALUES ('16', '华宇物流', '0', 'HOAU', 'H', '2', 'http://www.hoau.net', '0');
+INSERT INTO `ls_express` VALUES ('17', '京东快递', '0', 'JD', 'J', '2', 'http://www.jdwl.com', '0');
+INSERT INTO `ls_express` VALUES ('18', '佳吉快运', '0', 'JJKY', 'J', '2', 'http://www.jiaji.com', '0');
+INSERT INTO `ls_express` VALUES ('19', '佳怡物流', '0', 'JYWL', 'J', '2', 'http://www.jiayi56.com', '0');
+INSERT INTO `ls_express` VALUES ('20', '急先达', '0', 'JXD', 'J', '2', 'http://www.joust.cn', '0');
+INSERT INTO `ls_express` VALUES ('21', '快捷速递', '0', 'FAST', 'K', '2', 'http://www.fastexpress.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('22', '龙邦快递', '0', 'LB', 'L', '2', 'http://www.lbex.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('23', '联邦快递', '0', 'FEDEX', 'L', '2', 'http://cndxp.apac.fedex.com/dxp.html', '0');
+INSERT INTO `ls_express` VALUES ('24', '联昊通', '0', 'LHT', 'L', '2', 'http://www.lhtex.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('25', '全一快递', '0', 'UAPEX', 'Q', '2', 'http://www.apex100.com', '0');
+INSERT INTO `ls_express` VALUES ('26', '全峰快递', '0', 'QFKD', 'Q', '2', 'http://www.qfkd.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('27', '全日通', '0', 'QRT', 'Q', '2', 'http://www.at-express.com', '0');
+INSERT INTO `ls_express` VALUES ('28', '申通快递', '1', 'STO', 'S', '1', 'http://www.sto.cn', '0');
+INSERT INTO `ls_express` VALUES ('29', '顺丰快递', '0', 'SF', 'S', '', 'http://www.sf-express.com', '0');
+INSERT INTO `ls_express` VALUES ('30', '速尔快递', '0', 'SURE', 'S', '2', 'http://www.sure56.com', '0');
+INSERT INTO `ls_express` VALUES ('31', 'TNT快递', '0', 'TNT', 'T', '2', 'http://www.tnt.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('32', '天天快递', '0', 'HHTT', 'T', '2', 'http://www.ttkdex.com', '0');
+INSERT INTO `ls_express` VALUES ('33', '天地华宇', '0', 'HOAU', 'T', '2', 'http://www.hoau.net', '0');
+INSERT INTO `ls_express` VALUES ('34', 'UPS快递', '0', 'UPS', 'U', '2', 'http://www.ups.com/cn', '0');
+INSERT INTO `ls_express` VALUES ('35', 'USPS', '0', 'USPS', 'U', '2', 'http://www.kuaidi100.com/all/usps.shtml', '0');
+INSERT INTO `ls_express` VALUES ('36', '迅驰物流', '0', 'XCWL', 'X', '2', 'https://cn.made-in-china.com', '0');
+INSERT INTO `ls_express` VALUES ('37', '信丰物流', '0', 'XFEX', 'X', '2', 'http://www.xf-express.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('38', '希优特', '0', 'XYT', 'X', '2', 'http://www.hqepay.com', '0');
+INSERT INTO `ls_express` VALUES ('39', '新杰物流', '0', 'XJ', 'X', '2', 'http://www.sunjex.com/', '0');
 INSERT INTO `ls_express` VALUES ('40', '圆通快递', '1', 'YTO', 'Y', '1', 'http://www.yto.net.cn', '0');
-INSERT INTO `ls_express` VALUES ('41', '韵达快递', '1', 'YD', 'Y', '1', 'http://www.yundaex.com', '0');
-INSERT INTO `ls_express` VALUES ('42', '邮政包裹', '1', 'YZPY', 'Y', '2', 'http://yjcx.chinapost.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('43', '优速快递', '1', 'UC', 'Y', '2', 'http://www.uc56.com', '0');
+INSERT INTO `ls_express` VALUES ('41', '韵达快递', '0', 'YD', 'Y', '', 'http://www.yundaex.com', '0');
+INSERT INTO `ls_express` VALUES ('42', '邮政包裹', '0', 'YZPY', 'Y', '2', 'http://yjcx.chinapost.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('43', '优速快递', '0', 'UC', 'Y', '2', 'http://www.uc56.com', '0');
 INSERT INTO `ls_express` VALUES ('44', '中通快递', '1', 'ZTO', 'Z', '1', 'http://www.zto.cn', '0');
-INSERT INTO `ls_express` VALUES ('45', '中铁快运', '1', 'ZTKY', 'Z', '2', 'http://www.cre.cn', '0');
-INSERT INTO `ls_express` VALUES ('46', '宅急送', '1', 'ZJS', 'Z', '2', 'http://www.zjs.com.cn', '0');
-INSERT INTO `ls_express` VALUES ('47', '中邮物流', '1', 'ZYWL', 'Z', '2', 'http://www.cnpl.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('45', '中铁快运', '0', 'ZTKY', 'Z', '2', 'http://www.cre.cn', '0');
+INSERT INTO `ls_express` VALUES ('46', '宅急送', '0', 'ZJS', 'Z', '2', 'http://www.zjs.com.cn', '0');
+INSERT INTO `ls_express` VALUES ('47', '中邮物流', '0', 'ZYWL', 'Z', '2', 'http://www.cnpl.com.cn', '0');
 
 -- -----------------------------
 -- Table structure for `ls_favorites`
@@ -8112,6 +8800,20 @@ CREATE TABLE `ls_flowstat` (
   `goods_id` int(11) unsigned NOT NULL COMMENT '商品ID'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='访问量统计表';
 
+-- -----------------------------
+-- Records of `ls_flowstat`
+-- -----------------------------
+INSERT INTO `ls_flowstat` VALUES ('1574092800', '1', 'sum', '1', '0');
+INSERT INTO `ls_flowstat` VALUES ('1574697600', '1', 'sum', '1', '0');
+INSERT INTO `ls_flowstat` VALUES ('1574697600', '1', 'goods', '1', '90');
+INSERT INTO `ls_flowstat` VALUES ('1574956800', '5', 'sum', '1', '0');
+INSERT INTO `ls_flowstat` VALUES ('1574956800', '5', 'goods', '1', '128');
+INSERT INTO `ls_flowstat` VALUES ('1575216000', '7', 'sum', '1', '0');
+INSERT INTO `ls_flowstat` VALUES ('1575216000', '1', 'goods', '1', '128');
+INSERT INTO `ls_flowstat` VALUES ('1575216000', '5', 'goods', '1', '7');
+INSERT INTO `ls_flowstat` VALUES ('1575216000', '1', 'goods', '1', '87');
+INSERT INTO `ls_flowstat` VALUES ('1575302400', '1', 'sum', '1', '0');
+INSERT INTO `ls_flowstat` VALUES ('1575302400', '1', 'goods', '1', '130');
 
 -- -----------------------------
 -- Table structure for `ls_gadmin`
@@ -8179,20 +8881,19 @@ CREATE TABLE `ls_goods` (
   `is_platform_store` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '是否为平台自营',
   `goods_mgdiscount` text COMMENT '序列化会员等级折扣(商品)',
   PRIMARY KEY (`goods_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8 COMMENT='商品表';
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8 COMMENT='商品表';
 
 -- -----------------------------
 -- Records of `ls_goods`
 -- -----------------------------
-INSERT INTO `ls_goods` VALUES ('2', '2', '荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金', '北欧极简设计，EMUI5.1', '1', '自营店铺', '2', '1', '2', '0', '0', '998.00', '998.00', '0', '1290.00', '1', '0', '4', '0', '0', 'N;', '900', '1_2017092120144795113.jpg', '1', '1', '1505996432', '1506662106', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '1', '1514476799', '1', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('3', '3', 'Apple/苹果 iPhone 7plus 128GB 玫瑰金色 移动联通电信4G手机', '购机即送精美防尘塞+便捷支架+鱼骨绕线器+店铺延保一年', '1', '自营店铺', '2', '1', '2', '0', '0', '6999.00', '6999.00', '0', '7100.00', '2', '10', '6', '0', '0', 'N;', '899', '1_2017092120244885492.jpg', '1', '1', '1505996810', '1506081445', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('3', '3', 'Apple/苹果 iPhone 7plus 128GB 玫瑰金色 移动联通电信4G手机', '购机即送精美防尘塞+便捷支架+鱼骨绕线器+店铺延保一年', '1', '自营店铺', '2', '1', '2', '0', '0', '6999.00', '6999.00', '0', '7100.00', '2', '10', '26', '0', '0', 'N;', '899', '1_2017092120244885492.jpg', '1', '1', '1505996810', '1575870338', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('4', '4', 'nubia/努比亚Z17 6G+64G 全网通4G手机 烈焰红 无边框', '烈焰红 无边框', '1', '自营店铺', '2', '1', '2', '0', '0', '2699.00', '2699.00', '0', '3000.00', '3', '10', '3', '0', '0', 'N;', '899', '1_2017092120312320763.jpg', '1', '1', '1505997092', '1506602848', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('5', '5', '智能电动代步车', '长续航蓝牙遥控 轻小便携', '1', '自营店铺', '3', '1', '3', '0', '0', '1990.00', '1990.00', '0', '2000.00', '4', '0', '5', '0', '0', 'N;', '99', '1_2017092120345719915.jpg', '1', '1', '1505997303', '1506616770', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('6', '6', '灵动Lite版 NV3012 视频通话智能机器人', '人工智能 视频聊天儿童早教益智娱乐 智能家居', '1', '自营店铺', '3', '1', '3', '0', '0', '149.00', '149.00', '0', '150.00', '5', '10', '0', '0', '0', 'N;', '56', '1_2017092120365848023.jpg', '1', '1', '1505997421', '1505997423', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('7', '7', 'HOST好帅智能云教育机器人二蛋Q6 ', '早教机英语学习机国学儿童陪护 玩具礼物百科全书正版音乐播放机京剧粤剧儿歌国学', '1', '自营店铺', '3', '1', '3', '0', '0', '1699.00', '1699.00', '0', '2000.00', '6', '0', '4', '0', '0', 'N;', '199', '1_2017092120382376796.jpg', '1', '1', '1505997509', '1506609730', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('8', '8', '先锋(Pioneer)LED-39B700S 39英寸 高清 网络 智能 液晶电视', '六核高速处理器 智能系统 高清解码 聚力影视资源  ', '1', '自营店铺', '5', '4', '5', '0', '0', '1599.00', '1599.00', '0', '1699.00', '7', '0', '1', '0', '0', 'N;', '399', '1_2017092120445748551.jpg', '1', '1', '1505997903', '1506272856', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('5', '5', '智能电动代步车', '长续航蓝牙遥控 轻小便携', '1', '自营店铺', '3', '1', '3', '0', '0', '1990.00', '1990.00', '0', '2000.00', '4', '0', '12', '0', '0', 'N;', '99', '1_2017092120345719915.jpg', '1', '1', '1505997303', '1575870288', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('6', '6', '灵动Lite版 NV3012 视频通话智能机器人', '人工智能 视频聊天儿童早教益智娱乐 智能家居', '1', '自营店铺', '3', '1', '3', '0', '0', '149.00', '149.00', '0', '150.00', '5', '10', '4', '0', '0', 'N;', '56', '1_2017092120365848023.jpg', '1', '1', '1505997421', '1575858005', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('7', '7', 'HOST好帅智能云教育机器人二蛋Q6 ', '早教机英语学习机国学儿童陪护 玩具礼物百科全书正版音乐播放机京剧粤剧儿歌国学', '1', '自营店铺', '3', '1', '3', '0', '0', '1699.00', '1699.00', '0', '2000.00', '6', '0', '10', '0', '0', 'N;', '199', '1_2017092120382376796.jpg', '1', '1', '1505997509', '1575864125', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('8', '8', '先锋(Pioneer)LED-39B700S 39英寸 高清 网络 智能 液晶电视', '六核高速处理器 智能系统 高清解码 聚力影视资源  ', '1', '自营店铺', '5', '4', '5', '0', '0', '1599.00', '1599.00', '0', '1699.00', '7', '0', '13', '0', '0', 'N;', '399', '1_2017092120445748551.jpg', '1', '1', '1505997903', '1575861759', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('9', '9', '长虹（CHANGHONG）39M1 39英寸 窄边高清液晶电视（黑色）', '蓝光护眼电视，卧室精选', '1', '自营店铺', '5', '4', '5', '0', '0', '1399.00', '1399.00', '0', '1500.00', '8', '0', '0', '0', '0', 'N;', '69', '1_2017092120480147477.jpg', '1', '1', '1505998084', '1505998087', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('10', '10', '39英寸64位24核安卓智能平板液晶电视（黑色）', '炫彩A+屏看的更清晰，2K电视4K芯！HDR10让画面栩栩如生', '1', '自营店铺', '5', '4', '5', '0', '0', '1200.00', '1200.00', '0', '1399.00', '', '0', '0', '0', '0', 'N;', '45', '1_2017092120493430154.jpg', '1', '1', '1505998176', '1505998179', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('10', '10', '39英寸64位24核安卓智能平板液晶电视（黑色）', '炫彩A+屏看的更清晰，2K电视4K芯！HDR10让画面栩栩如生', '1', '自营店铺', '5', '4', '5', '0', '0', '1200.00', '1200.00', '0', '1399.00', '', '0', '1', '0', '0', 'N;', '45', '1_2017092120493430154.jpg', '1', '1', '1505998176', '1575604023', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('11', '11', '1.5匹 变频 智能 二级能效极速侠 空调挂机', '60秒暖房，wifi智控，18分贝静音，焕新家，就是这么简单！', '1', '自营店铺', '6', '4', '6', '0', '0', '2699.00', '2699.00', '0', '2780.00', '9', '0', '0', '0', '0', 'N;', '700', '1_2017092120564717575.jpg', '1', '1', '1505998723', '1505998725', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('12', '12', '扬子(YAIR) 小2匹 冷暖 自动清洗 定频空调柜机', '日立压缩机，全网比价，柜机中的战斗机', '1', '自营店铺', '6', '4', '6', '0', '0', '2999.00', '2999.00', '0', '3200.00', '10', '0', '0', '0', '0', 'N;', '390', '1_2017092121050988491.jpg', '1', '1', '1505999121', '1505999124', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('13', '13', '变频风冷无霜 独立双循环 LED显示 对开门冰箱（白色)', '   变频压缩机，双独立循环，满足对空气、温度、湿度要求，创造大容量保鲜奇迹！并联双循环+智能精准控温', '1', '自营店铺', '7', '4', '7', '0', '0', '5380.00', '5380.00', '0', '5399.00', '11', '0', '2', '0', '0', 'N;', '180', '1_2017092121142556524.jpg', '1', '1', '1505999668', '1506080123', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
@@ -8221,10 +8922,10 @@ INSERT INTO `ls_goods` VALUES ('36', '36', '洋河 梦之蓝M3-52度500ml', '', 
 INSERT INTO `ls_goods` VALUES ('37', '37', '五粮液 红 52度', '孝敬长辈，推荐用酒', '1', '自营店铺', '29', '11', '29', '0', '0', '695.00', '695.00', '0', '820.00', '31', '0', '0', '0', '0', 'a:2:{i:1;s:3:\"红\";i:37;s:5:\"52度\";}', '450', '1_2017092202382291274.jpg', '1', '1', '1506019112', '1506019114', '0', '0', '0', '1', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('39', '39', '自然堂 水润保湿两件套 补水保湿套装', '', '1', '自营店铺', '30', '12', '30', '0', '0', '69.40', '69.40', '0', '70.00', '', '0', '0', '0', '0', 'N;', '148', '1_2017092202443553519.jpg', '1', '1', '1506019477', '1506019479', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('40', '40', '百雀羚水能量焕耀套装补水保湿护肤套装 两件套 翠绿 200ml', '补水修复 宛若新生  ', '1', '自营店铺', '30', '12', '30', '0', '0', '369.00', '369.00', '0', '400.00', '34', '0', '1', '0', '0', 'a:3:{i:42;s:9:\"两件套\";i:45;s:6:\"翠绿\";i:46;s:5:\"200ml\";}', '25', '1_2017092202461115940.jpg', '1', '1', '1506019573', '1506023205', '0', '0', '0', '42', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('41', '41', ' 小黑裙香水洗发水+沐浴露 500ml', ' 风魔欧美 持久留香 洗护套装', '1', '自营店铺', '31', '12', '31', '0', '0', '45.90', '45.90', '0', '40.00', '38', '0', '0', '0', '0', 'a:1:{i:1;s:5:\"500ml\";}', '58', '1_2017092202492958131.jpg', '1', '1', '1506019782', '1506019787', '0', '0', '0', '1', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('42', '42', '滋源无硅油洗发水氨基酸生姜535洗护发套装 两件套 紫 500ml', '', '1', '自营店铺', '31', '12', '31', '0', '0', '179.00', '179.00', '0', '189.00', '39', '0', '0', '0', '0', 'a:3:{i:49;s:9:\"两件套\";i:1;s:3:\"紫\";i:47;s:5:\"500ml\";}', '45', '1_2017092202514891485.jpg', '1', '1', '1506019911', '1506019916', '0', '0', '0', '49', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('43', '43', '宠物用品出行牵引带', '', '1', '自营店铺', '32', '12', '32', '0', '0', '14.90', '14.90', '0', '25.00', '39', '0', '0', '0', '0', 'N;', '126', '1_2017092202553367071.jpg', '1', '1', '1506020205', '1506020208', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('44', '44', '家用宠物日用品饮水器喝水瓶', '', '1', '自营店铺', '32', '12', '32', '0', '0', '14.90', '14.90', '0', '15.00', '35', '10', '0', '0', '0', 'N;', '120', '1_2017092202585843151.jpg', '1', '1', '1506020341', '1506020345', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('41', '41', ' 小黑裙香水洗发水+沐浴露 500ml', ' 风魔欧美 持久留香 洗护套装', '1', '自营店铺', '31', '12', '31', '0', '0', '45.90', '45.90', '0', '40.00', '38', '0', '0', '0', '0', 'a:1:{i:1;s:5:\"500ml\";}', '58', '1_2017092202492958131.jpg', '10', '1', '1506019782', '1574326875', '0', '0', '0', '1', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('42', '42', '滋源无硅油洗发水氨基酸生姜535洗护发套装 两件套 紫 500ml', '', '1', '自营店铺', '31', '12', '31', '0', '0', '179.00', '179.00', '0', '189.00', '39', '0', '0', '0', '0', 'a:3:{i:49;s:9:\"两件套\";i:1;s:3:\"紫\";i:47;s:5:\"500ml\";}', '45', '1_2017092202514891485.jpg', '10', '1', '1506019911', '1574326875', '0', '0', '0', '49', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('43', '43', '宠物用品出行牵引带', '', '1', '自营店铺', '32', '12', '32', '0', '0', '14.90', '14.90', '0', '25.00', '39', '0', '0', '0', '0', 'N;', '126', '1_2017092202553367071.jpg', '10', '1', '1506020205', '1574326871', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('44', '44', '家用宠物日用品饮水器喝水瓶', '', '1', '自营店铺', '32', '12', '32', '0', '0', '14.90', '14.90', '0', '15.00', '35', '10', '0', '0', '0', 'N;', '120', '1_2017092202585843151.jpg', '10', '1', '1506020341', '1574326871', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('45', '45', '与牧2017韩版短款 针织 黑 M', '', '1', '自营店铺', '39', '15', '39', '0', '0', '39.00', '39.00', '0', '42.00', '', '0', '1', '0', '0', 'a:3:{i:1;s:6:\"针织\";i:3;s:3:\"黑\";i:8;s:1:\"M\";}', '100', '1_2017092203045216863.jpg', '1', '1', '1506020705', '1506272777', '0', '0', '0', '1', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('46', '45', '与牧2017韩版短款 针织 黑 L', '', '1', '自营店铺', '39', '15', '39', '0', '0', '39.00', '39.00', '0', '42.00', '', '0', '0', '0', '0', 'a:3:{i:1;s:6:\"针织\";i:3;s:3:\"黑\";i:9;s:1:\"L\";}', '100', '1_2017092203045216863.jpg', '1', '1', '1506020705', '1506020714', '0', '0', '0', '1', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('47', '45', '与牧2017韩版短款 针织 黑 XL', '', '1', '自营店铺', '39', '15', '39', '0', '0', '39.00', '39.00', '0', '42.00', '', '0', '0', '0', '0', 'a:3:{i:1;s:6:\"针织\";i:3;s:3:\"黑\";i:10;s:2:\"XL\";}', '100', '1_2017092203045216863.jpg', '1', '1', '1506020705', '1506020714', '0', '0', '0', '1', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
@@ -8244,9 +8945,9 @@ INSERT INTO `ls_goods` VALUES ('60', '55', '幸运四叶草纯银吊坠', '', '1
 INSERT INTO `ls_goods` VALUES ('61', '56', '施诺绮心梦爱心型925纯银水晶项链采用施华洛世奇元素水晶吊坠', '', '1', '自营店铺', '46', '16', '46', '0', '0', '108.00', '108.00', '0', '120.00', '2018', '10', '0', '0', '0', 'N;', '186', '1_2017092203321969628.jpg', '1', '1', '1506022343', '1506022346', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('62', '57', '封后皮皮虾韩国单肩包女韩版帆布手提袋', '简约帆布袋', '1', '自营店铺', '47', '16', '47', '0', '0', '39.00', '39.00', '0', '49.00', '2049', '10', '0', '0', '0', 'N;', '99', '1_2017092203335981358.jpg', '1', '1', '1506022442', '1506022444', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('63', '58', '迈克.科尔斯(Michael Kors/MK)小号女包手提单肩斜跨包', '海外采购', '1', '自营店铺', '47', '16', '47', '0', '0', '1096.00', '1096.00', '0', '1200.00', '1068', '0', '10', '0', '0', 'N;', '58', '1_2017092203371485168.jpg', '1', '1', '1506022638', '1506096333', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('64', '59', '蜂苹果6s数据线iphone6二合一拖安卓通用手机8P充电线器快充线', '闪电快充 提速40% 一年换新', '1', '自营店铺', '48', '1', '48', '0', '0', '19.90', '19.90', '0', '21.00', '10123', '0', '0', '0', '0', 'N;', '99', '1_2017092821352360295.jpg', '1', '1', '1506605735', '1506605738', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('64', '59', '蜂苹果6s数据线iphone6二合一拖安卓通用手机8P充电线器快充线', '闪电快充 提速40% 一年换新', '1', '自营店铺', '48', '1', '48', '0', '0', '19.90', '19.90', '0', '21.00', '10123', '0', '1', '0', '0', 'N;', '99', '1_2017092821352360295.jpg', '1', '1', '1506605735', '1575278330', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('65', '60', '手机散热器华为苹果通用充电宝式架子桌面游戏手柄支驾冷却降温器', '双风扇快速降温 可供电持久续航', '1', '自营店铺', '48', '1', '48', '0', '0', '58.00', '58.00', '0', '66.00', '', '0', '0', '0', '0', 'N;', '99', '1_2017092821383373641.jpg', '1', '1', '1506605915', '1506605918', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('66', '61', '手机充电宝带蓝牙音响三合一多功能平坂支架1毫安5移动电源20000M', '二合一 [支架+充电宝] 三合一 [支架+充电宝+蓝牙音响]', '1', '自营店铺', '48', '1', '48', '0', '0', '55.00', '55.00', '0', '80.00', '', '0', '0', '0', '0', 'N;', '99', '1_2017092821403589442.jpg', '1', '1', '1506606045', '1506606047', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('66', '61', '手机充电宝带蓝牙音响三合一多功能平坂支架1毫安5移动电源20000M', '二合一 [支架+充电宝] 三合一 [支架+充电宝+蓝牙音响]', '1', '自营店铺', '48', '1', '48', '0', '0', '55.00', '55.00', '0', '80.00', '', '0', '2', '0', '0', 'N;', '99', '1_2017092821403589442.jpg', '1', '1', '1506606045', '1575342503', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('67', '62', '苹果无线HDMI同屏器airplay推送宝高清安卓手机电视投影视频传输', '无需软件不需要安装app即可实现无线同屏', '1', '自营店铺', '49', '1', '49', '0', '0', '158.00', '158.00', '0', '158.00', '', '0', '0', '0', '0', 'N;', '99', '1_2017092821431519588.jpg', '1', '1', '1506606198', '1506606200', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('68', '63', '唐麦 F3耳机入耳式 重低音炮手机电脑音乐有线耳塞式金属通用带麦', '15天无理由退换货一年质保换新', '1', '自营店铺', '49', '1', '49', '0', '0', '55.00', '55.00', '0', '59.00', '', '0', '0', '0', '0', 'N;', '99', '1_2017092821510935694.jpg', '1', '1', '1506606673', '1506606675', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('69', '64', '森狗SimDog sim2.0手机k歌耳机入耳式通用男女生耳塞式耳麦重低音', '专利产品 支持语音 支持接听电话', '1', '自营店铺', '49', '1', '49', '0', '0', '19.80', '19.80', '0', '20.00', '', '0', '0', '0', '0', 'N;', '999', '1_2017092821530372212.jpg', '1', '1', '1506606785', '1506606788', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
@@ -8266,10 +8967,10 @@ INSERT INTO `ls_goods` VALUES ('83', '78', '红心大蒸汽挂烫机家用熨斗
 INSERT INTO `ls_goods` VALUES ('84', '79', '美的家用平烫挂烫双杆蒸汽挂烫机电熨斗熨YGD20D7', '独创可卧可立 35秒出蒸汽 六档微电脑', '1', '自营店铺', '21', '8', '21', '0', '0', '389.00', '389.00', '0', '400.00', '', '0', '0', '0', '0', 'N;', '99', '1_2017092900095941942.jpg', '1', '1', '1506615002', '1506615004', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('85', '80', '铨聚臭氧发生器果蔬解毒杀菌洗菜多功能负离子活氧净化消毒机家用', '臭氧消毒杀菌 果蔬解毒机 家用', '1', '自营店铺', '21', '8', '21', '0', '0', '399.00', '399.00', '0', '450.00', '', '0', '0', '0', '0', 'N;', '99', '1_2017092900115721538.jpg', '1', '1', '1506615121', '1506615123', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('86', '81', '拜格不锈钢锅具套装铁炒锅家用汤锅全套厨房厨具组合', '', '1', '自营店铺', '22', '8', '22', '0', '0', '89.00', '89.00', '0', '99.00', '', '0', '0', '0', '0', 'N;', '99', '1_2017092900132832208.jpg', '1', '1', '1506615216', '1506615219', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('87', '82', '朝暮之家厨房置物架落地多层收纳架放锅架子厨具用品转角架 锅架', '火爆热卖 多款可选 多功能厨房落地置物架', '1', '自营店铺', '22', '8', '22', '0', '0', '55.00', '55.00', '0', '69.00', '', '0', '0', '0', '0', 'N;', '89', '1_2017092900144267524.jpg', '1', '1', '1506615285', '1506615287', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('87', '82', '朝暮之家厨房置物架落地多层收纳架放锅架子厨具用品转角架 锅架', '火爆热卖 多款可选 多功能厨房落地置物架', '1', '自营店铺', '22', '8', '22', '0', '0', '55.00', '55.00', '0', '69.00', '', '0', '1', '1', '0', 'N;', '88', '1_2017092900144267524.jpg', '1', '1', '1506615285', '1575278367', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('88', '83', '夏季薄网状透气型护腰带保健腰托腰围带钢板家用', '秋冬薄网状透气护腰', '1', '自营店铺', '55', '8', '55', '0', '0', '9.90', '9.90', '0', '15.90', '', '0', '0', '0', '0', 'N;', '99', '1_2017092900175249561.jpg', '1', '1', '1506615475', '1506615490', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('89', '84', '茗振海盐袋粗盐热敷包电加热理疗包袋家用颈椎腰部膝盖艾叶全身热敷袋', '', '1', '自营店铺', '55', '8', '55', '0', '0', '139.00', '139.00', '0', '145.00', '', '0', '0', '0', '0', 'N;', '98', '1_2017092900220838539.jpg', '1', '1', '1506615733', '1506615735', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('90', '85', '普立PL-603AC4刮痧机电脑版红光电动震动按摩机脂肪运动机', '刮痧推脂机美体仪高频震动爆溶按摩仪强力碎脂机腰部电动震动刮痧机甩脂机  ', '1', '自营店铺', '55', '8', '55', '0', '0', '79.00', '79.00', '0', '88.00', '', '0', '0', '0', '0', 'N;', '99', '1_2017092900242419538.jpg', '1', '1', '1506615869', '1506615871', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('90', '85', '普立PL-603AC4刮痧机电脑版红光电动震动按摩机脂肪运动机', '刮痧推脂机美体仪高频震动爆溶按摩仪强力碎脂机腰部电动震动刮痧机甩脂机  ', '1', '自营店铺', '55', '8', '55', '0', '0', '79.00', '79.00', '0', '88.00', '', '0', '1', '0', '0', 'N;', '99', '1_2017092900242419538.jpg', '1', '1', '1506615869', '1574764837', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('91', '86', '南极人颈椎热敷护颈带护颈椎套保暖保护肩颈理疗自发热护颈椎脖套', '热敷理疗 穴位磁石 托玛琳 自发热', '1', '自营店铺', '55', '8', '55', '0', '0', '39.00', '39.00', '0', '59.00', '', '0', '0', '0', '0', 'N;', '120', '1_2017092900261952044.jpg', '1', '1', '1506615983', '1506615986', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('92', '87', '电脑非全新二手电脑主机台式整机i5i7游戏组装机27寸无边框显示器 4G 黑 硬盘500G', '', '1', '自营店铺', '23', '9', '23', '0', '0', '2178.00', '2178.00', '0', '2450.00', '', '0', '0', '0', '0', 'a:3:{i:15;s:2:\"4G\";i:14;s:3:\"黑\";i:1;s:10:\"硬盘500G\";}', '68', '1_2017092900363278117.jpg', '1', '1', '1506616595', '1506616600', '0', '0', '0', '15', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('93', '87', '电脑非全新二手电脑主机台式整机i5i7游戏组装机27寸无边框显示器 4G 硬盘500G', '', '1', '自营店铺', '23', '9', '23', '0', '0', '2178.00', '2178.00', '0', '2450.00', '', '0', '0', '0', '0', 'a:2:{i:15;s:2:\"4G\";i:1;s:10:\"硬盘500G\";}', '89', '1_2017092900363278117.jpg', '1', '1', '1506616595', '1506616600', '0', '0', '0', '15', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
@@ -8281,17 +8982,17 @@ INSERT INTO `ls_goods` VALUES ('98', '89', 'Seagate/希捷 ST1000DM010 1TB新酷
 INSERT INTO `ls_goods` VALUES ('99', '90', 'Asus/华硕 X555YI 7110-554LXFA2X10轻薄手提游戏本笔记本电脑', '', '1', '自营店铺', '134', '9', '23', '134', '0', '2599.00', '2599.00', '0', '2780.00', '', '0', '0', '0', '0', 'N;', '99', '1_2017092900501117171.jpg', '1', '1', '1506617415', '1506617419', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('100', '91', '小米 红米NOTE 5A智能拍照手机16G/32G/64G', '', '1', '自营店铺', '75', '1', '2', '75', '0', '799.00', '799.00', '0', '899.00', '', '0', '0', '0', '0', 'N;', '998', '1_2017092900544928056.jpg', '1', '1', '1506617760', '1506617762', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('101', '92', '3期免息【高配2799】Xiaomi/小米 小米NOTE 3全网通小米手机新品 128G', '', '1', '自营店铺', '75', '1', '2', '75', '0', '2890.00', '2890.00', '0', '2999.00', '', '0', '0', '0', '0', 'a:1:{i:1;s:4:\"128G\";}', '99', '1_2017092901044975398.jpg', '1', '1', '1506618294', '1506618297', '0', '0', '0', '1', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('102', '93', 'honor/荣耀 荣耀9 全网通4G手机双摄像头智能手机', '后置双摄像头手机', '1', '自营店铺', '76', '1', '2', '76', '0', '2499.00', '2499.00', '0', '2699.00', '', '0', '0', '0', '0', 'N;', '450', '1_2017092901063965472.jpg', '1', '1', '1506618422', '1506618424', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('102', '93', 'honor/荣耀 荣耀9 全网通4G手机双摄像头智能手机', '后置双摄像头手机', '1', '自营店铺', '76', '1', '2', '76', '0', '2499.00', '2499.00', '0', '2699.00', '', '0', '0', '0', '0', 'N;', '450', '1_2017092901063965472.jpg', '1', '1', '1506618422', '1575092136', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('103', '94', 'honor/荣耀 荣耀V9 play全网通4G手机', '', '1', '自营店铺', '76', '1', '2', '76', '0', '1099.00', '1099.00', '0', '1200.00', '', '0', '0', '0', '0', 'N;', '983', '1_2017092901082884641.jpg', '1', '1', '1506618514', '1506618516', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('104', '95', 'OnePlus/一加 一加手机5 一加五 1加5手机 一加5星辰黑', '一加授权 官方直供 优惠低至官网', '1', '自营店铺', '77', '1', '2', '77', '0', '2068.00', '2068.00', '0', '2100.00', '', '0', '0', '0', '0', 'N;', '98', '1_2017092901111615092.jpg', '1', '1', '1506618679', '1506618684', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('105', '96', '超薄5.5寸移动电信全网通4G双曲屏学生智能指纹一体一加手机', '', '1', '自营店铺', '77', '1', '2', '77', '0', '748.00', '748.00', '0', '820.00', '', '0', '0', '0', '0', 'N;', '422', '1_2017092901182073726.jpg', '1', '1', '1506619103', '1506619105', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('106', '97', 'vivo y66超薄手机正品', '送电话手表 送低音炮', '1', '自营店铺', '78', '1', '2', '78', '0', '1298.00', '1298.00', '0', '1499.00', '', '0', '0', '0', '0', 'N;', '125', '1_2017092901201262580.jpg', '1', '1', '1506619217', '1506619220', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('107', '98', 'vivo X20全面屏4G全网通智能手机vivox20 X20A', '', '1', '自营店铺', '78', '1', '2', '78', '0', '2980.00', '2980.00', '0', '3100.00', '', '0', '0', '0', '0', 'N;', '265', '1_2017092901242476412.jpg', '1', '1', '1506619466', '1506619468', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('107', '98', 'vivo X20全面屏4G全网通智能手机vivox20 X20A', '', '1', '自营店铺', '78', '1', '2', '78', '0', '2980.00', '2980.00', '0', '3100.00', '', '0', '1', '0', '0', 'N;', '265', '1_2017092901242476412.jpg', '1', '1', '1506619466', '1575869747', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('108', '99', 'OPPO A57 全新手机a59s a33 r9s r11 oppoa57手机正品', '购机享8重豪礼+12期免息+顺丰包邮+全国联保1年+店铺延保2年', '1', '自营店铺', '79', '1', '2', '79', '0', '1399.00', '1399.00', '0', '1560.00', '', '0', '0', '0', '0', 'N;', '125', '1_2017092901271966752.jpg', '1', '1', '1506619643', '1506619645', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('109', '100', ' OPPO A57 oppoa57 oppo手机a57', '已降200', '1', '自营店铺', '79', '1', '2', '79', '0', '1399.00', '1399.00', '0', '1599.00', '', '0', '0', '0', '0', 'N;', '142', '1_2017092901284880537.jpg', '1', '1', '1506619757', '1506619772', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('110', '101', 'Ticwatch2智能手表蓝牙通话防水运动支持安卓苹果心率定位手环男', '蓝牙通话 GPS记录运动轨迹', '1', '自营店铺', '70', '1', '3', '70', '0', '938.00', '938.00', '0', '1060.00', '', '0', '0', '0', '0', 'N;', '433', '1_2017092901314252467.jpg', '1', '1', '1506619910', '1506619913', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('111', '102', '儿童智能手表成人电话手机学生男女定位防水蓝牙插卡运动安卓手环', '学习APP 定位 防水 插卡电话', '1', '自营店铺', '70', '1', '3', '70', '0', '118.00', '118.00', '0', '129.00', '', '0', '0', '0', '0', 'N;', '46', '1_2017092901331891773.jpg', '1', '1', '1506620008', '1506620061', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('112', '103', '高端Solgo松果老人定位手表手环 精准测血压心率心电图 家居养老', '准确血压心率 触屏 抬手亮屏 语音播报', '1', '自营店铺', '72', '1', '3', '72', '0', '999.00', '999.00', '0', '1080.00', '', '0', '0', '0', '0', 'N;', '780', '1_2017092901395681652.jpg', '1', '1', '1506620400', '1506620402', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('112', '103', '高端Solgo松果老人定位手表手环 精准测血压心率心电图 家居养老', '准确血压心率 触屏 抬手亮屏 语音播报', '1', '自营店铺', '72', '1', '3', '72', '0', '999.00', '999.00', '0', '1080.00', '', '0', '0', '0', '0', 'N;', '780', '1_2017092901395681652.jpg', '1', '1', '1506620400', '1575038680', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('113', '104', '舒思盾经络按摩仪数码家用多功能针灸穴位电子理疗腰椎颈椎电疗仪', '', '1', '自营店铺', '72', '1', '3', '72', '0', '168.00', '168.00', '0', '199.00', '', '0', '0', '0', '0', 'N;', '165', '1_2017092901414663050.jpg', '1', '1', '1506620509', '1506620511', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('114', '105', '一米爱家具 现代简约鞋柜玄关门厅柜多功能简易翻斗鞋柜超薄鞋柜', '庆国家年华 疯狂抢购中', '1', '自营店铺', '73', '1', '3', '73', '0', '999.00', '999.00', '0', '1450.00', '', '0', '0', '0', '0', 'N;', '95', '1_2017092901444780977.jpg', '1', '1', '1506620689', '1506620692', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('115', '106', '上海名古智能家居别墅智能正品控制系统家庭影院装修设计上门安装', '', '1', '自营店铺', '73', '1', '3', '73', '0', '500.00', '500.00', '0', '600.00', '', '0', '0', '0', '0', 'N;', '126', '1_2017092901470136191.jpg', '1', '1', '1506620831', '1506620833', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
@@ -8299,14 +9000,20 @@ INSERT INTO `ls_goods` VALUES ('116', '107', '向往家庭背景音乐主机系�
 INSERT INTO `ls_goods` VALUES ('117', '108', '亚太天能阿里智能指纹锁家用防盗门锁 电子锁密码锁大门防盗锁V9', '家装焕新 阿里智能 全屋联网', '1', '自营店铺', '74', '1', '3', '74', '0', '2599.00', '2599.00', '0', '2699.00', '', '0', '0', '0', '0', 'N;', '78', '1_2017092901531025952.jpg', '1', '1', '1506621192', '1506621197', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('118', '109', 'mai小麦指纹锁家用防盗门智能门锁电子锁密码锁刷卡锁防盗锁正品', '锁芯5★防盗性能', '1', '自营店铺', '74', '1', '3', '74', '0', '799.00', '799.00', '0', '1200.00', '', '0', '0', '0', '0', 'N;', '66', '1_2017092901561798176.jpg', '1', '1', '1506621381', '1506621383', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('119', '110', '欧瑞特智能手环运动计步器测心率血压手表小米多功能健康防水男女', '多模式血压手环！！', '1', '自营店铺', '71', '1', '3', '71', '0', '179.00', '179.00', '0', '189.00', '', '0', '0', '0', '0', 'N;', '94', '1_2017092901584247144.jpg', '1', '1', '1506621524', '1506621527', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('120', '111', '君米运动智能手环防水测血压心跳心率跑步小米手表多功能苹果男女', '深度防水游泳 超长待机180天 微信qq', '1', '自营店铺', '71', '1', '3', '71', '0', '258.00', '258.00', '0', '269.00', '', '0', '0', '0', '0', 'N;', '95', '1_2017092902070476170.jpg', '1', '1', '1506622029', '1506622032', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('121', '112', '拜斯特台式放大镜带LED灯10倍20倍老人阅读电子检验钟表手机维修', '台式 带LED灯 阅读维修', '1', '自营店铺', '68', '16', '68', '0', '0', '45.00', '45.00', '0', '69.00', '', '0', '0', '0', '0', 'N;', '65', '1_2017092902123493954.jpg', '1', '1', '1506622356', '1506622358', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('122', '113', '商务tr90近视眼镜男款超轻眼镜框半框潮商务近视镜眼镜架黑镜框男', '', '1', '自营店铺', '68', '16', '68', '0', '0', '75.00', '75.00', '0', '120.00', '', '0', '0', '0', '0', 'N;', '62', '1_2017092902135876412.jpg', '1', '1', '1506622587', '1506622588', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('123', '114', '景德镇陶瓷花瓶摆件客厅装饰品摆设中式家居新房装饰品酒柜摆件', '富贵吉祥蛋 向往美好 充满生活气息\r\n', '1', '自营店铺', '69', '16', '69', '0', '0', '36.00', '36.00', '0', '54.00', '', '0', '0', '0', '0', 'N;', '66', '1_2017092902182426089.jpg', '1', '1', '1506622742', '1506622744', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('124', '115', '财富节节高电视柜酒柜客厅摆件装饰品竹子家居饰品工艺品招财摆设', '财富节节高 四季长青 象征财运旺盛', '1', '自营店铺', '69', '16', '69', '0', '0', '79.00', '79.00', '0', '109.00', '', '0', '0', '0', '0', 'N;', '72', '1_2017092902201298747.jpg', '1', '1', '1506622814', '1506622816', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('120', '111', '君米运动智能手环防水测血压心跳心率跑步小米手表多功能苹果男女', '深度防水游泳 超长待机180天 微信qq', '1', '自营店铺', '71', '1', '3', '71', '0', '258.00', '258.00', '0', '269.00', '', '0', '1', '0', '0', 'N;', '95', '1_2017092902070476170.jpg', '1', '1', '1506622029', '1575863315', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('121', '112', '拜斯特台式放大镜带LED灯10倍20倍老人阅读电子检验钟表手机维修', '台式 带LED灯 阅读维修', '1', '自营店铺', '68', '16', '68', '0', '0', '45.00', '45.00', '0', '69.00', '', '0', '0', '0', '0', 'N;', '65', '1_2017092902123493954.jpg', '10', '1', '1506622356', '1574327616', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('122', '113', '商务tr90近视眼镜男款超轻眼镜框半框潮商务近视镜眼镜架黑镜框男', '', '1', '自营店铺', '68', '16', '68', '0', '0', '75.00', '75.00', '0', '120.00', '', '0', '0', '0', '0', 'N;', '62', '1_2017092902135876412.jpg', '10', '1', '1506622587', '1574327616', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('123', '114', '景德镇陶瓷花瓶摆件客厅装饰品摆设中式家居新房装饰品酒柜摆件', '富贵吉祥蛋 向往美好 充满生活气息\r\n', '1', '自营店铺', '69', '16', '69', '0', '0', '36.00', '36.00', '0', '54.00', '', '0', '0', '0', '0', 'N;', '66', '1_2017092902182426089.jpg', '10', '1', '1506622742', '1574327622', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('124', '115', '财富节节高电视柜酒柜客厅摆件装饰品竹子家居饰品工艺品招财摆设', '财富节节高 四季长青 象征财运旺盛', '1', '自营店铺', '69', '16', '69', '0', '0', '79.00', '79.00', '0', '109.00', '', '0', '0', '0', '0', 'N;', '72', '1_2017092902201298747.jpg', '10', '1', '1506622814', '1574327622', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 INSERT INTO `ls_goods` VALUES ('125', '116', 'LAVER防脱育发液快速增发密发生新发液脂溢性脱发头发增长液男女', '认准国妆特字 告别脱发轻松密发买3送1', '1', '自营店铺', '64', '12', '64', '0', '0', '128.00', '128.00', '0', '144.00', '', '0', '0', '0', '0', 'N;', '88', '1_2017092902341762945.jpg', '1', '1', '1506623660', '1506623662', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('126', '117', '冲牙器便携式洗牙器家用电动口腔牙齿冲洗器牙龈牙缝清洁器洁牙器', '洁牙器 洗牙机 冲牙 洗牙 口腔清洁器', '1', '自营店铺', '63', '12', '63', '0', '0', '178.00', '178.00', '0', '210.00', '', '0', '0', '0', '0', 'N;', '84', '1_2017092902405679397.jpg', '1', '1', '1506624060', '1506624071', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
-INSERT INTO `ls_goods` VALUES ('127', '118', '新西兰进口牛奶纽仕兰高钙低脂纯牛奶250ml*24盒*1箱', '新西兰进口 牧场直供 100%生牛乳', '1', '自营店铺', '231', '11', '60', '231', '0', '89.00', '89.00', '0', '120.00', '', '0', '0', '0', '0', 'N;', '74', '1_2017092902485560056.jpg', '1', '1', '1506624539', '1506624543', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('126', '117', '冲牙器便携式洗牙器家用电动口腔牙齿冲洗器牙龈牙缝清洁器洁牙器', '洁牙器 洗牙机 冲牙 洗牙 口腔清洁器', '1', '自营店铺', '63', '12', '63', '0', '0', '178.00', '178.00', '0', '210.00', '', '0', '0', '0', '0', 'N;', '84', '1_2017092902405679397.jpg', '10', '1', '1506624060', '1574326866', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('127', '118', '新西兰进口牛奶纽仕兰高钙低脂纯牛奶250ml*24盒*1箱', '新西兰进口 牧场直供 100%生牛乳', '1', '自营店铺', '231', '11', '60', '231', '0', '89.00', '89.00', '0', '120.00', '', '0', '4', '0', '0', 'N;', '74', '1_2017092902485560056.jpg', '1', '1', '1506624539', '1575863301', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('128', '2', '荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金 全网通 香槟金 32G', '北欧极简设计，EMUI5.1', '1', '自营店铺', '75', '1', '2', '75', '0', '998.00', '998.00', '0', '1290.00', '', '0', '30', '0', '0', 'a:3:{i:124;s:9:\"全网通\";i:117;s:9:\"香槟金\";i:119;s:3:\"32G\";}', '99', 'alioss_1_2019120615504452348.png', '1', '1', '1575008562', '1575870050', '0', '0', '0', '124', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('129', '2', '荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金 全网通 香槟金 64G', '北欧极简设计，EMUI5.1', '1', '自营店铺', '75', '1', '2', '75', '0', '998.00', '998.00', '0', '1290.00', '', '0', '2', '0', '0', 'a:3:{i:124;s:9:\"全网通\";i:117;s:9:\"香槟金\";i:122;s:3:\"64G\";}', '99', 'alioss_1_2019120615504452348.png', '1', '1', '1575008562', '1575618648', '0', '0', '0', '124', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('130', '2', '荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金 全网通 黑 32G', '北欧极简设计，EMUI5.1', '1', '自营店铺', '75', '1', '2', '75', '0', '998.00', '998.00', '0', '1290.00', '', '0', '10', '0', '0', 'a:3:{i:124;s:9:\"全网通\";i:120;s:3:\"黑\";i:119;s:3:\"32G\";}', '99', 'alioss_1_2019120615504452348.png', '1', '1', '1575008562', '1575618648', '0', '0', '0', '124', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('131', '2', '荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金 全网通 黑 64G', '北欧极简设计，EMUI5.1', '1', '自营店铺', '75', '1', '2', '75', '0', '998.00', '998.00', '0', '1290.00', '', '0', '5', '0', '0', 'a:3:{i:124;s:9:\"全网通\";i:120;s:3:\"黑\";i:122;s:3:\"64G\";}', '99', 'alioss_1_2019120615504452348.png', '1', '1', '1575008562', '1575618648', '0', '0', '0', '124', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('132', '2', '荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金 全网通 白 32G', '北欧极简设计，EMUI5.1', '1', '自营店铺', '75', '1', '2', '75', '0', '998.00', '998.00', '0', '1290.00', '', '0', '7', '0', '0', 'a:3:{i:124;s:9:\"全网通\";i:121;s:3:\"白\";i:119;s:3:\"32G\";}', '99', 'alioss_1_2019120615504452348.png', '1', '1', '1575008562', '1575618648', '0', '0', '0', '124', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
+INSERT INTO `ls_goods` VALUES ('133', '2', '荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金 全网通 白 64G', '北欧极简设计，EMUI5.1', '1', '自营店铺', '75', '1', '2', '75', '0', '998.00', '998.00', '0', '1290.00', '', '0', '26', '0', '0', 'a:3:{i:124;s:9:\"全网通\";i:121;s:3:\"白\";i:122;s:3:\"64G\";}', '99', 'alioss_1_2019120615504452348.png', '1', '1', '1575008562', '1575618648', '0', '0', '0', '124', '0', '0.00', '0', '1', '', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '');
 
 -- -----------------------------
 -- Table structure for `ls_goodsattrindex`
@@ -8338,6 +9045,12 @@ CREATE TABLE `ls_goodsbrowse` (
   PRIMARY KEY (`goods_id`,`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品浏览历史表';
 
+-- -----------------------------
+-- Records of `ls_goodsbrowse`
+-- -----------------------------
+INSERT INTO `ls_goodsbrowse` VALUES ('7', '11', '1575253271', '3', '1', '3', '0');
+INSERT INTO `ls_goodsbrowse` VALUES ('90', '11', '1574764839', '55', '8', '55', '0');
+INSERT INTO `ls_goodsbrowse` VALUES ('128', '8', '1575250870', '75', '1', '2', '75');
 
 -- -----------------------------
 -- Table structure for `ls_goodsclass`
@@ -8358,750 +9071,597 @@ CREATE TABLE `ls_goodsclass` (
   `gc_show` tinyint(1) NOT NULL DEFAULT '1' COMMENT '商品分类前台显示 0:否 1:是',
   PRIMARY KEY (`gc_id`),
   KEY `store_id` (`gc_parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=764 DEFAULT CHARSET=utf8 COMMENT='商品分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=786 DEFAULT CHARSET=utf8 COMMENT='商品分类表';
 
 -- -----------------------------
 -- Records of `ls_goodsclass`
 -- -----------------------------
-INSERT INTO `ls_goodsclass` VALUES ('1', ' 手机/ 运营商/ 智能数码', '1', '联动', '0', '1', '0', '1', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('2', '手机通讯', '1', '联动', '1', '1', '0', '1', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('3', '智能设备', '1', '联动', '1', '1', '0', '1', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('4', ' 电视/ 空调/ 冰箱/ 洗衣机', '1', '联动', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('5', '电视', '1', '联动', '4', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('6', '空调', '1', '联动', '4', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('7', '冰箱', '1', '联动', '4', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('8', ' 厨卫电器/ 生活家电/ 厨具', '1', '联动', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('9', ' 电脑办公/ 相机/ DIY', '1', '联动', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('10', ' 家居/ 家具/ 家装', '1', '联动', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('11', ' 食品/ 酒水/ 生鲜/ 特产', '1', '联动', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('12', '个护化妆/ 纸品清洁/ 宠物', '1', '联动', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('15', ' 男装/ 女装/ 内衣', '1', '联动', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('16', ' 鞋靴/ 箱包/ 钟表/ 珠宝', '1', '联动', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('20', '厨房大电', '1', '联动', '8', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('21', '生活家电', '1', '联动', '8', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('22', '厨具', '1', '联动', '8', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('23', '电脑整机', '1', '联动', '9', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('24', '办公打印', '1', '联动', '9', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('25', '家纺', '1', '联动', '10', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('26', '家具', '1', '联动', '10', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('27', '生活日用', '1', '联动', '10', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('28', '食品', '1', '联动', '11', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('29', '酒水', '1', '联动', '11', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('30', '护肤品', '1', '联动', '12', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('31', '清洁洗护', '1', '联动', '12', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('32', '宠物生活', '1', '联动', '12', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('39', '女装', '1', '联动', '15', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('41', '男装', '1', '联动', '15', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('44', '内衣内裤', '1', '联动', '15', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('45', '时尚鞋靴', '1', '联动', '16', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('46', '珠宝饰品', '1', '联动', '16', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('47', '时尚皮包', '1', '联动', '16', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('48', '手机配件', '1', '联动', '1', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('49', '影音电子', '1', '联动', '1', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('51', '洗衣机', '1', '联动', '4', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('54', '饮水设备', '1', '联动', '4', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('55', '个护健康', '1', '联动', '8', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('56', '外设附件', '1', '联动', '9', '1', '0', '1', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('57', 'DIY硬件', '1', '联动', '9', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('58', '灯具灯饰', '1', '联动', '10', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('59', '厨房卫浴', '1', '联动', '10', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('60', '饮料冲乳', '1', '联动', '11', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('61', '生鲜食品', '1', '联动', '11', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('62', '营养保健', '1', '联动', '11', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('63', '口腔护理', '1', '联动', '12', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('64', '洗发护发', '1', '联动', '12', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('65', '当季流行', '1', '联动', '15', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('66', '袜子配饰', '1', '联动', '15', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('67', '特色服装', '1', '联动', '15', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('68', '钟表眼镜', '1', '联动', '16', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('69', '艺术品', '1', '联动', '16', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('70', '智能手表', '0', '', '3', '1', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('71', '智能手环', '0', '', '3', '1', '10', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('72', '健康监测', '0', '', '3', '2', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('73', '智能家居', '0', '', '3', '3', '0', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('74', '智能门锁', '0', '', '3', '2', '3', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('75', '小米', '1', '联动', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('76', '荣耀', '0', '', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('77', '一加', '0', '', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('78', 'vivo', '0', '', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('79', 'oppo', '0', '', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('80', '存储卡', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('81', '电池/充电器', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('82', '清洁工具', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('83', '数据线', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('84', '手机耳机', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('85', '耳机/耳麦', '0', '', '49', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('86', '电脑平板', '0', '', '49', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('87', '录音笔', '0', '', '49', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('88', '运动相机', '0', '', '49', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('89', '无人机设备', '0', '', '49', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('90', '空调扇', '0', '', '6', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('91', '挂式空调', '0', '', '6', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('92', '柜式空调', '0', '', '6', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('93', '中央空调', '0', '', '6', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('94', '平板电视', '0', '', '5', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('95', '冰箱', '0', '', '7', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('96', '冰柜', '0', '', '7', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('97', '酒柜', '0', '', '7', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('98', '洗烘一体机', '0', '', '51', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('99', '滚筒洗衣机', '0', '', '51', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('100', '波轮洗衣机', '0', '', '51', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('101', '迷你洗衣机', '0', '', '51', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('102', '双缸洗衣机', '0', '', '51', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('103', '脱水机', '0', '', '51', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('104', '曲面电视', '0', '', '5', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('105', '超薄电视', '0', '', '5', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('106', '4看电视', '0', '', '5', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('107', '智能电视', '0', '', '5', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('108', 'OLED电视', '0', '', '5', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('109', '油烟机', '0', '', '20', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('110', '热水器', '0', '', '20', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('111', '电饭煲', '0', '', '20', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('112', '消毒机', '0', '', '20', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('113', '洗碗机', '0', '', '20', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('114', '净水器', '0', '', '20', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('115', '厨卫配件', '0', '', '20', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('116', '电风扇', '0', '', '21', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('117', '空气净化器', '0', '', '21', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('118', '吸尘器', '0', '', '21', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('119', '挂烫机', '0', '', '21', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('120', '电熨斗', '0', '', '21', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('121', '烤箱', '0', '', '22', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('122', '电水壶', '0', '', '22', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('123', '电磁炉', '0', '', '22', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('124', '剃须刀', '0', '', '55', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('125', '口腔护理', '0', '', '55', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('126', '电吹风', '0', '', '55', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('127', '美容仪', '0', '', '55', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('128', '洁面仪', '0', '', '55', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('129', '卷发器', '0', '', '55', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('130', '按摩椅', '0', '', '55', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('131', '足浴盆', '0', '', '55', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('132', '健康秤', '0', '', '55', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('133', '其他', '0', '', '55', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('134', '笔记本', '0', '', '23', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('135', '平板电脑', '0', '', '23', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('136', '台式电脑', '0', '', '23', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('137', '游戏本', '0', '', '23', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('138', '轻薄本', '0', '', '23', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('139', '电脑一体机', '0', '', '23', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('140', '组装电脑', '0', '', '23', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('141', '商用笔记本', '0', '', '23', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('142', '商用一体机', '0', '', '23', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('143', '商用台式机', '0', '', '23', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('144', '打印机', '0', '', '24', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('145', '电话机', '0', '', '24', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('146', '扫描仪', '0', '', '24', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('147', '投影仪', '0', '', '24', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('148', '投影附件', '0', '', '24', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('149', '传真机', '0', '', '24', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('150', '碎纸机', '0', '', '24', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('151', '复印/复合机', '0', '', '24', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('152', '激光笔', '0', '', '24', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('153', '投影幕布', '0', '', '24', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('154', '鼠标', '0', '', '56', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('155', '键盘', '0', '', '56', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('156', '鼠标垫', '0', '', '56', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('157', '电脑包', '0', '', '56', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('158', '电脑音箱', '0', '', '56', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('159', '显示器', '0', '', '57', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('160', 'CPU', '0', '', '57', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('161', '主板', '0', '', '57', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('162', '显卡', '0', '', '57', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('163', '硬盘', '0', '', '57', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('164', '内存', '0', '', '57', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('165', '机箱', '0', '', '57', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('166', '固态硬盘', '0', '', '57', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('167', '床品套件', '0', '', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('168', '枕头/枕套', '0', '', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('169', '凉席', '0', '', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('170', '蚊帐', '0', '', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('171', '毛巾', '0', '', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('172', '床单', '0', '', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('173', '被子', '0', '', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('174', '床', '0', '', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('175', '沙发', '0', '', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('176', '衣柜', '0', '', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('177', '电视柜', '0', '', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('178', '电脑桌', '0', '', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('179', '书桌', '0', '', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('180', '餐桌', '0', '', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('181', '餐椅', '0', '', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('182', '收纳用品', '0', '', '27', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('183', '洗晒用品', '0', '', '27', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('184', '晴雨用具', '0', '', '27', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('185', '园艺用品', '0', '', '27', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('186', '日常防护', '0', '', '27', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('187', '休闲食品', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('188', '吸顶灯', '0', '', '58', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('189', '吊灯', '0', '', '58', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('190', '台灯', '0', '', '58', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('191', 'LED照明', '0', '', '58', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('192', '日光灯', '0', '', '58', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('193', '龙头', '0', '', '59', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('194', '浴缸', '0', '', '59', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('195', '角阀', '0', '', '59', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('196', '小便器', '0', '', '59', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('197', '坚果', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('198', '饼干', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('199', '蜜饯', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('200', '卤味小食', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('201', '膨化食品', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('202', '巧克力', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('203', '糖果', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('204', '糕点', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('205', '面粉', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('206', '面条', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('207', '食用油', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('208', '大米', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('209', '月饼', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('210', '口香糖', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('211', '薯片', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('212', '龟苓膏', '0', '', '28', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('213', '白酒', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('214', '红酒', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('215', '黄酒', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('216', '啤酒', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('217', '预调酒', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('219', '碳酸饮料', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('220', '饮用水', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('221', '果蔬汁', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('222', '椰奶', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('223', '功能饮料', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('224', '含乳饮料', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('225', '绿茶', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('226', '红茶', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('227', '奶茶', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('228', '纯奶', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('229', '酸奶', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('230', '风味奶', '0', '', '29', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('231', '纯牛奶', '0', '', '60', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('232', '碳酸饮料', '0', '', '60', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('233', '麦片', '0', '', '60', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('234', '进口水果', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('235', '奇异果', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('236', '橙子', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('237', '火龙果', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('238', '芒果', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('239', '凤梨', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('240', '虾类', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('241', '贝类', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('242', '鱼类', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('243', '猪肉', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('244', '牛肉', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('245', '羊肉', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('246', '蛋类', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('247', '冷冻食品', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('248', '时令蔬菜', '0', '', '61', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('249', '维生素/矿物质', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('250', '减肥瘦身', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('251', '提高免疫', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('252', '美容养颜', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('253', '补肾强身', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('254', '蜂制品', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('255', '参类', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('256', '枸杞', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('257', '冬虫夏草', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('258', '燕窝', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('259', '石斛', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('260', '三七', '0', '', '62', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('262', '特产', '0', '', '11', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('263', '食用油', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('264', '五谷杂粮', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('265', '调味品', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('266', '糖果', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('267', '坚果', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('268', '蜜饯', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('269', '陶瓷', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('270', '商务鞋', '1', '联动', '45', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('271', '茶艺', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('272', '滋补营养品', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('273', '休闲鞋', '1', '联动', '45', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('274', '营养保健', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('275', '酒水', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('276', '板鞋', '1', '联动', '45', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('277', '茗茶', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('278', '饮料', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('279', '帆布鞋', '1', '联动', '45', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('280', '海鲜水产', '0', '', '262', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('281', '高跟鞋', '1', '联动', '45', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('282', '三星', '0', '', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('283', '凉鞋', '1', '联动', '45', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('284', '魅族', '0', '', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('285', '努比亚', '0', '', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('286', '钻戒', '1', '联动', '46', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('287', '乐视', '0', '', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('288', '洛基亚', '0', '', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('289', '黄金饰品', '1', '联动', '46', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('290', '翡翠玉石', '1', '联动', '46', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('291', '运动跟踪', '0', '', '3', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('292', '银饰', '1', '联动', '46', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('293', '智能防丢', '0', '', '3', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('294', '木饰', '1', '联动', '46', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('295', '体感车', '0', '', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('296', '智能安防', '0', '', '3', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('297', '虚拟现实', '0', '', '3', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('298', '智能机器人', '0', '', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('299', '智能摄像头', '0', '', '3', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('300', '单肩包', '1', '联动', '47', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('301', '双肩包', '1', '联动', '47', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('302', '充电宝', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('303', '手提包', '1', '联动', '47', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('304', '快充电源', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('305', '手机电池', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('306', '卡包', '1', '联动', '47', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('307', '车载充电', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('308', '斜挎包', '1', '联动', '47', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('309', '蓝牙耳机', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('310', '蓝牙音箱', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('311', '女表', '1', '联动', '68', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('312', '高帮鞋', '1', '联动', '45', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('313', '手机套', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('314', '手机壳', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('315', '皮鞋', '1', '联动', '45', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('316', '手机贴膜', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('317', '手机支架', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('318', '球鞋', '1', '联动', '45', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('319', '自拍神器', '0', '', '48', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('320', '豆豆鞋', '1', '联动', '45', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('321', '电子教育', '0', '', '1', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('322', '铂金', '1', '联动', '46', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('323', '彩宝', '1', '联动', '46', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('324', '锤子', '0', '', '2', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('325', '学生电脑', '0', '', '321', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('326', '水晶玛瑙', '1', '联动', '46', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('327', '珍珠', '1', '联动', '46', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('328', '电子词典', '0', '', '321', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('329', '故事机', '0', '', '321', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('330', '点读机', '0', '', '321', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('331', '商务公文包', '1', '联动', '47', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('332', '电子书', '0', '', '321', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('333', '儿童手表', '0', '', '321', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('334', '旅行包', '0', '', '47', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('335', '学生手机', '0', '', '321', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('336', '手拿包', '1', '联动', '47', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('337', '瑞士名表', '1', '联动', '68', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('338', '营业厅', '0', '', '1', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('339', '中国移动', '0', '', '338', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('340', '国产名表', '1', '联动', '68', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('341', '中国电信', '0', '', '338', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('342', '石英表', '0', '', '68', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('343', '中国联通', '0', '', '338', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('344', '选号码', '0', '', '338', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('345', '运动表', '0', '', '68', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('346', '办套餐', '0', '', '338', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('347', '闹钟挂钟', '1', '联动', '68', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('348', '低月租', '0', '', '338', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('349', '充值', '0', '', '338', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('350', '太阳镜', '1', '联动', '68', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('351', '购机送话费', '0', '', '338', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('352', '隐形眼镜', '1', '联动', '68', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('353', '水晶', '0', '', '69', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('354', '琉璃', '0', '', '69', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('355', '陶瓷', '0', '', '69', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('356', '雕刻', '1', '联动', '69', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('357', '刺绣', '0', '', '69', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('358', '刺绣', '0', '', '69', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('359', '青铜器', '1', '联动', '69', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('360', '书画', '0', '', '69', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('361', '影视周边', '0', '', '69', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('362', 'T恤', '1', '联动', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('363', '短外套', '0', '', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('364', '长袖衬衫', '1', '联动', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('365', '针织衫女', '1', '联动', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('366', '字母T恤', '1', '联动', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('367', '卫衣女', '1', '联动', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('368', '小西装', '1', '联动', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('369', '一步裙', '1', '联动', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('370', '牛仔裙', '1', '联动', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('371', 'A字裙', '1', '联动', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('372', '半身裙', '1', '联动', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('373', '一字肩连衣裙', '1', '联动', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('374', '蕾丝裙', '1', '联动', '39', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('375', '卫衣', '1', '联动', '41', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('376', '夹克', '1', '联动', '41', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('377', '西服', '1', '联动', '41', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('378', 'POLO衫', '1', '联动', '41', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('379', '4k', '0', '', '5', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('380', '短袖衬衫', '1', '联动', '41', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('381', '海信', '0', '', '5', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('382', '牛仔裤', '1', '联动', '41', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('383', '索尼', '0', '', '5', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('384', '创维', '0', '', '5', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('385', '夏普', '0', '', '5', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('386', '先锋', '0', '', '5', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('387', '西裤', '1', '联动', '41', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('388', '小脚裤', '1', '联动', '41', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('389', '九分裤', '1', '联动', '41', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('390', '哈伦裤', '1', '联动', '41', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('391', '运动裤', '1', '联动', '41', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('392', '影音', '0', '', '4', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('393', '女士内裤', '0', '', '44', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('394', '男士内裤', '1', '联动', '44', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('395', '纯棉内裤', '1', '联动', '44', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('396', '家庭影院', '0', '', '392', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('397', 'HIFI音箱', '0', '', '392', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('398', '莫代尔内裤', '1', '联动', '44', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('399', '多条装内裤', '1', '联动', '44', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('400', '净水器', '0', '', '54', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('401', '无痕内裤', '1', '联动', '44', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('402', '直饮机', '0', '', '54', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('403', '饮水机', '0', '', '54', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('404', '吊带背心', '1', '联动', '44', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('405', '双水机', '0', '', '54', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('406', '男士背心', '1', '联动', '44', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('407', '开水器', '0', '', '54', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('408', '卫衣女', '1', '联动', '65', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('409', '连衣裙', '1', '联动', '65', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('410', '卫浴电器', '0', '', '8', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('411', '夹克男', '1', '联动', '65', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('412', '中式厨房', '0', '', '8', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('413', '西式厨房', '0', '', '8', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('414', '男士衬衫', '1', '联动', '65', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('415', '雪纺衫', '1', '联动', '65', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('416', '进口专区', '0', '', '8', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('417', '碎花裙', '1', '联动', '65', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('418', '文胸', '1', '联动', '65', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('419', '睡裙', '1', '联动', '65', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('420', '五金建材', '0', '', '10', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('421', '牛仔裤女', '1', '联动', '65', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('422', '定制装修', '0', '', '10', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('423', '眼部护理', '1', '联动', '30', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('424', '平板电脑', '0', '', '9', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('425', '商用电脑', '0', '', '9', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('426', '网络设备', '0', '', '9', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('427', '船袜', '1', '联动', '66', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('428', '办公文印', '0', '', '9', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('429', '棉袜棉袜', '1', '联动', '66', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('430', '男袜', '1', '联动', '66', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('431', '女袜', '1', '联动', '66', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('432', '连裤袜', '1', '联动', '66', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('433', '瘦身袜', '1', '联动', '66', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('434', '器械隐形', '0', '', '10', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('435', '遮阳帽', '0', '', '66', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('436', '男士丝巾/围巾', '1', '联动', '66', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('437', '领带', '1', '联动', '66', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('438', '妈妈装', '1', '联动', '67', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('439', '大码女装', '1', '联动', '67', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('440', '面部护肤', '0', '', '12', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('441', '职业套装', '1', '联动', '67', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('442', '身体护理', '0', '', '12', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('443', '婚纱礼服', '1', '联动', '67', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('444', '运动套装', '1', '联动', '67', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('445', '彩妆香氛', '0', '', '12', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('446', '女性护理', '0', '', '12', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('447', '唐装', '1', '联动', '67', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('448', '生活用纸', '0', '', '12', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('449', '塑身衣', '1', '联动', '67', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('450', '情趣内衣', '0', '', '67', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('454', '卷纸', '0', '', '448', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('455', '文胸睡衣', '0', '', '15', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('456', '湿纸巾', '0', '', '448', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('459', '蕾丝文胸', '1', '联动', '455', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('460', '功能箱包', '0', '', '16', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('461', '运动文胸', '1', '联动', '455', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('462', '礼品乐器', '0', '', '16', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('463', '纯棉睡衣', '1', '联动', '455', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('464', '睡袍/浴袍', '1', '联动', '455', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('465', '情侣睡衣', '1', '联动', '455', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('466', '抹胸', '1', '联动', '455', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('467', '无痕文胸', '1', '联动', '455', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('468', '母婴/玩具/车床/童装', '0', '', '0', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('469', '聚拢文胸', '1', '联动', '455', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('470', '拉杆箱', '1', '联动', '460', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('471', '华为', '0', '', '424', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('472', '小米', '0', '', '424', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('473', 'ipad', '0', '', '424', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('474', '神舟', '0', '', '424', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('475', '三星', '0', '', '424', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('476', '电脑数码包', '1', '联动', '460', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('477', '商用笔记本', '0', '', '425', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('478', '商用台式机', '0', '', '425', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('479', '商用一体机', '0', '', '425', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('480', '旅行包', '1', '联动', '460', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('481', '商用显示器', '0', '', '425', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('482', '运动休闲', '1', '联动', '460', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('483', '路由器', '0', '', '426', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('484', '无线网卡', '0', '', '426', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('485', '登山包', '1', '联动', '460', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('486', '交换机', '0', '', '426', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('487', '随身wifi', '0', '', '426', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('488', '腰包/胸包', '1', '联动', '460', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('489', '书包', '1', '联动', '460', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('490', '箱包配件', '0', '', '460', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('491', '投影仪', '0', '', '428', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('492', '一体机', '0', '', '428', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('493', '打火机', '1', '联动', '462', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('494', '打印机', '0', '', '428', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('495', '瑞士军刀', '1', '联动', '462', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('496', '保险柜', '0', '', '428', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('497', '电子烟', '1', '联动', '462', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('498', '对讲机', '0', '', '428', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('499', '电话机', '0', '', '428', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('500', '标签机', '0', '', '428', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('501', '乐器', '1', '联动', '462', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('502', '笔芯', '0', '', '428', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('503', '电钢琴', '1', '联动', '462', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('504', '电子琴', '0', '', '462', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('505', '吉他', '1', '联动', '462', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('506', '尤克里里', '1', '联动', '462', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('507', '护肤套装', '1', '联动', '30', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('508', '颈部护理', '1', '联动', '30', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('509', '面膜', '1', '联动', '30', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('510', '爽肤水', '1', '联动', '30', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('511', '乳液', '1', '联动', '30', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('512', '面霜', '1', '联动', '30', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('513', '精华', '1', '联动', '30', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('514', '防晒隔离', '0', '', '30', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('515', '进口护肤', '1', '联动', '30', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('516', '洗衣液', '1', '联动', '31', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('517', '洗衣粉/皂', '1', '联动', '31', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('518', '家庭清洁', '1', '联动', '31', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('519', '洗洁精', '1', '联动', '31', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('520', '洁厕剂', '1', '联动', '31', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('521', '消毒液', '1', '联动', '31', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('522', '衣物洗护', '1', '联动', '31', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('523', '宠物零食', '1', '联动', '32', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('524', '出行装备', '1', '联动', '32', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('525', '宠物保健', '1', '联动', '32', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('526', '宠物日用', '1', '联动', '32', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('527', '宠物玩具', '1', '联动', '32', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('528', '宠物美容洗护', '1', '联动', '32', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('529', '宠物主食', '1', '联动', '32', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('530', '牙刷', '1', '联动', '63', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('531', '口腔套装', '1', '联动', '63', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('532', '漱口水/口喷', '1', '联动', '63', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('533', '儿童牙膏', '1', '联动', '63', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('534', '牙膏', '1', '联动', '63', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('535', '护发素', '1', '联动', '64', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('536', '洗护套装', '1', '联动', '64', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('537', '洗发水', '1', '联动', '64', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('538', '造型', '1', '联动', '64', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('539', '无硅油', '1', '联动', '64', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('540', '去屑', '1', '联动', '64', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('541', '染发', '1', '联动', '64', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('542', '洗面奶', '1', '联动', '440', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('543', '面部清洁', '1', '联动', '440', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('544', '进口水乳套装', '1', '联动', '440', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('545', '海外尖货', '1', '联动', '440', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('546', '精华', '1', '联动', '440', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('547', '爽肤水', '1', '联动', '440', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('548', '眼霜', '1', '联动', '440', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('549', '沐浴露', '1', '联动', '442', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('550', '润体乳', '1', '联动', '442', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('551', '护手霜', '1', '联动', '442', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('552', '足部护理', '0', '', '442', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('553', '瘦身纤体', '1', '联动', '442', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('554', '洗手液', '1', '联动', '442', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('555', '防蚊露/花露水', '1', '联动', '442', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('556', '脱毛膏', '1', '联动', '442', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('557', '眉笔', '1', '联动', '445', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('558', '眼部', '1', '联动', '445', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('559', '口红', '1', '联动', '445', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('560', '卸妆', '1', '联动', '445', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('561', '美妆工具', '1', '联动', '445', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('562', '香水', '1', '联动', '445', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('563', '精油', '1', '联动', '445', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('564', '气垫BB', '1', '联动', '445', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('565', '面部底妆', '1', '联动', '445', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('566', '走珠', '0', '', '445', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('567', '日用', '1', '联动', '446', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('568', '夜用', '1', '联动', '446', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('569', '组合套装', '1', '联动', '446', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('570', '私处洗液', '1', '联动', '446', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('571', '护垫', '1', '联动', '446', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('572', '卫生巾', '1', '联动', '446', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('573', '手帕纸', '1', '联动', '448', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('574', '厨房用纸', '1', '联动', '448', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('575', '平板纸', '1', '联动', '448', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('576', '抽纸', '1', '联动', '448', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('577', '开关', '1', '联动', '420', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('578', '果蔬汁', '1', '联动', '60', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('579', '功能饮料', '1', '联动', '60', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('580', '含乳饮料', '1', '联动', '60', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('581', '酸奶', '1', '联动', '60', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('582', '风味奶', '1', '联动', '60', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('583', '蜂蜜', '1', '联动', '60', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('584', '奶茶', '1', '联动', '60', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('585', '枕芯', '1', '联动', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('586', '毛巾/浴巾', '1', '联动', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('587', '坐垫/抱枕', '1', '联动', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('588', '毛巾被/毯', '1', '联动', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('589', '冬被', '1', '联动', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('590', '窗帘/窗纱', '1', '联动', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('591', '餐桌布艺', '1', '联动', '25', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('592', '客厅成套家具', '1', '联动', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('593', '餐厅成套家具', '1', '联动', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('594', '卧室成套家具', '1', '联动', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('595', '儿童成套家具', '1', '联动', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('596', '书房家具', '1', '联动', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('597', '阳台/户外', '1', '联动', '26', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('598', '家居器皿', '1', '联动', '27', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('599', '水杯', '0', '', '27', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('600', '保温器具', '1', '联动', '27', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('601', '一次性用品', '1', '联动', '27', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('602', '净化除味', '1', '联动', '27', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('603', '客厅灯', '1', '联动', '58', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('604', '卧室灯', '1', '联动', '58', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('605', '灯具套餐', '1', '联动', '58', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('606', '集成吊顶', '1', '联动', '58', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('607', '筒灯', '1', '联动', '58', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('608', '射灯', '1', '联动', '58', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('609', '花洒', '1', '联动', '59', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('610', '水槽', '1', '联动', '59', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('611', '马桶', '1', '联动', '59', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('612', '坐便器盖板', '1', '联动', '59', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('613', '浴室柜', '1', '联动', '59', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('614', '卫浴挂件', '1', '联动', '59', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('615', '插座', '1', '联动', '420', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('616', '锁具', '1', '联动', '420', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('617', '监控器材', '1', '联动', '420', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('618', '电钻', '1', '联动', '420', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('619', '电线', '1', '联动', '420', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('620', '家具五金', '1', '联动', '420', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('621', '手动工具', '1', '联动', '420', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('622', '工具箱', '1', '联动', '420', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('623', '电动工具', '1', '联动', '420', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('624', '接线板', '1', '联动', '420', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('625', '整体衣柜', '1', '联动', '422', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('626', '定制电视柜', '1', '联动', '422', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('627', '定制柜类', '1', '联动', '422', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('628', '整装定制', '1', '联动', '422', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('629', '装修服务', '1', '联动', '422', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('630', '木门', '1', '联动', '422', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('631', '特权定金', '1', '联动', '422', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('632', '制氧机', '1', '联动', '434', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('633', '血糖仪', '1', '联动', '434', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('634', '体温计', '1', '联动', '434', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('635', '隐形眼镜', '1', '联动', '434', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('636', '雾化器', '1', '联动', '434', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('637', '呼吸机', '1', '联动', '434', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('638', '血压计', '1', '联动', '434', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('639', '助听器', '1', '联动', '434', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('640', '热水器', '1', '联动', '410', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('641', '燃气热水器', '1', '联动', '410', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('642', '厨宝', '1', '联动', '410', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('643', '浴霸', '1', '联动', '410', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('644', '智能马桶盖', '0', '', '410', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('645', '空气能', '1', '联动', '410', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('646', '卫浴家电配件', '1', '联动', '410', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('647', '电饭煲', '1', '联动', '412', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('648', '电压力锅', '1', '联动', '412', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('649', '豆浆机', '1', '联动', '412', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('650', '电磁炉', '1', '联动', '412', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('651', '电水壶/电水瓶', '1', '联动', '412', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('652', '榨汁机', '1', '联动', '412', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('653', '电饼铛', '1', '联动', '412', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('654', '原汁机', '1', '联动', '412', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('655', '电炖锅', '1', '联动', '412', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('656', '微波炉', '1', '联动', '413', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('657', '电烤箱', '1', '联动', '413', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('658', '面包机', '1', '联动', '413', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('659', '酸奶机', '1', '联动', '413', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('660', '咖啡机', '1', '联动', '413', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('661', '空气炸锅', '1', '联动', '413', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('662', '食品加工机/搅拌机', '1', '联动', '413', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('663', '打蛋器', '1', '联动', '413', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('664', '剃须刀', '1', '联动', '416', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('665', '电饭煲', '1', '联动', '416', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('666', '电动牙刷', '1', '联动', '416', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('667', '美容仪', '1', '联动', '416', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('668', '进口咖啡机', '1', '联动', '416', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('669', '戴森', '1', '联动', '22', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('670', '奶粉', '1', '联动', '468', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('671', '尿裤湿巾', '1', '联动', '468', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('672', '营养辅食', '1', '联动', '468', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('673', '喂养用品', '1', '联动', '468', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('674', '孕婴洗护', '1', '联动', '468', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('675', '服饰寝居', '1', '联动', '468', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('676', '童车童床', '1', '联动', '468', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('677', '1段', '1', '联动', '670', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('678', '2段', '1', '联动', '670', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('679', '3段', '1', '联动', '670', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('680', '4段', '1', '联动', '670', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('681', '孕妈奶粉', '1', '联动', '670', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('682', '特配奶粉', '1', '联动', '670', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('683', '有机奶粉', '1', '联动', '670', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('684', '羊奶粉', '1', '联动', '670', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('685', '新生儿', '1', '联动', '671', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('686', 'S号尿裤', '1', '联动', '671', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('687', 'M号尿裤', '1', '联动', '671', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('688', 'L号尿裤', '1', '联动', '671', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('689', 'XL/XXL号', '1', '联动', '671', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('690', '拉拉裤', '1', '联动', '671', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('691', '宝宝湿巾', '1', '联动', '671', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('692', '成人尿裤', '1', '联动', '671', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('693', '米粉', '1', '联动', '672', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('694', '辅食', '1', '联动', '672', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('695', '果汁果泥', '1', '联动', '672', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('696', '钙铁锌', '1', '联动', '672', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('697', '清火开胃', '1', '联动', '672', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('698', 'DHA', '1', '联动', '672', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('699', '孕婴营养品', '1', '联动', '672', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('700', '宝宝面食', '1', '联动', '672', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('701', '奶瓶', '1', '联动', '673', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('702', '奶嘴', '1', '联动', '673', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('703', '吸奶器', '1', '联动', '673', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('704', '保温消毒', '1', '联动', '673', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('705', '儿童餐具', '1', '联动', '673', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('706', '水杯水壶', '1', '联动', '673', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('707', '围兜/口水巾', '1', '联动', '673', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('708', '口腔清洁', '1', '联动', '673', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('709', '辅食机/料理机', '1', '联动', '673', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('710', '牙胶安抚', '1', '联动', '673', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('711', '洗衣皂', '1', '联动', '674', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('712', '洗衣液', '1', '联动', '674', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('713', '洗发/沐浴', '1', '联动', '674', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('714', '洗护套装', '1', '联动', '674', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('715', '孕婴童护肤', '1', '联动', '674', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('716', '理发器', '1', '联动', '674', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('717', '理发器', '1', '联动', '674', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('718', '婴童护臀', '1', '联动', '674', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('719', '尿布/尿垫', '1', '联动', '674', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('720', '学步鞋', '1', '联动', '674', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('721', '儿童套装', '1', '联动', '675', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('722', '外套/风衣', '1', '联动', '675', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('723', '裤子', '1', '联动', '675', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('724', '家居床品', '1', '联动', '675', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('725', '儿童防护', '1', '联动', '675', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('726', '睡袋/抱枕', '1', '联动', '675', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('727', '婴童内衣', '1', '联动', '675', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('728', '婴儿礼盒', '1', '联动', '675', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('729', '安全座椅', '1', '联动', '676', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('730', '婴儿推车', '1', '联动', '676', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('731', '婴儿床', '1', '联动', '676', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('732', '自行车', '1', '联动', '676', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('733', '电动车', '1', '联动', '676', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('734', '滑板车', '1', '联动', '676', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('735', '学步车', '1', '联动', '676', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('736', '三轮车', '1', '联动', '676', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('737', '儿童家具', '1', '联动', '676', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('738', '儿童餐椅', '1', '联动', '676', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('739', '变频空调', '1', '联动', '6', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('740', '以旧换新', '1', '联动', '6', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('741', '0元安装合资空调', '1', '联动', '6', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('742', '对开门冰箱', '1', '联动', '7', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('743', '多门冰箱', '1', '联动', '7', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('744', '十字对开', '1', '联动', '7', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('745', '三门', '1', '联动', '7', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('746', '双门', '1', '联动', '7', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('747', '风冷（无霜）', '1', '联动', '7', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('748', '美的', '1', '联动', '7', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('749', '洗干一体机', '1', '联动', '51', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('750', '净水杯', '1', '联动', '54', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('751', '净水滤芯', '1', '联动', '54', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('752', '回音壁', '0', '', '54', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('753', '回音壁', '0', '', '54', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('754', '迷你音响', '1', '联动', '392', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('755', '雅马哈', '1', '联动', '392', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('756', '索尼', '1', '联动', '392', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('757', 'BOSE', '1', '联动', '392', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('758', '烟灶套餐', '1', '联动', '20', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('759', '消毒柜', '1', '联动', '20', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('760', '除湿机', '1', '联动', '21', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('761', '刀具', '1', '联动', '22', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('762', '奶锅', '1', '联动', '22', '5', '255', '0', '', '', '', '1');
-INSERT INTO `ls_goodsclass` VALUES ('763', '汤锅', '1', '联动', '22', '5', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('1', '水果', '1', '联动', '0', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('2', '核果仁果类', '1', '联动', '1', '0', '253', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('3', '热带水果', '1', '联动', '1', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('4', '蔬菜', '1', '联动', '0', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('5', '薯芋类', '1', '联动', '4', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('6', '叶菜类', '1', '联动', '4', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('7', '葱蒜类', '1', '联动', '4', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('8', '种苗', '1', '联动', '0', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('9', '禽畜牧蛋肉', '1', '联动', '0', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('10', '水产', '1', '联动', '0', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('11', '中药材', '1', '联动', '0', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('12', '坚果干果', '1', '联动', '0', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('15', '农副/副食', '1', '联动', '0', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('16', '粮油作物', '1', '联动', '0', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('20', '水果苗', '1', '联动', '8', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('21', '苗木种苗', '1', '联动', '8', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('22', '禽畜种苗', '1', '联动', '8', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('23', '活禽', '1', '联动', '9', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('24', '活畜', '1', '联动', '9', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('25', '淡水鱼类', '1', '联动', '10', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('26', '虾类', '1', '联动', '10', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('27', '贝类', '1', '联动', '10', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('28', '中药根茎类', '1', '联动', '11', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('29', '中药果实籽仁类', '1', '联动', '11', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('30', '坚果', '1', '联动', '12', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('39', '加工食品', '1', '联动', '15', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('41', '粮油产品', '1', '联动', '15', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('44', '调味品', '1', '联动', '15', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('45', '谷类作物', '1', '联动', '16', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('46', '油类作物', '1', '联动', '16', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('47', '豆类作物', '1', '联动', '16', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('48', '浆果类', '1', '联动', '1', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('49', '瓜果类', '1', '联动', '1', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('51', '根茎类', '1', '联动', '4', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('54', '瓜类', '1', '联动', '4', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('55', '药材种苗', '1', '联动', '8', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('56', '蛋类', '1', '联动', '9', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('57', '禽畜初加工品', '1', '联动', '9', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('58', '海水鱼类', '1', '联动', '10', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('59', '软体类', '1', '联动', '10', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('60', '中药全草类', '1', '联动', '11', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('61', '中药动物类', '1', '联动', '11', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('62', '中药树皮类', '1', '联动', '11', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('64', '干果', '1', '联动', '12', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('65', '干货', '1', '联动', '15', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('66', '酒水饮品', '1', '联动', '15', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('67', '粮油副产品', '1', '联动', '15', '0', '0', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('70', '柚子', '1', '联动', '3', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('71', '柠檬', '1', '联动', '3', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('72', '百香果', '1', '联动', '3', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('73', '甘蔗', '1', '联动', '3', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('74', '火龙果', '1', '联动', '3', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('75', '苹果', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('76', '梨', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('77', '毛桃', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('78', '石榴', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('79', '山楂', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('80', '葡萄', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('81', '猕猴桃', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('82', '草莓', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('83', '柿子', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('84', '圣女果', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('85', '西瓜', '1', '联动', '49', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('86', '哈密瓜', '1', '联动', '49', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('87', '甜瓜', '1', '联动', '49', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('88', '人参果', '1', '联动', '49', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('89', '刺角瓜', '1', '联动', '49', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('90', '白菜', '1', '联动', '6', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('91', '芹菜', '1', '联动', '6', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('92', '莴苣', '1', '联动', '6', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('93', '菠菜', '1', '联动', '6', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('94', '红薯', '1', '联动', '5', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('95', '大葱', '1', '联动', '7', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('96', '生姜', '1', '联动', '7', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('97', '大蒜', '1', '联动', '7', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('98', '白萝卜', '1', '联动', '51', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('99', '胡萝卜', '1', '联动', '51', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('102', '儿菜', '1', '联动', '51', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('103', '芥菜头', '1', '联动', '51', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('104', '山药', '1', '联动', '5', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('105', '土豆', '1', '联动', '5', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('106', '芋头', '1', '联动', '5', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('107', '菊芋', '1', '联动', '5', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('108', '雪莲果', '1', '联动', '5', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('109', '桃树苗', '1', '联动', '20', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('110', '柑桔苗', '1', '联动', '20', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('111', '李子苗', '1', '联动', '20', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('112', '葡萄苗', '1', '联动', '20', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('113', '樱桃苗', '1', '联动', '20', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('114', '梨树苗', '1', '联动', '20', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('115', '苹果苗', '1', '联动', '20', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('116', '核桃苗', '1', '联动', '21', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('117', '柏树苗', '1', '联动', '21', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('118', '杨树苗', '1', '联动', '21', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('119', '枫树苗', '1', '联动', '21', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('121', '鸡苗', '1', '联动', '22', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('122', '鹅苗', '1', '联动', '22', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('123', '鸭苗', '1', '联动', '22', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('124', '金银花苗', '1', '联动', '55', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('125', '黄精种苗', '1', '联动', '55', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('126', '枳壳苗', '1', '联动', '55', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('127', '白芨种苗', '1', '联动', '55', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('128', '吴茱萸苗', '1', '联动', '55', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('129', '枸橘苗', '1', '联动', '55', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('130', '重楼苗', '1', '联动', '55', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('131', '牛大力种苗', '1', '联动', '55', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('132', '枸杞苗', '1', '联动', '55', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('133', '芍药苗', '1', '联动', '55', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('134', '土鸡', '1', '联动', '23', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('135', '鸭', '1', '联动', '23', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('136', '鸡', '1', '联动', '23', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('137', '鹅', '1', '联动', '23', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('138', '肉鸡', '1', '联动', '23', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('139', '肉鹅', '1', '联动', '23', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('140', '鸽子', '1', '联动', '23', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('141', '麻鸭', '1', '联动', '23', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('142', '野鸡', '1', '联动', '23', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('143', '山鸡', '1', '联动', '23', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('144', '肉羊', '1', '联动', '24', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('145', '肉牛', '1', '联动', '24', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('146', '生猪', '1', '联动', '24', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('147', '母猪', '1', '联动', '24', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('148', '肉兔', '1', '联动', '24', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('149', '黄牛', '1', '联动', '24', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('150', '香猪', '1', '联动', '24', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('151', '肉狗', '1', '联动', '24', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('152', '种猪', '1', '联动', '24', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('153', '种羊', '1', '联动', '24', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('154', '鸡蛋', '1', '联动', '56', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('155', '鸭蛋', '1', '联动', '56', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('156', '鹅蛋', '1', '联动', '56', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('157', '种蛋', '1', '联动', '56', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('158', '松花蛋', '1', '联动', '56', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('159', '牛杂', '1', '联动', '57', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('160', '羊杂', '1', '联动', '57', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('161', '牛头', '1', '联动', '57', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('162', '牛蹄', '1', '联动', '57', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('163', '牛腱', '1', '联动', '57', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('164', '牛脊骨', '1', '联动', '57', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('165', '毛肚', '1', '联动', '57', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('166', '牛筋', '1', '联动', '57', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('167', '草鱼', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('168', '鲤鱼', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('169', '鲫鱼', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('170', '泥鳅', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('171', '鲶鱼', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('172', '鲳鱼', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('173', '黑鱼', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('174', '小龙虾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('175', '龙虾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('176', '虾仁', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('177', '对虾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('178', '皮皮虾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('179', '南美白对虾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('180', '河虾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('181', '虾尾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('182', '生蚝', '1', '联动', '27', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('183', '扇贝', '1', '联动', '27', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('184', '田螺', '1', '联动', '27', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('186', '蛤蜊', '1', '联动', '27', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('187', '人参', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('188', '黄花鱼', '1', '联动', '58', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('189', '带鱼', '1', '联动', '58', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('190', '乌贼', '1', '联动', '58', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('191', '银鳕鱼', '1', '联动', '58', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('192', '龙利鱼', '1', '联动', '58', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('193', '鱿鱼', '1', '联动', '59', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('194', '海参', '1', '联动', '59', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('195', '海蛰', '1', '联动', '59', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('196', '章鱼', '1', '联动', '59', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('197', '天麻', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('198', '黄精', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('199', '三七', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('200', '丹参', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('201', '黄芩', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('202', '重楼', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('203', '当归', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('204', '白术', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('205', '土茯苓', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('206', '白芷', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('207', '沙参', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('208', '甘草', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('209', '天冬', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('210', '玉竹', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('211', '太子参', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('212', '大黄', '1', '联动', '28', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('213', '玛卡', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('214', '五味子', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('215', '金樱子', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('216', '草果', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('217', '罗汉果', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('219', '佛手', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('220', '栀子', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('221', '决明子', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('222', '酸枣仁', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('224', '小茴香', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('225', '核桃仁', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('226', '苍耳子', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('227', '女贞子', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('228', '桑葚', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('229', '沙棘', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('230', '槟榔', '1', '联动', '29', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('231', '艾叶', '1', '联动', '60', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('232', '金线莲', '1', '联动', '60', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('233', '独脚金', '1', '联动', '60', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('234', '鹿茸', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('235', '鸡宝', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('236', '燕窝', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('237', '地龙', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('238', '九香虫', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('239', '海龙', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('240', '五灵脂', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('241', '牛骨', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('242', '鸡内金', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('243', '鹿筋', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('244', '石决明', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('245', '蚕沙', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('246', '陈皮', '1', '联动', '62', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('247', '珍珠母', '1', '联动', '61', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('249', '青皮', '1', '联动', '62', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('250', '秦皮', '1', '联动', '62', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('251', '三加皮', '1', '联动', '62', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('252', '山桂皮', '1', '联动', '62', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('253', '橙皮', '1', '联动', '62', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('254', '四方木', '1', '联动', '62', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('255', '木棉皮', '1', '联动', '62', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('256', '止泻木皮', '1', '联动', '62', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('257', '鸭脚木皮', '1', '联动', '62', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('258', '枣树皮', '1', '联动', '62', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('270', '玉米', '1', '联动', '45', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('273', '大米', '1', '联动', '45', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('276', '小米', '1', '联动', '45', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('279', '稻谷', '1', '联动', '45', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('281', '谷子', '1', '联动', '45', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('282', '鲜枣', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('283', '大麦', '1', '联动', '45', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('284', '水蜜桃', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('285', '樱桃', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('286', '花生', '1', '联动', '46', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('287', '李子', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('288', '黄桃', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('289', '芝麻', '1', '联动', '46', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('290', '葵花', '1', '联动', '46', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('291', '香蕉', '1', '联动', '3', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('292', '油瓜', '1', '联动', '46', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('293', '芒果', '1', '联动', '3', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('295', '油桃', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('296', '榴莲', '1', '联动', '3', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('297', '菠萝蜜', '1', '联动', '3', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('298', '杏', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('299', '木瓜', '1', '联动', '3', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('300', '黄豆', '1', '联动', '47', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('302', '无花果', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('303', '黑豆', '1', '联动', '47', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('304', '蓝莓', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('305', '桑葚', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('306', '红豆', '1', '联动', '47', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('307', '灯笼果', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('308', '绿豆', '1', '联动', '47', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('309', '拐枣', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('310', '沙棘果', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('312', '薏米', '1', '联动', '45', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('313', '树莓果', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('314', '仙人掌果', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('315', '燕麦', '1', '联动', '45', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('316', '酸角', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('317', '黑莓', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('318', '荞麦', '1', '联动', '45', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('319', '蓝靛果', '1', '联动', '48', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('321', '野果', '1', '联动', '1', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('322', '亚麻籽', '1', '联动', '46', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('323', '菜籽', '1', '联动', '46', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('324', '青枣', '1', '联动', '2', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('325', '桃金娘', '1', '联动', '321', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('327', '山茶油果', '1', '联动', '46', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('328', '八月瓜', '1', '联动', '321', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('329', '刺梨', '1', '联动', '321', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('330', '羊奶果', '1', '联动', '321', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('331', '竹豆', '1', '联动', '47', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('332', '野地瓜', '1', '联动', '321', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('333', '地稔', '1', '联动', '321', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('334', '江豆', '1', '联动', '47', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('338', '柑橘类', '1', '联动', '1', '0', '254', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('339', '柑橘', '1', '联动', '338', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('341', '橙子', '1', '联动', '338', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('343', '枸橘果', '1', '联动', '338', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('362', '蜂蜜', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('363', '丸子', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('364', '糖果', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('365', '咸菜', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('366', '麻花', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('367', '月饼', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('368', '年糕', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('369', '豆丝', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('370', '板栗', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('371', '鸡蛋', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('372', '阿胶枣', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('373', '锅盔', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('374', '西米', '1', '联动', '39', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('375', '粉条', '1', '联动', '41', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('376', '山茶油', '1', '联动', '41', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('377', '玉米面', '1', '联动', '41', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('378', '粉皮', '1', '联动', '41', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('379', '山药豆', '1', '联动', '5', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('380', '饼干', '1', '联动', '41', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('381', '豆薯', '1', '联动', '5', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('382', '土豆粉', '1', '联动', '41', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('383', '木薯', '1', '联动', '5', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('386', '广芋', '1', '联动', '5', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('387', '水饺', '1', '联动', '41', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('388', '芝麻油', '1', '联动', '41', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('389', '凉皮', '1', '联动', '41', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('390', '莜面', '1', '联动', '41', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('391', '馒头', '1', '联动', '41', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('392', '野菜特菜', '1', '联动', '4', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('393', '花椒', '1', '联动', '44', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('394', '冰糖', '1', '联动', '44', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('395', '豆腐乳', '1', '联动', '44', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('397', '鱼腥草', '1', '联动', '392', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('398', '味精', '1', '联动', '44', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('399', '香辣酱', '1', '联动', '44', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('400', '南瓜', '1', '联动', '54', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('401', '芥末', '1', '联动', '44', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('402', '冬瓜', '1', '联动', '54', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('403', '黄瓜', '1', '联动', '54', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('404', '虾油', '1', '联动', '44', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('405', '西葫芦', '1', '联动', '54', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('406', '小麦酱', '1', '联动', '44', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('407', '苦瓜', '1', '联动', '54', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('408', '黄花菜', '1', '联动', '65', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('409', '萝卜干', '1', '联动', '65', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('410', '蔬菜苗', '1', '联动', '8', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('411', '黄瓜干', '1', '联动', '65', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('412', '水产种苗', '1', '联动', '8', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('413', '花卉种苗', '1', '联动', '8', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('414', '南瓜干', '1', '联动', '65', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('416', '特种养殖种苗', '1', '联动', '8', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('417', '芋头干', '1', '联动', '65', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('419', '桂花干', '1', '联动', '65', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('420', '水产干货', '1', '联动', '10', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('421', '苦瓜干', '1', '联动', '65', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('422', '水产加工品', '1', '联动', '10', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('423', '核桃', '1', '联动', '30', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('424', '鲜肉类', '1', '联动', '9', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('425', '禽畜精加工品', '1', '联动', '9', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('426', '肉类冻品', '1', '联动', '9', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('427', '白酒', '1', '联动', '66', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('428', '乳类', '1', '联动', '9', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('429', '果酒', '1', '联动', '66', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('430', '红酒', '1', '联动', '66', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('431', '矿泉水', '1', '联动', '66', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('432', '啤酒', '1', '联动', '66', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('433', '水果茶', '1', '联动', '66', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('434', '两栖爬行类', '1', '联动', '10', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('435', '可乐', '1', '联动', '66', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('437', '竹筒酒', '1', '联动', '66', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('438', '玉米芯', '1', '联动', '67', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('439', '稻壳', '1', '联动', '67', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('441', '稻草', '1', '联动', '67', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('443', '花生壳', '1', '联动', '67', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('468', '种子', '1', '联动', '0', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('471', '牛肉', '1', '联动', '424', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('472', '羊肉', '1', '联动', '424', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('473', '猪肉', '1', '联动', '424', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('474', '牛排', '1', '联动', '424', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('475', '羊排', '1', '联动', '424', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('477', '牛肉干', '1', '联动', '425', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('478', '腊肉', '1', '联动', '425', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('479', '香肠', '1', '联动', '425', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('481', '火腿', '1', '联动', '425', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('483', '冻牛肉', '1', '联动', '426', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('484', '冻猪肉', '1', '联动', '426', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('486', '冻鸡肉', '1', '联动', '426', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('487', '冰冻乳鸽', '1', '联动', '426', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('491', '奶制品', '1', '联动', '428', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('492', '羊奶', '1', '联动', '428', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('494', '奶渣', '1', '联动', '428', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('496', '牛奶', '1', '联动', '428', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('498', '驼奶', '1', '联动', '428', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('499', '酥油', '1', '联动', '428', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('500', '乳扇', '1', '联动', '428', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('502', '驴奶', '1', '联动', '428', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('507', '栗子', '1', '联动', '30', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('508', '瓜子', '1', '联动', '30', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('509', '桂圆', '1', '联动', '30', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('510', '莲子', '1', '联动', '30', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('511', '松子', '1', '联动', '30', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('512', '杏仁', '1', '联动', '30', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('513', '麻子', '1', '联动', '30', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('514', '巴旦木', '1', '联动', '30', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('515', '夏威夷果', '1', '联动', '30', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('535', '红枣', '1', '联动', '64', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('536', '枸杞', '1', '联动', '64', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('537', '地瓜干', '1', '联动', '64', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('538', '葡萄干', '1', '联动', '64', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('539', '果脯', '1', '联动', '64', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('540', '菠萝蜜', '1', '联动', '64', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('541', '百香果干', '1', '联动', '64', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('577', '鱼干', '1', '联动', '420', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('578', '回春草', '1', '联动', '60', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('579', '三叶青', '1', '联动', '60', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('580', '卷柏', '1', '联动', '60', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('581', '雪莲花', '1', '联动', '60', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('582', '八仙草', '1', '联动', '60', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('583', '穿心草', '1', '联动', '60', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('584', '白花丹', '1', '联动', '60', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('585', '罗非鱼', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('586', '黄颡', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('587', '鲈鱼', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('588', '黄鳝', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('589', '鲢鱼', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('590', '青鱼', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('591', '刀鱼', '1', '联动', '25', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('592', '北极虾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('593', '斑节虾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('594', '草虾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('595', '基围虾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('596', '立虾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('597', '白米虾', '1', '联动', '26', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('598', '鲍鱼', '1', '联动', '27', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('599', '石螺', '1', '联动', '27', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('600', '鲜贝', '1', '联动', '27', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('603', '金枪鱼', '1', '联动', '58', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('604', '刀鱼', '1', '联动', '58', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('605', '鲤鱼', '1', '联动', '58', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('606', '炮弹鱼', '1', '联动', '58', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('607', '剑鱼', '1', '联动', '58', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('608', '牛尾鱼', '1', '联动', '58', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('609', '海胆', '1', '联动', '59', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('610', '海肠', '1', '联动', '59', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('611', '水母', '1', '联动', '59', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('612', '沙虫', '1', '联动', '59', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('613', '笔管鱼', '1', '联动', '59', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('614', '泥丁', '1', '联动', '59', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('615', '干虾', '1', '联动', '420', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('616', '虾皮', '1', '联动', '420', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('617', '花胶', '1', '联动', '420', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('618', '瑶柱', '1', '联动', '420', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('619', '刺龟皮', '1', '联动', '420', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('620', '东江鱼', '1', '联动', '420', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('621', '海鼓干', '1', '联动', '420', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('625', '生蚝肉', '1', '联动', '422', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('626', '海带丝', '1', '联动', '422', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('627', '虾酱', '1', '联动', '422', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('628', '墨鱼仔', '1', '联动', '422', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('629', '田螺肉', '1', '联动', '422', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('630', '虾球', '1', '联动', '422', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('631', '章鱼酱', '1', '联动', '422', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('632', '青蛙', '1', '联动', '434', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('633', '牛蛙', '1', '联动', '434', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('634', '娃娃鱼', '1', '联动', '434', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('635', '蟾蜍', '1', '联动', '434', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('636', '鳄鱼', '1', '联动', '434', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('637', '石蛙', '1', '联动', '434', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('638', '跳跳鱼', '1', '联动', '434', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('640', '花椒苗', '1', '联动', '410', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('641', '香椿苗', '1', '联动', '410', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('642', '红薯苗', '1', '联动', '410', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('643', '西红柿苗', '1', '联动', '410', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('644', '辣椒苗', '1', '联动', '410', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('645', '黄瓜苗', '1', '联动', '410', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('646', '茄子苗', '1', '联动', '410', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('647', '草鱼苗', '1', '联动', '412', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('648', '黑鱼苗', '1', '联动', '412', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('649', '泥鳅苗', '1', '联动', '412', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('650', '虾苗', '1', '联动', '412', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('651', '鲫鱼苗', '1', '联动', '412', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('652', '甲鱼苗', '1', '联动', '412', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('653', '鲤鱼苗', '1', '联动', '412', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('654', '鲶鱼苗', '1', '联动', '412', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('655', '龙虾苗', '1', '联动', '412', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('656', '牡丹苗', '1', '联动', '413', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('657', '玫瑰苗', '1', '联动', '413', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('658', '月季苗', '1', '联动', '413', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('659', '菊花苗', '1', '联动', '413', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('660', '杜鹃苗', '1', '联动', '413', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('661', '睡莲种苗', '1', '联动', '413', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('662', '八仙花种苗', '1', '联动', '413', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('663', '康乃馨种苗', '1', '联动', '413', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('664', '鸵鸟苗', '1', '联动', '416', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('665', '竹鼠苗', '1', '联动', '416', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('666', '孔雀苗', '1', '联动', '416', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('667', '豪猪苗', '1', '联动', '416', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('668', '鳄鱼苗', '1', '联动', '416', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('669', '仔猪', '1', '联动', '22', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('670', '蔬菜种子', '1', '联动', '468', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('671', '中药材种子', '1', '联动', '468', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('672', '林木种子', '1', '联动', '468', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('673', '水果种子', '1', '联动', '468', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('674', '花卉种子', '1', '联动', '468', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('675', '粮油种子', '1', '联动', '468', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('676', '坚果种子', '1', '联动', '468', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('677', '辣椒种子', '1', '联动', '670', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('678', '韭菜种子', '1', '联动', '670', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('679', '南瓜种子', '1', '联动', '670', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('680', '西红柿种子', '1', '联动', '670', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('681', '黄瓜种子', '1', '联动', '670', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('682', '大葱种子', '1', '联动', '670', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('683', '萝卜种子', '1', '联动', '670', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('684', '白菜种子', '1', '联动', '670', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('685', '半夏种子', '1', '联动', '671', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('686', '柴胡种子', '1', '联动', '671', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('687', '白芷种子', '1', '联动', '671', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('688', '天冬种子', '1', '联动', '671', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('689', '黄芩种子', '1', '联动', '671', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('690', '三七种子', '1', '联动', '671', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('691', '沙参种子', '1', '联动', '671', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('692', '五味子种子', '1', '联动', '671', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('693', '枫树种子', '1', '联动', '672', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('694', '槐树种子', '1', '联动', '672', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('695', '花椒种子', '1', '联动', '672', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('696', '紫藤种子', '1', '联动', '672', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('697', '松树种子', '1', '联动', '672', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('698', '牵牛花种子', '1', '联动', '672', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('700', '毛豆种子', '1', '联动', '672', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('701', '桃树种子', '1', '联动', '673', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('702', '西瓜种子', '1', '联动', '673', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('703', '甜瓜种子', '1', '联动', '673', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('704', '苹果种子', '1', '联动', '673', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('705', '甘蔗种子', '1', '联动', '673', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('706', '草莓种子', '1', '联动', '673', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('707', '梨树种子', '1', '联动', '673', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('708', '红参果种子', '1', '联动', '673', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('709', '芒果种子', '1', '联动', '673', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('710', '无花果种子', '1', '联动', '673', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('711', '牡丹种子', '1', '联动', '674', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('712', '凤仙花种子', '1', '联动', '674', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('713', '一串红种子', '1', '联动', '674', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('714', '百合种子', '1', '联动', '674', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('715', '康乃馨种子', '1', '联动', '674', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('716', '孔雀草种子', '1', '联动', '674', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('717', '蝴蝶兰种子', '1', '联动', '674', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('718', '芋头花种子', '1', '联动', '674', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('719', '茉莉种子', '1', '联动', '674', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('720', '蔷薇种子', '1', '联动', '674', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('721', '玉米种子', '1', '联动', '675', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('722', '花生种子', '1', '联动', '675', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('723', '小麦种子', '1', '联动', '675', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('724', '高粱种子', '1', '联动', '675', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('725', '大豆种子', '1', '联动', '675', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('726', '葵花种子', '1', '联动', '675', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('727', '马铃薯种子', '1', '联动', '675', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('728', '绿豆种子', '1', '联动', '675', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('729', '核桃种子', '1', '联动', '676', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('730', '板栗种子', '1', '联动', '676', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('731', '桂圆种子', '1', '联动', '676', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('732', '腰果种子', '1', '联动', '676', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('733', '夏威夷果种子', '1', '联动', '676', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('734', '巴旦木种子', '1', '联动', '676', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('735', '开心果种子', '1', '联动', '676', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('736', '莲花种子', '1', '联动', '676', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('739', '香菜', '1', '联动', '6', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('740', '油菜', '1', '联动', '6', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('741', '生菜', '1', '联动', '6', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('742', '韭菜', '1', '联动', '7', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('743', '洋葱', '1', '联动', '7', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('744', '葱苗', '1', '联动', '7', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('746', '小葱', '1', '联动', '7', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('749', '榨菜', '1', '联动', '51', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('750', '丝瓜', '1', '联动', '54', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('752', '佛手瓜', '1', '联动', '54', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('753', '葫芦', '1', '联动', '54', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('754', '秋葵', '1', '联动', '392', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('755', '荠菜', '1', '联动', '392', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('756', '白花菜', '1', '联动', '392', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('758', '无花果苗', '1', '联动', '20', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('759', '猕猴桃苗', '1', '联动', '20', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('760', '松树苗', '1', '联动', '21', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('761', '牛犊', '1', '联动', '22', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('762', '种兔', '1', '联动', '22', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('763', '狗崽', '1', '联动', '22', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('764', '食用菌', '1', '联动', '0', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('765', '食用菌鲜货', '1', '联动', '764', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('766', '灵芝', '1', '联动', '765', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('767', '黑木耳', '1', '联动', '765', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('768', '蘑菇', '1', '联动', '765', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('769', '虫草', '1', '联动', '765', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('770', '平菇', '1', '联动', '765', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('771', '鲜香菇', '1', '联动', '765', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('772', '食用菌干货', '1', '联动', '764', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('773', '干香菇', '1', '联动', '772', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('774', '羊肚菌', '1', '联动', '772', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('775', '猴头菇', '1', '联动', '772', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('776', '竹荪', '1', '联动', '772', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('777', '茶树菇', '1', '联动', '772', '0', '255', '0', '', '', '', '1');
+INSERT INTO `ls_goodsclass` VALUES ('778', '牛肝菌', '1', '联动', '772', '0', '255', '0', '', '', '', '1');
 
 -- -----------------------------
 -- Table structure for `ls_goodsclassnav`
@@ -9120,6 +9680,20 @@ CREATE TABLE `ls_goodsclassnav` (
   PRIMARY KEY (`gc_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='分类导航表';
 
+-- -----------------------------
+-- Records of `ls_goodsclassnav`
+-- -----------------------------
+INSERT INTO `ls_goodsclassnav` VALUES ('1', '', '75,76,339,341,70,73', '', '', '2019112918110813574.png', '128', '2019112918110876256.png', '128');
+INSERT INTO `ls_goodsclassnav` VALUES ('4', '', '94,104,90,95,96,98', '', '', '2019112918112413311.png', '128', '2019112918112494720.png', '128');
+INSERT INTO `ls_goodsclassnav` VALUES ('8', '', '109,111,112,113,121,669', '', '', '2019112918141392920.png', '128', '2019112918141325732.png', '128');
+INSERT INTO `ls_goodsclassnav` VALUES ('9', '', '134,135,144', '', '', '2019112918142583723.png', '128', '2019112918142539827.png', '128');
+INSERT INTO `ls_goodsclassnav` VALUES ('10', '', '167,172,174,182', '', '', '2019112918144252501.png', '128', '2019112918144251220.png', '128');
+INSERT INTO `ls_goodsclassnav` VALUES ('11', '', '187,201,220,231', '', '', '2019112918145336939.png', '128', '2019112918145357313.png', '128');
+INSERT INTO `ls_goodsclassnav` VALUES ('12', '', '423,535,536', '', '', '2019112918145336939.png', '128', '2019112918145357313.png', '128');
+INSERT INTO `ls_goodsclassnav` VALUES ('15', '', '362,367,375,382', '', '', '2019112918145336939.png', '128', '2019112918145336939.png', '128');
+INSERT INTO `ls_goodsclassnav` VALUES ('16', '', '270,283,286,323', '', '', '2019112918145336939.png', '128', '2019112918145336939.png', '128');
+INSERT INTO `ls_goodsclassnav` VALUES ('468', '', '677,685,690', '', '', '2019112918145336939.png', '128', '2019112918145336939.png', '128');
+INSERT INTO `ls_goodsclassnav` VALUES ('764', '', '766,773', '', '', '2019112918145336939.png', '128', '2019112918145336939.png', '128');
 
 -- -----------------------------
 -- Table structure for `ls_goodsclassstaple`
@@ -9136,8 +9710,12 @@ CREATE TABLE `ls_goodsclassstaple` (
   `member_id` int(10) unsigned NOT NULL COMMENT '会员id',
   PRIMARY KEY (`staple_id`),
   KEY `store_id` (`member_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='店铺常用分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='店铺常用分类表';
 
+-- -----------------------------
+-- Records of `ls_goodsclassstaple`
+-- -----------------------------
+INSERT INTO `ls_goodsclassstaple` VALUES ('2', '6', '水果 >核果仁果类 >苹果', '1', '2', '75', '1', '1');
 
 -- -----------------------------
 -- Table structure for `ls_goodsclasstag`
@@ -9243,7 +9821,7 @@ CREATE TABLE `ls_goodscommon` (
 -- -----------------------------
 -- Records of `ls_goodscommon`
 -- -----------------------------
-INSERT INTO `ls_goodscommon` VALUES ('2', '荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金', '北欧极简设计，EMUI5.1', '2', '1', '2', '0', '手机/ 运营商/ 智能数码 >手机通讯', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092120144795113.jpg', 'N;', '', '', '1', '', '1', '', '0', '1505996432', '0', '', '998.00', '1290.00', '0.00', '77', '1', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '1', '1514476799', '1', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
+INSERT INTO `ls_goodscommon` VALUES ('2', '荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金', '北欧极简设计，EMUI5.1', '75', '1', '2', '75', '水果 &gt;核果仁果类 &gt;苹果', '1', '自营店铺', 'a:3:{i:1;s:6:\"样式\";i:2;s:6:\"颜色\";i:3;s:6:\"大小\";}', 'a:3:{i:1;a:1:{i:124;s:9:\"全网通\";}i:2;a:3:{i:117;s:9:\"香槟金\";i:120;s:3:\"黑\";i:121;s:3:\"白\";}i:3;a:2:{i:119;s:3:\"32G\";i:122;s:3:\"64G\";}}', '0', '', '1', '1_2017092120144795113.jpg', '', '', 'a:5:{i:0;a:2:{s:4:\"type\";s:5:\"image\";s:5:\"value\";s:79:\"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092901284880537.jpg\";}i:1;a:2:{s:4:\"type\";s:5:\"image\";s:5:\"value\";s:79:\"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092901271966752.jpg\";}i:2;a:2:{s:4:\"type\";s:5:\"image\";s:5:\"value\";s:79:\"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092901314252467.jpg\";}i:3;a:2:{s:4:\"type\";s:4:\"text\";s:5:\"value\";s:192:\"啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\";}i:4;a:2:{s:4:\"type\";s:4:\"text\";s:5:\"value\";s:249:\"啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊范德萨范德萨发多少阿凡达范德萨范德萨发送到范德萨范德萨富士达发送到范德萨\";}}', '1', '', '1', '', '0', '1505996432', '0', '', '998.00', '1290.00', '0.00', '77', '1', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('3', 'Apple/苹果 iPhone 7plus 128GB 玫瑰金色 移动联通电信4G手机', '购机即送精美防尘塞+便捷支架+鱼骨绕线器+店铺延保一年', '2', '1', '2', '0', '手机/ 运营商/ 智能数码 >手机通讯', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092120244885492.jpg', 'N;', '', '', '1', '', '1', '', '0', '1505996810', '0', '', '6999.00', '7100.00', '0.00', '98', '2', '10', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('4', 'nubia/努比亚Z17 6G+64G 全网通4G手机 烈焰红 无边框', '烈焰红 无边框', '2', '1', '2', '0', '手机/ 运营商/ 智能数码 >手机通讯', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092120312320763.jpg', 'N;', '', '', '1', '', '1', '', '0', '1505997092', '0', '', '2699.00', '3000.00', '0.00', '89', '3', '10', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('5', '智能电动代步车', '长续航蓝牙遥控 轻小便携', '3', '1', '3', '0', '手机/ 运营商/ 智能数码 >智能设备', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092120345719915.jpg', 'N;', '', '', '1', '', '1', '', '0', '1505997303', '0', '', '1990.00', '2000.00', '0.00', '99', '4', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
@@ -9280,10 +9858,10 @@ INSERT INTO `ls_goodscommon` VALUES ('36', '洋河 梦之蓝M3-52度500ml', '', 
 INSERT INTO `ls_goodscommon` VALUES ('37', '五粮液', '孝敬长辈，推荐用酒', '29', '11', '29', '0', '食品/ 酒水/ 生鲜/ 特产 >酒水', '1', '自营店铺', 'a:3:{i:1;s:6:\"样式\";i:2;s:6:\"颜色\";i:3;s:6:\"大小\";}', 'a:3:{i:1;a:1:{i:1;s:5:\"400ml\";}i:2;a:1:{i:1;s:3:\"红\";}i:3;a:1:{i:37;s:5:\"52度\";}}', '0', '', '1', '1_2017092202382291274.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506019112', '0', '', '695.00', '820.00', '0.00', '84', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('39', '自然堂 水润保湿两件套 补水保湿套装', '', '30', '12', '30', '0', '个护化妆/ 纸品清洁/ 宠物 >护肤品', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092202443553519.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506019477', '0', '', '69.40', '70.00', '0.00', '99', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('40', '百雀羚水能量焕耀套装补水保湿护肤套装', '补水修复 宛若新生  ', '30', '12', '30', '0', '个护化妆/ 纸品清洁/ 宠物 >护肤品', '1', '自营店铺', 'a:3:{i:1;s:6:\"样式\";i:2;s:6:\"颜色\";i:3;s:6:\"大小\";}', 'a:3:{i:1;a:1:{i:42;s:9:\"两件套\";}i:2;a:1:{i:45;s:6:\"翠绿\";}i:3;a:1:{i:46;s:5:\"200ml\";}}', '0', '', '1', '1_2017092202461115940.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506019573', '0', '', '369.00', '400.00', '0.00', '92', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
-INSERT INTO `ls_goodscommon` VALUES ('41', ' 小黑裙香水洗发水+沐浴露', ' 风魔欧美 持久留香 洗护套装', '31', '12', '31', '0', '个护化妆/ 纸品清洁/ 宠物 >清洁洗护', '1', '自营店铺', 'a:3:{i:1;s:6:\"样式\";i:2;s:6:\"颜色\";i:3;s:6:\"大小\";}', 'a:3:{i:1;a:1:{i:1;s:9:\"两件套\";}i:2;a:1:{i:1;s:3:\"白\";}i:3;a:1:{i:1;s:5:\"500ml\";}}', '0', '', '1', '1_2017092202492958131.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506019782', '0', '', '45.90', '56.00', '0.00', '81', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
-INSERT INTO `ls_goodscommon` VALUES ('42', '滋源无硅油洗发水氨基酸生姜535洗护发套装', '', '31', '12', '31', '0', '个护化妆/ 纸品清洁/ 宠物 >清洁洗护', '1', '自营店铺', 'a:3:{i:1;s:6:\"样式\";i:2;s:6:\"颜色\";i:3;s:6:\"大小\";}', 'a:3:{i:1;a:1:{i:49;s:9:\"两件套\";}i:2;a:1:{i:1;s:3:\"紫\";}i:3;a:1:{i:47;s:5:\"500ml\";}}', '0', '', '1', '1_2017092202514891485.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506019911', '0', '', '179.00', '189.00', '0.00', '94', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
-INSERT INTO `ls_goodscommon` VALUES ('43', '宠物用品出行牵引带', '', '32', '12', '32', '0', '个护化妆/ 纸品清洁/ 宠物 >宠物生活', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092202553367071.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506020205', '0', '', '14.90', '25.00', '0.00', '59', '39', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
-INSERT INTO `ls_goodscommon` VALUES ('44', '家用宠物日用品饮水器喝水瓶', '', '32', '12', '32', '0', '个护化妆/ 纸品清洁/ 宠物 >宠物生活', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092202585843151.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506020341', '0', '', '14.90', '15.00', '0.00', '99', '35', '10', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
+INSERT INTO `ls_goodscommon` VALUES ('41', ' 小黑裙香水洗发水+沐浴露', ' 风魔欧美 持久留香 洗护套装', '31', '12', '31', '0', '个护化妆/ 纸品清洁/ 宠物 >清洁洗护', '1', '自营店铺', 'a:3:{i:1;s:6:\"样式\";i:2;s:6:\"颜色\";i:3;s:6:\"大小\";}', 'a:3:{i:1;a:1:{i:1;s:9:\"两件套\";}i:2;a:1:{i:1;s:3:\"白\";}i:3;a:1:{i:1;s:5:\"500ml\";}}', '0', '', '1', '1_2017092202492958131.jpg', 'N;', '', '', '10', '商品分类被删除，需要重新选择分类', '1', '', '0', '1506019782', '0', '', '45.90', '56.00', '0.00', '81', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
+INSERT INTO `ls_goodscommon` VALUES ('42', '滋源无硅油洗发水氨基酸生姜535洗护发套装', '', '31', '12', '31', '0', '个护化妆/ 纸品清洁/ 宠物 >清洁洗护', '1', '自营店铺', 'a:3:{i:1;s:6:\"样式\";i:2;s:6:\"颜色\";i:3;s:6:\"大小\";}', 'a:3:{i:1;a:1:{i:49;s:9:\"两件套\";}i:2;a:1:{i:1;s:3:\"紫\";}i:3;a:1:{i:47;s:5:\"500ml\";}}', '0', '', '1', '1_2017092202514891485.jpg', 'N;', '', '', '10', '商品分类被删除，需要重新选择分类', '1', '', '0', '1506019911', '0', '', '179.00', '189.00', '0.00', '94', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
+INSERT INTO `ls_goodscommon` VALUES ('43', '宠物用品出行牵引带', '', '32', '12', '32', '0', '个护化妆/ 纸品清洁/ 宠物 >宠物生活', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092202553367071.jpg', 'N;', '', '', '10', '商品分类被删除，需要重新选择分类', '1', '', '0', '1506020205', '0', '', '14.90', '25.00', '0.00', '59', '39', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
+INSERT INTO `ls_goodscommon` VALUES ('44', '家用宠物日用品饮水器喝水瓶', '', '32', '12', '32', '0', '个护化妆/ 纸品清洁/ 宠物 >宠物生活', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092202585843151.jpg', 'N;', '', '', '10', '商品分类被删除，需要重新选择分类', '1', '', '0', '1506020341', '0', '', '14.90', '15.00', '0.00', '99', '35', '10', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('45', '与牧2017韩版短款', '', '39', '15', '39', '0', '男装/ 女装/ 内衣 >女装', '1', '自营店铺', 'a:3:{i:1;s:6:\"样式\";i:2;s:6:\"颜色\";i:3;s:6:\"大小\";}', 'a:3:{i:1;a:1:{i:1;s:6:\"针织\";}i:2;a:2:{i:3;s:3:\"黑\";i:4;s:3:\"白\";}i:3;a:3:{i:8;s:1:\"M\";i:9;s:1:\"L\";i:10;s:2:\"XL\";}}', '0', '', '1', '1_2017092203045216863.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506020705', '0', '', '39.00', '42.00', '0.00', '92', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('46', '蔚缇2017夏季小花网纱+吊带+喇叭裤三件套女', '限时促销', '39', '15', '39', '0', '男装/ 女装/ 内衣 >女装', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092203062937149.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506020790', '0', '', '139.50', '145.00', '0.00', '96', '1610', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('47', '2017夏季百搭吊带背心女新款修身纯棉吊带衫蕾丝打底背心', '宽松小吊带 白色', '39', '15', '39', '0', '男装/ 女装/ 内衣 >女装', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092203083967214.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506020928', '0', '', '39.90', '45.00', '0.00', '88', '1620', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
@@ -9331,7 +9909,7 @@ INSERT INTO `ls_goodscommon` VALUES ('89', 'Seagate/希捷 ST1000DM010 1TB新酷
 INSERT INTO `ls_goodscommon` VALUES ('90', 'Asus/华硕 X555YI 7110-554LXFA2X10轻薄手提游戏本笔记本电脑', '', '134', '9', '23', '134', '电脑办公/ 相机/ DIY >电脑整机 >笔记本', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092900501117171.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506617415', '0', '', '2599.00', '2780.00', '0.00', '93', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('91', '小米 红米NOTE 5A智能拍照手机16G/32G/64G', '', '75', '1', '2', '75', '手机/ 运营商/ 智能数码 >手机通讯 >小米', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092900544928056.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506617760', '0', '', '799.00', '899.00', '0.00', '88', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('92', '3期免息【高配2799】Xiaomi/小米 小米NOTE 3全网通小米手机新品', '', '75', '1', '2', '75', '手机/ 运营商/ 智能数码 >手机通讯 >小米', '1', '自营店铺', 'a:3:{i:1;s:6:\"样式\";i:2;s:6:\"颜色\";i:3;s:6:\"大小\";}', 'a:3:{i:1;a:1:{i:1;s:9:\"全网通\";}i:2;a:1:{i:1;s:3:\"白\";}i:3;a:1:{i:1;s:4:\"128G\";}}', '0', '', '1', '1_2017092901044975398.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506618294', '0', '', '2466.00', '2546.00', '0.00', '96', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
-INSERT INTO `ls_goodscommon` VALUES ('93', 'honor/荣耀 荣耀9 全网通4G手机双摄像头智能手机', '后置双摄像头手机', '76', '1', '2', '76', '手机/ 运营商/ 智能数码 >手机通讯 >荣耀', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901063965472.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506618422', '0', '', '2499.00', '2699.00', '0.00', '92', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
+INSERT INTO `ls_goodscommon` VALUES ('93', 'honor/荣耀 荣耀9 全网通4G手机双摄像头智能手机', '后置双摄像头手机', '76', '1', '2', '76', '水果 &gt;核果仁果类 &gt;梨', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092901063965472.jpg', '', '', '', '1', '', '1', '', '0', '1506618422', '0', '', '2499.00', '2699.00', '0.00', '92', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('94', 'honor/荣耀 荣耀V9 play全网通4G手机', '', '76', '1', '2', '76', '手机/ 运营商/ 智能数码 >手机通讯 >荣耀', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901082884641.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506618514', '0', '', '1099.00', '1200.00', '0.00', '91', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('95', 'OnePlus/一加 一加手机5 一加五 1加5手机 一加5星辰黑', '一加授权 官方直供 优惠低至官网', '77', '1', '2', '77', '手机/ 运营商/ 智能数码 >手机通讯 >一加', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901111615092.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506618679', '0', '', '2068.00', '2100.00', '0.00', '98', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('96', '超薄5.5寸移动电信全网通4G双曲屏学生智能指纹一体一加手机', '', '77', '1', '2', '77', '手机/ 运营商/ 智能数码 >手机通讯 >一加', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901182073726.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506619103', '0', '', '748.00', '820.00', '0.00', '91', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
@@ -9341,7 +9919,7 @@ INSERT INTO `ls_goodscommon` VALUES ('99', 'OPPO A57 全新手机a59s a33 r9s r1
 INSERT INTO `ls_goodscommon` VALUES ('100', ' OPPO A57 oppoa57 oppo手机a57', '已降200', '79', '1', '2', '79', '手机/ 运营商/ 智能数码 >手机通讯 >oppo', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901284880537.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506619757', '0', '', '1399.00', '1599.00', '0.00', '87', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('101', 'Ticwatch2智能手表蓝牙通话防水运动支持安卓苹果心率定位手环男', '蓝牙通话 GPS记录运动轨迹', '70', '1', '3', '70', '手机/ 运营商/ 智能数码 >智能设备 >智能手表', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901314252467.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506619910', '0', '', '938.00', '1060.00', '0.00', '88', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('102', '儿童智能手表成人电话手机学生男女定位防水蓝牙插卡运动安卓手环', '学习APP 定位 防水 插卡电话', '70', '1', '3', '70', '手机/ 运营商/ 智能数码 >智能设备 >智能手表', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901331891773.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506620008', '0', '', '118.00', '129.00', '0.00', '91', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
-INSERT INTO `ls_goodscommon` VALUES ('103', '高端Solgo松果老人定位手表手环 精准测血压心率心电图 家居养老', '准确血压心率 触屏 抬手亮屏 语音播报', '72', '1', '3', '72', '手机/ 运营商/ 智能数码 >智能设备 >健康监测', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901395681652.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506620400', '0', '', '999.00', '1080.00', '0.00', '92', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
+INSERT INTO `ls_goodscommon` VALUES ('103', '高端Solgo松果老人定位手表手环 精准测血压心率心电图 家居养老', '准确血压心率 触屏 抬手亮屏 语音播报', '72', '1', '3', '72', '水果 &gt;热带水果 &gt;百香果', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092901395681652.jpg', '', '', '', '1', '', '1', '', '0', '1506620400', '0', '', '999.00', '1080.00', '0.00', '92', '', '0', '0', '', '0', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('104', '舒思盾经络按摩仪数码家用多功能针灸穴位电子理疗腰椎颈椎电疗仪', '', '72', '1', '3', '72', '手机/ 运营商/ 智能数码 >智能设备 >健康监测', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901414663050.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506620509', '0', '', '168.00', '199.00', '0.00', '84', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('105', '一米爱家具 现代简约鞋柜玄关门厅柜多功能简易翻斗鞋柜超薄鞋柜', '庆国家年华 疯狂抢购中', '73', '1', '3', '73', '手机/ 运营商/ 智能数码 >智能设备 >智能家居', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901444780977.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506620689', '0', '', '999.00', '1450.00', '0.00', '68', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('106', '上海名古智能家居别墅智能正品控制系统家庭影院装修设计上门安装', '', '73', '1', '3', '73', '手机/ 运营商/ 智能数码 >智能设备 >智能家居', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901470136191.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506620831', '0', '', '500.00', '600.00', '0.00', '83', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
@@ -9350,12 +9928,12 @@ INSERT INTO `ls_goodscommon` VALUES ('108', '亚太天能阿里智能指纹锁�
 INSERT INTO `ls_goodscommon` VALUES ('109', 'mai小麦指纹锁家用防盗门智能门锁电子锁密码锁刷卡锁防盗锁正品', '锁芯5★防盗性能', '74', '1', '3', '74', '手机/ 运营商/ 智能数码 >智能设备 >智能门锁', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901561798176.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506621381', '0', '', '799.00', '1200.00', '0.00', '66', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('110', '欧瑞特智能手环运动计步器测心率血压手表小米多功能健康防水男女', '多模式血压手环！！', '71', '1', '3', '71', '手机/ 运营商/ 智能数码 >智能设备 >智能手环', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092901584247144.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506621524', '0', '', '179.00', '189.00', '0.00', '94', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('111', '君米运动智能手环防水测血压心跳心率跑步小米手表多功能苹果男女', '深度防水游泳 超长待机180天 微信qq', '71', '1', '3', '71', '手机/ 运营商/ 智能数码 >智能设备 >智能手环', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092902070476170.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506622029', '0', '', '258.00', '269.00', '0.00', '95', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
-INSERT INTO `ls_goodscommon` VALUES ('112', '拜斯特台式放大镜带LED灯10倍20倍老人阅读电子检验钟表手机维修', '台式 带LED灯 阅读维修', '68', '16', '68', '0', '鞋靴/ 箱包/ 钟表/ 珠宝 >钟表眼镜', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092902123493954.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506622356', '0', '', '45.00', '69.00', '0.00', '65', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
-INSERT INTO `ls_goodscommon` VALUES ('113', '商务tr90近视眼镜男款超轻眼镜框半框潮商务近视镜眼镜架黑镜框男', '', '68', '16', '68', '0', '鞋靴/ 箱包/ 钟表/ 珠宝 >钟表眼镜', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092902135876412.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506622587', '0', '', '75.00', '120.00', '0.00', '62', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
-INSERT INTO `ls_goodscommon` VALUES ('114', '景德镇陶瓷花瓶摆件客厅装饰品摆设中式家居新房装饰品酒柜摆件', '富贵吉祥蛋 向往美好 充满生活气息\r\n', '69', '16', '69', '0', '鞋靴/ 箱包/ 钟表/ 珠宝 >艺术品', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092902182426089.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506622742', '0', '', '36.00', '54.00', '0.00', '66', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
-INSERT INTO `ls_goodscommon` VALUES ('115', '财富节节高电视柜酒柜客厅摆件装饰品竹子家居饰品工艺品招财摆设', '财富节节高 四季长青 象征财运旺盛', '69', '16', '69', '0', '鞋靴/ 箱包/ 钟表/ 珠宝 >艺术品', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092902201298747.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506622814', '0', '', '79.00', '109.00', '0.00', '72', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
+INSERT INTO `ls_goodscommon` VALUES ('112', '拜斯特台式放大镜带LED灯10倍20倍老人阅读电子检验钟表手机维修', '台式 带LED灯 阅读维修', '68', '16', '68', '0', '鞋靴/ 箱包/ 钟表/ 珠宝 >钟表眼镜', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092902123493954.jpg', 'N;', '', '', '10', '商品分类被删除，需要重新选择分类', '1', '', '0', '1506622356', '0', '', '45.00', '69.00', '0.00', '65', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
+INSERT INTO `ls_goodscommon` VALUES ('113', '商务tr90近视眼镜男款超轻眼镜框半框潮商务近视镜眼镜架黑镜框男', '', '68', '16', '68', '0', '鞋靴/ 箱包/ 钟表/ 珠宝 >钟表眼镜', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092902135876412.jpg', 'N;', '', '', '10', '商品分类被删除，需要重新选择分类', '1', '', '0', '1506622587', '0', '', '75.00', '120.00', '0.00', '62', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
+INSERT INTO `ls_goodscommon` VALUES ('114', '景德镇陶瓷花瓶摆件客厅装饰品摆设中式家居新房装饰品酒柜摆件', '富贵吉祥蛋 向往美好 充满生活气息\r\n', '69', '16', '69', '0', '鞋靴/ 箱包/ 钟表/ 珠宝 >艺术品', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092902182426089.jpg', 'N;', '', '', '10', '商品分类被删除，需要重新选择分类', '1', '', '0', '1506622742', '0', '', '36.00', '54.00', '0.00', '66', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
+INSERT INTO `ls_goodscommon` VALUES ('115', '财富节节高电视柜酒柜客厅摆件装饰品竹子家居饰品工艺品招财摆设', '财富节节高 四季长青 象征财运旺盛', '69', '16', '69', '0', '鞋靴/ 箱包/ 钟表/ 珠宝 >艺术品', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092902201298747.jpg', 'N;', '', '', '10', '商品分类被删除，需要重新选择分类', '1', '', '0', '1506622814', '0', '', '79.00', '109.00', '0.00', '72', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('116', 'LAVER防脱育发液快速增发密发生新发液脂溢性脱发头发增长液男女', '认准国妆特字 告别脱发轻松密发买3送1', '64', '12', '64', '0', '个护化妆/ 纸品清洁/ 宠物 >洗发护发', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092902341762945.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506623660', '0', '', '128.00', '144.00', '0.00', '88', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
-INSERT INTO `ls_goodscommon` VALUES ('117', '冲牙器便携式洗牙器家用电动口腔牙齿冲洗器牙龈牙缝清洁器洁牙器', '洁牙器 洗牙机 冲牙 洗牙 口腔清洁器', '63', '12', '63', '0', '个护化妆/ 纸品清洁/ 宠物 >口腔护理', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092902405679397.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506624060', '0', '', '178.00', '210.00', '0.00', '84', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
+INSERT INTO `ls_goodscommon` VALUES ('117', '冲牙器便携式洗牙器家用电动口腔牙齿冲洗器牙龈牙缝清洁器洁牙器', '洁牙器 洗牙机 冲牙 洗牙 口腔清洁器', '63', '12', '63', '0', '个护化妆/ 纸品清洁/ 宠物 >口腔护理', '1', '自营店铺', 'N;', 'N;', '0', '', '1', '1_2017092902405679397.jpg', 'N;', '', '', '10', '商品分类被删除，需要重新选择分类', '1', '', '0', '1506624060', '0', '', '178.00', '210.00', '0.00', '84', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 INSERT INTO `ls_goodscommon` VALUES ('118', '新西兰进口牛奶纽仕兰高钙低脂纯牛奶250ml*24盒*1箱', '新西兰进口 牧场直供 100%生牛乳', '231', '11', '60', '231', '食品/ 酒水/ 生鲜/ 特产 >饮料冲乳 >纯牛奶', '1', '自营店铺', 'N;', 'N;', '0', '', '0', '1_2017092902485560056.jpg', 'N;', '', '', '1', '', '1', '', '0', '1506624539', '0', '', '89.00', '120.00', '0.00', '74', '', '0', '0', '', '1', '0.00', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '', '0.00', '0.00', '0.00', '0', '0.00', '0.00', '0', '1', '255');
 
 -- -----------------------------
@@ -9400,12 +9978,11 @@ CREATE TABLE `ls_goodsimages` (
   `goodsimage_sort` tinyint(3) unsigned NOT NULL DEFAULT '255' COMMENT '商品图片排序',
   `goodsimage_isdefault` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '商品图片默认主图，1是，0否',
   PRIMARY KEY (`goodsimage_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8 COMMENT='商品图片';
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8 COMMENT='商品图片';
 
 -- -----------------------------
 -- Records of `ls_goodsimages`
 -- -----------------------------
-INSERT INTO `ls_goodsimages` VALUES ('1', '2', '1', '0', '1_2017092120144795113.jpg', '0', '1');
 INSERT INTO `ls_goodsimages` VALUES ('2', '3', '1', '0', '1_2017092120244885492.jpg', '0', '1');
 INSERT INTO `ls_goodsimages` VALUES ('3', '4', '1', '0', '1_2017092120312320763.jpg', '0', '1');
 INSERT INTO `ls_goodsimages` VALUES ('4', '5', '1', '0', '1_2017092120345719915.jpg', '0', '1');
@@ -9522,6 +10099,8 @@ INSERT INTO `ls_goodsimages` VALUES ('118', '115', '1', '0', '1_2017092902201298
 INSERT INTO `ls_goodsimages` VALUES ('119', '116', '1', '0', '1_2017092902341762945.jpg', '0', '1');
 INSERT INTO `ls_goodsimages` VALUES ('120', '117', '1', '0', '1_2017092902405679397.jpg', '0', '1');
 INSERT INTO `ls_goodsimages` VALUES ('121', '118', '1', '0', '1_2017092902485560056.jpg', '0', '1');
+INSERT INTO `ls_goodsimages` VALUES ('122', '2', '1', '124', 'alioss_1_2019120615504452348.png', '0', '1');
+INSERT INTO `ls_goodsimages` VALUES ('123', '2', '1', '124', 'alioss_1_2019120615504617761.png', '0', '0');
 
 -- -----------------------------
 -- Table structure for `ls_groupbuy`
@@ -9747,6 +10326,10 @@ CREATE TABLE `ls_inviter` (
   PRIMARY KEY (`inviter_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='推广员表';
 
+-- -----------------------------
+-- Records of `ls_inviter`
+-- -----------------------------
+INSERT INTO `ls_inviter` VALUES ('11', '1', '0.00', '0', '0', '0', '1574761742', '0', '0');
 
 -- -----------------------------
 -- Table structure for `ls_inviterclass`
@@ -9890,9 +10473,17 @@ CREATE TABLE `ls_marketmanage` (
   `marketmanage_addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
   `marketmanage_failed` varchar(255) NOT NULL DEFAULT '' COMMENT '未中奖说明',
   `marketmanage_type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '营销活动类型 1刮刮卡2大转盘3砸金蛋4生肖翻翻看',
+  `marketmanage_grade` int(11) DEFAULT '1' COMMENT '用户等级ID',
   PRIMARY KEY (`marketmanage_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='营销活动活动 刮刮卡大转盘砸金蛋生肖翻翻看';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='营销活动活动 刮刮卡大转盘砸金蛋生肖翻翻看';
 
+-- -----------------------------
+-- Records of `ls_marketmanage`
+-- -----------------------------
+INSERT INTO `ls_marketmanage` VALUES ('1', '普通会员大转盘', '大转盘抽奖', '1574402760', '1579839000', '2', '0', '0', '0', '0', '1574402887', '很遗憾您未中奖', '2', '1');
+INSERT INTO `ls_marketmanage` VALUES ('2', '银牌会员大转盘', '大转盘抽奖', '1574752380', '1609398780', '2', '0', '0', '0', '0', '1574752522', '很遗憾您未中奖', '2', '2');
+INSERT INTO `ls_marketmanage` VALUES ('3', '金牌会员大转盘', '大转盘抽奖', '1574752500', '1609398900', '2', '0', '0', '0', '0', '1574752599', '很遗憾您未中奖', '2', '3');
+INSERT INTO `ls_marketmanage` VALUES ('4', 'VIP会员大转盘', '大转盘抽奖', '1574752560', '1609398960', '2', '0', '0', '0', '0', '1574752666', '很遗憾您未中奖', '2', '4');
 
 -- -----------------------------
 -- Table structure for `ls_marketmanageaward`
@@ -9907,11 +10498,30 @@ CREATE TABLE `ls_marketmanageaward` (
   `marketmanageaward_send` int(11) NOT NULL DEFAULT '0' COMMENT '中奖数量',
   `marketmanageaward_probability` int(3) NOT NULL DEFAULT '0' COMMENT '奖品概率',
   `marketmanageaward_point` int(11) NOT NULL DEFAULT '0' COMMENT '奖品积分',
-  `bonus_id` int(11) NOT NULL DEFAULT '0' COMMENT '红包ID',
+  `bonus_id` varchar(255) NOT NULL COMMENT '实物奖励',
   `vouchertemplate_id` int(11) NOT NULL DEFAULT '0' COMMENT '优惠券ID',
   PRIMARY KEY (`marketmanageaward_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='营销活动活动奖品记录';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='营销活动活动奖品记录';
 
+-- -----------------------------
+-- Records of `ls_marketmanageaward`
+-- -----------------------------
+INSERT INTO `ls_marketmanageaward` VALUES ('1', '1', '1', '2', '1', '0', '1', '0', '电冰箱一台', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('2', '1', '2', '2', '2', '0', '2', '0', '彩电一台', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('3', '1', '3', '1', '3', '0', '3', '3', '0', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('4', '1', '4', '1', '4', '0', '4', '4', '0', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('5', '2', '1', '2', '1', '0', '1', '0', '电视机一台', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('6', '2', '2', '2', '2', '0', '2', '0', '冰箱一台', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('7', '2', '3', '1', '3', '0', '3', '3', '', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('8', '2', '4', '1', '4', '0', '4', '4', '', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('9', '3', '1', '2', '1', '0', '1', '0', '液晶电视一台', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('10', '3', '2', '2', '2', '0', '2', '0', '冰箱一台', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('11', '3', '3', '1', '3', '0', '3', '3', '', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('12', '3', '4', '1', '4', '0', '4', '4', '', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('13', '4', '1', '2', '1', '0', '1', '0', '宝马一台', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('14', '4', '2', '2', '2', '0', '2', '0', '彩电一台', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('15', '4', '3', '2', '3', '0', '3', '0', '冰箱一台', '0');
+INSERT INTO `ls_marketmanageaward` VALUES ('16', '4', '4', '1', '4', '0', '4', '4', '', '0');
 
 -- -----------------------------
 -- Table structure for `ls_marketmanagelog`
@@ -9973,8 +10583,18 @@ CREATE TABLE `ls_mbusertoken` (
   `member_clienttype` varchar(10) NOT NULL COMMENT '客户端类型 android wap',
   `member_openid` varchar(50) DEFAULT NULL COMMENT '微信支付jsapi的openid缓存',
   PRIMARY KEY (`member_token_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='移动端登录令牌表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='移动端登录令牌表';
 
+-- -----------------------------
+-- Records of `ls_mbusertoken`
+-- -----------------------------
+INSERT INTO `ls_mbusertoken` VALUES ('1', '9', 'vvv', 'f0f13e9ed7d663f27dc1f581c89f0158', '1575265628', 'ios', '');
+INSERT INTO `ls_mbusertoken` VALUES ('2', '9', 'vvv', '31b9d6735aa11fa414651b48220c99c1', '1575265634', 'ios', '');
+INSERT INTO `ls_mbusertoken` VALUES ('3', '11', 'caijunqi', 'bd271df2d303ad1cefc8f21e99a70431', '1575265709', 'android', '');
+INSERT INTO `ls_mbusertoken` VALUES ('4', '9', 'vvv', 'dce2c002a9691e0afce8eded2beefc6d', '1575267959', 'android', '');
+INSERT INTO `ls_mbusertoken` VALUES ('5', '9', 'vvv', 'bb81e70a65a738b5acc83b86c7f8ff79', '1575272703', 'android', '');
+INSERT INTO `ls_mbusertoken` VALUES ('6', '9', 'vvv', '6306598b47382bdefc67d6270ad1b1c2', '1575272715', 'android', '');
+INSERT INTO `ls_mbusertoken` VALUES ('7', '9', 'vvv', '4190d19dac749546cd2d55246c02882c', '1575272711', 'android', '');
 
 -- -----------------------------
 -- Table structure for `ls_member`
@@ -10014,33 +10634,43 @@ CREATE TABLE `ls_member` (
   `member_wxopenid` varchar(100) DEFAULT '' COMMENT '微信互联openid',
   `member_wxunionid` varchar(100) DEFAULT '' COMMENT '微信用户统一标识',
   `member_wxinfo` text COMMENT '微信用户相关信息',
-  `member_points` int(11) NOT NULL DEFAULT '0' COMMENT '会员积分',
-  `available_predeposit` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '预存款可用金额',
-  `freeze_predeposit` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '预存款冻结金额',
-  `available_rc_balance` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '可用充值卡余额',
-  `freeze_rc_balance` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '冻结充值卡余额',
-  `inform_allow` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许举报(1可以/2不可以)',
+  `member_points` decimal(11,2) NOT NULL DEFAULT '0.00' COMMENT '会员冻结积分',
+  `member_points_available` decimal(11,2) NOT NULL DEFAULT '0.00' COMMENT '会员可用积分',
+  `available_predeposit` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '储值卡可用金额',
+  `freeze_predeposit` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '储值卡冻结金额',
+  `inform_allow` tinyint(1) DEFAULT '1' COMMENT '是否允许举报(1可以/2不可以)',
   `is_buylimit` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员是否有购买权限 1为开启 0为关闭',
-  `is_allowtalk` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员是否有咨询和发送站内信的权限 1为开启 0为关闭',
+  `is_allowtalk` tinyint(1) DEFAULT '1' COMMENT '会员是否有咨询和发送站内信的权限 1为开启 0为关闭',
   `member_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员的开启状态 1为开启 0为关闭',
+  `member_villageid` int(11) DEFAULT NULL COMMENT '村ID',
+  `member_townid` int(11) DEFAULT NULL COMMENT '镇ID',
   `member_areaid` int(11) DEFAULT NULL COMMENT '地区ID',
   `member_cityid` int(11) DEFAULT NULL COMMENT '城市ID',
   `member_provinceid` int(11) DEFAULT NULL COMMENT '省份ID',
   `member_areainfo` varchar(255) DEFAULT NULL COMMENT '地区内容',
   `member_privacy` text COMMENT '隐私设定',
+  `member_transaction` decimal(11,2) NOT NULL DEFAULT '0.00' COMMENT '交易码',
   `member_exppoints` int(11) NOT NULL DEFAULT '0' COMMENT '会员经验值',
-  `inviter_id` int(11) DEFAULT NULL COMMENT '邀请人ID',
+  `inviter_code` char(6) DEFAULT NULL COMMENT '推荐码',
+  `inviter_id` int(11) DEFAULT '0' COMMENT '邀请人ID',
   `member_signin_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最后一次签到时间',
   `member_signin_days_cycle` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '持续签到天数，每周期后清零',
   `member_signin_days_total` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '签到总天数',
   `member_signin_days_series` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '持续签到天数总数，非连续周期清零',
   PRIMARY KEY (`member_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='会员表';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='会员表';
 
 -- -----------------------------
 -- Records of `ls_member`
 -- -----------------------------
-INSERT INTO `ls_member` VALUES ('1', 'buyer', '', '', '0', '', '', '', '', '', '', '', 'e10adc3949ba59abbe56e057f20f883e', '', '', '0', '', '0', '', '', '1', '1572950123', '1572953414', '1572950123', '127.0.0.1', '', '', '', '', '', '', '', '', '0', '0.00', '0.00', '0.00', '0.00', '1', '1', '1', '1', '', '', '', '', '', '0', '', '0', '0', '0', '0');
+INSERT INTO `ls_member` VALUES ('1', 'buyer', '', '', '0', '', '', '', '', '', '0', '', 'e10adc3949ba59abbe56e057f20f883e', '', '604840631@qq.com', '0', '11111111111', '0', '', '', '1', '1572950123', '1572953414', '1572950123', '127.0.0.1', '', '', '', '', '', '', '', '', '0.50', '104.00', '0.00', '0.00', '', '1', '', '1', '45061', '45060', '1400', '93', '4', '山西 临汾市 蒲县 红道乡 古坡村', '', '5.00', '10000', 'SUPER', '0', '0', '0', '0', '0');
+INSERT INTO `ls_member` VALUES ('8', 'yang', '奥利马克', '', '0', '', '', '', '', '', '1', '', 'e10adc3949ba59abbe56e057f20f883e', '', '123456@12.com', '0', '15210356014', '0', '11121112', '', '0', '1574663059', '1574663059', '1574663059', '127.0.0.1', '127.0.0.1', '', '', '', '', '', '', '', '2.50', '106.00', '10000.00', '0.00', '1', '1', '1', '1', '', '', '', '', '', '', '', '0.00', '10000', 'NZFHO', '1', '0', '0', '0', '0');
+INSERT INTO `ls_member` VALUES ('9', 'vvv', '', '', '0', '', '', '', '', '', '0', '', 'e10adc3949ba59abbe56e057f20f883e', '', '1234561@12.com', '0', '15213659841', '0', '', '', '0', '1574665145', '1574665145', '1574665145', '127.0.0.1', '127.0.0.1', '', '', '', '', '', '', '', '4907.50', '162.00', '0.00', '0.00', '1', '1', '1', '1', '', '', '', '', '', '', '', '0.00', '0', 'XUTUT', '8', '0', '0', '0', '0');
+INSERT INTO `ls_member` VALUES ('10', 'ppp', '', '', '0', '', '', '', '', '', '0', '', 'e10adc3949ba59abbe56e057f20f883e', '', '1234561p@12.com', '0', '15210356018', '0', '', '', '0', '1574679379', '1574679379', '1574679379', '127.0.0.1', '127.0.0.1', '', '', '', '', '', '', '', '4905.00', '201.00', '0.00', '0.00', '1', '1', '1', '1', '', '', '', '', '', '', '', '0.00', '0', 'CUNKA', '8', '0', '0', '0', '0');
+INSERT INTO `ls_member` VALUES ('11', 'caijunqi', '蔡俊', '', '3', '231004199204260016', '5ddcf528ac48c.jpg', '5ddcf52bb47da.jpg', '5ddcf52e80838.jpg', 'avatar_11.jpg', '0', '', 'e10adc3949ba59abbe56e057f20f883e', '86ccf98c067b53200570913d51d8303f', '604840632@qq.com', '0', '18511310658', '1', '', '', '3', '1574761517', '1575514702', '1575437595', '117.100.9.85', '117.100.9.85', '', '', '', '', '', '', '', '5.00', '106.00', '100.00', '0.00', '', '1', '', '1', '45067', '45066', '2717', '246', '16', '河南 新乡市 原阳县 太平镇 后白寨村', '', '1.00', '1000', 'HQCKN', '8', '0', '0', '0', '0');
+INSERT INTO `ls_member` VALUES ('12', 'koko', '解决哦', '', '3', '', '', '', '', '', '0', '', 'e10adc3949ba59abbe56e057f20f883e', '86ccf98c067b53200570913d51d8303f', '12345611@12.com', '0', '15213659836', '0', '', '', '0', '1574994669', '1574994669', '1574994669', '127.0.0.1', '127.0.0.1', '', '', '', '', '', '', '', '2.00', '0.00', '3400.00', '0.00', '', '1', '', '1', '45061', '45060', '1400', '93', '4', '山西 临汾市 蒲县 红道乡 古坡村', '', '0.00', '0', 'ECMAV', '11', '0', '0', '0', '0');
+INSERT INTO `ls_member` VALUES ('13', 'hello', '', '', '0', '', '', '', '', '', '0', '', 'e10adc3949ba59abbe56e057f20f883e', '86ccf98c067b53200570913d51d8303f', '123456hello@12.com', '0', '18566963654', '0', '', '', '0', '1575265268', '1575265268', '1575265268', '127.0.0.1', '127.0.0.1', '', '', '', '', '', '', '', '0.00', '0.00', '0.00', '0.00', '1', '1', '1', '1', '', '', '', '', '', '', '', '0.00', '0', 'IEICC', '9', '0', '0', '0', '0');
+INSERT INTO `ls_member` VALUES ('14', 'USEDR', '', '', '1', '141033695695986656', '', '14_idcard_z.jpeg', '14_idcard_f.jpg', '', '0', '', 'e10adc3949ba59abbe56e057f20f883e', '', '', '0', '15213659840', '0', '', '', '0', '1575266038', '1575266038', '1575266038', '127.0.0.1', '127.0.0.1', '', '', '', '', '', '', '', '0.00', '0.00', '0.00', '0.00', '1', '1', '1', '1', '0', '0', '1127', '73', '3', '河北 石家庄市 井陉矿区', '', '0.00', '0', 'QHMGK', '13', '0', '0', '0', '0');
 
 -- -----------------------------
 -- Table structure for `ls_memberbank`
@@ -10054,8 +10684,13 @@ CREATE TABLE `ls_memberbank` (
   `memberbank_no` varchar(30) NOT NULL COMMENT '收款银行卡号/支付宝账户',
   `member_id` int(11) NOT NULL COMMENT '所属用户id',
   PRIMARY KEY (`memberbank_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户收款账户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户收款账户表';
 
+-- -----------------------------
+-- Records of `ls_memberbank`
+-- -----------------------------
+INSERT INTO `ls_memberbank` VALUES ('1', 'bank', '蔡俊岐', '建行', '15555555555', '11');
+INSERT INTO `ls_memberbank` VALUES ('2', 'bank', '阿狸', '建设银行', '62170000365696568', '14');
 
 -- -----------------------------
 -- Table structure for `ls_membermsgsetting`
@@ -10089,17 +10724,18 @@ CREATE TABLE `ls_membermsgtpl` (
 -- -----------------------------
 -- Records of `ls_membermsgtpl`
 -- -----------------------------
-INSERT INTO `ls_membermsgtpl` VALUES ('arrival_notice', '到货通知提醒', '1', '您关注的商品 “{$goods_name}” 已经到货。<a href=\"{$goods_url}\" target=\"_blank\">点击查看商品</a>', '1', '【{$site_name}】您关注的商品 “{$goods_name}” 已经到货。', '0', '{$site_name}提醒：您关注的商品  “{$goods_name}” 已经到货。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您关注的商品 “{$goods_name}” 已经到货。\r\n</p>\r\n<p>\r\n	<a href=\"{$goods_url}\" target=\"_blank\">点击查看商品</a> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>');
-INSERT INTO `ls_membermsgtpl` VALUES ('consult_goods_reply', '商品咨询回复提醒', '1', '您关于商品 “{$goods_name}”的咨询，商家已经回复。<a href=\"{$consult_url}\" target=\"_blank\">点击查看回复</a>', '0', '【{$site_name}】您关于商品 “{$goods_name}” 的咨询，商家已经回复。', '0', '{$site_name}提醒：您关于商品 “{$goods_name}”的咨询，商家已经回复。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您关注的商品“{$goods_name}” 已经到货。\r\n</p>\r\n<p>\r\n	<a href=\"{$consult_url}\" target=\"_blank\">点击查看回复</a> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<br />\r\n<div class=\"firebugResetStyles firebugBlockBackgroundColor\">\r\n	<div style=\"background-color:transparent ! important;\" class=\"firebugResetStyles\">\r\n	</div>\r\n</div>');
-INSERT INTO `ls_membermsgtpl` VALUES ('consult_mall_reply', '平台客服回复提醒', '1', '您的平台客服咨询已经回复。<a href=\"{$consult_url}\" target=\"_blank\">点击查看回复</a>', '0', '【{$site_name}】您的平台客服咨询已经回复。', '0', '{$site_name}提醒：您的平台客服咨询已经回复。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您的平台客服咨询已经回复。\r\n</p>\r\n<p>\r\n	<a href=\"{$consult_url}\" target=\"_blank\">点击查看回复</a> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>');
-INSERT INTO `ls_membermsgtpl` VALUES ('order_deliver_success', '商品出库提醒', '1', '您的订单已经出库。<a href=\"{$order_url}\" target=\"_blank\">点击查看订单</a>', '1', '【{$site_name}】您的订单已经出库。订单编号 {$order_sn}。', '0', '{$site_name}提醒：您的订单已经出库。订单编号 {$order_sn}。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您的订单已经出库。订单编号 {$order_sn}。<br />\r\n<a href=\"{$order_url}\" target=\"_blank\">点击查看订单</a>\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<br />');
-INSERT INTO `ls_membermsgtpl` VALUES ('order_payment_success', '付款成功提醒', '1', '关于订单：{$order_sn}的款项已经收到，请留意出库通知。<a href=\"{$order_url}\" target=\"_blank\">点击查看订单详情</a>', '1', '【{$site_name}】{$order_sn}的款项已经收到，请留意出库通知。', '0', '{$site_name}提醒：{$order_sn}的款项已经收到，请留意出库通知。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	{$order_sn}的款项已经收到，请留意出库通知。\r\n</p>\r\n<p>\r\n	<a href=\"{$order_url}\" target=\"_blank\">点击查看订单详情</a>\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<br />');
-INSERT INTO `ls_membermsgtpl` VALUES ('predeposit_change', '余额变动提醒', '1', '你的账户于 {$time} 账户资金有变化，描述：{$desc}，可用金额变化 ：{$av_amount}元，冻结金额变化：{$freeze_amount}元。<a href=\"{$pd_url}\" target=\"_blank\">点击查看余额</a>', '0', '【{$site_name}】你的账户于 {$time} 账户资金有变化，描述：{$desc}，可用金额变化： {$av_amount}元，冻结金额变化：{$freeze_amount}元。', '0', '{$site_name}提醒：你的账户于 {$time} 账户资金有变化，描述：{$desc}，可用金额变化： {$av_amount}元，冻结金额变化：{$freeze_amount}元。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	你的账户于 {$time} 账户资金有变化，描述：{$desc}，可用金额变化：{$av_amount}元，冻结金额变化：{$freeze_amount}元。\r\n</p>\r\n<p>\r\n	<a href=\"{$pd_url}\" target=\"_blank\">点击查看余额</a> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>');
-INSERT INTO `ls_membermsgtpl` VALUES ('recharge_card_balance_change', '充值卡余额变动提醒', '1', '你的账户于 {$time} 充值卡余额有变化，描述：{$description}，可用充值卡余额变化 ：{$available_amount}元，冻结充值卡余额变化：{$freeze_amount}元。<a href=\"{$url}\" target=\"_blank\">点击查看充值卡余额</a>', '0', '【{$site_name}】你的账户于 {$time} 充值卡余额有变化，描述：{$description}，可用充值卡余额变化： {$available_amount}元，冻结充值卡余额变化：{$freeze_amount}元。', '0', '{$site_name}提醒：你的账户于 {$time} 充值卡余额有变化，描述：{$description}，可用充值卡余额变化： {$available_amount}元，冻结充值卡余额变化：{$freeze_amount}元。', '<p>\r\n    {$site_name}提醒：\r\n</p>\r\n<p>\r\n  你的账户于 {$time} 充值卡余额有变化，描述：{$description}，可用充值卡余额变化：{$available_amount}元，冻结充值卡余额变化：{$freeze_amount}元。\r\n</p>\r\n<p>\r\n  <a href=\"{$url}\" target=\"_blank\">点击查看余额</a> \r\n</p>\r\n<p>\r\n  <br />\r\n</p>\r\n<p>\r\n   <br />\r\n</p>\r\n<p>\r\n   <br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n {$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n   {$mail_send_time}\r\n</p>');
-INSERT INTO `ls_membermsgtpl` VALUES ('refund_return_notice', '退款退货提醒', '1', '您的退款退货单有了变化。<a href=\"{$refund_url}\" target=\"_blank\">点击查看</a>', '1', '【{$site_name}】您的退款退货单有了变化。退款退货单编号：{$refund_sn}。', '0', '{$site_name}提醒：您的退款退货单有了变化。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您的退款退货单有了变化。退款退货单编号：{$refund_sn}。\r\n</p>\r\n<p>\r\n	&lt;a href=\"{$refund_url}\" target=\"_blank\"&gt;点击查看&lt;/a&gt;\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<br />');
-INSERT INTO `ls_membermsgtpl` VALUES ('voucher_use', '代金券使用提醒', '1', '您有代金券已经使用，代金券编号：{$voucher_code}。<a href=\"{$voucher_url}\" target=\"_blank\">点击查看</a>', '0', '【{$site_name}】您有代金券已经使用，代金券编号：{$voucher_code}。', '0', '{$site_name}提醒：您有代金券已经使用，代金券编号：{$voucher_code}。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您有代金券已经使用，代金券编号：{$voucher_code}。\r\n</p>\r\n<p>\r\n	&lt;a href=\"{$voucher_url}\" target=\"_blank\"&gt;点击查看&lt;/a&gt;\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>');
-INSERT INTO `ls_membermsgtpl` VALUES ('voucher_will_expire', '代金券即将到期提醒', '1', '您有一个代金券即将在{$indate}过期，请记得使用。<a href=\"{$voucher_url}\" target=\"_blank\">点击查看</a>', '0', '【{$site_name}】您有一个代金券即将在{$indate}过期，请记得使用。', '0', '{$site_name}提醒：您有一个代金券即将在{$indate}过期，请记得使用。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您有一个代金券即将在{$indate}过期，请记得使用。\r\n</p>\r\n<p>\r\n	<a href=\"{$voucher_url}\" target=\"_blank\">点击查看</a> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>');
-INSERT INTO `ls_membermsgtpl` VALUES ('vr_code_will_expire', '兑换码即将到期提醒', '1', '您有一组兑换码即将在{$indate}过期，请记得使用。<a href=\"{$vr_order_url}\" target=\"_blank\">点击查看</a>', '0', '【{$site_name}】您有一组兑换码即将在{$indate}过期，请记得使用。', '0', '{$site_name}提醒：您有一组兑换码即将在{$indate}过期，请记得使用。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您有一组兑换码即将在{$indate}过期，请记得使用。\r\n</p>\r\n<p>\r\n	&lt;a href=\"{$vr_order_url}\" target=\"_blank\"&gt;点击查看&lt;/a&gt;\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>');
+INSERT INTO `ls_membermsgtpl` VALUES ('arrival_notice', '到货通知提醒', '1', '您关注的商品 “{$goods_name}” 已经到货。', '1', '【{$site_name}】您关注的商品 “{$goods_name}” 已经到货。', '0', '{$site_name}提醒：您关注的商品  “{$goods_name}” 已经到货。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您关注的商品 “{$goods_name}” 已经到货。\r\n</p>\r\n<p>\r\n	<a href=\"{$goods_url}\" target=\"_blank\">点击查看商品</a> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>');
+INSERT INTO `ls_membermsgtpl` VALUES ('consult_goods_reply', '商品咨询回复提醒', '1', '您关于商品 “{$goods_name}”的咨询，商家已经回复。', '0', '【{$site_name}】您关于商品 “{$goods_name}” 的咨询，商家已经回复。', '0', '{$site_name}提醒：您关于商品 “{$goods_name}”的咨询，商家已经回复。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您关注的商品“{$goods_name}” 已经到货。\r\n</p>\r\n<p>\r\n	<a href=\"{$consult_url}\" target=\"_blank\">点击查看回复</a> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<br />\r\n<div class=\"firebugResetStyles firebugBlockBackgroundColor\">\r\n	<div style=\"background-color:transparent ! important;\" class=\"firebugResetStyles\">\r\n	</div>\r\n</div>');
+INSERT INTO `ls_membermsgtpl` VALUES ('consult_mall_reply', '平台客服回复提醒', '1', '您的平台客服咨询已经回复。', '0', '【{$site_name}】您的平台客服咨询已经回复。', '0', '{$site_name}提醒：您的平台客服咨询已经回复。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您的平台客服咨询已经回复。\r\n</p>\r\n<p>\r\n	<a href=\"{$consult_url}\" target=\"_blank\">点击查看回复</a> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>');
+INSERT INTO `ls_membermsgtpl` VALUES ('order_deliver_success', '商品出库提醒', '1', '您的订单已经出库。', '1', '【{$site_name}】您的订单已经出库。订单编号 {$order_sn}。', '0', '{$site_name}提醒：您的订单已经出库。订单编号 {$order_sn}。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您的订单已经出库。订单编号 {$order_sn}。<br />\r\n<a href=\"{$order_url}\" target=\"_blank\">点击查看订单</a>\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<br />');
+INSERT INTO `ls_membermsgtpl` VALUES ('order_payment_success', '付款成功提醒', '1', '关于订单：{$order_sn}的款项已经收到，请留意出库通知。', '1', '【{$site_name}】{$order_sn}的款项已经收到，请留意出库通知。', '0', '{$site_name}提醒：{$order_sn}的款项已经收到，请留意出库通知。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	{$order_sn}的款项已经收到，请留意出库通知。\r\n</p>\r\n<p>\r\n	<a href=\"{$order_url}\" target=\"_blank\">点击查看订单详情</a>\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<br />');
+INSERT INTO `ls_membermsgtpl` VALUES ('predeposit_change', '余额变动提醒', '1', '你的账户于 {$time} 账户资金有变化，描述：{$desc}，可用金额变化 ：{$av_amount}元。', '0', '【{$site_name}】你的账户于 {$time} 账户资金有变化，描述：{$desc}，可用金额变化： {$av_amount}元。', '0', '{$site_name}提醒：你的账户于 {$time} 账户资金有变化，描述：{$desc}，可用金额变化： {$av_amount}元。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	你的账户于 {$time} 账户资金有变化，描述：{$desc}，可用金额变化：{$av_amount}元。\r\n</p>\r\n\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>');
+INSERT INTO `ls_membermsgtpl` VALUES ('recharge_card_balance_change', '充值卡余额变动提醒', '1', '你的账户于 {$time} 充值卡余额有变化，描述：{$description}，可用充值卡余额变化 ：{$available_amount}元，冻结充值卡余额变化：{$freeze_amount}元。', '0', '【{$site_name}】你的账户于 {$time} 充值卡余额有变化，描述：{$description}，可用充值卡余额变化： {$available_amount}元，冻结充值卡余额变化：{$freeze_amount}元。', '0', '{$site_name}提醒：你的账户于 {$time} 充值卡余额有变化，描述：{$description}，可用充值卡余额变化： {$available_amount}元，冻结充值卡余额变化：{$freeze_amount}元。', '<p>\r\n    {$site_name}提醒：\r\n</p>\r\n<p>\r\n  你的账户于 {$time} 充值卡余额有变化，描述：{$description}，可用充值卡余额变化：{$available_amount}元，冻结充值卡余额变化：{$freeze_amount}元。\r\n</p>\r\n<p>\r\n  <a href=\"{$url}\" target=\"_blank\">点击查看余额</a> \r\n</p>\r\n<p>\r\n  <br />\r\n</p>\r\n<p>\r\n   <br />\r\n</p>\r\n<p>\r\n   <br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n {$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n   {$mail_send_time}\r\n</p>');
+INSERT INTO `ls_membermsgtpl` VALUES ('refund_return_notice', '退款退货提醒', '1', '您的退款退货单有了变化。', '1', '【{$site_name}】您的退款退货单有了变化。退款退货单编号：{$refund_sn}。', '0', '{$site_name}提醒：您的退款退货单有了变化。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您的退款退货单有了变化。退款退货单编号：{$refund_sn}。\r\n</p>\r\n<p>\r\n	&lt;a href=\"{$refund_url}\" target=\"_blank\"&gt;点击查看&lt;/a&gt;\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<br />');
+INSERT INTO `ls_membermsgtpl` VALUES ('transaction_change', '交易码变动提醒', '1', '你的账户于 {$time} 账户交易码有变化，描述：{$desc}，交易码变化 ：{$av_amount}。', '0', '【{$site_name}】你的账户于 {$time} 账户交易码有变化，描述：{$desc}，交易码变化： {$av_amount}。', '0', '{$site_name}提醒：你的账户于 {$time} 账户交易码有变化，描述：{$desc}，交易码变化： {$av_amount}。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	你的账户于 {$time} 交易码有变化，描述：{$desc}，交易码变化：{$av_amount}。\r\n</p>\r\n\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>');
+INSERT INTO `ls_membermsgtpl` VALUES ('voucher_use', '代金券使用提醒', '1', '您有代金券已经使用，代金券编号：{$voucher_code}。', '0', '【{$site_name}】您有代金券已经使用，代金券编号：{$voucher_code}。', '0', '{$site_name}提醒：您有代金券已经使用，代金券编号：{$voucher_code}。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您有代金券已经使用，代金券编号：{$voucher_code}。\r\n</p>\r\n<p>\r\n	&lt;a href=\"{$voucher_url}\" target=\"_blank\"&gt;点击查看&lt;/a&gt;\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>');
+INSERT INTO `ls_membermsgtpl` VALUES ('voucher_will_expire', '代金券即将到期提醒', '1', '您有一个代金券即将在{$indate}过期，请记得使用。', '0', '【{$site_name}】您有一个代金券即将在{$indate}过期，请记得使用。', '0', '{$site_name}提醒：您有一个代金券即将在{$indate}过期，请记得使用。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您有一个代金券即将在{$indate}过期，请记得使用。\r\n</p>\r\n<p>\r\n	<a href=\"{$voucher_url}\" target=\"_blank\">点击查看</a> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>');
+INSERT INTO `ls_membermsgtpl` VALUES ('vr_code_will_expire', '兑换码即将到期提醒', '1', '您有一组兑换码即将在{$indate}过期，请记得使用。', '0', '【{$site_name}】您有一组兑换码即将在{$indate}过期，请记得使用。', '0', '{$site_name}提醒：您有一组兑换码即将在{$indate}过期，请记得使用。', '<p>\r\n	{$site_name}提醒：\r\n</p>\r\n<p>\r\n	您有一组兑换码即将在{$indate}过期，请记得使用。\r\n</p>\r\n<p>\r\n	&lt;a href=\"{$vr_order_url}\" target=\"_blank\"&gt;点击查看&lt;/a&gt;\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$site_name}\r\n</p>\r\n<p style=\"text-align:right;\">\r\n	{$mail_send_time}\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>');
 
 -- -----------------------------
 -- Table structure for `ls_message`
@@ -10126,8 +10762,61 @@ CREATE TABLE `ls_message` (
   KEY `from_member_id` (`from_member_id`),
   KEY `to_member_id` (`to_member_id`(255)),
   KEY `message_ismore` (`message_ismore`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='短消息';
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8 COMMENT='短消息';
 
+-- -----------------------------
+-- Records of `ls_message`
+-- -----------------------------
+INSERT INTO `ls_message` VALUES ('56', '0', '0', '11', '', '你的账户于 2019-11-26 18:38:11 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112618381143331011,备注：，可用金额变化 ：1.00元。', '1574764691', '1574764691', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('57', '0', '0', '11', '', '你的账户于 2019-11-27 14:05:04 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112714050456584011,备注：，可用金额变化 ：1.00元。', '1574834704', '1574834704', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('58', '0', '0', '11', '', '你的账户于 2019-11-28 09:47:06 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112809470644168011,备注：，可用金额变化 ：1.00元。', '1574905626', '1574905626', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('59', '0', '0', '12', '', '你的账户于 2019-11-29 15:11:04 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915110474873012,备注：，可用金额变化 ：100.00元。', '1575011464', '1575011464', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('60', '0', '0', '12', '', '你的账户于 2019-11-29 15:14:07 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915140749717012,备注：，可用金额变化 ：100.00元。', '1575011647', '1575011647', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('61', '0', '0', '12', '', '你的账户于 2019-11-29 15:15:34 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915153409445012,备注：，可用金额变化 ：100.00元。', '1575011734', '1575011734', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('62', '0', '0', '12', '', '你的账户于 2019-11-29 15:16:36 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915163625323012,备注：，可用金额变化 ：100.00元。', '1575011796', '1575011796', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('63', '0', '0', '12', '', '你的账户于 2019-11-29 15:16:53 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915165354324012,备注：，可用金额变化 ：100.00元。', '1575011813', '1575011813', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('64', '0', '0', '12', '', '你的账户于 2019-11-29 15:19:02 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915190238524012,备注：，可用金额变化 ：100.00元。', '1575011942', '1575011942', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('65', '0', '0', '12', '', '你的账户于 2019-11-29 15:19:31 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915193174735012,备注：，可用金额变化 ：100.00元。', '1575011971', '1575011971', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('66', '0', '0', '12', '', '你的账户于 2019-11-29 15:21:15 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915211505361012,备注：，可用金额变化 ：100.00元。', '1575012075', '1575012075', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('67', '0', '0', '12', '', '你的账户于 2019-11-29 15:32:46 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915324630912012,备注：，可用金额变化 ：100.00元。', '1575012766', '1575012766', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('68', '0', '0', '12', '', '你的账户于 2019-11-29 15:35:04 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915350473527012,备注：，可用金额变化 ：100.00元。', '1575012904', '1575012904', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('69', '0', '0', '12', '', '你的账户于 2019-11-29 15:35:27 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915352767083012,备注：，可用金额变化 ：100.00元。', '1575012927', '1575012927', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('70', '0', '0', '12', '', '你的账户于 2019-11-29 15:36:55 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915365563684012,备注：，可用金额变化 ：100.00元。', '1575013015', '1575013015', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('71', '0', '0', '12', '', '你的账户于 2019-11-29 15:41:51 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112915415124025012,备注：，可用金额变化 ：100.00元。', '1575013311', '1575013311', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('72', '0', '0', '12', '', '你的账户于 2019-11-29 16:20:59 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112916205942290012,备注：，可用金额变化 ：100.00元。', '1575015659', '1575015659', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('73', '0', '0', '12', '', '你的账户于 2019-11-29 16:32:36 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112916323663620012,备注：，可用金额变化 ：100.00元。', '1575016356', '1575016356', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('74', '0', '0', '12', '', '你的账户于 2019-11-29 16:35:08 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112916350887023012,备注：，可用金额变化 ：100.00元。', '1575016508', '1575016508', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('75', '0', '0', '12', '', '你的账户于 2019-11-29 16:36:01 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112916360173181012,备注：，可用金额变化 ：100.00元。', '1575016561', '1575016561', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('76', '0', '0', '12', '', '你的账户于 2019-11-29 16:37:25 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112916372557337012,备注：，可用金额变化 ：100.00元。', '1575016645', '1575016645', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('77', '0', '0', '12', '', '你的账户于 2019-11-29 16:38:36 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112916383615742012,备注：，可用金额变化 ：100.00元。', '1575016716', '1575016716', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('78', '0', '0', '12', '', '你的账户于 2019-11-29 16:38:45 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112916384541288012,备注：，可用金额变化 ：100.00元。', '1575016725', '1575016725', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('79', '0', '0', '12', '', '你的账户于 2019-11-29 16:39:18 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112916391702767012,备注：，可用金额变化 ：100.00元。', '1575016757', '1575016757', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('80', '0', '0', '12', '', '你的账户于 2019-11-29 16:41:10 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112916411075973012,备注：，可用金额变化 ：100.00元。', '1575016870', '1575016870', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('81', '0', '0', '12', '', '你的账户于 2019-11-29 16:42:35 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112916423587676012,备注：，可用金额变化 ：100.00元。', '1575016955', '1575016955', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('82', '0', '0', '12', '', '你的账户于 2019-11-29 16:42:55 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112916425596044012,备注：，可用金额变化 ：100.00元。', '1575016975', '1575016975', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('83', '0', '0', '12', '', '你的账户于 2019-11-29 16:54:59 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112916545939272012,备注：，可用金额变化 ：100.00元。', '1575017699', '1575017699', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('84', '0', '0', '12', '', '你的账户于 2019-11-29 17:11:10 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112917111034429012,备注：，可用金额变化 ：100.00元。', '1575018670', '1575018670', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('85', '0', '0', '12', '', '你的账户于 2019-11-29 17:35:57 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112917355752910012,备注：，可用金额变化 ：100.00元。', '1575020157', '1575020157', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('86', '0', '0', '12', '', '你的账户于 2019-11-29 17:38:20 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112917382053610012,备注：，可用金额变化 ：100.00元。', '1575020300', '1575020300', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('87', '0', '0', '12', '', '你的账户于 2019-11-29 17:40:22 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112917402295290012,备注：，可用金额变化 ：100.00元。', '1575020422', '1575020422', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('88', '0', '0', '12', '', '你的账户于 2019-11-29 17:41:33 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112917413349738012,备注：，可用金额变化 ：100.00元。', '1575020493', '1575020493', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('89', '0', '0', '12', '', '你的账户于 2019-11-29 17:57:16 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112917571686346012,备注：，可用金额变化 ：100.00元。', '1575021436', '1575021436', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('90', '0', '0', '12', '', '你的账户于 2019-11-29 17:59:22 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112917592255373012,备注：，可用金额变化 ：100.00元。', '1575021562', '1575021562', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('91', '0', '0', '12', '', '你的账户于 2019-11-29 18:30:40 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112918304068943012,备注：，可用金额变化 ：100.00元。', '1575023440', '1575023440', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('92', '0', '0', '11', '', '你的账户于 2019-11-29 18:32:50 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112918325036015011,备注：，可用金额变化 ：100.00元。', '1575023570', '1575023570', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('93', '0', '0', '12', '', '你的账户于 2019-11-29 18:35:12 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112918351281794012,备注：，可用金额变化 ：100.00元。', '1575023712', '1575023712', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('94', '0', '0', '8', '', '你的账户于 2019-11-29 18:52:05 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19112918520515164008,备注：测试购买，可用金额变化 ：10000.00元。', '1575024725', '1575024725', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('95', '0', '0', '11', '', '你的账户于 2019-12-02 10:17:41 账户资金有变化，描述：下单，冻结预存款，订单号: 2000000000000101，可用金额变化 ：-103.00元。', '1575253061', '1575253061', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('96', '0', '0', '11', '', '你的账户于 2019-12-02 10:35:12 账户资金有变化，描述：取消订单，解冻储值卡，订单号: 2000000000000101，可用金额变化 ：103.00元。', '1575254111', '1575254111', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('97', '0', '0', '11', '', '你的账户于 2019-12-02 10:42:27 账户资金有变化，描述：申请提现，冻结预存款，提现单号: 19120210422733490011，可用金额变化 ：-103.00元。', '1575254547', '1575254547', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('98', '0', '0', '11', '', '你的账户于 2019-12-02 10:47:58 账户资金有变化，描述：提现成功，提现单号: 19120210422733490011，可用金额变化 ：0.00元。', '1575254878', '1575254878', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('99', '0', '0', '11', '', '你的账户于 2019-12-02 18:26:12 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19120218261218585011,备注：，可用金额变化 ：100.00元。', '1575282372', '1575282372', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('101', '0', '0', '11', '', '你的账户于 2019-12-03 11:43:33 账户资金有变化，描述：申请提现，冻结储值卡，提现单号: 19120311433204189011，可用金额变化 ：-100.00元。', '1575344612', '1575344612', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('102', '0', '0', '11', '', '你的账户于 2019-12-03 13:51:33 账户交易码有变化，描述：管理员调节交易码【增加】，充值单号: 19120313513309549011,备注：，交易码变化 ：1.00。', '1575352293', '1575352293', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('103', '0', '0', '11', '', '你的账户于 2019-12-03 13:56:59 账户交易码有变化，描述：管理员调节交易码【增加】，充值单号: 19120313565910228011,备注：，交易码变化 ：1.00。', '1575352619', '1575352619', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('104', '0', '0', '11', '', '你的账户于 2019-12-03 18:35:51 账户交易码有变化，描述：管理员调节交易码【减少】，充值单号: 19120318355159851011,备注：，交易码变化 ：-1.00。', '1575369351', '1575369351', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('105', '0', '0', '11', '', '你的账户于 2019-12-03 21:09:43 账户资金有变化，描述：提现成功，提现单号: 19120311433204189011，可用金额变化 ：0.00元。', '1575378583', '1575378583', '0', '0', '1', '', '', '0', '', '');
+INSERT INTO `ls_message` VALUES ('106', '0', '0', '11', '', '你的账户于 2019-12-04 10:41:41 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19120410414130610011,备注：，可用金额变化 ：100.00元。', '1575427301', '1575427301', '0', '0', '1', '', '', '0', '', '');
 
 -- -----------------------------
 -- Table structure for `ls_navigation`
@@ -10149,22 +10838,19 @@ CREATE TABLE `ls_navigation` (
 -- -----------------------------
 -- Records of `ls_navigation`
 -- -----------------------------
-INSERT INTO `ls_navigation` VALUES ('1', '0', '使用手册', 'http://www.csdeshang.com/home/help/article/id/1.html', 'middle', '1', '15', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('2', '0', '官方网站', 'http://www.csdeshang.com/', 'middle', '1', '15', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('3', '0', '官方论坛', 'http://bbs.csdeshang.com', 'middle', '1', '0', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('4', '0', '店铺街', 'http://dsmall.csdeshang.com/Home/storelist', 'middle', '1', '23', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('5', '0', '品牌', 'http://dsmall.csdeshang.com/Home/brand', 'middle', '1', '24', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('6', '0', '周边', 'http://dsmall.csdeshang.com/Home/Shopnearby', 'middle', '1', '24', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('7', '0', '积分中心', 'http://dsmall.csdeshang.com/Home/Pointshop', 'middle', '1', '24', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('8', '0', '拼团', 'http://dsmall.csdeshang.com/Home/Showpintuan', 'middle', '1', '24', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('9', '0', '砍价', 'http://dsmall.csdeshang.com/Home/Showbargain', 'middle', '1', '24', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('10', '0', '分销', 'http://dsmall.csdeshang.com/Home/Inviterpro', 'middle', '1', '24', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('11', '0', '关于我们', 'http://www.csdeshang.com/', 'footer', '1', '255', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('12', '0', '联系我们', 'http://www.csdeshang.com/', 'footer', '1', '255', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('13', '0', '友情链接', 'http://www.csdeshang.com/', 'footer', '1', '255', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('14', '0', '商城公益', 'http://www.csdeshang.com/', 'footer', '1', '255', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('15', '0', '商城社区', 'http://www.csdeshang.com/', 'footer', '1', '255', '0', '0');
-INSERT INTO `ls_navigation` VALUES ('16', '0', '营销中心', 'http://www.csdeshang.com/', 'footer', '1', '255', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('4', '0', '店铺街', 'https://shop.bayi-shop.com/Home/storelist', 'middle', '1', '23', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('5', '0', '品牌', 'https://shop.bayi-shop.com/Home/brand', 'middle', '1', '24', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('6', '0', '周边', 'https://shop.bayi-shop.com/Home/Shopnearby', 'middle', '1', '24', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('7', '0', '积分中心', 'https://shop.bayi-shop.com/Home/Pointshop', 'middle', '1', '24', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('8', '0', '拼团', 'https://shop.bayi-shop.com/Home/Showpintuan', 'middle', '1', '24', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('9', '0', '砍价', 'https://shop.bayi-shop.com/Home/Showbargain', 'middle', '1', '24', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('10', '0', '分销', 'https://shop.bayi-shop.com/Home/Inviterpro', 'middle', '1', '24', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('11', '0', '关于我们', 'https://shop.bayi-shop.com/', 'footer', '1', '255', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('12', '0', '联系我们', 'https://shop.bayi-shop.com/', 'footer', '1', '255', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('13', '0', '友情链接', 'https://shop.bayi-shop.com/', 'footer', '1', '255', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('14', '0', '商城公益', 'https://shop.bayi-shop.com/', 'footer', '1', '255', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('15', '0', '商城社区', 'https://shop.bayi-shop.com/', 'footer', '1', '255', '0', '0');
+INSERT INTO `ls_navigation` VALUES ('16', '0', '营销中心', 'https://shop.bayi-shop.com/', 'footer', '1', '255', '0', '0');
 
 -- -----------------------------
 -- Table structure for `ls_offpayarea`
@@ -10212,8 +10898,13 @@ CREATE TABLE `ls_order` (
   `order_type` tinyint(4) DEFAULT NULL COMMENT '订单类型',
   `ob_no` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '相关结算单号',
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='订单表';
 
+-- -----------------------------
+-- Records of `ls_order`
+-- -----------------------------
+INSERT INTO `ls_order` VALUES ('1', '2000000000000101', '19120210174184331011', '1', '自营店铺', '11', 'caijunqi', '604840632@qq.com', '1575253061', 'online', '0', '', '0', '1699.00', '1699.00', '0.00', '0.00', '0.00', '0', '0', '0', '0', '0', '0.00', '0', '1', '', '', '0');
+INSERT INTO `ls_order` VALUES ('2', '2000000000000201', '19120217192788486011', '1', '自营店铺', '11', 'caijunqi', '604840632@qq.com', '1575278367', 'online', '0', '', '0', '55.00', '55.00', '0.00', '0.00', '0.00', '0', '10', '0', '0', '0', '0.00', '0', '1', '', '', '0');
 
 -- -----------------------------
 -- Table structure for `ls_orderbill`
@@ -10272,8 +10963,13 @@ CREATE TABLE `ls_ordercommon` (
   `promotion_info` varchar(500) DEFAULT NULL COMMENT '订单促销信息备注',
   `dlyo_pickup_code` varchar(4) DEFAULT NULL COMMENT '订单提货码',
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单信息扩展表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='订单信息扩展表';
 
+-- -----------------------------
+-- Records of `ls_ordercommon`
+-- -----------------------------
+INSERT INTO `ls_ordercommon` VALUES ('1', '1', '0', '0', '0', '0', '0', '', '0', '', '', '', '0', '阿斯顿', 'a:6:{s:5:\"phone\";s:11:\"18511310658\";s:9:\"mob_phone\";s:11:\"18511310658\";s:9:\"tel_phone\";s:0:\"\";s:7:\"address\";s:53:\"山西	临汾市	蒲县	红道乡	古坡村 阿斯顿\";s:4:\"area\";s:43:\"山西	临汾市	蒲县	红道乡	古坡村\";s:6:\"street\";s:9:\"阿斯顿\";}', '0', '93', 'a:0:{}', '', '');
+INSERT INTO `ls_ordercommon` VALUES ('2', '1', '0', '0', '0', '0', '0', '', '0', '', '', '', '0', '阿斯顿', 'a:6:{s:5:\"phone\";s:11:\"18511310658\";s:9:\"mob_phone\";s:11:\"18511310658\";s:9:\"tel_phone\";s:0:\"\";s:7:\"address\";s:53:\"山西	临汾市	蒲县	红道乡	古坡村 阿斯顿\";s:4:\"area\";s:43:\"山西	临汾市	蒲县	红道乡	古坡村\";s:6:\"street\";s:9:\"阿斯顿\";}', '0', '93', 'a:0:{}', '', '');
 
 -- -----------------------------
 -- Table structure for `ls_ordergoods`
@@ -10296,8 +10992,13 @@ CREATE TABLE `ls_ordergoods` (
   `gc_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '商品最底级分类ID',
   PRIMARY KEY (`rec_id`),
   KEY `order_id` (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单商品表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='订单商品表';
 
+-- -----------------------------
+-- Records of `ls_ordergoods`
+-- -----------------------------
+INSERT INTO `ls_ordergoods` VALUES ('1', '1', '7', 'HOST好帅智能云教育机器人二蛋Q6 ', '1699.00', '1', '1_2017092120382376796.jpg', '1699.00', '1', '11', '1', '0', '0', '3');
+INSERT INTO `ls_ordergoods` VALUES ('2', '2', '87', '朝暮之家厨房置物架落地多层收纳架放锅架子厨具用品转角架 锅架', '55.00', '1', '1_2017092900144267524.jpg', '55.00', '1', '11', '1', '0', '0', '22');
 
 -- -----------------------------
 -- Table structure for `ls_orderinviter`
@@ -10339,8 +11040,12 @@ CREATE TABLE `ls_orderlog` (
   `log_user` varchar(30) DEFAULT '' COMMENT '操作人',
   `log_orderstate` enum('0','10','20','30','40') DEFAULT NULL COMMENT '订单状态：0:已取消10:未付款;20:已付款;30:已发货;40:已收货;',
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='订单记录表';
 
+-- -----------------------------
+-- Records of `ls_orderlog`
+-- -----------------------------
+INSERT INTO `ls_orderlog` VALUES ('1', '1', '取消了订单', '1575254111', '系统', 'admin', '0');
 
 -- -----------------------------
 -- Table structure for `ls_orderpay`
@@ -10352,8 +11057,13 @@ CREATE TABLE `ls_orderpay` (
   `buyer_id` int(10) unsigned NOT NULL COMMENT '买家ID',
   `api_paystate` enum('0','1') DEFAULT '0' COMMENT '0默认未支付1已支付(只有第三方支付接口通知到时才会更改此状态)',
   PRIMARY KEY (`pay_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单支付表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='订单支付表';
 
+-- -----------------------------
+-- Records of `ls_orderpay`
+-- -----------------------------
+INSERT INTO `ls_orderpay` VALUES ('1', '19120210174184331011', '11', '0');
+INSERT INTO `ls_orderpay` VALUES ('2', '19120217192788486011', '11', '0');
 
 -- -----------------------------
 -- Table structure for `ls_orderstatis`
@@ -10396,6 +11106,10 @@ CREATE TABLE `ls_payment` (
 -- Records of `ls_payment`
 -- -----------------------------
 INSERT INTO `ls_payment` VALUES ('alipay', '支付宝PC支付', 'a:4:{s:12:\"alipay_appid\";s:0:\"\";s:10:\"public_key\";s:0:\"\";s:11:\"private_key\";s:0:\"\";s:25:\"alipay_trade_refund_state\";s:1:\"0\";}', 'pc', '1');
+INSERT INTO `ls_payment` VALUES ('alipay_app', '支付宝APP支付', 'a:0:{}', 'app', '1');
+INSERT INTO `ls_payment` VALUES ('offline', '线下汇款', 'a:3:{s:7:\"account\";s:30:\"兵赢天下网络有限公司\";s:4:\"bank\";s:54:\"中国建设银行股份有限公司松原江南支行\";s:10:\"accountnum\";s:20:\"22050167393800000760\";}', 'app', '1');
+INSERT INTO `ls_payment` VALUES ('predeposit', '预存款支付', 'a:0:{}', 'pc', '1');
+INSERT INTO `ls_payment` VALUES ('wxpay_native', '微信扫码支付', 'a:0:{}', 'pc', '1');
 
 -- -----------------------------
 -- Table structure for `ls_pbargain`
@@ -10584,8 +11298,14 @@ CREATE TABLE `ls_pdcash` (
   `pdc_payment_state` enum('0','1') NOT NULL DEFAULT '0' COMMENT '提现支付状态 0:默认1:支付完成',
   `pdc_payment_admin` varchar(30) DEFAULT NULL COMMENT '支付管理员',
   PRIMARY KEY (`pdc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='预存款提现记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='预存款提现记录表';
 
+-- -----------------------------
+-- Records of `ls_pdcash`
+-- -----------------------------
+INSERT INTO `ls_pdcash` VALUES ('1', '19120210422733490011', '11', 'caijunqi', '103.00', '建行', '15555555555', '蔡俊岐', '1575254547', '1575254878', '1', 'admin');
+INSERT INTO `ls_pdcash` VALUES ('2', '19120311433204189011', '11', 'caijunqi', '100.00', '建行', '15555555555', '蔡俊岐', '1575344612', '1575378583', '1', 'admin');
+INSERT INTO `ls_pdcash` VALUES ('3', '19120515375694159000', '1', 'caijunqi', '84.00', '建设银行', '15555555555', '阿狸', '1575531476', '', '0', '');
 
 -- -----------------------------
 -- Table structure for `ls_pdlog`
@@ -10602,8 +11322,58 @@ CREATE TABLE `ls_pdlog` (
   `lg_addtime` int(11) NOT NULL COMMENT '变更添加时间',
   `lg_desc` varchar(150) DEFAULT NULL COMMENT '变更描述',
   PRIMARY KEY (`lg_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='预存款变更日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8 COMMENT='预存款变更日志表';
 
+-- -----------------------------
+-- Records of `ls_pdlog`
+-- -----------------------------
+INSERT INTO `ls_pdlog` VALUES ('49', '11', 'caijunqi', 'admin', 'sys_add_money', '1.00', '0.00', '1574764691', '管理员调节储值卡【增加】，充值单号: 19112618381143331011,备注：');
+INSERT INTO `ls_pdlog` VALUES ('50', '11', 'caijunqi', 'admin', 'sys_add_money', '1.00', '0.00', '1574834704', '管理员调节储值卡【增加】，充值单号: 19112714050456584011,备注：');
+INSERT INTO `ls_pdlog` VALUES ('51', '11', 'caijunqi', 'admin', 'sys_add_money', '1.00', '0.00', '1574905626', '管理员调节储值卡【增加】，充值单号: 19112809470644168011,备注：');
+INSERT INTO `ls_pdlog` VALUES ('52', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575011464', '管理员调节储值卡【增加】，充值单号: 19112915110474873012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('53', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575011647', '管理员调节储值卡【增加】，充值单号: 19112915140749717012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('54', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575011734', '管理员调节储值卡【增加】，充值单号: 19112915153409445012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('55', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575011796', '管理员调节储值卡【增加】，充值单号: 19112915163625323012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('56', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575011813', '管理员调节储值卡【增加】，充值单号: 19112915165354324012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('57', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575011942', '管理员调节储值卡【增加】，充值单号: 19112915190238524012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('58', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575011971', '管理员调节储值卡【增加】，充值单号: 19112915193174735012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('59', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575012075', '管理员调节储值卡【增加】，充值单号: 19112915211505361012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('60', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575012766', '管理员调节储值卡【增加】，充值单号: 19112915324630912012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('61', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575012904', '管理员调节储值卡【增加】，充值单号: 19112915350473527012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('62', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575012927', '管理员调节储值卡【增加】，充值单号: 19112915352767083012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('63', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575013015', '管理员调节储值卡【增加】，充值单号: 19112915365563684012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('64', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575013311', '管理员调节储值卡【增加】，充值单号: 19112915415124025012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('65', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575015659', '管理员调节储值卡【增加】，充值单号: 19112916205942290012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('66', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575016356', '管理员调节储值卡【增加】，充值单号: 19112916323663620012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('67', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575016508', '管理员调节储值卡【增加】，充值单号: 19112916350887023012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('68', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575016561', '管理员调节储值卡【增加】，充值单号: 19112916360173181012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('69', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575016645', '管理员调节储值卡【增加】，充值单号: 19112916372557337012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('70', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575016716', '管理员调节储值卡【增加】，充值单号: 19112916383615742012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('71', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575016725', '管理员调节储值卡【增加】，充值单号: 19112916384541288012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('72', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575016757', '管理员调节储值卡【增加】，充值单号: 19112916391702767012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('73', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575016870', '管理员调节储值卡【增加】，充值单号: 19112916411075973012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('74', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575016955', '管理员调节储值卡【增加】，充值单号: 19112916423587676012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('75', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575016975', '管理员调节储值卡【增加】，充值单号: 19112916425596044012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('76', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575017699', '管理员调节储值卡【增加】，充值单号: 19112916545939272012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('77', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575018670', '管理员调节储值卡【增加】，充值单号: 19112917111034429012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('78', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575020157', '管理员调节储值卡【增加】，充值单号: 19112917355752910012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('79', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575020300', '管理员调节储值卡【增加】，充值单号: 19112917382053610012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('80', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575020422', '管理员调节储值卡【增加】，充值单号: 19112917402295290012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('81', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575020493', '管理员调节储值卡【增加】，充值单号: 19112917413349738012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('82', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575021436', '管理员调节储值卡【增加】，充值单号: 19112917571686346012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('83', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575021562', '管理员调节储值卡【增加】，充值单号: 19112917592255373012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('84', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575023440', '管理员调节储值卡【增加】，充值单号: 19112918304068943012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('85', '11', 'caijunqi', 'admin', 'sys_add_money', '100.00', '0.00', '1575023570', '管理员调节储值卡【增加】，充值单号: 19112918325036015011,备注：');
+INSERT INTO `ls_pdlog` VALUES ('86', '12', 'koko', 'admin', 'sys_add_money', '100.00', '0.00', '1575023712', '管理员调节储值卡【增加】，充值单号: 19112918351281794012,备注：');
+INSERT INTO `ls_pdlog` VALUES ('87', '8', 'yang', 'admin', 'sys_add_money', '10000.00', '0.00', '1575024725', '管理员调节储值卡【增加】，充值单号: 19112918520515164008,备注：测试购买');
+INSERT INTO `ls_pdlog` VALUES ('88', '11', 'caijunqi', '', 'order_freeze', '-103.00', '103.00', '1575253061', '下单，冻结预存款，订单号: 2000000000000101');
+INSERT INTO `ls_pdlog` VALUES ('89', '11', 'caijunqi', '', 'order_cancel', '103.00', '-103.00', '1575254111', '取消订单，解冻储值卡，订单号: 2000000000000101');
+INSERT INTO `ls_pdlog` VALUES ('90', '11', 'caijunqi', '', 'cash_apply', '-103.00', '103.00', '1575254547', '申请提现，冻结预存款，提现单号: 19120210422733490011');
+INSERT INTO `ls_pdlog` VALUES ('91', '11', 'caijunqi', 'admin', 'cash_pay', '0.00', '-103.00', '1575254878', '提现成功，提现单号: 19120210422733490011');
+INSERT INTO `ls_pdlog` VALUES ('92', '11', 'caijunqi', 'admin', 'sys_add_money', '100.00', '0.00', '1575282372', '管理员调节储值卡【增加】，充值单号: 19120218261218585011,备注：');
+INSERT INTO `ls_pdlog` VALUES ('93', '11', 'caijunqi', '', 'cash_apply', '-100.00', '100.00', '1575344612', '申请提现，冻结储值卡，提现单号: 19120311433204189011');
+INSERT INTO `ls_pdlog` VALUES ('94', '11', 'caijunqi', 'admin', 'cash_pay', '0.00', '-100.00', '1575378583', '提现成功，提现单号: 19120311433204189011');
+INSERT INTO `ls_pdlog` VALUES ('95', '11', 'caijunqi', 'admin', 'sys_add_money', '100.00', '0.00', '1575427301', '管理员调节储值卡【增加】，充值单号: 19120410414130610011,备注：');
 
 -- -----------------------------
 -- Table structure for `ls_pdrecharge`
@@ -10622,8 +11392,12 @@ CREATE TABLE `ls_pdrecharge` (
   `pdr_paymenttime` int(11) NOT NULL DEFAULT '0' COMMENT '支付时间',
   `pdr_admin` varchar(30) DEFAULT '' COMMENT '管理员名',
   PRIMARY KEY (`pdr_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='预存款充值表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='预存款充值表';
 
+-- -----------------------------
+-- Records of `ls_pdrecharge`
+-- -----------------------------
+INSERT INTO `ls_pdrecharge` VALUES ('1', '19112618392576848011', '11', 'caijunqi', '1.00', '', '', '1574764765', '0', '0', '');
 
 -- -----------------------------
 -- Table structure for `ls_pmansong`
@@ -10754,13 +11528,80 @@ CREATE TABLE `ls_pointslog` (
   `pl_membername` varchar(100) NOT NULL COMMENT '会员名称',
   `pl_adminid` int(11) DEFAULT NULL COMMENT '管理员ID',
   `pl_adminname` varchar(100) DEFAULT NULL COMMENT '管理员名称',
-  `pl_points` int(11) NOT NULL DEFAULT '0' COMMENT '积分数 负数为扣除',
+  `pl_points` decimal(11,2) NOT NULL DEFAULT '0.00' COMMENT '冻结积分数 负数为扣除',
+  `pl_pointsav` decimal(11,2) DEFAULT '0.00' COMMENT '可用积分数 负数为扣除',
   `pl_addtime` int(11) NOT NULL COMMENT '积分添加时间',
   `pl_desc` varchar(100) NOT NULL COMMENT '积分操作描述',
   `pl_stage` varchar(50) NOT NULL COMMENT '积分操作阶段',
   PRIMARY KEY (`pl_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='会员积分日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8 COMMENT='会员积分日志表';
 
+-- -----------------------------
+-- Records of `ls_pointslog`
+-- -----------------------------
+INSERT INTO `ls_pointslog` VALUES ('72', '9', 'vvv', '0', '系统释放', '-152.00', '152.00', '1574784001', '该用户昨天可用积分为：0,冻结积分为：5057', 'release');
+INSERT INTO `ls_pointslog` VALUES ('73', '10', 'ppp', '0', '系统释放', '-151.00', '151.00', '1574784001', '该用户昨天可用积分为：0,冻结积分为：5046', 'release');
+INSERT INTO `ls_pointslog` VALUES ('74', '11', 'caijunqi', '', 'admin', '0.00', '1.00', '1574905721', '', 'system');
+INSERT INTO `ls_pointslog` VALUES ('75', '12', 'koko', '', 'admin', '1.00', '0.00', '1575012327', '', 'system');
+INSERT INTO `ls_pointslog` VALUES ('76', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575012766', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('77', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575012904', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('78', '8', 'yang', '', 'admin', '0.00', '2.00', '1575012904', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('79', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575012927', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('80', '8', 'yang', '', 'admin', '0.00', '2.00', '1575012927', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('81', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575013015', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('82', '8', 'yang', '', 'admin', '0.00', '2.50', '1575013015', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('83', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575013311', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('84', '8', 'yang', '', 'admin', '0.00', '2.50', '1575013311', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('85', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575015659', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('86', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575016356', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('87', '8', 'yang', '', 'admin', '0.00', '2.50', '1575016356', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('88', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575016508', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('89', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575016561', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('90', '8', 'yang', '', 'admin', '0.00', '2.50', '1575016561', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('91', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575016645', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('92', '8', 'yang', '', 'admin', '0.00', '2.50', '1575016645', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('93', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575016716', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('94', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575016725', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('95', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575016757', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('96', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575016870', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('97', '8', 'yang', '', 'admin', '0.00', '2.50', '1575016870', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('98', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575016955', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('99', '8', 'yang', '', 'admin', '0.00', '2.50', '1575016955', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('100', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575016975', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('101', '8', 'yang', '', 'admin', '0.00', '2.50', '1575016975', '来自koko充值返利', 'system');
+INSERT INTO `ls_pointslog` VALUES ('102', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575017699', '来自koko充值返利,充值金额：100元', 'system');
+INSERT INTO `ls_pointslog` VALUES ('103', '8', 'yang', '', 'admin', '0.00', '2.50', '1575017699', '来自koko充值返利,充值金额：100', 'system');
+INSERT INTO `ls_pointslog` VALUES ('104', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575018670', '来自koko充值返利,充值金额：100元，原积分为：176.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('105', '8', 'yang', '', 'admin', '0.00', '2.50', '1575018670', '来自koko充值返利,充值金额：100元，原积分为：68.50', 'system');
+INSERT INTO `ls_pointslog` VALUES ('106', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575020157', '来自koko充值返利,充值金额：100元，原积分为：181.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('107', '8', 'yang', '', 'admin', '0.00', '2.50', '1575020157', '来自koko充值返利,充值金额：100元，原积分为：71.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('108', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575020300', '来自koko充值返利,充值金额：100元，原积分为：186.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('109', '8', 'yang', '', 'admin', '0.00', '2.50', '1575020300', '来自koko充值返利,充值金额：100元，原积分为：73.50', 'system');
+INSERT INTO `ls_pointslog` VALUES ('110', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575020422', '来自koko充值返利,充值金额：100元，原积分为：191.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('111', '8', 'yang', '', 'admin', '0.00', '2.50', '1575020422', '来自koko充值返利,充值金额：100元，原积分为：76.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('112', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575020493', '来自koko充值返利,充值金额：100元，原积分为：196.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('113', '8', 'yang', '', 'admin', '0.00', '2.50', '1575020493', '来自koko充值返利,充值金额：100元，原积分为：78.50', 'system');
+INSERT INTO `ls_pointslog` VALUES ('114', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575021436', '来自koko充值返利,充值金额：100元，原积分为：201.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('115', '8', 'yang', '', 'admin', '0.00', '2.50', '1575021436', '来自koko充值返利,充值金额：100元，原积分为：81.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('116', '10', 'ppp', '', 'admin', '0.00', '10.00', '1575021436', '来自koko充值返利,充值金额：100元，原积分为：181.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('117', '9', 'vvv', '', 'admin', '0.00', '2.50', '1575021436', '来自koko充值返利,充值金额：100元，原积分为：157.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('118', '1', 'buyer', '', 'admin', '0.00', '0.50', '1575021436', '来自koko充值返利,充值金额：100元，原积分为：100.50', 'system');
+INSERT INTO `ls_pointslog` VALUES ('119', '12', 'koko', '', 'admin', '1.00', '0.00', '1575021661', '', 'system');
+INSERT INTO `ls_pointslog` VALUES ('120', '11', 'caijunqi', '', 'admin', '0.00', '5.00', '1575023440', '来自koko充值返利,充值金额：100元，原可用积分为：206.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('121', '8', 'yang', '', 'admin', '0.00', '2.50', '1575023440', '来自koko充值返利,充值金额：100元，原可用积分为：83.50', 'system');
+INSERT INTO `ls_pointslog` VALUES ('122', '10', 'ppp', '', 'admin', '0.00', '10.00', '1575023440', '来自koko充值返利,充值金额：100元，原可用积分为：191.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('123', '9', 'vvv', '', 'admin', '0.00', '2.50', '1575023440', '来自koko充值返利,充值金额：100元，原可用积分为：159.50', 'system');
+INSERT INTO `ls_pointslog` VALUES ('124', '1', 'buyer', '', 'admin', '0.00', '0.50', '1575023440', '来自koko充值返利,充值金额：100元，原可用积分为：101.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('125', '8', 'yang', '', 'admin', '0.00', '20.00', '1575023570', '来自caijunqi充值返利,充值金额：100元，原可用积分为：86.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('126', '1', 'buyer', '', 'admin', '0.00', '2.50', '1575023570', '来自caijunqi充值返利,充值金额：100元，原可用积分为：101.50', 'system');
+INSERT INTO `ls_pointslog` VALUES ('127', '11', 'caijunqi', '', 'admin', '5.00', '0.00', '1575023712', '来自koko充值返利,充值金额：100元，原冻结积分为：211.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('128', '8', 'yang', '', 'admin', '2.50', '0.00', '1575023712', '来自koko充值返利,充值金额：100元，原冻结积分为：106.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('129', '10', 'ppp', '', 'admin', '10.00', '0.00', '1575023712', '来自koko充值返利,充值金额：100元，原冻结积分为：201.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('130', '9', 'vvv', '', 'admin', '2.50', '0.00', '1575023712', '来自koko充值返利,充值金额：100元，原冻结积分为：162.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('131', '1', 'buyer', '', 'admin', '0.50', '0.00', '1575023712', '来自koko充值返利,充值金额：100元，原冻结积分为：104.00', 'system');
+INSERT INTO `ls_pointslog` VALUES ('133', '11', 'caijunqi', '', '', '0.00', '0.00', '1575437595', '会员登录', 'login');
+INSERT INTO `ls_pointslog` VALUES ('134', '11', 'caijunqi', '', '', '0.00', '0.00', '1575514702', '会员登录', 'login');
+INSERT INTO `ls_pointslog` VALUES ('135', '11', 'caijunqi', '', '', '0.00', '-105.00', '1575531476', '用户申请提现，提现积分为105', 'withdraw');
 
 -- -----------------------------
 -- Table structure for `ls_pointsorder`
@@ -11088,7 +11929,7 @@ CREATE TABLE `ls_seller` (
 -- -----------------------------
 -- Records of `ls_seller`
 -- -----------------------------
-INSERT INTO `ls_seller` VALUES ('1', 'seller', '1', '0', '1', '1', '1572953414');
+INSERT INTO `ls_seller` VALUES ('1', 'seller', '1', '0', '1', '1', '1575339796');
 
 -- -----------------------------
 -- Table structure for `ls_sellergroup`
@@ -11119,8 +11960,33 @@ CREATE TABLE `ls_sellerlog` (
   `sellerlog_url` varchar(100) NOT NULL COMMENT '卖家日志url',
   `sellerlog_state` tinyint(3) unsigned NOT NULL COMMENT '日志状态 0:失败 1:成功',
   PRIMARY KEY (`sellerlog_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='卖家日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='卖家日志表';
 
+-- -----------------------------
+-- Records of `ls_sellerlog`
+-- -----------------------------
+INSERT INTO `ls_sellerlog` VALUES ('9', '登录成功', '1574820449', '1', 'seller', '1', '117.100.2.223', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('10', '登录成功', '1574843725', '1', 'seller', '1', '127.0.0.1', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('11', '注销成功', '1574843748', '1', 'seller', '1', '127.0.0.1', 'home/Sellerlogin/logout', '1');
+INSERT INTO `ls_sellerlog` VALUES ('12', '登录成功', '1574843760', '1', 'seller', '1', '127.0.0.1', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('13', '注销成功', '1574929984', '1', 'seller', '1', '127.0.0.1', 'home/Sellerlogin/logout', '1');
+INSERT INTO `ls_sellerlog` VALUES ('14', '登录成功', '1574934384', '1', 'seller', '1', '127.0.0.1', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('15', '登录成功', '1574998580', '1', 'seller', '1', '117.100.7.203', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('16', '登录成功', '1574998633', '1', 'seller', '1', '117.100.7.203', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('17', '编辑商品，平台货号：2', '1575008562', '1', 'seller', '1', '117.100.7.203', 'home/Sellergoodsonline/edit_save_goods', '1');
+INSERT INTO `ls_sellerlog` VALUES ('18', '登录成功', '1575038130', '1', 'seller', '1', '117.100.7.203', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('19', '编辑商品，平台货号：103', '1575038189', '1', 'seller', '1', '117.100.7.203', 'home/Sellergoodsonline/edit_save_goods', '1');
+INSERT INTO `ls_sellerlog` VALUES ('20', '编辑商品，平台货号：93', '1575038268', '1', 'seller', '1', '117.100.7.203', 'home/Sellergoodsonline/edit_save_goods', '1');
+INSERT INTO `ls_sellerlog` VALUES ('21', '登录成功', '1575259172', '1', 'seller', '1', '127.0.0.1', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('22', '登录成功', '1575259454', '1', 'seller', '1', '127.0.0.1', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('23', '登录成功', '1575276619', '1', 'seller', '1', '117.100.7.203', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('24', '登录成功', '1575282783', '1', 'seller', '1', '117.100.7.203', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('25', '登录成功', '1575283018', '1', 'seller', '1', '127.0.0.1', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('26', '登录成功', '1575339715', '1', 'seller', '1', '117.100.7.203', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('27', '登录成功', '1575339796', '1', 'seller', '1', '117.100.7.203', 'home/Sellerlogin/login', '1');
+INSERT INTO `ls_sellerlog` VALUES ('28', '编辑商品，平台货号：2', '1575342383', '1', 'seller', '1', '117.100.7.203', 'home/Sellergoodsonline/edit_save_goods', '1');
+INSERT INTO `ls_sellerlog` VALUES ('29', '编辑商品，平台货号：2', '1575342386', '1', 'seller', '1', '117.100.7.203', 'home/Sellergoodsonline/edit_save_goods', '1');
+INSERT INTO `ls_sellerlog` VALUES ('30', '编辑商品，平台货号：2', '1575618648', '1', 'seller', '1', '117.100.9.85', 'home/Sellergoodsonline/edit_save_image', '1');
 
 -- -----------------------------
 -- Table structure for `ls_seo`
@@ -11138,19 +12004,19 @@ CREATE TABLE `ls_seo` (
 -- -----------------------------
 -- Records of `ls_seo`
 -- -----------------------------
-INSERT INTO `ls_seo` VALUES ('1', '{sitename} - 程序来源于国财对公（北京）科技有限公司', 'LSMALL,PHP商城系统,LSMALL商城系统,多用户商城系统,电商ERP,电商CRM,电子商务解决方案', '', 'index');
-INSERT INTO `ls_seo` VALUES ('2', '{sitename} - 抢购', 'LSMALL,{sitename}', '', 'group');
-INSERT INTO `ls_seo` VALUES ('3', '{sitename} - {name}', 'LSMALL,{name},{sitename}', 'LSMALL,{name},{sitename}', 'group_content');
-INSERT INTO `ls_seo` VALUES ('4', '{sitename} - 品牌', 'LSMALL,{sitename}', 'LSMALL,{sitename}', 'brand');
-INSERT INTO `ls_seo` VALUES ('5', '{sitename} - {name}', 'LSMALL,{sitename},{name}', 'LSMALL,{sitename},{name}', 'brand_list');
+INSERT INTO `ls_seo` VALUES ('1', '{sitename} - 程序来源于兵赢天下网络有限公司', '绿色长城,PHP商城系统,多用户商城系统,电商ERP,电商CRM,电子商务解决方案', '', 'index');
+INSERT INTO `ls_seo` VALUES ('2', '{sitename} - 抢购', '绿色长城,{sitename}', '', 'group');
+INSERT INTO `ls_seo` VALUES ('3', '{sitename} - {name}', '绿色长城,{name},{sitename}', '绿色长城,{name},{sitename}', 'group_content');
+INSERT INTO `ls_seo` VALUES ('4', '{sitename} - 品牌', '绿色长城,{sitename}', '绿色长城,{sitename}', 'brand');
+INSERT INTO `ls_seo` VALUES ('5', '{sitename} - {name}', '绿色长城,{sitename},{name}', '绿色长城,{sitename},{name}', 'brand_list');
 INSERT INTO `ls_seo` VALUES ('7', '{sitename} - {name}', 'DSMALL,{sitename},{name}', 'DSMALL,{sitename},{name}', 'coupon_content');
-INSERT INTO `ls_seo` VALUES ('8', '{sitename} - 积分商城', 'LSMALL,{sitename}', 'LSMALL,{sitename}', 'point');
-INSERT INTO `ls_seo` VALUES ('9', '{sitename} - {name}', 'LSMALL,{sitename},{key}', 'LSMALL,{sitename},{description}', 'point_content');
-INSERT INTO `ls_seo` VALUES ('10', '{sitename} - {article_class}', 'LSMALL,{sitename}', 'LSMALL,{sitename}', 'article');
-INSERT INTO `ls_seo` VALUES ('11', '{sitename} - {name}', 'LSMALL,{sitename},{key}', 'LSMALL,{sitename},{description}', 'article_content');
-INSERT INTO `ls_seo` VALUES ('12', '{sitename} - {shopname}', 'LSMALL,{sitename},{key}', 'LSMALL,{sitename},{description}', 'shop');
-INSERT INTO `ls_seo` VALUES ('13', '{name} - {sitename}', 'LSMALL,{sitename},{key}', 'LSMALL,{sitename},{description}', 'product');
-INSERT INTO `ls_seo` VALUES ('14', '看{name}怎么淘到好的宝贝-{sitename}', 'DSMALL,{sitename},{name}', 'DSMALL,{sitename},{name}', 'sns');
+INSERT INTO `ls_seo` VALUES ('8', '{sitename} - 积分商城', '绿色长城,{sitename}', '绿色长城,{sitename}', 'point');
+INSERT INTO `ls_seo` VALUES ('9', '{sitename} - {name}', '绿色长城,{sitename},{key}', '绿色长城,{sitename},{description}', 'point_content');
+INSERT INTO `ls_seo` VALUES ('10', '{sitename} - {article_class}', '绿色长城,{sitename}', '绿色长城,{sitename}', 'article');
+INSERT INTO `ls_seo` VALUES ('11', '{sitename} - {name}', '绿色长城,{sitename},{key}', '绿色长城,{sitename},{description}', 'article_content');
+INSERT INTO `ls_seo` VALUES ('12', '{sitename} - {shopname}', '绿色长城,{sitename},{key}', '绿色长城,{sitename},{description}', 'shop');
+INSERT INTO `ls_seo` VALUES ('13', '{name} - {sitename}', '绿色长城,{sitename},{key}', '绿色长城,{sitename},{description}', 'product');
+INSERT INTO `ls_seo` VALUES ('14', '看{name}怎么淘到好的宝贝-{sitename}', '绿色长城,{sitename},{name}', '绿色长城,{sitename},{name}', 'sns');
 
 -- -----------------------------
 -- Table structure for `ls_smslog`
@@ -11168,8 +12034,23 @@ CREATE TABLE `ls_smslog` (
   `member_name` varchar(50) DEFAULT '' COMMENT '短信会员名',
   PRIMARY KEY (`smslog_id`),
   KEY `smslog_phone` (`smslog_phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='手机短信记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='手机短信记录表';
 
+-- -----------------------------
+-- Records of `ls_smslog`
+-- -----------------------------
+INSERT INTO `ls_smslog` VALUES ('1', '15236615591', '859337', '117.100.11.201', '【绿色长城】您于2019-11-19申请注册会员，动态码：859337。', '1', '1574162600', '0', '');
+INSERT INTO `ls_smslog` VALUES ('2', '18511310658', '620918', '127.0.0.1', '您于2019-11-26申请注册会员，动态码：620918。', '1', '1574761486', '0', '');
+INSERT INTO `ls_smslog` VALUES ('3', '15210356014', '162538', '117.100.7.203', '您于2019-11-29申请登录，动态码：162538。', '2', '1575010579', '8', 'yang');
+INSERT INTO `ls_smslog` VALUES ('4', '18511310658', '517154', '117.100.7.203', '【绿色长城】您于2019-12-02 10:41提交账户安全验证，验证码是：517154。', '5', '1575254514', '11', 'caijunqi');
+INSERT INTO `ls_smslog` VALUES ('5', '18511310658', '670710', '127.0.0.1', '【绿色长城】您于2019-12-03 11:43提交账户安全验证，验证码是：670710。', '5', '1575344586', '11', 'caijunqi');
+INSERT INTO `ls_smslog` VALUES ('6', '18511310658', '659861', '127.0.0.1', '【绿色长城】您于2019-12-03 21:17提交账户安全验证，验证码是：659861。', '5', '1575379043', '11', 'caijunqi');
+INSERT INTO `ls_smslog` VALUES ('7', '18511310658', '378601', '127.0.0.1', '【绿色长城】您于2019-12-04 10:41提交账户安全验证，验证码是：378601。', '5', '1575427317', '11', 'caijunqi');
+INSERT INTO `ls_smslog` VALUES ('8', '18511310658', '862557', '117.100.9.85', '【绿色长城】您于2019-12-05 10:59提交账户安全验证，验证码是：862557。', '5', '1575514741', '11', 'caijunqi');
+INSERT INTO `ls_smslog` VALUES ('9', '18511310658', '626017', '127.0.0.1', '【绿色长城】您于2019-12-05申请注册会员，动态码：626017。', '1', '1575529740', '11', 'caijunqi');
+INSERT INTO `ls_smslog` VALUES ('10', '18511310658', '200543', '127.0.0.1', '【绿色长城】您于2019-12-05申请注册会员，动态码：200543。', '1', '1575530044', '11', 'caijunqi');
+INSERT INTO `ls_smslog` VALUES ('11', '18511310658', '460183', '117.100.9.85', '【绿色长城】您于2019-12-05申请注册会员，动态码：460183。', '1', '1575534242', '11', 'caijunqi');
+INSERT INTO `ls_smslog` VALUES ('12', '18511310658', '260952', '117.100.9.85', '【绿色长城】您于2019-12-05申请注册会员，动态码：260952。', '1', '1575534586', '11', 'caijunqi');
 
 -- -----------------------------
 -- Table structure for `ls_snsalbumclass`
@@ -11185,8 +12066,19 @@ CREATE TABLE `ls_snsalbumclass` (
   `ac_uploadtime` int(10) unsigned NOT NULL COMMENT '图片上传时间',
   `ac_isdefault` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否为买家秀相册  1:是 0:否',
   PRIMARY KEY (`ac_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='相册表';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='相册表';
 
+-- -----------------------------
+-- Records of `ls_snsalbumclass`
+-- -----------------------------
+INSERT INTO `ls_snsalbumclass` VALUES ('6', '7', '买家秀', '买家秀默认相册', '255', '', '1574305383', '1');
+INSERT INTO `ls_snsalbumclass` VALUES ('7', '8', '买家秀', '买家秀默认相册', '255', '', '1574663059', '1');
+INSERT INTO `ls_snsalbumclass` VALUES ('8', '9', '买家秀', '买家秀默认相册', '255', '', '1574665145', '1');
+INSERT INTO `ls_snsalbumclass` VALUES ('9', '10', '买家秀', '买家秀默认相册', '255', '', '1574679379', '1');
+INSERT INTO `ls_snsalbumclass` VALUES ('10', '11', '买家秀', '买家秀默认相册', '255', '', '1574761517', '1');
+INSERT INTO `ls_snsalbumclass` VALUES ('11', '12', '买家秀', '买家秀默认相册', '255', '', '1574994669', '1');
+INSERT INTO `ls_snsalbumclass` VALUES ('12', '13', '买家秀', '买家秀默认相册', '255', '', '1575265268', '1');
+INSERT INTO `ls_snsalbumclass` VALUES ('13', '14', '买家秀', '买家秀默认相册', '255', '', '1575266038', '1');
 
 -- -----------------------------
 -- Table structure for `ls_snsalbumpic`
@@ -11286,7 +12178,7 @@ CREATE TABLE `ls_specvalue` (
   `spvalue_sort` tinyint(1) unsigned NOT NULL COMMENT '规格排序',
   PRIMARY KEY (`spvalue_id`),
   KEY `store_id` (`store_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COMMENT='商品规格值表';
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8 COMMENT='商品规格值表';
 
 -- -----------------------------
 -- Records of `ls_specvalue`
@@ -11417,6 +12309,13 @@ INSERT INTO `ls_specvalue` VALUES ('126', '黑', '2', '68', '1', '', '0');
 INSERT INTO `ls_specvalue` VALUES ('127', '白', '2', '68', '1', '', '0');
 INSERT INTO `ls_specvalue` VALUES ('128', '单框镜', '1', '68', '1', '', '0');
 INSERT INTO `ls_specvalue` VALUES ('129', '变色镜', '1', '68', '1', '', '0');
+INSERT INTO `ls_specvalue` VALUES ('130', '国产', '1', '2', '1', '', '0');
+INSERT INTO `ls_specvalue` VALUES ('131', '国外', '1', '2', '1', '', '0');
+INSERT INTO `ls_specvalue` VALUES ('132', '红色', '2', '2', '1', '', '0');
+INSERT INTO `ls_specvalue` VALUES ('133', '蓝色', '2', '2', '1', '', '0');
+INSERT INTO `ls_specvalue` VALUES ('134', '黑色', '2', '2', '1', '', '0');
+INSERT INTO `ls_specvalue` VALUES ('135', '64G', '3', '2', '1', '', '0');
+INSERT INTO `ls_specvalue` VALUES ('136', '128G', '3', '2', '1', '', '0');
 
 -- -----------------------------
 -- Table structure for `ls_statmember`
@@ -11605,7 +12504,7 @@ CREATE TABLE `ls_store` (
 -- -----------------------------
 -- Records of `ls_store`
 -- -----------------------------
-INSERT INTO `ls_store` VALUES ('1', '自营店铺', '1', '1', 'buyer', 'seller', '0', '', '', '', '', '', '1', '', '255', '1572950123', '0', '', '', '', '', '', '', '', '', '', '0', 'default', '0', '0', '0', '0', '0', '', '', '', '', '0', '', '', '', '0.00', '0', '0', '0', '', '', '', '', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '', '', '', '', '', '', '0', '0', '0.00', '0.00', '0.00', '0.00', '0.00');
+INSERT INTO `ls_store` VALUES ('1', '自营店铺', '1', '1', 'buyer', 'seller', '1', '', '', '', '', '', '1', '', '255', '1572950123', '0', '1_2019120310233098236.png', '', '1_2019120310233068889.png', '', '', '', '', '', '', '0', 'default', '0', '0', '0', '0', '0', '1_0.png,1_1.png,,,', 'http://,http://,http://,http://,http://', '', '', '0', '', '', '', '0.00', '0', '0', '0', '', '', '', '', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '', '', '1_2019120218342817979.png', 'a:5:{i:1;a:3:{s:3:\"img\";s:7:\"1_1.png\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:2;a:3:{s:3:\"img\";s:7:\"1_2.jpg\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:3;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:4;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:5;N;}', '', '', '0', '0', '0.00', '0.00', '0.00', '0.00', '0.00');
 
 -- -----------------------------
 -- Table structure for `ls_storebindclass`
@@ -11634,21 +12533,22 @@ CREATE TABLE `ls_storeclass` (
   `storeclass_bail` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '店铺分类保证金数额',
   `storeclass_sort` tinyint(3) unsigned NOT NULL DEFAULT '255' COMMENT '店铺分类排序',
   PRIMARY KEY (`storeclass_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='店铺分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='店铺分类表';
 
 -- -----------------------------
 -- Records of `ls_storeclass`
 -- -----------------------------
-INSERT INTO `ls_storeclass` VALUES ('1', '珠宝/首饰', '0', '8');
-INSERT INTO `ls_storeclass` VALUES ('2', '服装鞋包', '0', '1');
-INSERT INTO `ls_storeclass` VALUES ('3', '3C数码', '0', '2');
-INSERT INTO `ls_storeclass` VALUES ('4', '美容护理', '0', '3');
-INSERT INTO `ls_storeclass` VALUES ('5', '家居用品', '0', '4');
-INSERT INTO `ls_storeclass` VALUES ('6', '食品/保健', '0', '5');
-INSERT INTO `ls_storeclass` VALUES ('7', '母婴用品', '0', '6');
-INSERT INTO `ls_storeclass` VALUES ('8', '文体/汽车', '0', '7');
-INSERT INTO `ls_storeclass` VALUES ('9', '收藏/爱好', '0', '9');
-INSERT INTO `ls_storeclass` VALUES ('10', '生活/服务', '0', '10');
+INSERT INTO `ls_storeclass` VALUES ('1', '农副/副食', '0', '8');
+INSERT INTO `ls_storeclass` VALUES ('2', '水果', '0', '1');
+INSERT INTO `ls_storeclass` VALUES ('3', '蔬菜', '0', '2');
+INSERT INTO `ls_storeclass` VALUES ('4', '种苗', '0', '3');
+INSERT INTO `ls_storeclass` VALUES ('5', '禽畜牧蛋肉', '0', '4');
+INSERT INTO `ls_storeclass` VALUES ('6', '水产', '0', '5');
+INSERT INTO `ls_storeclass` VALUES ('7', '中药材', '0', '6');
+INSERT INTO `ls_storeclass` VALUES ('8', '坚果干果', '0', '7');
+INSERT INTO `ls_storeclass` VALUES ('9', '粮油作物', '0', '9');
+INSERT INTO `ls_storeclass` VALUES ('10', '种子', '0', '10');
+INSERT INTO `ls_storeclass` VALUES ('11', '食用菌', '0', '11');
 
 -- -----------------------------
 -- Table structure for `ls_storecost`
@@ -11829,8 +12729,20 @@ CREATE TABLE `ls_storemsg` (
   `storemsg_addtime` int(10) unsigned NOT NULL COMMENT '发送时间',
   `storemsg_readids` varchar(255) DEFAULT NULL COMMENT '已读卖家id',
   PRIMARY KEY (`storemsg_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='店铺消息表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='店铺消息表';
 
+-- -----------------------------
+-- Records of `ls_storemsg`
+-- -----------------------------
+INSERT INTO `ls_storemsg` VALUES ('1', 'goods_violation', '1', '您的商品被违规下架，原因：“商品分类被删除，需要重新选择分类”。平台货号：117。', '1574326866', '');
+INSERT INTO `ls_storemsg` VALUES ('2', 'goods_violation', '1', '您的商品被违规下架，原因：“商品分类被删除，需要重新选择分类”。平台货号：44。', '1574326871', '');
+INSERT INTO `ls_storemsg` VALUES ('3', 'goods_violation', '1', '您的商品被违规下架，原因：“商品分类被删除，需要重新选择分类”。平台货号：43。', '1574326871', '');
+INSERT INTO `ls_storemsg` VALUES ('4', 'goods_violation', '1', '您的商品被违规下架，原因：“商品分类被删除，需要重新选择分类”。平台货号：42。', '1574326875', '');
+INSERT INTO `ls_storemsg` VALUES ('5', 'goods_violation', '1', '您的商品被违规下架，原因：“商品分类被删除，需要重新选择分类”。平台货号：41。', '1574326875', '');
+INSERT INTO `ls_storemsg` VALUES ('6', 'goods_violation', '1', '您的商品被违规下架，原因：“商品分类被删除，需要重新选择分类”。平台货号：113。', '1574327616', '');
+INSERT INTO `ls_storemsg` VALUES ('7', 'goods_violation', '1', '您的商品被违规下架，原因：“商品分类被删除，需要重新选择分类”。平台货号：112。', '1574327616', '');
+INSERT INTO `ls_storemsg` VALUES ('8', 'goods_violation', '1', '您的商品被违规下架，原因：“商品分类被删除，需要重新选择分类”。平台货号：115。', '1574327622', '');
+INSERT INTO `ls_storemsg` VALUES ('9', 'goods_violation', '1', '您的商品被违规下架，原因：“商品分类被删除，需要重新选择分类”。平台货号：114。', '1574327622', '');
 
 -- -----------------------------
 -- Table structure for `ls_storemsgread`
@@ -12049,6 +12961,30 @@ CREATE TABLE `ls_storewaybill` (
 
 
 -- -----------------------------
+-- Table structure for `ls_transactionlog`
+-- -----------------------------
+DROP TABLE IF EXISTS `ls_transactionlog`;
+CREATE TABLE `ls_transactionlog` (
+  `tl_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '交易码日志自增ID',
+  `tl_memberid` int(11) NOT NULL COMMENT '会员ID',
+  `tl_membername` varchar(100) NOT NULL COMMENT '会员名称',
+  `tl_adminid` int(11) DEFAULT NULL COMMENT '管理员ID',
+  `tl_adminname` varchar(100) DEFAULT NULL COMMENT '管理员名称',
+  `tl_transaction` decimal(11,2) NOT NULL DEFAULT '0.00' COMMENT '交易码数 负数为扣除',
+  `tl_addtime` int(11) NOT NULL COMMENT '交易码添加时间',
+  `tl_desc` varchar(100) NOT NULL COMMENT '交易码操作描述',
+  `tl_stage` varchar(50) NOT NULL COMMENT '交易码操作阶段',
+  PRIMARY KEY (`tl_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='会员交易码日志表';
+
+-- -----------------------------
+-- Records of `ls_transactionlog`
+-- -----------------------------
+INSERT INTO `ls_transactionlog` VALUES ('36', '11', 'caijunqi', '', 'admin', '1.00', '1575352293', '管理员调节交易码【增加】，充值单号: 19120313513309549011,备注：', 'system');
+INSERT INTO `ls_transactionlog` VALUES ('37', '11', 'caijunqi', '1', 'admin', '1.00', '1575352619', '管理员调节交易码【增加】，充值单号: 19120313565910228011,备注：', 'system');
+INSERT INTO `ls_transactionlog` VALUES ('38', '11', 'caijunqi', '1', 'admin', '-1.00', '1575369351', '管理员调节交易码【减少】，充值单号: 19120318355159851011,备注：', 'system');
+
+-- -----------------------------
 -- Table structure for `ls_transport`
 -- -----------------------------
 DROP TABLE IF EXISTS `ls_transport`;
@@ -12138,8 +13074,14 @@ CREATE TABLE `ls_upload` (
   `upload_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上传文件添加时间',
   `item_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '信息ID',
   PRIMARY KEY (`upload_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
+-- -----------------------------
+-- Records of `ls_upload`
+-- -----------------------------
+INSERT INTO `ls_upload` VALUES ('1', '5ddc9df09dfd8.png', '19008', '1', '1574739440', '42');
+INSERT INTO `ls_upload` VALUES ('4', '5dde371a262ab.jpg', '732693', '1', '1574844186', '44');
+INSERT INTO `ls_upload` VALUES ('5', '5dde52deee553.jpg', '732693', '1', '1574851294', '35');
 
 -- -----------------------------
 -- Table structure for `ls_verify_code`
@@ -12155,7 +13097,33 @@ CREATE TABLE `ls_verify_code` (
   `verify_code_add_time` int(10) unsigned NOT NULL COMMENT '发送时间',
   `verify_code_ip` varchar(15) NOT NULL COMMENT 'ip地址',
   PRIMARY KEY (`verify_code_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='验证码表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='验证码表';
+
+-- -----------------------------
+-- Records of `ls_verify_code`
+-- -----------------------------
+INSERT INTO `ls_verify_code` VALUES ('1', '6', '517154', '1', '11', 'caijunqi', '1575254514', '117.100.7.203');
+INSERT INTO `ls_verify_code` VALUES ('2', '6', '670710', '1', '11', 'caijunqi', '1575344586', '127.0.0.1');
+INSERT INTO `ls_verify_code` VALUES ('3', '6', '659861', '1', '11', 'caijunqi', '1575379043', '127.0.0.1');
+INSERT INTO `ls_verify_code` VALUES ('4', '6', '378601', '1', '11', 'caijunqi', '1575427317', '127.0.0.1');
+INSERT INTO `ls_verify_code` VALUES ('5', '6', '862557', '1', '11', 'caijunqi', '1575514741', '117.100.9.85');
+
+-- -----------------------------
+-- Table structure for `ls_version_update`
+-- -----------------------------
+DROP TABLE IF EXISTS `ls_version_update`;
+CREATE TABLE `ls_version_update` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` tinyint(2) DEFAULT '1' COMMENT '1：IOS；2：Android',
+  `content` text COLLATE utf8_unicode_ci COMMENT '更新内容',
+  `mode` tinyint(2) DEFAULT '1' COMMENT '更新方式；1：建议更新；2：强制更新',
+  `version_num` varchar(10) COLLATE utf8_unicode_ci NOT NULL COMMENT '版本号',
+  `url` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '下载地址',
+  `channel` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '渠道标识',
+  `package_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '安装包名',
+  `time` int(11) DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 -- -----------------------------
@@ -12399,8 +13367,12 @@ CREATE TABLE `ls_wxconfig` (
   `ticket` varchar(250) DEFAULT NULL COMMENT 'ticket',
   `ticket_expires_in` int(15) DEFAULT NULL COMMENT 'ticket过期时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='微信配置表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='微信配置表';
 
+-- -----------------------------
+-- Records of `ls_wxconfig`
+-- -----------------------------
+INSERT INTO `ls_wxconfig` VALUES ('1', '八一绿色商城', 'wx6cd79e4fa27b256a', 'cd1aa47a2d71c5264e71f0d843f80cfd', 'BingYingTianXia', '', '28_GZy72f8Srs2waomkSjkRuqlpl1SSMJp5R7iR5Cx7QKgvhkDu8IMqh360r-dpf__hPG_zMh1YSWrkvrxX6Z-1OI9dDvhXRP8poodjuYHIW5oRYdwyFHzRpytb-hCEyexerxtLCwnCbHML9w7_GELgAJABZG', '1575645872', '', '', '', '', '', '');
 
 -- -----------------------------
 -- Table structure for `ls_wxkeyword`
@@ -12413,8 +13385,12 @@ CREATE TABLE `ls_wxkeyword` (
   `type` varchar(30) DEFAULT 'TEXT' COMMENT '关键词操作类型',
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='微信关键词表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='微信关键词表';
 
+-- -----------------------------
+-- Records of `ls_wxkeyword`
+-- -----------------------------
+INSERT INTO `ls_wxkeyword` VALUES ('4', '您好', '4', 'TEXT');
 
 -- -----------------------------
 -- Table structure for `ls_wxmenu`
@@ -12429,8 +13405,15 @@ CREATE TABLE `ls_wxmenu` (
   `sort` tinyint(3) unsigned NOT NULL DEFAULT '255' COMMENT '排序',
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='微信菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='微信菜单表';
 
+-- -----------------------------
+-- Records of `ls_wxmenu`
+-- -----------------------------
+INSERT INTO `ls_wxmenu` VALUES ('3', '0', '关于我们', 'view', 'https://shop.bayi-shop.com/wap/erweima.html', '1');
+INSERT INTO `ls_wxmenu` VALUES ('4', '0', '绿色长城', 'view', 'https://shop.bayi-shop.com/wap/erweima.html', '1');
+INSERT INTO `ls_wxmenu` VALUES ('5', '3', 'APP下载二维码', 'view', 'https://shop.bayi-shop.com/wap/erweima.html', '1');
+INSERT INTO `ls_wxmenu` VALUES ('6', '3', '官方网站', 'view', 'http://www.bayi-shop.com/', '2');
 
 -- -----------------------------
 -- Table structure for `ls_wxmsg`
@@ -12458,5 +13441,9 @@ CREATE TABLE `ls_wxtext` (
   `updatetime` varchar(13) NOT NULL DEFAULT '' COMMENT '更新时间',
   `click` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '点击',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='微信文本回复表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='微信文本回复表';
 
+-- -----------------------------
+-- Records of `ls_wxtext`
+-- -----------------------------
+INSERT INTO `ls_wxtext` VALUES ('4', '您好', '您好', '1575442654', '', '0');
