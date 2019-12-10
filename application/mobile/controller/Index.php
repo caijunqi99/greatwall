@@ -95,7 +95,7 @@ class Index extends MobileMall {
      * 默认搜索词列表
      */
     public function search_key_list() {
-        $list = @explode('，', config('hot_search'));
+        $list = @explode(',', config('hot_search'));
         if (!$list || !is_array($list)) {
             $list = array();
         }
