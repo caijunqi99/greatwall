@@ -1,0 +1,14 @@
+@media screen and (max-width:1200px) {
+    .minwidth {
+        width: 1200px;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .declare_inner {
+        padding: 0 15px;
+    }
+    .declare_text {
+        box-shadow: none;
+    }
+}
