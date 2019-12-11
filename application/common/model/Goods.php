@@ -1324,8 +1324,12 @@ class Goods extends Model {
      * @return boolean
      */
     private function _dGoodsCache($goods_id) {
-        @unlink(BASE_UPLOAD_PATH . DS . ATTACH_TAOBAO . DS . 'goods_csv_' . $goods_id . '.zip');
-        @unlink(BASE_UPLOAD_PATH . DS . ATTACH_TAOBAO . DS . 'goods_image_' . $goods_id . '.zip');
+        if (is_file(BASE_UPLOAD_PATH . DS . ATTACH_TAOBAO . DS . 'goods_csv_' . $goods_id . '.zip')) {
+            @unlink(BASE_UPLOAD_PATH . DS . ATTACH_TAOBAO . DS . 'goods_csv_' . $goods_id . '.zip');
+        }
+        if (is_file(BASE_UPLOAD_PATH . DS . ATTACH_TAOBAO . DS . 'goods_image_' . $goods_id . '.zip')) {
+            @unlink(BASE_UPLOAD_PATH . DS . ATTACH_TAOBAO . DS . 'goods_image_' . $goods_id . '.zip');
+        }
         return dcache($goods_id, 'goods');
     }
 

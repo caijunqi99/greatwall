@@ -18,7 +18,7 @@ class BaseMall extends BaseHome {
     public function _initialize() {
         parent::_initialize();
         if (!strstr(strtolower(request()->controller()) , 'seller') || strstr(strtolower(request()->controller()), 'member')) {
-            
+            //只开启商户端
             // $this->redirect('Home/Seller/index');
 
         }

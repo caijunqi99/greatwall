@@ -550,7 +550,7 @@ class Predeposit extends Model {
             $insert_arr['pl_pointsav'] = 0;
             $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$member_info_one['member_points_available'];
         }
-        $insert_arr['pl_adminname'] = isset(session('admin_name'))?session('admin_name'):'';
+        $insert_arr['pl_adminname'] = !empty(session('admin_name'))?session('admin_name'):'';
         model('points')->savePointslog('system', $insert_arr);
         if(isset($member_info_two)){
             $insert_arrs['pl_memberid'] = $member_info_two['member_id'];
@@ -564,7 +564,7 @@ class Predeposit extends Model {
                 $insert_arrs['pl_pointsav'] = 0;
                 $insert_arrs['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$member_info_two['member_points_available'];
             }
-            $insert_arrs['pl_adminname'] = isset(session('admin_name'))?session('admin_name'):'';
+            $insert_arrs['pl_adminname'] = !empty(session('admin_name'))?session('admin_name'):'';
             model('points')->savePointslog('system', $insert_arrs);
         }
 
@@ -585,7 +585,7 @@ class Predeposit extends Model {
                 $insert_arr['pl_pointsav'] = 0;
                 $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$village_info['member_points_available'];
             }
-            $insert_arr['pl_adminname'] = isset(session('admin_name'))?session('admin_name'):'';
+            $insert_arr['pl_adminname'] = !empty(session('admin_name'))?session('admin_name'):'';
             model('points')->savePointslog('system', $insert_arr);
         }
         //镇级
@@ -603,7 +603,7 @@ class Predeposit extends Model {
                 $insert_arrtown['pl_pointsav'] = 0;
                 $insert_arrtown['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$town_info['member_points_available'];
             }
-            $insert_arrtown['pl_adminname'] = isset(session('admin_name'))?session('admin_name'):'';
+            $insert_arrtown['pl_adminname'] = !empty(session('admin_name'))?session('admin_name'):'';
             model('points')->savePointslog('system', $insert_arrtown);
         }
         //区/县级
@@ -621,7 +621,7 @@ class Predeposit extends Model {
                 $insert_arrarea['pl_pointsav'] = 0;
                 $insert_arrarea['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$area_info['member_points_available'];
             }
-            $insert_arrarea['pl_adminname'] = isset(session('admin_name'))?session('admin_name'):'';
+            $insert_arrarea['pl_adminname'] = !empty(session('admin_name'))?session('admin_name'):'';
             model('points')->savePointslog('system', $insert_arrarea);
         }
         //市级
@@ -639,7 +639,7 @@ class Predeposit extends Model {
                 $insert_arrcity['pl_pointsav'] = 0;
                 $insert_arrcity['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$city_info['member_points_available'];
             }
-            $insert_arrcity['pl_adminname'] = isset(session('admin_name'))?session('admin_name'):'';
+            $insert_arrcity['pl_adminname'] = !empty(session('admin_name'))?session('admin_name'):'';
             model('points')->savePointslog('system', $insert_arrcity);
         }
         //省级
@@ -657,7 +657,7 @@ class Predeposit extends Model {
                 $insert_arrpro['pl_pointsav'] = 0;
                 $insert_arrpro['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$province_info['member_points_available'];
             }
-            $insert_arrpro['pl_adminname'] = isset(session('admin_name'))?session('admin_name'):'';
+            $insert_arrpro['pl_adminname'] = !empty(session('admin_name'))?session('admin_name'):'';
             model('points')->savePointslog('system', $insert_arrpro);
         }
 

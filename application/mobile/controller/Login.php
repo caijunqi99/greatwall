@@ -133,6 +133,7 @@ class Login extends MobileMall
         if(!$yanzheng) output_error('无效的手机号码！');
         $password         = input('param.password');
         $password_confirm = input('param.password_confirm');
+        if ($password != $password_confirm) output_error('两次密码输入不一致！');
         $email            = input('param.email');
         $client           = input('param.client');
         $sms_captcha      = input('param.sms_captcha');

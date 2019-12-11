@@ -21,7 +21,7 @@ class BaseMember extends BaseHome {
         parent::_initialize();
         Lang::load(APP_PATH . 'home/lang/'.config('default_lang').'/basemember.lang.php');
         if (!strstr(strtolower(request()->controller()) , 'seller') || strstr(strtolower(request()->controller()), 'member')) {
-            
+            //只开启商户端
             // $this->redirect('Home/Seller/index');
 
         }
