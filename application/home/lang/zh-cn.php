@@ -416,5 +416,6 @@ $lang['order_state_pay_notice'] = '您有新的订单需要发货';
 $lang['wechat_tm_order_send'] = '订单发货通知';
 $lang['order_state_send_text'] = '待收货';
 $lang['order_state_send_notice'] = '您的订单已发货';
+$lang['icpnumber'] = '备案许可证编号：';
 return $lang;
 ?>
