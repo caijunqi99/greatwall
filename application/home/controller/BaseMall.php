@@ -17,6 +17,12 @@ class BaseMall extends BaseHome {
 
     public function _initialize() {
         parent::_initialize();
+        if (!strstr(strtolower(request()->controller()) , 'seller') || strstr(strtolower(request()->controller()), 'member')) {
+            
+            // $this->redirect('Home/Seller/index');
+
+        }
+        
         $this->template_dir = 'default/mall/'.  strtolower(request()->controller()).'/';
     }
 }

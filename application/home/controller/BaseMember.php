@@ -20,6 +20,11 @@ class BaseMember extends BaseHome {
     public function _initialize() {
         parent::_initialize();
         Lang::load(APP_PATH . 'home/lang/'.config('default_lang').'/basemember.lang.php');
+        if (!strstr(strtolower(request()->controller()) , 'seller') || strstr(strtolower(request()->controller()), 'member')) {
+            
+            // $this->redirect('Home/Seller/index');
+
+        }
         /* 不需要登录就能访问的方法 */
         if (!in_array(request()->controller() ,array('cart')) && !in_array(request()->action(), array('ajax_load', 'add', 'del')) && !session('member_id')) {
             $ref_url = request_uri();

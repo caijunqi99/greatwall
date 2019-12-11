@@ -129,7 +129,7 @@ class Login extends MobileMall
         
         
         $username = trim(input('param.username'));
-        $yanzheng = preg_match('/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/',$username);
+        $yanzheng = preg_match('/^1[3456789]\d{9}$/',$username);
         if(!$yanzheng) output_error('无效的手机号码！');
         $password         = input('param.password');
         $password_confirm = input('param.password_confirm');
