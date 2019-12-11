@@ -254,6 +254,12 @@ class Payment extends Model
                 //订单已支付
                 return true;
             }
+            //储值卡充值返利
+            $model_member = Model('member');
+            $member_info = $model_member->getMemberInfoByID($order['data']['member_id']);
+            Model('Predeposit')->PdRebate($order['data']['pdr_member_id'],$order['data']['api_pay_amount']);
+            //返利完成
+            
             $result = $this->updatePdOrder($out_trade_no, $payment_code, $order['data'], $trade_no);
         }
         return $result['code'] ? TRUE : FALSE;

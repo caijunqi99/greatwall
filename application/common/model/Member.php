@@ -273,7 +273,8 @@ class Member extends Model
         }
         $insert_id = $this->addMember($register_info);
         if ($insert_id) {
-            $this->addMemberAfter($insert_id,$register_info);
+            //会员与推荐人积分添加
+            // $this->addMemberAfter($insert_id,$register_info);
             $member_info = db('member')->where('member_id', $insert_id)->find();
             //是否有注册红包
             $bonus_model = model('bonus');
