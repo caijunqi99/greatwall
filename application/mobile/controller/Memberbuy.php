@@ -17,7 +17,9 @@ class Memberbuy extends MobileMember
     {
 
         $cart_id = explode(',', $_POST['cart_id']);
-
+        if(config('member_auth') && $this->member_info['member_auth_state']!=3){
+            output_error('您需要先实名认证才能购买商品!');
+        }
         $logic_buy = model('buy','logic');
 
         //得到会员等级
