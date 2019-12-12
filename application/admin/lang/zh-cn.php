@@ -387,7 +387,7 @@ $lang['topnav_hello'] = '您好';
 $lang['topnav_clear_confirm'] = '确定清理全部缓存?';
 $lang['topnav_visit_home'] = '店铺登陆';
 
-$lang['system_backend'] = '商城系统后台';
+$lang['system_backend'] = '系统后台';
 
 $lang['jump_message'] = '跳转提示';
 $lang['has_error'] = '有错误发生';
