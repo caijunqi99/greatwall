@@ -52,21 +52,21 @@ class Ownshop extends AdminControl {
             if (!$this->checkSellerName(input('post.seller_name')))
                 $this->error(lang('seller_name_remote'));
 
-            try {
-                $memberId = model('member')->addMember(array(
-                    'member_name' => $memberName,
-                    'member_password' => $memberPasswd,
-                    'member_email' => '',
-                ));
-            } catch (Exception $ex) {
-                $this->error(lang('account_add_fail'));
-            }
+//            try {
+//                $memberId = model('member')->addMember(array(
+//                    'member_name' => $memberName,
+//                    'member_password' => $memberPasswd,
+//                    'member_email' => '',
+//                ));
+//            } catch (Exception $ex) {
+//                $this->error(lang('account_add_fail'));
+//            }
 
             $store_model = model('store');
 
             $saveArray = array();
             $saveArray['store_name'] = input('post.store_name');
-            $saveArray['member_id'] = $memberId;
+            //$saveArray['member_id'] = $memberId;
             $saveArray['member_name'] = $memberName;
             $saveArray['seller_name'] = input('post.seller_name');
             $saveArray['bind_all_gc'] = 1;
@@ -78,7 +78,8 @@ class Ownshop extends AdminControl {
 
             model('seller')->addSeller(array(
                 'seller_name' => input('post.seller_name'),
-                'member_id' => $memberId,
+//                'member_id' => $memberId,
+                'seller_password'=>md5($memberPasswd),
                 'store_id' => $store_id,
                 'sellergroup_id' => 0,
                 'is_admin' => 1,

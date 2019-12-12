@@ -22,24 +22,24 @@ class Seller extends Model {
      * @param type $seller_info 卖家信息
      * @param type $seller_group_info 分组信息
      */
-    public function createSellerSession($member_info,$store_info,$seller_info,$seller_group_info) {
-        if (empty($member_info) || !is_array($member_info)) {
-            return;
-        }
-        $member_gradeinfo = model('member')->getOneMemberGrade(intval($member_info['member_exppoints']));
-        $member_info = array_merge($member_info, $member_gradeinfo);
-        
-        /* 此处卖家登录需要和买家登录 session 一致 createSession方法  BEGIN */
+    public function createSellerSession($store_info,$seller_info,$seller_group_info) {
+//        if (empty($member_info) || !is_array($member_info)) {
+//            return;
+//        }
+//        $member_gradeinfo = model('member')->getOneMemberGrade(intval($member_info['member_exppoints']));
+//        $member_info = array_merge($member_info, $member_gradeinfo);
+//
+//        /* 此处卖家登录需要和买家登录 session 一致 createSession方法  BEGIN */
         session('is_login', '1');
-        session('member_id', $member_info['member_id']);
-        session('member_name', $member_info['member_name']);
-        session('member_email', $member_info['member_email']);
-        session('is_buy', $member_info['is_buylimit']);
-        session('avatar', $member_info['member_avatar']);
-        session('level', isset($member_info['level']) ? $member_info['level'] : '');
-        session('level_name', isset($member_info['level_name']) ? $member_info['level_name'] : '');
-        session('member_exppoints', $member_info['member_exppoints']);  //经验值
-        session('member_points', $member_info['member_points']);        //积分值
+        session('member_id', $seller_info['seller_id']);
+        //session('member_name', $member_info['member_name']);
+        //session('member_email', $member_info['member_email']);
+        //session('is_buy', $member_info['is_buylimit']);
+        //session('avatar', $member_info['member_avatar']);
+        //session('level', isset($member_info['level']) ? $member_info['level'] : '');
+        //session('level_name', isset($member_info['level_name']) ? $member_info['level_name'] : '');
+        //session('member_exppoints', $member_info['member_exppoints']);  //经验值
+        //session('member_points', $member_info['member_points']);        //积分值
         /* END */
 
         session('grade_id', $store_info['grade_id']); //店铺等级
