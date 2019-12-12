@@ -36,7 +36,6 @@ class Storelist extends MobileMall {
         if (!key_exists($cate_id, $class_list))
             $cate_id = 0;
 
-        $this->assign('class_list', $class_list);
 
         //店铺搜索
         $condition = array();
@@ -112,6 +111,7 @@ class Storelist extends MobileMall {
             $list[$k]['store_sort']           =$v['store_sort']; //店铺排序
             $list[$k]['store_addtime']        =$v['store_addtime']; //店铺加入平台的时间
             $list[$k]['store_logo']           =$v['store_logo']; //店铺logo
+            $list[$k]['store_avatar']         = get_store_logo($v['store_avatar']);
             $list[$k]['num_sales_jq']         =isset($v['num_sales_jq'])?$v['num_sales_jq']:0; //成交订单数量
             $list[$k]['goods_count']          =isset($v['goods_count'])?$v['goods_count']:0; //商品总数
             $list[$k]['store_credit_percent'] =$v['store_credit_percent']; //好评率
@@ -123,7 +123,6 @@ class Storelist extends MobileMall {
             unset($value);
             $list[$k]['search_list_goods']    =$v['search_list_goods']; //商品列表
         }
-        // p($store_list);exit;
         output_data($list);
 
     }

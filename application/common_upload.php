@@ -170,9 +170,9 @@ function del_albumpic($pic_list)
             }
         }
         $image_ext = explode(',', GOODS_IMAGES_EXT);
-        
         foreach ($pic_list as $v) {
             $upload_type = explode('_', $v['apic_cover']);
+
             //外网存储图片
             if (in_array($upload_type['0'], array('alioss', 'cos'))) {
                 if ($upload_type['0'] == 'alioss') {
@@ -193,7 +193,7 @@ function del_albumpic($pic_list)
             }
         }
         $upload_type = config('upload_type');
-        if ($upload_type == 'alioss') {
+        if ($upload_type == 'alioss' && $count) {
             //外网存储图片删除
             $accessId = config('alioss_accessid');
             $accessSecret = config('alioss_accesssecret');
