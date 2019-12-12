@@ -85,11 +85,7 @@
                         {/if}
                         <!--<a href="{:url('Goods/index',['goods_id'=>$storage_array[$val['goods_commonid']]['goods_id']])}" target="_blank">-->{$val.goods_name}<!--</a>--></dt>
                     <dd>{$Think.lang.store_goods_index_goods_no}{$Think.lang.ds_colon}{$val.goods_serial}</dd>
-                    <dd class="serve"> <span class="{if $val.goods_commend == 1}open{/if}" title="{$Think.lang.shop_recommendation}"><i class="commend">{$Think.lang.commend}</i></span> <span class="{if $val.mobile_body != ''}open{/if}" title="{$Think.lang.details_products_mobile_phones}"><i class="iconfont">&#xe601;</i></span> <span class="" title="{$Think.lang.product_page_qr_code}"><i class="iconfont">&#xe72d;</i>
-                            <div class="QRcode"><a target="_blank" href="{:goods_qrcode(array('goods_id' => $storage_array[$val['goods_commonid']]['goods_id']))}">{$Think.lang.download_label}</a>
-                                <p><img src="{:goods_qrcode(array('goods_id' => $storage_array[$val['goods_commonid']]['goods_id']))}"/></p>
-                            </div>
-                        </span>
+                    <dd class="serve"> <span class="{if $val.goods_commend == 1}open{/if}" title="{$Think.lang.shop_recommendation}"><i class="commend">{$Think.lang.commend}</i></span> <span class="{if $val.mobile_body != ''}open{/if}" title="{$Think.lang.details_products_mobile_phones}"><i class="iconfont">&#xe601;</i></span>
                         {if $val.is_goodsfcode ==1}
                         <span><a class="dssc-btn-mini dssc-btn-red" href="{:url('Sellergoodsonline/download_f_code_excel',['commonid'=>$val.goods_commonid])}">{$Think.lang.download_code_f}</a></span>
                         {/if}
