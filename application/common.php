@@ -364,14 +364,15 @@ function ds_decrypt($txt, $key = '', $ttl = 0)
     $tmp = str_replace(array('-', '_', '.'), array('+', '/', '='), $tmp);
     $tmp = trim(base64_decode($tmp));
 
-    if (preg_match("/\d{10}_/s", substr($tmp, 0, 11))) {
-        if ($ttl > 0 && (TIMESTAMP - substr($tmp, 0, 11) > $ttl)) {
-            $tmp = null;
-        }
-        else {
-            $tmp = substr($tmp, 11);
-        }
-    }
+//    if (preg_match("/\d{10}_/s", substr($tmp, 0, 11))) {
+//        if ($ttl > 0 && (TIMESTAMP - substr($tmp, 0, 11) > $ttl)) {
+//            $tmp = null;
+//        }
+//        else {
+//            $tmp = substr($tmp, 11);
+//        }
+//    }
+    $tmp = substr($tmp, 11);
     return $tmp;
 }
 
