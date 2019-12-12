@@ -899,21 +899,21 @@ class Store extends AdminControl {
             if (!$this->checkSellerName($seller_name))
                 $this->error(lang('seller_name_remote'));
 
-            try {
-                $memberId = model('member')->addMember(array(
-                    'member_name' => $memberName,
-                    'member_password' => $memberPasswd,
-                    'member_email' => '',
-                ));
-            } catch (Exception $ex) {
-                $this->error(lang('seller_account_add_fail'));
-            }
+//            try {
+//                $memberId = model('member')->addMember(array(
+//                    'member_name' => $memberName,
+//                    'member_password' => $memberPasswd,
+//                    'member_email' => '',
+//                ));
+//            } catch (Exception $ex) {
+//                $this->error(lang('seller_account_add_fail'));
+//            }
 
             $store_model = model('store');
 
             $saveArray = array();
             $saveArray['store_name'] = $store_name;
-            $saveArray['member_id'] = $memberId;
+            //$saveArray['member_id'] = $memberId;
             $saveArray['member_name'] = $memberName;
             $saveArray['seller_name'] = $seller_name;
             $saveArray['bind_all_gc'] = 1;
@@ -926,7 +926,8 @@ class Store extends AdminControl {
 
             model('seller')->addSeller(array(
                 'seller_name' => $seller_name,
-                'member_id' => $memberId,
+                'seller_password'=>md5($memberPasswd),
+                //'member_id' => $memberId,
                 'store_id' => $storeId,
                 'sellergroup_id' => 0,
                 'is_admin' => 1,
@@ -935,7 +936,7 @@ class Store extends AdminControl {
                 'seller_name' => $seller_name,
                 'store_name' => $store_name,
                 'member_name' => $memberName,
-                'member_id' => $memberId,
+                //'member_id' => $memberId,
                 'joinin_state' => 40,
                 'company_province_id' => 0,
                 'storeclass_bail' => 0,
