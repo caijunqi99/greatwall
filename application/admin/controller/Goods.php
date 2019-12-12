@@ -80,6 +80,24 @@ class Goods extends AdminControl {
                 $goods_list = $goods_model->getGoodsCommonList($where, '*', 10, 'mall_goods_commend desc,mall_goods_sort asc');
                 break;
         }
+        
+        $goodsIds = '';
+        foreach ($goods_list as $key => $value) {
+            $goodsIds .=$value['goods_commonid'].',';
+        }
+        $goodsIds = trim($goodsIds,',');
+        $cond = [
+            'goods_commonid' =>['in',$goodsIds]
+        ];
+        $goodsIds = $goods_model->getGoodsList($cond,'goods_id,goods_commonid');
+        $goodsIds = array_group_by($goodsIds,'goods_commonid');
+        foreach ($goods_list as $k => $v) {
+            $idss = '';
+            foreach ($goodsIds[$v['goods_commonid']] as $key => $value) {
+                $idss .= $value['goods_id'].'|';
+            }
+            $goods_list[$k]['goodsSku'] = trim($idss,'|');
+        }
 
         $this->assign('goods_list', $goods_list);
         $this->assign('show_page', $goods_model->page_info->render());
