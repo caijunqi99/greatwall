@@ -73,7 +73,7 @@
         <tr class="hover edit {:get_store_state_classname($v)}" id="ds_row_{$v.store_id}">
           <td class="sort"><span class="editable"  ds_type="inline_edit" fieldname="store_sort" ajax_branch='store_sort' fieldid="{$v.store_id}" datatype="pint" maxvalue="255" title="{$Think.lang.ds_editable}">{$v.store_sort}</span></td>
           <td>
-              <a href="{:url('/Home/Store/index',['store_id'=>$v.store_id])}" target="_blank">{$v.store_name}</a>
+              {$v.store_name}
           </td>
           <td>{$v.member_name}</td>
           <td>{$v.seller_name}</td>
