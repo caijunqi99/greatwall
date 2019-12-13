@@ -86,6 +86,7 @@ class Storelist extends MobileMall {
         $store_list = $store_model->getStoreList($condition,10,$order_sort);
         //获取店铺商品数，推荐商品列表等信息
         $store_list = $store_model->getStoreSearchList($store_list);
+        
         //信用度排序
         $key = trim(input('param.key'));
         if ($key == 'store_credit') {

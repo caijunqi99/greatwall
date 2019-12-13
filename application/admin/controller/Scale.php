@@ -27,19 +27,20 @@ class Scale extends AdminControl {
             $this->setAdminCurItem('base');
             return $this->fetch();
         } else {
-            $update_array['province_scale'] = input('post.province_scale');
-            $update_array['city_scale'] = input('post.city_scale');
-            $update_array['county_scale'] = input('post.county_scale');
-            $update_array['town_scale'] = input('post.town_scale');
-            $update_array['village_scale'] = input('post.village_scale');
-            $update_array['release'] = intval(input('post.release'));
-            $update_array['release_scale'] = input('post.release_scale');
-            $update_array['withdraw'] = input('post.withdraw');
-            $update_array['commission'] = input('post.commission');
-            $update_array['way']=input('post.way');
-            $update_array['companyway']=input('post.companyway');
-            $update_array['inter']=input('post.inter');
-            $update_array['point_to_store']=input('post.point_to_store');
+            $update_array['province_scale']                = input('post.province_scale');
+            $update_array['city_scale']                    = input('post.city_scale');
+            $update_array['county_scale']                  = input('post.county_scale');
+            $update_array['town_scale']                    = input('post.town_scale');
+            $update_array['village_scale']                 = input('post.village_scale');
+            $update_array['release']                       = intval(input('post.release'));
+            $update_array['release_scale']                 = input('post.release_scale');
+            $update_array['withdraw']                      = input('post.withdraw');
+            $update_array['commission']                    = input('post.commission');
+            $update_array['way']                           =input('post.way');
+            $update_array['companyway']                    =input('post.companyway');
+            $update_array['inter']                         =input('post.inter');
+            $update_array['point_to_store']                =input('post.point_to_store');
+            $update_array['marketmanageaward_probability'] =input('post.marketmanageaward_probability');
             
             $result = $config_model->editConfig($update_array);
             if ($result) {
