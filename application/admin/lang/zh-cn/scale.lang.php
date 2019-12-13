@@ -13,3 +13,8 @@ $lang['companyway']='用户返给子公司的方式';
 $lang['withdraw']='用户可用积分达到多少可提现';
 $lang['inter']='可用积分转为交易码比例';
 $lang['note']='如写10，为1个可用积分可转换为10个交易码';
+$lang['note']='如写10，为1个可用积分可转换为10个交易码';
+$lang['point_to_store']='可用积分转为储值卡比例';
+$lang['point_to_store_note']='如写10，为1可用积分可转换为10储值余额';
+
+

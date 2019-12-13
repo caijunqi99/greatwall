@@ -27,7 +27,6 @@ class MobileMember extends MobileHome {
             $this->member_info = $model_member->getMemberInfoByID($mb_user_token_info['member_id']);
 
 
-
             if (empty($this->member_info)) {
                 output_error('请登录', array('login' => '0'));
             } else {

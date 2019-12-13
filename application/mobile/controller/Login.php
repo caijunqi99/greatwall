@@ -73,23 +73,22 @@ class Login extends MobileMall
     private function _get_token($member_id, $member_name, $client)
     {
         $model_mb_user_token = Model('mbusertoken');
-
-        //重新登录后以前的令牌失效
-        //暂时停用
-        //$condition = array();
-        //$condition['member_id'] = $member_id;
-        //$condition['client_type'] = $client;
-        //$model_mb_user_token->delMbUserToken($condition);
-        //生成新的token
         $mb_user_token_info = array();
+        $member = $model_mb_user_token->GetMbusertokenByMember_id($member_id);
         $token = md5($member_name . strval(TIMESTAMP) . strval(rand(0, 999999)));
-        $mb_user_token_info['member_id'] = $member_id;
+        $mb_user_token_info = array();
         $mb_user_token_info['member_name'] = $member_name;
         $mb_user_token_info['member_token'] = $token;
         $mb_user_token_info['member_logintime'] = TIMESTAMP;
         $mb_user_token_info['member_clienttype'] = $client;
-
-        $result = $model_mb_user_token->addMbusertoken($mb_user_token_info);
+        if ($member) {
+            //修改token
+            $result = $model_mb_user_token->editMemberToken($member_id,$mb_user_token_info);
+        }else{
+            //生成新的token
+            $mb_user_token_info['member_id'] = $member_id;
+            $result = $model_mb_user_token->addMbusertoken($mb_user_token_info);
+        }
         if ($result) {
             return $token;
         }

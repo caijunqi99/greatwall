@@ -40,6 +40,18 @@ class Mbusertoken extends Model {
         }
         return $this->getMbusertokenInfo(array('member_token' => $token));
     }
+
+    /**
+     * 获取token
+     * @DateTime 2019-12-13
+     * @param    [type]     $member_id [description]
+     */
+    public function GetMbusertokenByMember_id($member_id) {
+        if (empty($member_id)) {
+            return null;
+        }
+        return $this->getMbusertokenInfo(array('member_id' => $member_id));
+    }
     
     /**
      * 编辑
@@ -52,6 +64,19 @@ class Mbusertoken extends Model {
     public function editMemberOpenId($token, $openId) {
         return db('mbusertoken')->where(array('member_token' => $token,))->update(array('member_openid' => $openId,));
     }
+
+
+    /**
+     * [editMemberOpenId description]
+     * @DateTime 2019-12-13
+     * @param    [type]     $token  [description]
+     * @param    [type]     $openId [description]
+     * @return   [type]             [description]
+     */
+    public function editMemberToken($member_id, $data) {
+        return db('mbusertoken')->where(array('member_id' => $member_id))->update($data);
+    }
+
 
     /**
      * 新增
