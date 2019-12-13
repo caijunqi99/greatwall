@@ -20,7 +20,7 @@ class MobileMember extends MobileHome {
             
             $mb_user_token_info = $model_mb_user_token->getMbusertokenInfoByToken($key);
             $model_member = Model('member');
-
+            $mobile = '';
             if (empty($mb_user_token_info)) {
                 //如果传入手机号，以手机号查询
                 $mobile = input('post.mobile_key');
