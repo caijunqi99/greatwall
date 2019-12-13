@@ -383,7 +383,13 @@ class Memberaccount extends MobileMember
             output_error($verify_code_validate->getError());
         }
         $verify_code_model = model('verify_code');
-        if (!$verify_code_model->getVerifyCodeInfo(array('verify_code_type' => 6, 'verify_code_user_type' => 1, 'verify_code_user_id' => $this->member_info['member_id'], 'verify_code' => $verify_code, 'verify_code_add_time' => array('>', TIMESTAMP - VERIFY_CODE_INVALIDE_MINUTE * 1800)))) {
+        if (!$verify_code_model->getVerifyCodeInfo(array(
+            'verify_code_type' => 6, 
+            'verify_code_user_type' => 1, 
+            'verify_code_user_id' => $this->member_info['member_id'], 
+            'verify_code' => $verify_code, 
+            'verify_code_add_time' => array('>', TIMESTAMP - VERIFY_CODE_INVALIDE_MINUTE * 1800)
+        ))) {
             output_error(lang('validation_fails'));
         }
         //身份验证后，需要在30分钟内完成修改密码操作
