@@ -19,26 +19,42 @@ class MobileMember extends MobileHome {
             }
             
             $mb_user_token_info = $model_mb_user_token->getMbusertokenInfoByToken($key);
+            $model_member = Model('member');
 
             if (empty($mb_user_token_info)) {
-                output_error('请登录', array('login' => '0'));
+                //如果传入手机号，以手机号查询
+                $mobile = input('post.mobile_key');
+                if ($mobile) {
+                    $member = $model_member->getMemberInfo(['member_mobile'=>$mobile],'member_id');
+                    if ($member) {
+                        $mb_user_token_info['member_id'] = $member['member_id'];
+                    }else{
+                        output_error('请登录', array('login' => '0'));
+                    }
+                }else{
+                    output_error('请登录', array('login' => '0'));    
+                }
+                
             }
-            $model_member = Model('member');
             $this->member_info = $model_member->getMemberInfoByID($mb_user_token_info['member_id']);
 
 
             if (empty($this->member_info)) {
-                output_error('请登录', array('login' => '0'));
+
+                output_error('请登录', array('login' => '0'));    
             } else {
-                $this->member_info['member_clienttype'] = $mb_user_token_info['member_clienttype'];
-                $this->member_info['member_openid'] = $mb_user_token_info['member_openid'];
-                $this->member_info['member_token'] = $mb_user_token_info['member_token'];
-                $level_name = $model_member->getOneMemberGrade($mb_user_token_info['member_id']);
-                $this->member_info['level'] = $level_name['level'];
-                $this->member_info['level_name'] = $level_name['level_name'];
-                //读取卖家信息
-                $seller_info = Model('seller')->getSellerInfo(array('member_id' => $this->member_info['member_id']));
-                $this->member_info['store_id'] = $seller_info['store_id'];
+                if (!$mobile) {
+                    $this->member_info['member_clienttype'] = $mb_user_token_info['member_clienttype'];
+                    $this->member_info['member_openid'] = $mb_user_token_info['member_openid'];
+                    $this->member_info['member_token'] = $mb_user_token_info['member_token'];
+                    $level_name = $model_member->getOneMemberGrade($mb_user_token_info['member_id']);
+                    $this->member_info['level'] = $level_name['level'];
+                    $this->member_info['level_name'] = $level_name['level_name'];
+                    //读取卖家信息
+                    $seller_info = Model('seller')->getSellerInfo(array('member_id' => $this->member_info['member_id']));
+                    $this->member_info['store_id'] = $seller_info['store_id'];
+                }
+                
             }
         }
     }
