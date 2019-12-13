@@ -21,7 +21,6 @@ class Goods extends MobileMall {
     public function goods_list() {
         $model_goods = Model('goods');
         $model_search = Model('search');
-//        $_GET['is_book'] = 0;
         $param = input('param.');
         
         //查询条件
@@ -358,6 +357,7 @@ class Goods extends MobileMall {
         $goods_detail['store_info']['member_id'] = $store_info['member_id'];
         $goods_detail['store_info']['member_name'] = $store_info['member_name'];
         $goods_detail['store_info']['is_platform_store'] = $store_info['is_platform_store'];
+        $goods_detail['store_info']['store_avatar'] = get_store_logo($store_info['store_avatar']);
 
         $goods_detail['store_info']['goods_count'] = $store_info['goods_count'];
         $goods_detail['store_info']['store_credit'] = $store_info['store_credit'];
