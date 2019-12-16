@@ -16,6 +16,9 @@ class Memberbuy extends MobileMember
         if(config('member_auth') && $this->member_info['member_auth_state']!=3){
             output_error('您需要先实名认证才能购买商品!');
         }
+        if (!$this->member_info['member_paypwd']) {
+            output_error('您需要设置支付密码之后才能购买商品!');
+        }
     }
 
     /**

@@ -195,6 +195,7 @@ $lang['concessional_activity']			= '优惠活动';
 $lang['after_sale_rights']			= '售后维权';
 $lang['evaluation_time']			= '评价时间';
 $lang['loading']			= '加载中...';
+$lang['loading']			= '点击获取物流信息';
 $lang['shipper_space']			= '发&nbsp;&nbsp;货&nbsp;&nbsp;人';
 $lang['company_space']			= '公&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;司';
 $lang['shipping_address']			= '发货地址';

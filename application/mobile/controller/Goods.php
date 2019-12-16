@@ -318,6 +318,16 @@ class Goods extends MobileMall {
         if (empty($goods_detail)) {
             output_error('商品不存在');
         }
+        //按照iOS ，Android 要求 重新刷新为数组
+        $spec_image= [];
+        foreach ($goods_detail['spec_image'] as $k => $v) {
+            $img = array(
+                'type' =>$k,
+                'img' =>$v
+            );
+            $spec_image[] = $img;
+        }
+        $goods_detail['spec_image'] = $spec_image;
 
         // 默认预订商品不支持手机端显示
         /* if ($goods_detail['is_book']) {

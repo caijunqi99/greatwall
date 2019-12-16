@@ -394,7 +394,7 @@
 <script type="text/javascript">
 {if isset($order_info.express_info)}       
 $(function(){
-    $('#show_shipping').on('hover',function(){
+    $('#show_shipping').on('click',function(){
         var_send = '{$order_info.extend_order_common.shipping_time|date="Y-m-d H:i:s",###}&nbsp;&nbsp;{$Think.lang.member_show_seller_has_send}<br/>';
     	$.getJSON(HOMESITEURL+'/Memberorder/get_express.html?express_code={$order_info.express_info.express_code}&shipping_code={$order_info.shipping_code}&phone={$order_info.extend_order_common.reciver_info.phone}&t={:random(7)}',function(data){
     		if(data){

@@ -282,15 +282,26 @@ class Memberorder extends MobileMember {
         if ($order_info['shipping_code'] != '') {
             $order_info['if_deliver'] = true;
             $express = rkcache('express', true);
-            $order_info['express_info']['e_code'] = $express[$order_info['extend_order_common']['shipping_express_id']]['e_code'];
-            $order_info['express_info']['e_name'] = $express[$order_info['extend_order_common']['shipping_express_id']]['e_name'];
-            $order_info['express_info']['e_url'] = $express[$order_info['extend_order_common']['shipping_express_id']]['e_url'];
+            // $order_info['express_info']['e_code'] = $express[$order_info['extend_order_common']['shipping_express_id']]['e_code'];
+            // $order_info['express_info']['e_name'] = $express[$order_info['extend_order_common']['shipping_express_id']]['e_name'];
+            // $order_info['express_info']['e_url'] = $express[$order_info['extend_order_common']['shipping_express_id']]['e_url'];
+            $result = model('express')->queryExpress($express[$order_info['extend_order_common']['shipping_express_id']]['express_code'],$order_info['shipping_code'],$order_info['extend_order_common']['reciver_info']['phone']);
+            $content['Traces'] = array_reverse($result['Traces']);
+            $output = array();
+            if (is_array($content['Traces'])) {
+                foreach ($content['Traces'] as $k => $v) {
+                    if ($v['AcceptTime'] == '')
+                        continue;
+                    $output[] = $v['AcceptTime'] . '&nbsp;&nbsp;' . $v['AcceptStation'];
+                }
+            }
+            $order_info['express_info'] = $output;
         }
 
 
         //显示系统自动收获时间
         if ($order_info['order_state'] == ORDER_STATE_SEND) {
-            $order_info['order_confirm_day'] = $order_info['delay_time'] + ORDER_AUTO_RECEIVE_DAY * 24 * 3600;
+            $order_info['order_confirm_day'] = $order_info['delay_time'] + config('order_auto_receive_day') * 24 * 3600;
         }
 
         //如果订单已取消，取得取消原因、时间，操作人
