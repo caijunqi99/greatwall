@@ -147,6 +147,10 @@ class Ownshop extends AdminControl {
         if (!request()->isPost()) {
             if (empty($storeArray))
                 $this->error(lang('store_not_exist'));
+            //店铺分类
+            $storeclass_model = model('storeclass');
+            $parent_list = $storeclass_model->getStoreclassList(array(), '', false);
+            $this->assign('class_list', $parent_list);
             $this->assign('store_array', $storeArray);
             return $this->fetch('ownshop_edit');
         }else {
@@ -156,7 +160,7 @@ class Ownshop extends AdminControl {
             $saveArray['bind_all_gc'] = input('post.bind_all_gc') ? 1 : 0;
             $saveArray['store_state'] = input('post.store_state') ? 1 : 0;
             $saveArray['store_close_info'] = input('post.store_close_info');
-
+            $saveArray['storeclass_id']=input('post.storeclass_id');
             $store_model->editStore($saveArray, array(
                 'store_id' => $store_id,
             ));

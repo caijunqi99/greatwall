@@ -63,3 +63,4 @@ $lang['store_not_exist']= '店铺不存在';
 $lang['store_bind_class_drop_fail']= '经营类目删除失败';
 $lang['commis_rate']= '分佣比例';
 $lang['commis_rate']= '分佣比例';
+$lang['belongs_class'] = '所属分类';
