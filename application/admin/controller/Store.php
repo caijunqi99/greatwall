@@ -927,7 +927,7 @@ class Store extends AdminControl {
             model('seller')->addSeller(array(
                 'seller_name' => $seller_name,
                 'seller_password'=>md5($memberPasswd),
-                'member_id' => $memberId,
+                'member_id' => 0,
                 'store_id' => $storeId,
                 'sellergroup_id' => 0,
                 'is_admin' => 1,
@@ -936,7 +936,7 @@ class Store extends AdminControl {
                 'seller_name' => $seller_name,
                 'store_name' => $store_name,
                 'member_name' => $memberName,
-                'member_id' => $memberId,
+                'member_id' => 0,
                 'joinin_state' => 40,
                 'company_province_id' => 0,
                 'storeclass_bail' => 0,
