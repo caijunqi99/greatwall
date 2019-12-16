@@ -25,7 +25,7 @@ class Logout extends MobileMember
             $uname = input('param.username');
             $client = input('param.client');
         }
-        if(empty($uname) || !in_array($uname, $this->client_type_array)) {
+        if(empty($uname) || !in_array($client, $this->client_type_array)) {
             output_error('参数错误1');
         }
  

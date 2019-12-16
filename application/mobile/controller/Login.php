@@ -46,7 +46,11 @@ class Login extends MobileMall
             $array['member_password'] = md5($password);
             $member_info = $model_member->getMemberInfo($array);
         }
+
         if (is_array($member_info) && !empty($member_info)) {
+            if ($member_info['member_state'] == 0 || !$member_info['member_state']) {
+                output_error('当前手机号已被限制登陆！');
+            }
             $token = $this->_get_token($member_info['member_id'], $member_info['member_name'], $client);
             if ($token) {
                 $logindata = array(
