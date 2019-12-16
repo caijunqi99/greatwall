@@ -25,7 +25,7 @@ class Logout extends MobileMember
  
         $model_mb_user_token = Model('mbusertoken');
 
-        if($this->member_info['member_name'] == trim($_POST['username'])) {
+        if($this->member_info['member_mobile'] == trim($_POST['username'])) {
             $condition = array();
             $condition['member_id'] = $this->member_info['member_id'];
             $condition['member_clienttype'] = $_POST['client'];
