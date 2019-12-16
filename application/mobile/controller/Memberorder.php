@@ -177,10 +177,10 @@ class Memberorder extends MobileMember {
         }
 
         $express = rkcache('express', true);
-        $e_code = $express[$order_info['extend_order_common']['shipping_express_id']]['e_code'];
-        $e_name = $express[$order_info['extend_order_common']['shipping_express_id']]['e_name'];
+        $express_code = $express[$order_info['extend_order_common']['shipping_express_id']]['express_code'];
+        $e_name = $express[$order_info['extend_order_common']['shipping_express_id']]['express_name'];
 
-        $deliver_info = $this->_get_express($e_code, $order_info['shipping_code']);
+        $deliver_info = $this->_get_express($express_code, $order_info['shipping_code']);
         output_data(array('express_name' => $e_name, 'shipping_code' => $order_info['shipping_code'], 'deliver_info' => $deliver_info));
     }
 
@@ -404,10 +404,10 @@ class Memberorder extends MobileMember {
         }
 
         $express = rkcache('express', true);
-        $e_code = $express[$order_info['extend_order_common']['shipping_express_id']]['e_code'];
-        $e_name = $express[$order_info['extend_order_common']['shipping_express_id']]['e_name'];
+        $express_code = $express[$order_info['extend_order_common']['shipping_express_id']]['express_code'];
+        $e_name = $express[$order_info['extend_order_common']['shipping_express_id']]['express_name'];
 
-        $deliver_info = $this->_get_express($e_code, $order_info['shipping_code']);
+        $deliver_info = $this->_get_express($express_code, $order_info['shipping_code']);
 
 
         $data = array();
@@ -420,9 +420,9 @@ class Memberorder extends MobileMember {
      * 从第三方取快递信息
      *
      */
-    public function _get_express($e_code, $shipping_code) {
+    public function _get_express($express_code, $shipping_code) {
 
-        $url = 'http://www.kuaidi100.com/query?type=' . $e_code . '&postid=' . $shipping_code . '&id=1&valicode=&temp=' . random(4) . '&sessionid=&tmp=' . random(4);
+        $url = 'http://www.kuaidi100.com/query?type=' . $express_code . '&postid=' . $shipping_code . '&id=1&valicode=&temp=' . random(4) . '&sessionid=&tmp=' . random(4);
         $content = dfsockopen($url);
         $content = json_decode($content, true);
 

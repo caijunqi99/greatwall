@@ -182,9 +182,9 @@
           {if $type == 'allgoods'}
           <td class="align-center yes-onoff">
               {if $v.mall_goods_commend == '0'}
-              <a href="JavaScript:void(0);" class="disabled" ajax_branch='mall_goods_commend' ds_type="inline_edit" fieldname="mall_goods_commend" fieldid="{$v.goods_commonid}" fieldvalue="0" title="{$Think.lang.ds_editable}"><img src="{$Think.ADMIN_SITE_ROOT}/images/treetable/transparent.gif"></a>
+              <a href="JavaScript:void(0);" class="disabled" ajax_branch='mall_goods_commend' ds_type="inline_edit" fieldname="mall_goods_commend" fieldid="{$v.goodsSku}" fieldvalue="0" title="{$Think.lang.ds_editable}"><img src="{$Think.ADMIN_SITE_ROOT}/images/treetable/transparent.gif"></a>
               {else /}
-              <a href="JavaScript:void(0);" class="enabled" ajax_branch='mall_goods_commend' ds_type="inline_edit" fieldname="mall_goods_commend" fieldid="{$v.goods_commonid}" fieldvalue="1"  title="{$Think.lang.ds_editable}"><img src="{$Think.ADMIN_SITE_ROOT}/images/treetable/transparent.gif"></a>
+              <a href="JavaScript:void(0);" class="enabled" ajax_branch='mall_goods_commend' ds_type="inline_edit" fieldname="mall_goods_commend" fieldid="{$v.goodsSku}" fieldvalue="1"  title="{$Think.lang.ds_editable}"><img src="{$Think.ADMIN_SITE_ROOT}/images/treetable/transparent.gif"></a>
               {/if}
           </td>
           <td class="align-center sort">
