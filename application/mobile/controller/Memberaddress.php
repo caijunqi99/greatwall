@@ -25,6 +25,14 @@ class Memberaddress extends MobileMember
     {
         $model_address = Model('address');
         $address_list = $model_address->getAddressList(array('member_id' => $this->member_info['member_id']));
+        $numn = [];
+        foreach ($address_list as $k => $v) {
+            foreach ($v as $key => $value) {
+                if (is_numeric($value)) {
+                    $address_list[$k][$key] = (string)$value;
+                }
+            }
+        }
         output_data(array('address_list' => $address_list));
     }
 

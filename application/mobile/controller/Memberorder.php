@@ -282,20 +282,20 @@ class Memberorder extends MobileMember {
         if ($order_info['shipping_code'] != '') {
             $order_info['if_deliver'] = true;
             $express = rkcache('express', true);
-            // $order_info['express_info']['e_code'] = $express[$order_info['extend_order_common']['shipping_express_id']]['e_code'];
-            // $order_info['express_info']['e_name'] = $express[$order_info['extend_order_common']['shipping_express_id']]['e_name'];
-            // $order_info['express_info']['e_url'] = $express[$order_info['extend_order_common']['shipping_express_id']]['e_url'];
-            $result = model('express')->queryExpress($express[$order_info['extend_order_common']['shipping_express_id']]['express_code'],$order_info['shipping_code'],$order_info['extend_order_common']['reciver_info']['phone']);
-            $content['Traces'] = array_reverse($result['Traces']);
-            $output = array();
-            if (is_array($content['Traces'])) {
-                foreach ($content['Traces'] as $k => $v) {
-                    if ($v['AcceptTime'] == '')
-                        continue;
-                    $output[] = $v['AcceptTime'] . '&nbsp;&nbsp;' . $v['AcceptStation'];
-                }
-            }
-            $order_info['express_info'] = $output;
+            $order_info['express_info']['express_code'] = $express[$order_info['extend_order_common']['shipping_express_id']]['express_code'];
+            $order_info['express_info']['express_name'] = $express[$order_info['extend_order_common']['shipping_express_id']]['express_name'];
+            $order_info['express_info']['express_url'] = $express[$order_info['extend_order_common']['shipping_express_id']]['express_url'];
+            // $result = model('express')->queryExpress($express[$order_info['extend_order_common']['shipping_express_id']]['express_code'],$order_info['shipping_code'],$order_info['extend_order_common']['reciver_info']['phone']);
+            // $content['Traces'] = array_reverse($result['Traces']);
+            // $output = array();
+            // if (is_array($content['Traces'])) {
+            //     foreach ($content['Traces'] as $k => $v) {
+            //         if ($v['AcceptTime'] == '')
+            //             continue;
+            //         $output[] = $v['AcceptTime'] . '&nbsp;&nbsp;' . $v['AcceptStation'];
+            //     }
+            // }
+            // $order_info['express_info'] = $output;
         }
 
 
