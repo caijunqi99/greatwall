@@ -19,16 +19,22 @@ class Logout extends MobileMember
      * 注销
      */
     public function index(){
-        if(empty($_POST['username']) || !in_array($_POST['client'], $this->client_type_array)) {
+        $uname = input('post.username');
+        $client = input('post.client');
+        if (empty($uname)) {
+            $uname = input('param.username');
+            $client = input('param.client');
+        }
+        if(empty($uname) || !in_array($uname, $this->client_type_array)) {
             output_error('参数错误1');
         }
  
         $model_mb_user_token = Model('mbusertoken');
 
-        if($this->member_info['member_mobile'] == trim($_POST['username'])) {
+        if($this->member_info['member_mobile'] == trim($uname)) {
             $condition = array();
             $condition['member_id'] = $this->member_info['member_id'];
-            $condition['member_clienttype'] = $_POST['client'];
+            $condition['member_clienttype'] = $client;
             $model_mb_user_token->delMbusertoken($condition);
             output_data(['state'=>TRUE]);
         } else {
