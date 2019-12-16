@@ -79,7 +79,7 @@ class Goods extends Model {
      * @param type $count 计数
      * @return array
      */
-    public function getGoodsList($condition, $field = '*', $group = '', $order = 'goods_sort ASC', $limit = 0, $pagesize = 0, $lock = false, $count = 0) {
+    public function getGoodsList($condition, $field = '*', $group = '', $order = '', $limit = 0, $pagesize = 0, $lock = false, $count = 0) {
         $condition = $this->_getRecursiveClass($condition);
         if ($pagesize) {
             $result = db('goods')->field($field)->where($condition);
@@ -420,7 +420,7 @@ class Goods extends Model {
         $condition['goods_state'] = self::STATE1;
         $condition['goods_verify'] = self::VERIFY1;
         $condition['goods_commend'] =1;
-        $goods = $this->getGoodsList($condition,'goods_id,goods_name,goods_advword,goods_image,store_id,goods_marketprice as goods_promotion_price,goods_price','goods_commonid', 'goods_sort ASC',0, $limit);
+        $goods = $this->getGoodsList($condition,'goods_id,goods_name,goods_advword,goods_image,store_id,goods_marketprice as goods_promotion_price,goods_price,goods_commonid','goods_commonid', 'goods_sort ASC',0, $limit);
         return $goods;
     }
 
