@@ -6,9 +6,14 @@
 
 function output_data($datas, $extend_data = array()) {
     $data = array();
+    $msg = '';
+    if (isset($datas['msg'])) {
+        $msg = $datas['msg'];
+        unset($datas['msg']);
+    }
     $data['code'] = isset($datas['error'])?'100':'200';
     $data['result']=isset($datas['error'])?array():$datas;
-    $data['message'] = isset($datas['error'])?$datas['error']:'ok';
+    $data['message'] = isset($datas['error'])?$datas['error']:(empty($msg)?'ok':$msg);
     //$data['datas']=$datas;
     if(!empty($extend_data)) {
         $data = array_merge($data, $extend_data);

@@ -622,7 +622,7 @@ class Goods extends Model {
      * @return boolean
      */
     public function editProduces($condition, $update1, $update2 = array()) {
-        
+
         $update2 = empty($update2) ? $update1 : $update2;
         $goods_array = $this->getGoodsCommonList($condition, 'goods_commonid', 0);
         if (empty($goods_array)) {
