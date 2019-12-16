@@ -251,7 +251,16 @@ class Goods extends AdminControl {
         $goods_model = model('goods');
         switch (input('param.branch')) {
             case 'mall_goods_commend':
-                    $goods_model->editGoodsById(['goods_commend'=>trim(input('param.value'))],['goods_id'=>intval(input('param.id'))]);
+                    $condition = [
+                        'goods_commonid' =>intval(input('param.id'))
+                    ];
+                    $up1 = [
+                        'mall_goods_commend' =>trim(input('param.value'))
+                    ];
+                    $up2 = [
+                        'goods_commend' =>trim(input('param.value'))
+                    ];
+                    $goods_model->editProduces($condition,$up1,$up2);
             case 'mall_goods_sort':
                 if (empty($result)) {
                     $goods_model->editGoodsCommonById(array(trim(input('param.branch')) => trim(input('param.value'))),array(intval(input('param.id'))));
