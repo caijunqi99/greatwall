@@ -40,6 +40,18 @@
                 </tr>
             </tbody>
             <tbody>
+            <tr class="noborder">
+                <td class="required"><label>{$Think.lang.belongs_class}:</label></td>
+                <td class="vatop rowform"><select name="storeclass_id">
+                    <option value="0">{$Think.lang.ds_please_choose}...</option>
+                    {notempty name="class_list"}
+                    {foreach name="class_list" item="v" key="k" }
+                    <option {if $store_array.storeclass_id == $v.storeclass_id}selected="selected" {/if} value="{$v.storeclass_id}">{$v.storeclass_name}</option>
+                    {/foreach}
+                    {/notempty}
+                </select></td>
+                <td class="vatop tips"></td>
+            </tr>
                 <tr class="noborder">
                     <td class="required"><label><label for="bind_all_gc">{$Think.lang.bind_all_gc}:</label></label></td>
                     <td class="vatop rowform onoff">
