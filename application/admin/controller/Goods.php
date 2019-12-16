@@ -249,6 +249,7 @@ class Goods extends AdminControl {
      */
     public function ajax() {
         $goods_model = model('goods');
+        $result = false;
         switch (input('param.branch')) {
             case 'mall_goods_commend':
                     $condition = [
@@ -260,18 +261,27 @@ class Goods extends AdminControl {
                     $up2 = [
                         'goods_commend' =>trim(input('param.value'))
                     ];
-                    $goods_model->editProduces($condition,$up1,$up2);
+                    $result = $goods_model->editProduces($condition,$up1,$up2);
             case 'mall_goods_sort':
-                if (empty($result)) {
-                    $goods_model->editGoodsCommonById(array(trim(input('param.branch')) => trim(input('param.value'))),array(intval(input('param.id'))));
-                    echo 'true';
-                    exit;
-                } else {
-                    echo 'false';
-                    exit;
-                }
+                    $condition = [
+                        'goods_commonid' =>intval(input('param.id'))
+                    ];
+                    $up1 = [
+                        'mall_goods_sort' =>trim(input('param.value'))
+                    ];
+                    $up2 = [
+                        'goods_sort' =>trim(input('param.value'))
+                    ];
+                    $result = $goods_model->editProduces($condition,$up1,$up2);
+                    // $result = $goods_model->editGoodsCommonById(array(trim(input('param.branch')) => trim(input('param.value'))),array(intval(input('param.id'))));
                 break;
         }
+        if ($result) {
+            echo 'true';
+        }else{
+            echo 'false';
+        }
+        exit;
     }
 
     /**

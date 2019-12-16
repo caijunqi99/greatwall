@@ -79,7 +79,7 @@ class Goods extends Model {
      * @param type $count 计数
      * @return array
      */
-    public function getGoodsList($condition, $field = '*', $group = '', $order = '', $limit = 0, $pagesize = 0, $lock = false, $count = 0) {
+    public function getGoodsList($condition, $field = '*', $group = '', $order = 'goods_sort ASC', $limit = 0, $pagesize = 0, $lock = false, $count = 0) {
         $condition = $this->_getRecursiveClass($condition);
         if ($pagesize) {
             $result = db('goods')->field($field)->where($condition);
