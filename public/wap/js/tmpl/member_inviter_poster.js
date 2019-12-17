@@ -1,6 +1,6 @@
 
 $(function() {
-    var e = getParam('key');
+    var e = getCookie("key");
     $.getJSON(ApiUrl + "/memberinviter/index.html?key="+e, function(e) {
         //checkLogin(e.login);
         if (e.result.refer_qrcode_logo == null) {
