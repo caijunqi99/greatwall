@@ -12,7 +12,7 @@ function output_data($datas, $extend_data = array()) {
         unset($datas['msg']);
     }
     $data['code'] = isset($datas['error'])?'100':'200';
-    $data['result']=isset($datas['error'])?array():$datas;
+    $data['result']=isset($datas['error'])?'{}':$datas;
     $data['message'] = isset($datas['error'])?$datas['error']:(empty($msg)?'ok':$msg);
     //$data['datas']=$datas;
     if(!empty($extend_data)) {
