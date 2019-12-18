@@ -122,7 +122,17 @@
                     <span class="err"></span>
                 </dd>
             </dl>
-
+            <dl>
+                <dt>{$Think.lang.draw}</dt>
+                <dd>
+                    <div class="onoff">
+                        <label for="site_state1" class="cb-enable {if condition="$list_config.draw eq 1"}selected{/if}">{$Think.lang.ds_open}</label>
+                        <label for="site_state0" class="cb-disable {if condition="$list_config.draw eq 0"}selected{/if}">{$Think.lang.ds_close}</label>
+                        <input id="site_state1" name="draw" value="1" type="radio" {if condition="$list_config.draw eq 1"} checked="checked"{/if}>
+                        <input id="site_state0" name="draw" value="0" type="radio" {if condition="$list_config.draw eq 0"} checked="checked"{/if}>
+                    </div>
+                </dd>
+            </dl>
             <dl>
                 <dt></dt>
                 <dd><a href="JavaScript:void(0);" class="btn" onclick="document.form1.submit()">{$Think.lang.ds_confirm_submit}</a></dd>

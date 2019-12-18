@@ -41,7 +41,7 @@ class Scale extends AdminControl {
             $update_array['inter']                         =input('post.inter');
             $update_array['point_to_store']                =input('post.point_to_store');
             $update_array['marketmanageaward_probability'] =input('post.marketmanageaward_probability');
-            
+            $update_array['draw']                =input('post.draw');
             $result = $config_model->editConfig($update_array);
             if ($result) {
                 $this->log(lang('ds_edit').lang('scale_set'),1);
