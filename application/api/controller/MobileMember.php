@@ -21,7 +21,7 @@ class MobileMember extends MobileHome {
             $mb_user_token_info = $model_mb_user_token->getMbusertokenInfoByToken($key);
 
             if (empty($mb_user_token_info)) {
-                output_error('请登录', array('login' => '0'));
+                output_error('当前登陆信息已失效，请重新登陆！', array('login' => '0'));
             }
             $model_member = Model('member');
             $this->member_info = $model_member->getMemberInfoByID($mb_user_token_info['member_id']);
@@ -29,8 +29,11 @@ class MobileMember extends MobileHome {
 
 
             if (empty($this->member_info)) {
-                output_error('请登录', array('login' => '0'));
+                output_error('当前登陆信息已失效，请重新登陆！', array('login' => '0'));
             } else {
+                if ($this->member_info['member_state'] == 0 || !$this->member_info['member_state']) {
+                    output_error('当前手机号账户已被限制登陆，请联系客服！', array('login' => '0'));
+                }
                 $this->member_info['member_clienttype'] = $mb_user_token_info['member_clienttype'];
                 $this->member_info['member_openid'] = $mb_user_token_info['member_openid'];
                 $this->member_info['member_token'] = $mb_user_token_info['member_token'];
