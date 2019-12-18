@@ -74,6 +74,8 @@ class Index extends MobileMall {
            $goods[$k]['goods_image']=goods_thumb($val);
         }
         output_data($goods);
+        //需要分页的时候使用
+        //output_data(array('goods_list' => $goods), mobile_page(is_object($model_goods->page_info)?$model_goods->page_info:''));
     }
     /**
      * android客户端版本号

@@ -29,6 +29,14 @@ class Area extends MobileMall
             $condition['area_deep'] = 1;
         }
         $area_list = $model_area->getAreaList($condition, 'area_id,area_name');
+        // foreach ($area_list as $k => &$va) {
+        //     $va['area_list'] = $model_area->getAreaList(['area_parent_id'=>$va['area_id'] ], 'area_id,area_name');
+        //     foreach ($va['area_list'] as $key => &$vb) {
+        //         $vb['area_list'] = $model_area->getAreaList(['area_parent_id'=>$vb['area_id'] ], 'area_id,area_name');
+        //     }
+        //     unset($vb);
+        // }
+        // unset($va);
         output_data(array('area_list' => $area_list));
     }
 
