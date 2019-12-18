@@ -18,5 +18,6 @@ $lang['point_to_store']='可用积分转为储值卡比例';
 $lang['point_to_store_note']='如写10，为1可用积分可转换为10储值余额';
 $lang['marketmanageaward_probability']='抽奖中奖比率';
 $lang['marketmanageaward_probability_note']='100按照百分比，1000按照千分比，10000按照万分比';
+$lang['draw']='是否开启抽奖';
 
 
