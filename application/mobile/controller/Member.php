@@ -75,9 +75,9 @@ class Member extends MobileMember {
      * */
     public function my_asset() {
         if(empty($this->member_info['member_paypwd'])){
-            output_error('请先设置支付密码，再申请提现');
+            output_error('您需要先到个人中心设置支付密码！');
         }elseif($this->member_info['member_auth_state']!=3){
-            output_error('请先实名认证');
+            output_error('您需要先到我的钱包申请实名认证！');
         }else{
             $fields_arr = array('point', 'available', 'predepoit', 'transaction','redpacket','voucher');
             $fields_str = trim(input('fields'));

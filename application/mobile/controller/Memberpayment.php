@@ -39,9 +39,14 @@ class Memberpayment extends MobileMember
         if (isset($pay_info['error'])) {
             output_error($pay_info['error']);
         }else{
-            //手机支付完成，储值卡支付
+            //站内支付了全款
+            if($pay_info['data']['pay_end']==1) {
+                //返回抽奖是否开启，
+                $pay_info['data']['draw'] = config('draw');
+            }
             output_data($pay_info['data']);
         }
+
         if($pay_info['data']['pay_end']==1) {
             //站内支付了全款
             $this->redirect(WAP_SITE_URL . '/tmpl/member/order_list.html');

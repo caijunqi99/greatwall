@@ -151,8 +151,8 @@ class Memberaddress extends MobileMember
         $data['address_detail']     = input('param.address');
         $data['address_longitude']  = input('param.longitude');
         $data['address_latitude']   = input('param.latitude');
-        $data['address_tel_phone']  = empty(input('param.tel_phone'))?input('param.tel_phone'):'';
-        $data['address_mob_phone']  = empty(input('param.mob_phone'))?input('param.mob_phone'):'';
+        $data['address_tel_phone']  = !empty(input('param.tel_phone'))?input('param.tel_phone'):'';
+        $data['address_mob_phone']  = !empty(input('param.mob_phone'))?input('param.mob_phone'):'';
         $data['address_is_default'] = input('param.is_default');
         return $data;
     }

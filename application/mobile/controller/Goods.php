@@ -15,6 +15,19 @@ class Goods extends MobileMall {
         $this->x_pi = 3.14159265358979324 * 3000.0 / 180.0;
     }
 
+
+    /**
+     * 支付成功后获取随机商品
+     * @DateTime 2019-12-19
+     * @return   [type]     [description]
+     */
+    public function getRandGoods(){
+        $model_goods = Model('goods');
+        $result  = $model_goods->getRandGoods();
+        output_data($result);
+    }
+
+
     /**
      * 商品列表
      */

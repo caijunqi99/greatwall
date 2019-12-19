@@ -116,6 +116,13 @@ class Goods extends Model {
         return db('goods')->where($where)->limit($size)->select();
     }
 
+
+    public function getRandGoods(){
+        
+        $result = db('goods')->field('goods_id,goods_name,goods_advword,goods_image,store_id,goods_marketprice as goods_promotion_price,goods_price,goods_commonid')->orderRaw('rand()')->group('goods_commonid')->limit(6)->select();
+        return $result; 
+
+    }
     /**
      * 出售中的商品SKU列表（只显示不同颜色的商品，前台商品索引，店铺也商品列表等使用）
      * @access public

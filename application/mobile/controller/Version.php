@@ -22,11 +22,13 @@ class Version extends MobileMall {
         $channel = db('version_update')->where($condition)->order('id DESC')->find();
 
         $isupdate =  versionCompare($nowVersion,$channel['version_num']);
-        unset($channel['id']);Model
+        unset($channel['id']);
         $channel['is_update'] =$isupdate;
         $channel['is_update'] =$isupdate;
         output_data($channel);
     }
+
+
 
 }
 

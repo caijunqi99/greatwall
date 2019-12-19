@@ -255,7 +255,7 @@ class Memberorder extends MobileMember {
         $order_info['if_refund_cancel'] = $model_order->getOrderOperateState('refund_cancel', $order_info);
 
         //显示投诉
-        $order_info['if_complain'] = $model_order->getOrderOperateState('complain', $order_info);
+        // $order_info['if_complain'] = $model_order->getOrderOperateState('complain', $order_info);
 
         //显示收货
         $order_info['if_receive'] = $model_order->getOrderOperateState('receive', $order_info);
@@ -267,7 +267,7 @@ class Memberorder extends MobileMember {
 
 
         //显示评价
-        $order_info['if_evaluation'] = $model_order->getOrderOperateState('evaluation', $order_info);
+        // $order_info['if_evaluation'] = $model_order->getOrderOperateState('evaluation', $order_info);
         //显示分享
         // $order_info['if_share'] = $model_order->getOrderOperateState('share', $order_info);
 
@@ -358,32 +358,9 @@ class Memberorder extends MobileMember {
 
         //卖家发货信息
         if (!empty($order_info['extend_order_common']['daddress_id'])) {
-            $daddress_info = Model('daddress')->getAddressInfo(array('address_id' => $order_info['extend_order_common']['daddress_id']));
-            $this->assign('daddress_info', $daddress_info);
+            // $daddress_info = Model('daddress')->getAddressInfo(array('address_id' => $order_info['extend_order_common']['daddress_id']));
+            // $this->assign('daddress_info', $daddress_info);
         }
-
-        $order_id = intval($_GET['order_id']);
-        if ($order_id <= 0) {
-            output_error('订单不存在100');
-        }
-
-        $model_order = Model('order');
-        $condition['order_id'] = $order_id;
-        $condition['buyer_id'] = $this->member_info['member_id'];
-        $order_info = $model_order->getOrderInfo($condition, array('order_goods'), 'order_id', 'order_sn', 'store_id', 'store_name', 'add_time', 'payment_time', 'shipping_time', 'finnshed_time', 'order_amount', 'shipping_fee', 'real_pay_amount', 'state_desc', 'payment_name', 'order_message', 'reciver_phone', 'reciver_name', 'reciver_addr', 'store_member_id', 'store_phone', 'order_tips');
-
-        $order_info['promotion'] = array();
-        $order_info['if_deliver'] = false;
-        $order_info['if_buyer_cancel'] = false;
-        $order_info['if_refund_cancel'] = false;
-        $order_info['if_receive'] = false;
-        $order_info['if_evaluation'] = false;
-        $order_info['if_lock'] = false;
-
-        $order_info['goods_list'] = array();
-        $order_info['zengpin_list'] = array();
-        $order_info['ownshop'] = false;
-        output_data(array('order_info' => $order_info));
     }
 
     /**
@@ -420,29 +397,26 @@ class Memberorder extends MobileMember {
      * 从第三方取快递信息
      *
      */
-    public function _get_express($express_code, $shipping_code) {
+     public function get_express(){
 
-        $url = 'http://www.kuaidi100.com/query?type=' . $express_code . '&postid=' . $shipping_code . '&id=1&valicode=&temp=' . random(4) . '&sessionid=&tmp=' . random(4);
-        $content = dfsockopen($url);
-        $content = json_decode($content, true);
-
-        if ($content['status'] != 200) {
-            output_error('物流信息查询失败');
+        $result = model('express')->queryExpress(input('param.express_code'),input('param.shipping_code'),input('param.phone'));
+        if ($result['Success'] != true) {
+            output_error('订单不存在1');
         }
-        $content['data'] = array_reverse($content['data']);
+        $content['Traces'] = array_reverse($result['Traces']);
         $output = array();
-        if (is_array($content['data'])) {
-            foreach ($content['data'] as $k => $v) {
-                if ($v['time'] == '')
+        if (is_array($content['Traces'])) {
+            foreach ($content['Traces'] as $k => $v) {
+                if ($v['AcceptTime'] == '')
                     continue;
-                //$output[] = $v['time'] . '&nbsp;&nbsp;' . $v['context'];
-                $output[$k]['time'] = $v['time'];
-                $output[$k]['context'] = $v['context'];
+                $output[] = $v['AcceptTime'] . '&nbsp;&nbsp;' . $v['AcceptStation'];
             }
         }
         if (empty($output))
-            exit(json_encode(false));
-        return $output;
+            output_error('订单不存在2');
+
+        // output_data($output);
+        output_data($result['Traces']);
     }
 
 }
