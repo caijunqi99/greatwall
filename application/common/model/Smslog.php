@@ -37,7 +37,7 @@ class Smslog extends Model {
         $condition['smslog_ip'] = request()->ip();
         $condition['smslog_smstime'] = array('between', array($begin_add_time, $end_add_time));
         if ($smslog_captcha && $this->getSmsCount($condition) > 20) {
-            return array('state'=>FALSE,'code'=>10001,'message'=>'同一IP地址一天内只能发送20条短信，请勿多次获取动态码！');
+            // return array('state'=>FALSE,'code'=>10001,'message'=>'同一IP地址一天内只能发送20条短信，请勿多次获取动态码！');
         }
         
         //同一手机号,60秒才能提交发送一次
@@ -53,7 +53,7 @@ class Smslog extends Model {
         $condition['smslog_phone'] = $smslog_phone;
         $condition['smslog_smstime'] = array('between', array($begin_add_time, $end_add_time));
         if ($smslog_captcha && $this->getSmsCount($condition) > 5) {
-            return array('state'=>FALSE,'code'=>10001,'message'=>'同一手机一天内只能发送5条短信，请勿多次获取动态码！');
+            // return array('state'=>FALSE,'code'=>10001,'message'=>'同一手机一天内只能发送5条短信，请勿多次获取动态码！');
         }
 
         // 相同的短信内容，一天不能发送3次
@@ -61,7 +61,7 @@ class Smslog extends Model {
         $condition['smslog_msg'] = $smslog_msg;
         $condition['smslog_smstime'] = array('between', array($begin_add_time, $end_add_time));
         if($this->getSmsCount($condition) > 3){
-            return array('state'=>FALSE,'code'=>10001,'message'=>'相同的短信内容，一天不能发送3次！');
+            // return array('state'=>FALSE,'code'=>10001,'message'=>'相同的短信内容，一天不能发送3次！');
         }
         
         //通过手机号获取现绑定的客户信息
