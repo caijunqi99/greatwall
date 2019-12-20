@@ -24,7 +24,7 @@ class Member extends MobileMember {
 
         $member_info['favorites_store'] = Model('favorites')->getStoreFavoritesCountByMemberId($this->member_info['member_id']);
         $member_info['favorites_goods'] = Model('favorites')->getGoodsFavoritesCountByMemberId($this->member_info['member_id']);
-        // $member_info['mobile'] = encrypt_show($this->member_info['member_mobile'], 4, 4);
+        $member_info['mobile'] = encrypt_show($this->member_info['member_mobile'], 4, 4);
         // 交易提醒
         $model_order = Model('order');
         $member_info['order_nopay_count'] = $model_order->getOrderCountByID('buyer', $this->member_info['member_id'], 'NewCount');
