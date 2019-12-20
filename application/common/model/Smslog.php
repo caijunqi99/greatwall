@@ -104,7 +104,6 @@ class Smslog extends Model {
                 break;
         }
         $result = $sms->send($smslog_phone, $smslog_msg,$smslog_captcha,$temp);
-        
         if ($result) {
             $log['smslog_phone'] = $smslog_phone;
             $log['smslog_captcha'] = $smslog_captcha;
