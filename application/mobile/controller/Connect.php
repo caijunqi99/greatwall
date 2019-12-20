@@ -89,6 +89,7 @@ class Connect extends MobileMall
                         break;  
                 }
                 $result = $model_sms_log->sendSms($phone,$log_msg,$log_type,$captcha,$member['member_id'],$member['member_name']);
+                
                 if($result['state']){
                     output_data(array('sms_time'=>10));exit;
                 }else{

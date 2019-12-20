@@ -94,6 +94,10 @@ class Smslog extends Model {
                 $temp['SignName'] = '账户安全验证';
                 $temp['TemplateCode'] = 'SMS_177545061';
                 break;
+            case 6: //5安全验证
+                $temp['SignName'] = '账户安全验证';
+                $temp['TemplateCode'] = 'SMS_177545061';
+                break;
             default:
                 $temp['SignName'] = '会员注册';
                 $temp['TemplateCode'] = 'SMS_177535055';
@@ -110,14 +114,15 @@ class Smslog extends Model {
             $log['smslog_smstime'] = TIMESTAMP;
             $log['member_id'] = $member_id;
             $log['member_name'] = $member_name;
+
             $result = $this->addSms($log);
             if($result>=0){
                 return array('state'=>TRUE,'code'=>10000,'message'=>'');
             }else{
-                return array('state'=>FALSE,'code'=>10001,'message'=>'手机短信发送失败');
+                return array('state'=>FALSE,'code'=>10001,'message'=>'手机短信发送失败-A');
             }
         }else{
-            return array('state'=>FALSE,'code'=>10001,'message'=>'手机短信发送失败');
+            return array('state'=>FALSE,'code'=>10001,'message'=>'手机短信发送失败-B');
         }
     }
     
