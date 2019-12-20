@@ -448,10 +448,10 @@ class Memberaccount extends MobileMember
             'password' => input('post.password'),
             'confirm_password' => input('post.confirm_password'),
         );
-        $membersecurity_validate = validate('membersecurity');
-        if (!$membersecurity_validate->scene('modify_paypwd')->check($data)) {
-            output_error($membersecurity_validate->getError());
-        }
+        // $membersecurity_validate = validate('membersecurity');
+        // if (!$membersecurity_validate->scene('modify_paypwd')->check($data)) {
+        //     output_error($membersecurity_validate->getError());
+        // }
         if ($data['password'] != $data['confirm_password']) {
             output_error(lang('two_password_inconsistencies'));
         }
