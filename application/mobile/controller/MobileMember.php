@@ -23,7 +23,7 @@ class MobileMember extends MobileHome {
             $mobile = '';
             if (empty($mb_user_token_info)) {
                 //如果传入手机号，以手机号查询
-                $mobile = input('post.mobile_key');
+                $mobile = input('param.mobile_key');
                 if ($mobile) {
                     $member = $model_member->getMemberInfo(['member_mobile'=>$mobile],'member_id');
                     if ($member) {

@@ -427,7 +427,9 @@ class Memberaccount extends MobileMember
             output_error($verify_code_validate->getError());
         }
         $verify_code_model = model('verify_code');
-        if (!$verify_code_model->getVerifyCodeInfo(array('verify_code_type' => 6, 'verify_code_user_type' => 1, 'verify_code_user_id' => $this->member_info['member_id'], 'verify_code' => $verify_code, 'verify_code_add_time' => array('>', TIMESTAMP - VERIFY_CODE_INVALIDE_MINUTE * 1800)))) {
+        $vali = $verify_code_model->getVerifyCodeInfo(array('verify_code_type' => 6, 'verify_code_user_type' => 1, 'verify_code_user_id' => $this->member_info['member_id'], 'verify_code' => $verify_code, 'verify_code_add_time' => array('<', TIMESTAMP - VERIFY_CODE_INVALIDE_MINUTE * 1800)));
+        
+        if (!$vali) {
             output_error(lang('validation_fails'));
         }
         //身份验证后，需要在30分钟内完成修改密码操作
@@ -448,7 +450,7 @@ class Memberaccount extends MobileMember
         $message = $update ? lang('password_set_successfully') : lang('password_setting_failed');
 
         if ($update) {
-            output_data(['state'=>$update,'msg'=>$message]);
+            output_data(['state'=>$update==1?true:false,'msg'=>$message]);
         } else {
             output_data($message);
         }
