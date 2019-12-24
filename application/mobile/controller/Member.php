@@ -198,10 +198,10 @@ class Member extends MobileMember {
                 $img=UPLOAD_SITE_URL . '/' . ATTACH_AVATAR .'/'.$file_name;
                 output_data(array('result' => 1,'avatar'=>$img));
             }else{
-                output_data($file_object->getError());
+                output_error($file_object->getError().'a');
             }
         } else {
-            output_data(lang('upload_failed_replace_pictures'));
+            output_error(lang('upload_failed_replace_pictures').'A');
         }
 
     }
