@@ -108,7 +108,7 @@
                 <a target="_blank" href="{$Think.HTTP_TYPE}wpa.qq.com/msgrd?v=3&uin={$v.member_qq}&site=qq&menu=yes" class=""  title="QQ: {$v.member_qq}"><img border="0" src="{$Think.HTTP_TYPE}wpa.qq.com/pa?p=2:{$v.member_qq}:52"/></a>
                 {/if}
                {if $v.member_mobile != ''}
-               <div style="font-size:13px; padding-left:10px">&nbsp;&nbsp;{$v.member_mobile}</div>
+               <div style="font-size:13px; padding-left:10px">&nbsp;&nbsp;{$v.member_mobile}--{$v.member_id}</div>
                {/if}
               </div></td>
           <td class="align-center">{$v.inviter_code}</td>
