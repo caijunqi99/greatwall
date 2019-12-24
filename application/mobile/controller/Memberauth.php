@@ -32,35 +32,46 @@ class Memberauth extends MobileMall
             $member_info = $member_model->getMemberInfo($condition);
             $bankinfo = $memberbank_model -> getMemberbankInfo($condition);
             $logindata = array(
-                'member_id' => $member_info['member_id'],'member_auth_state' => $member_info['member_auth_state'],'idcard'=>$member_info['member_idcard'],
-                'member_provinceid'=>$member_info['member_provinceid'],'member_cityid'=>$member_info['member_cityid'],'member_areaid'=>$member_info['member_areaid'],
-                'member_townid'=>$member_info['member_townid'],'member_villageid'=>$member_info['member_villageid'],'member_areainfo'=>$member_info['member_areainfo'],
-                'member_idcard_image2' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image2'],'member_idcard_image3' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image3'],
-                'username' => $bankinfo['memberbank_truename'],'member_bankname'=>$bankinfo['memberbank_name'],'member_bankcard'=>$bankinfo['memberbank_no']
+                'member_id'            => $member_info['member_id'],
+                'member_auth_state'    => $member_info['member_auth_state'],
+                'idcard'               =>$member_info['member_idcard'],
+                'member_provinceid'    =>$member_info['member_provinceid'],
+                'member_cityid'        =>$member_info['member_cityid'],
+                'member_areaid'        =>$member_info['member_areaid'],
+                'member_townid'        =>$member_info['member_townid'],
+                'member_villageid'     =>$member_info['member_villageid'],
+                'member_areainfo'      =>$member_info['member_areainfo'],
+                'member_idcard_image2' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image2'],
+                'member_idcard_image3' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image3'],
+                'username'             => $bankinfo['memberbank_truename'],
+                'member_bankname'      =>$bankinfo['memberbank_name'],
+                'member_bankcard'      =>$bankinfo['memberbank_no']
             );
             output_data($logindata);
         }else{
             $member_array = array(
-                "member_idcard" => input('post.idcard'),
+                "member_idcard"     => input('post.idcard'),
                 "member_provinceid" => input('post.member_provinceid'),
-                "member_cityid" => input('post.member_cityid'),
-                "member_areaid" => input('post.member_areaid'),
-                "member_townid" => input('post.member_townid'),
-                "member_villageid" => input('post.member_villageid'),
-                "member_areainfo" => input('post.member_areainfo'),
+                "member_cityid"     => input('post.member_cityid'),
+                "member_areaid"     => input('post.member_areaid'),
+                "member_townid"     => input('post.member_townid'),
+                "member_villageid"  => input('post.member_villageid'),
+                "member_areainfo"   => input('post.member_areainfo'),
                 "member_auth_state" => 1,
             );
             //上传身份证图
-            $files['member_idcard_image2'] = $_FILES['member_idcard_image2']['name'];
-            $files['member_idcard_image3'] = $_FILES['member_idcard_image3']['name'];
-            $upload = $this->img($files,$member_id);
-            if (!empty($upload['member_idcard_image2'])) {
-                $member_array['member_idcard_image2'] = $upload['member_idcard_image2'];
+            if ($_FILES) {
+                $files['member_idcard_image2'] = isset($_FILES['member_idcard_image2']['name'])?$_FILES['member_idcard_image2']['name']:'';
+                $files['member_idcard_image3'] = isset($_FILES['member_idcard_image3']['name'])?$_FILES['member_idcard_image3']['name']:'';
+                $upload = $this->img($files,$member_id);
+                if (!empty($upload['member_idcard_image2'])) {
+                    $member_array['member_idcard_image2'] = $upload['member_idcard_image2'];
+                }
+                if (!empty($upload['member_idcard_image3'])) {
+                    $member_array['member_idcard_image3'] = $upload['member_idcard_image3'];
+                }
             }
-            if (!empty($upload['member_idcard_image3'])) {
-                $member_array['member_idcard_image3'] = $upload['member_idcard_image3'];
-            }
-            $result = $member_model->editMember(array('member_id'=>intval($member_id)),$member_array);
+            $result = $member_model->editMember(['member_id'=>$member_id],$member_array);
             if($result){
                 $bank_array = array(
                     'memberbank_type' => "bank",
@@ -70,15 +81,18 @@ class Memberauth extends MobileMall
                     'member_id' => $member_id
                 );
                 $ret = $memberbank_model->addMemberbank($bank_array);
-            }
-            if($ret){
-                $logindata = array(
-                     'member_id' => $member_id
-                );
-                output_data($logindata);
+                if($ret){
+                    $logindata = array(
+                         'member_id' => $member_id
+                    );
+                    output_data($logindata);
+                }else{
+                    output_error('提交认证失败');
+                }
             }else{
                 output_error('提交认证失败');
             }
+            
         }
 
     }
