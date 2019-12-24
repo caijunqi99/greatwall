@@ -107,7 +107,7 @@ class Memberauth extends MobileMall
                 $upload['member_idcard_image2'] = $info->getFilename();
             } else {
                 // 上传失败获取错误信息
-                $this->error($file->getError());
+                output_error($file->getError());
             }
         }
         if (!empty($files['member_idcard_image3'])) {
@@ -117,7 +117,7 @@ class Memberauth extends MobileMall
                 $upload['member_idcard_image3'] = $info->getFilename();
             } else {
                 // 上传失败获取错误信息
-                $this->error($file->getError());
+                output_error($file->getError());
             }
         }
         return $upload;
