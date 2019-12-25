@@ -4,6 +4,7 @@ namespace app\mobile\controller;
 
 use think\Lang;
 use process\Process;
+use think\Log;
 
 class Memberauth extends MobileMall
 {
@@ -105,6 +106,7 @@ class Memberauth extends MobileMall
     //上传图片
     public function img($files,$member_id){
         $upload_file = BASE_UPLOAD_PATH . DS ."home/idcard_image";
+        $upload = [];
         if (!empty($files['member_idcard_image2'])) {
             $file = request()->file('member_idcard_image2');
             $info = $file->validate(['ext'=>ALLOW_IMG_EXT])->move($upload_file, $member_id.'_idcard_z');
