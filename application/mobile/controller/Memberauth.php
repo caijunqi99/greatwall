@@ -59,6 +59,11 @@ class Memberauth extends MobileMall
                 "member_areainfo"   => input('post.member_areainfo'),
                 "member_auth_state" => 1,
             );
+            $writeLog = [
+                'input' =>input(),
+                '_FILES' =>$_FILES
+            ];
+            Log::write($writeLog);
             //上传身份证图
             if ($_FILES) {
                 $files['member_idcard_image2'] = isset($_FILES['member_idcard_image2']['name'])?$_FILES['member_idcard_image2']['name']:'';
