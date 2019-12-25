@@ -79,7 +79,7 @@ class Memberbuy extends MobileMember
         
 
         foreach ($result['store_cart_list'] as $key => $value) {
-            $store_cart_list[$key]['goods_list'] = $value;
+            $store_cart_list[$key]['goods'] = $value;
             $store_cart_list[$key]['store_goods_total'] = $result['store_goods_total'][$key];
 
             $store_cart_list[$key]['store_mansong_rule_list'] = isset($result['store_mansong_rule_list'][$key])?$result['store_mansong_rule_list'][$key]:'';
