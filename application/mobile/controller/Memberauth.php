@@ -4,7 +4,7 @@ namespace app\mobile\controller;
 
 use think\Lang;
 use process\Process;
-use think\Log;
+// use think\Log;
 
 class Memberauth extends MobileMall
 {
@@ -28,9 +28,10 @@ class Memberauth extends MobileMall
         $member_model = model('member');
         $memberbank_model = model('memberbank');
         $condition = array();
+        $condition['member_id'] = $member_id;
+        $member_info = $member_model->getMemberInfo($condition);
         if ($commit != 1) {
-            $condition['member_id'] = $member_id;
-            $member_info = $member_model->getMemberInfo($condition);
+            
             $bankinfo = $memberbank_model -> getMemberbankInfo($condition);
             $logindata = array(
                 'member_id'            => $member_info['member_id'],
@@ -51,6 +52,7 @@ class Memberauth extends MobileMall
             output_data($logindata);
         }else{
             $member_array = array(
+                "member_truename"   => $member_info['member_truename']?$member_info['member_truename']:input('post.username'),
                 "member_idcard"     => input('post.idcard'),
                 "member_provinceid" => input('post.member_provinceid'),
                 "member_cityid"     => input('post.member_cityid'),
@@ -60,11 +62,12 @@ class Memberauth extends MobileMall
                 "member_areainfo"   => input('post.member_areainfo'),
                 "member_auth_state" => 1,
             );
-            $writeLog = [
-                'input' =>input(),
-                '_FILES' =>$_FILES
-            ];
-            Log::write($writeLog);
+            // $writeLog = [
+            //     'input' =>input(),
+            //     '_FILES' =>$_FILES
+            // ];
+            // Log::write($writeLog);
+            // 
             //上传身份证图
             if ($_FILES) {
                 $files['member_idcard_image2'] = isset($_FILES['member_idcard_image2']['name'])?$_FILES['member_idcard_image2']['name']:'';
