@@ -26,7 +26,8 @@ class Memberbuy extends MobileMember
      */
     public function buy_step1()
     {
-
+        $_POST['cart_id']  = input('param.cart_id','');
+        $_POST['ifcart']  = input('param.ifcart','');
         $cart_id = explode(',', $_POST['cart_id']);
         
         $logic_buy = model('buy','logic');
