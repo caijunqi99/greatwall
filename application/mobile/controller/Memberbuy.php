@@ -126,6 +126,7 @@ class Memberbuy extends MobileMember
         $buy_list['rpt_list'] = isset($result['rpt_list']) ? $result['rpt_list'] : array();
         $buy_list['zk_list'] = isset($result['zk_list'])?$result['zk_list']:array();
 
+
         if (isset($data_area['content']) ){
 
             $store_total_list = model('buy_1','logic')->reCalcGoodsTotal($store_total_list, $data_area['content'], 'freight');
@@ -142,6 +143,7 @@ class Memberbuy extends MobileMember
             // }
         }
         $rpacket_price=isset($result['rpt_info']['rpacket_price']) ? $result['rpt_info']['rpacket_price']:'';
+        $rpacket_price = is_numeric($rpacket_price)?ds_price_format($rpacket_price):0;
         $buy_list['order_amount'] = ds_price_format(array_sum($store_total_list) - $rpacket_price);
         $buy_list['rpt_info'] = isset($result['rpt_info']) ? $result['rpt_info'] : array();
         $buy_list['address_api'] = $data_area ? $data_area : '';
