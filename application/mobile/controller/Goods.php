@@ -25,7 +25,7 @@ class Goods extends MobileMall {
         $model_goods = Model('goods');
         $result  = $model_goods->getRandGoods();
         foreach ($result as $key => $value) {
-            $result[$key]['goods_image_url'] = goods_cthumb($value['goods_image'], 360, $value['store_id']);
+            $result[$key]['goods_image'] = goods_cthumb($value['goods_image'], 360, $value['store_id']);
         }
         output_data($result);
     }
