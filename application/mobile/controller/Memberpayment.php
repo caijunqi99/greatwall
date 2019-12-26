@@ -90,7 +90,7 @@ class Memberpayment extends MobileMember
         $model_member = Model('member');
         $buyer_info = $model_member->getMemberInfoByID($this->member_info['member_id']);
         if ($buyer_info['member_paypwd'] == '' || $buyer_info['member_paypwd'] != md5($post['password'])) {
-            return $order_list;
+            output_error('支付密码错误！');
         }
         //没有充值卡支付类型
         $post['rcb_pay'] = null;
