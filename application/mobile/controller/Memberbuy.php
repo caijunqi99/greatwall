@@ -268,7 +268,8 @@ class Memberbuy extends MobileMember
      */
     public function pay()
     {
-        $pay_sn = $_POST['pay_sn'];
+        // $_POST['pay_sn'] = input('param.pay_sn');
+        $pay_sn = input('param.pay_sn');
         if (!preg_match('/^\d{20}$/', $pay_sn)) {
             output_error('该订单不存在');
         }
