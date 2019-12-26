@@ -118,8 +118,10 @@ class Goods extends Model {
 
 
     public function getRandGoods(){
-        
-        $result = db('goods')->field('goods_id,goods_name,goods_advword,goods_image,store_id,goods_marketprice as goods_promotion_price,goods_price,goods_commonid')->orderRaw('rand()')->group('goods_commonid')->limit(6)->select();
+        $condition=[];
+        $condition['goods_state'] = self::STATE1;
+        $condition['goods_verify'] = self::VERIFY1;
+        $result = db('goods')->where($condition)->field('goods_id,goods_name,goods_advword,goods_image,store_id,goods_marketprice as goods_promotion_price,goods_price,goods_commonid')->orderRaw('rand()')->group('goods_commonid')->limit(6)->select();
         return $result; 
 
     }
