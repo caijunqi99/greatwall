@@ -51,6 +51,10 @@ class Memberauth extends MobileMall
             );
             output_data($logindata);
         }else{
+            $idcard = input('post.idcard');
+            if (!is_idcard($idcard)) {
+                output_error('身份证号码错误！');
+            }
             $member_array = array(
                 "member_truename"   => $member_info['member_truename']?$member_info['member_truename']:input('post.username'),
                 "member_idcard"     => input('post.idcard'),
