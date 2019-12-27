@@ -64,7 +64,7 @@ class Memberauth extends MobileMall
                 "member_townid"     => input('post.member_townid'),
                 "member_villageid"  => input('post.member_villageid'),
                 "member_areainfo"   => input('post.member_areainfo'),
-                "member_auth_state" => 1,
+                "member_auth_state" => $member_info['member_auth_state']==0?1:$member_info['member_auth_state'],
             );
             // $writeLog = [
             //     'input' =>input(),
