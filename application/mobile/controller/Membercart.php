@@ -56,8 +56,8 @@ class Membercart extends MobileMember {
 
         $cart_b=array_values($cart_l);
 
-        output_data(array('cart_list' => $cart_a, 'sum' => ds_price_format($sum), 'cart_count' => count($cart_list),'cart_val'=>$cart_b));
-        // output_data(array('sum' => ds_price_format($sum), 'cart_count' => count($cart_list),'cart_list'=>$cart_b));
+        // output_data(array('cart_list' => $cart_a, 'sum' => ds_price_format($sum), 'cart_count' => count($cart_list),'cart_val'=>$cart_b));
+        output_data(array('sum' => ds_price_format($sum), 'cart_count' => count($cart_list),'cart_list'=>$cart_b));
     }
 
     /**
