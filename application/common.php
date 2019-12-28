@@ -665,7 +665,7 @@ function get_member_avatar($member_avatar)
     else {
 
         if (file_exists(BASE_UPLOAD_PATH . '/' . ATTACH_AVATAR . '/' . $member_avatar)) {
-            return UPLOAD_SITE_URL . '/' . ATTACH_AVATAR . '/' . $member_avatar;
+            return UPLOAD_SITE_URL . '/' . ATTACH_AVATAR . '/' . $member_avatar.'?t='.time();
         }
         else {
             return UPLOAD_SITE_URL . '/' . ATTACH_COMMON . '/' . 'default_user_portrait.gif';
@@ -681,7 +681,7 @@ function get_member_avatar($member_avatar)
 function get_member_avatar_for_id($id)
 {
     if (file_exists(BASE_UPLOAD_PATH . '/' . ATTACH_AVATAR . '/avatar_' . $id . '.jpg')) {
-        return UPLOAD_SITE_URL . '/' . ATTACH_AVATAR . '/avatar_' . $id . '.jpg';
+        return UPLOAD_SITE_URL . '/' . ATTACH_AVATAR . '/avatar_' . $id . '.jpg?t='.time();
     }
     else {
         if (config('default_user_portrait')) {
