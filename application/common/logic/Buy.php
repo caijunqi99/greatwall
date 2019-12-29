@@ -1158,7 +1158,9 @@ class Buy extends Model
         if (empty($string))
             return;
         $string = base64_decode(ds_decrypt(strval($string), $buy_key, $ttl));
-        return ($tmp = @unserialize($string)) !== false ? $tmp : $string;
+        $tmp = @unserialize($string);
+        return $tmp !== false ? $tmp : $string;
+        // return ($tmp = @unserialize($string)) !== false ? $tmp : $string;
     }
 
     /**
