@@ -91,6 +91,9 @@ class Memberorder extends MobileMember {
             case 'state_new':
                 $condition['order_state'] = '10';
                 break;
+            case 'state_pay':
+                $condition['order_state'] = '20';
+                break;
             case 'state_send':
                 $condition['order_state'] = '30';
                 break;
@@ -100,6 +103,12 @@ class Memberorder extends MobileMember {
                 break;
             case 'state_noeval':
                 $condition['order_state'] = '40';
+                break;
+            case 'state_success':
+                $condition['order_state'] = '40';
+                break;
+            case 'state_cancel':
+                $condition['order_state'] = '0';
                 break;
         }
         return $condition;
