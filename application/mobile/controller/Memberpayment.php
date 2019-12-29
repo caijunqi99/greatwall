@@ -433,7 +433,7 @@ class Memberpayment extends MobileMember
         
         $predeposit_model = model('predeposit');
         $data = array();
-        $data['pdr_sn'] = $pay_sn = makePaySn(session('member_id'));
+        $data['pdr_sn'] = $pay_sn = makePaySn($this->member_info['member_id']);
         $data['pdr_member_id'] = $this->member_info['member_id'];
         $data['pdr_member_name'] = $this->member_info['member_name'];
         $data['pdr_amount'] = $pdr_amount;
