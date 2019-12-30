@@ -7,7 +7,7 @@
 namespace app\home\controller;
 
 use think\Lang;
-
+use think\Log;
 /**
  * ============================================================================
  
@@ -234,6 +234,7 @@ class Payment extends BaseMall {
 
         //对进入的参数进行远程数据判断
         $verify = $payment_api->verify_notify();
+        
         if ($verify['trade_status'] != 1) {
             exit;
         }
