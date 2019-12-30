@@ -4,6 +4,7 @@ namespace app\common\logic;
 
 
 use think\Model;
+use think\Log;
 
 /**
  * ============================================================================
