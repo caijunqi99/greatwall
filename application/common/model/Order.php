@@ -363,7 +363,8 @@ class Order extends Model {
     public function getOrderStateEvalCount($condition = array()) {
         $condition['order_state'] = "40";
         $condition['evaluation_state'] = 0;
-		$condition['refund_state'] = 0;
+        $condition['refund_state'] = 0;
+		$condition['delete_state'] = 0;
         return $this->getOrderCount($condition);
     }
 
