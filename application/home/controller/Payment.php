@@ -234,13 +234,6 @@ class Payment extends BaseMall {
 
         //对进入的参数进行远程数据判断
         $verify = $payment_api->verify_notify();
-        $writeLog = [
-            'Url'   =>'充值异步回调',
-            'time' =>date('Y-m-d H:i:s',time()),
-            'response' =>$verify,
-            'input' =>input()
-        ];
-        Log::write($writeLog);
         if ($verify['trade_status'] != 1) {
             exit;
         }

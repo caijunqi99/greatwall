@@ -240,7 +240,18 @@ class Payment extends Model
                 $out_trade_no = end($out_trade_no);
             }
         }
-        $out_trade_no = current(explode('_', $out_trade_no));
+        // $out_trade_no = current(explode('_', $out_trade_no));
+        $writeLog = [
+            'Url'   =>'充值异步回调',
+            'time' =>date('Y-m-d H:i:s',time()),
+            'response' =>$out_trade_no1,
+            'out_trade_no1' =>$out_trade_no1,
+            'trade_no' =>$trade_no,
+            'order_type' =>$order_type,
+            'payment_code' =>$payment_code,
+            'out_trade_no' =$out_trade_no
+        ];
+        
         if ($order_type == 'real_order') {
             $order = $this->getRealOrderInfo($out_trade_no);
             if (intval($order['data']['api_paystate'])) {
@@ -262,6 +273,8 @@ class Payment extends Model
                 //订单已支付
                 return true;
             }
+            $writeLog['order'] = $order;
+            Log::write($writeLog);
             //储值卡充值返利
             $model_member = Model('member');
             $member_info = $model_member->getMemberInfoByID($order['data']['member_id']);
