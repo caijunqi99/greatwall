@@ -70,7 +70,7 @@ class Memberpayment extends MobileMember
         if ($buyer_info['member_paypwd'] == '' || $buyer_info['member_paypwd'] != md5($post['password'])) {
             output_error('支付密码错误！');
         }
-        $y = $buyer_info['available_predeposit'] - $order_list['order_amount'];
+        $y = abs($buyer_info['available_predeposit']) - abs( $order_list[0]['order_amount']);
         if ($y < 0 ) {
             output_error('余额不足，请充值！');
         }

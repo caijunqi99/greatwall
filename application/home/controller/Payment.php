@@ -7,7 +7,7 @@
 namespace app\home\controller;
 
 use think\Lang;
-use think\Log;
+
 /**
  * ============================================================================
  
