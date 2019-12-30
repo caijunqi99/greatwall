@@ -64,12 +64,12 @@ class Wxauto extends MobileMember
             }
 
             $model_member = Model('member');
-            $member_info = $model_member->getMemberInfo(array('weixin_unionid' => $res5['unionid']));
+            $member_info = $model_member->getMemberInfo(array('member_wxunionid' => $res5['unionid']));
 
             if (!empty($member_info)) {
                 //更新信息
                 if ($res5['subscribe'] && !empty($res5['nickname']) && $res5['nickname'] != $member_info['member_name']) {
-                    $model_member->editMember(array('weixin_unionid' => $res5['unionid']), array('member_name' => $res5['nickname']));
+                    $model_member->editMember(array('member_wxunionid' => $res5['unionid']), array('member_name' => $res5['nickname']));
                 }
                 $token = $this->_get_token($member_info['member_id'], $member_info['member_name'], 'wap');
                 cookie('username', $member_info["member_name"], time() + 3600 * 24, '/');
@@ -111,14 +111,14 @@ class Wxauto extends MobileMember
             $member = array();
             $member['member_password'] = $password;
             $member['member_email'] = '';
-            $member['weixin_unionid'] = $unionid;
+            $member['member_wxunionid'] = $unionid;
             $member['member_wxopenid'] = $user_info['openid'];
 
             $weixin_info = array();
             $weixin_info['unionid'] = $user_info['unionid'];
             $weixin_info['nickname'] = $user_info['nickname'];
             $weixin_info['openid'] = $user_info['openid'];
-            $member['weixin_info'] = serialize($weixin_info);
+            $member['member_wxinfo'] = serialize($weixin_info);
 
             if (empty($member_info)) {
                 $member['member_name'] = $member_name;
