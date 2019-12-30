@@ -165,14 +165,17 @@ class Wxauto extends MobileMember
     private function _get_token($member_id, $member_name, $client)
     {
         $model_mb_user_token = Model('mbusertoken');
+        $condition = array();
+        $condition['member_id'] = $member_id;
+        $model_mb_user_token->delMbusertoken($condition);
         //生成新的token
         $mb_user_token_info = array();
         $token = md5($member_name . strval(TIMESTAMP) . strval(rand(0, 999999)));
         $mb_user_token_info['member_id'] = $member_id;
         $mb_user_token_info['member_name'] = $member_name;
-        $mb_user_token_info['token'] = $token;
-        $mb_user_token_info['login_time'] = TIMESTAMP;
-        $mb_user_token_info['client_type'] = $client;
+        $mb_user_token_info['member_token'] = $token;
+        $mb_user_token_info['member_logintime'] = TIMESTAMP;
+        $mb_user_token_info['member_clienttype'] = $client;
 
         $result = $model_mb_user_token->addMbUserToken($mb_user_token_info);
         if ($result) {

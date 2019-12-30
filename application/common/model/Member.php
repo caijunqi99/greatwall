@@ -627,10 +627,9 @@ class Member extends Model
         $mbusertoken_model = model('mbusertoken');
         //重新登录后以前的令牌失效
         //暂时停用
-        //$condition = array();
-        //$condition['member_id'] = $member_id;
-        //$condition['member_clienttype'] = $client;
-        //$mbusertoken_model->delMbusertoken($condition);
+        $condition = array();
+        $condition['member_id'] = $member_id;
+        $mbusertoken_model->delMbusertoken($condition);
         //生成新的token
         $mb_user_token_info = array();
         $token = md5($member_name . strval(TIMESTAMP) . strval(rand(0, 999999)));
