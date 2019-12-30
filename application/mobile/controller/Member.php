@@ -239,7 +239,7 @@ class Member extends MobileMember {
     * 获取推荐下级信息
     * */
     public function inviter(){
-        $member_id = input('param.member_id');
+        $member_id = $this->member_info['member_id'];
         if (empty($member_id)) {
             output_error('member_id参数有误');
         }

@@ -107,15 +107,15 @@ class Memberbuy extends MobileMember
         }
 
         $buy_list = array();
-        $buy_list['store_cart_list'] = $store_cart_list;
+        // $buy_list['store_cart_list'] = $store_cart_list;
         $buy_list['store_cart_list_api']=array_values($store_cart_list);
         $buy_list['freight_hash'] = $result['freight_list'];
         $buy_list['address_info'] = $result['address_info'];
         $buy_list['ifshow_offpay'] = $result['ifshow_offpay'];
         $buy_list['vat_hash'] = $result['vat_hash'];
         $buy_list['inv_info'] = $result['inv_info'];
-        $buy_list['available_predeposit'] = isset($result['available_predeposit'])?$result['available_predeposit']:array();
-        $buy_list['available_rc_balance'] = isset($result['available_rc_balance'])?$result['available_rc_balance']:array();
+        $buy_list['available_predeposit'] = isset($result['available_predeposit'])?$result['available_predeposit']:0;
+        $buy_list['available_rc_balance'] = isset($result['available_rc_balance'])?$result['available_rc_balance']:0;
         if (isset($result['rpt_list']) && !empty($result['rpt_list'])) {
             foreach ($result['rpt_list'] as $k => $v) {
                 unset($result['rpt_list'][$k]['rpacket_id']);
