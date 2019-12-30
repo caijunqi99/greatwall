@@ -66,6 +66,7 @@ class alipay_app {
                 'trade_no' => $data['trade_no'], #交易凭据单号
                 'total_fee' => $data["total_amount"], #涉及金额
                 'trade_status' => '1',
+                'order_type' => current(explode('-', $data["out_trade_no"]))
             );
         } else {
             $notify_result = array(

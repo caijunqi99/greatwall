@@ -231,7 +231,15 @@ class Payment extends Model
      * @param type $order_type  #订单ID
      * @param type $payment_code  #支付方式代号
      */
-    public function updateOrder($out_trade_no,$trade_no,$order_type,$payment_code){
+    public function updateOrder($out_trade_no1,$trade_no,$order_type,$payment_code){
+        $out_trade_no = explode('_', $out_trade_no1);
+        if (strlen(current($out_trade_no)) != 20) {
+            $out_trade_no = end($out_trade_no);
+            if (strlen($out_trade_no) != 20) {
+                $out_trade_no = explode('-', $out_trade_no1);
+                $out_trade_no = end($out_trade_no);
+            }
+        }
         $out_trade_no = current(explode('_', $out_trade_no));
         if ($order_type == 'real_order') {
             $order = $this->getRealOrderInfo($out_trade_no);
