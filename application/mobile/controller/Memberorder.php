@@ -106,9 +106,11 @@ class Memberorder extends MobileMember {
                 break;
             case 'state_success':
                 $condition['order_state'] = '40';
+                $condition['delete_state'] = '0';
                 break;
             case 'state_cancel':
                 $condition['order_state'] = '0';
+                $condition['delete_state'] = '0';
                 break;
         }
         return $condition;

@@ -24,7 +24,6 @@ class Version extends MobileMall {
         $isupdate =  versionCompare($nowVersion,$channel['version_num']);
         unset($channel['id']);
         $channel['is_update'] =$isupdate;
-        $channel['is_update'] =$isupdate;
         output_data($channel);
     }
 
