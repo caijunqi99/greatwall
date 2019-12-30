@@ -115,57 +115,77 @@ class Memberorder extends MobileMember {
     }
 
     /**
-     * 取消订单
+     * 买家订单状态操作
+     *
      */
-    public function order_cancel() {
-        $model_order = model('order');
-        $logic_order = model('order','logic');
-        $order_id = intval(input('post.order_id'));
+    public function change_state() {
+        $state_type = input('param.state_type');
+        $order_id = intval(input('param.order_id'));
+
+        $order_model = model('order');
 
         $condition = array();
         $condition['order_id'] = $order_id;
         $condition['buyer_id'] = $this->member_info['member_id'];
-        //$condition['order_type'] = 1;
-        $order_info = $model_order->getOrderInfo($condition);
-        $if_allow = $model_order->getOrderOperateState('buyer_cancel', $order_info);
-        if (!$if_allow) {
-            output_error('无权操作');
+        $order_info = $order_model->getOrderInfo($condition);
+
+        if ($state_type == 'order_cancel') {
+            $result = $this->_order_cancel($order_info, input('post.'));
+        } else if ($state_type == 'order_receive') {
+            $result = $this->_order_receive($order_info, input('post.'));
+        } else if (in_array($state_type, array('order_delete', 'order_drop', 'order_restore'))) {
+            $result = $this->_order_recycle($order_info, input('param.'));
+        } else {
+            output_error('缺少必要参数！请确认您要操作的任务！');
         }
-        if (TIMESTAMP - 86400 < $order_info['add_time']) {
-            $_hour = ceil(($order_info['add_time'] + 86400 - TIMESTAMP) / 3600);
-            output_error('该订单曾尝试使用第三方支付平台支付，须在' . $_hour . '小时以后才可取消');
-        }
-        $result = $logic_order->changeOrderStateCancel($order_info, 'buyer', $this->member_info['member_name'], '其它原因');
         if (!$result['code']) {
             output_error($result['msg']);
         } else {
-            output_data('1');
+            output_data(['state'=>'true','msg'=>$result['msg']]);
         }
+        
     }
 
     /**
-     * 订单确认收货
+     * 取消订单
      */
-    public function order_receive() {
-        $model_order = Model('order');
+    private function _order_cancel($order_info, $post) {
+        $order_model = model('order');
         $logic_order = model('order','logic');
-        $order_id = intval(input('post.order_id'));
-
-        $condition = array();
-        $condition['order_id'] = $order_id;
-        $condition['buyer_id'] = $this->member_info['member_id'];
-        $order_info = $model_order->getOrderInfo($condition);
-        $if_allow = $model_order->getOrderOperateState('receive', $order_info);
+        $if_allow = $order_model->getOrderOperateState('buyer_cancel', $order_info);
         if (!$if_allow) {
-            output_error('无权操作');
+            return ds_callback(false,  '无权操作');
         }
+        $msg = isset($post['state_info1'])? $post['state_info1'] : (isset($post['state_info'])?$post['state_info']:'其他原因');
+        return $logic_order->changeOrderStateCancel($order_info, 'buyer', $this->member_info['member_name'], $msg);
+    }
 
-        $result = $logic_order->changeOrderStateReceive($order_info, 'buyer', $this->member_info['member_name'], '签收了货物');
-        if (!$result['code']) {
-            output_error($result['msg']);
-        } else {
-            output_data('1');
+    /**
+     * 收货
+     */
+    private function _order_receive($order_info, $post) {
+        $order_model = model('order');
+        $logic_order = model('order','logic');
+        $if_allow = $order_model->getOrderOperateState('receive', $order_info);
+        if (!$if_allow) {
+            return ds_callback(false,  '无权操作');
         }
+        
+        return $logic_order->changeOrderStateReceive($order_info, 'buyer', $this->member_info['member_name']);
+    }
+
+    /**
+     * 回收站
+     */
+    private function _order_recycle($order_info, $get) {
+        $order_model = model('order');
+        $logic_order = model('order','logic');
+        $state_type = str_replace(array('order_delete', 'order_drop', 'order_restore'), array('delete', 'drop', 'restore'), input('param.state_type'));
+        $if_allow = $order_model->getOrderOperateState($state_type, $order_info);
+        if (!$if_allow) {
+            return ds_callback(false, '无权操作');
+        }
+        return $logic_order->changeOrderStateRecycle($order_info, 'buyer', $state_type);
     }
 
     /**
@@ -402,11 +422,12 @@ class Memberorder extends MobileMember {
         output_data($data);
     }
 
+
     /**
      * 从第三方取快递信息
      *
      */
-     public function get_express(){
+    public function get_express(){
 
         $result = model('express')->queryExpress(input('param.express_code'),input('param.shipping_code'),input('param.phone'));
         if ($result['Success'] != true) {

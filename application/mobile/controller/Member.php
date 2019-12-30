@@ -266,12 +266,19 @@ class Member extends MobileMember {
             $allcount = $countOne+$countTwo;
             $member_info = $member_model->getMemberInfo(array("member_id"=>$member_id));
             $member_list=array_merge($member_list,$member_list_two);
-            $inviterdata = array(
-                'datainfo' =>$member_list,'countOne'=>$countOne,'countAll'=>$allcount,'inviterlink'=>$member_info['inviter_code']
-            );
-
-            output_data($inviterdata);
+            
+        }else{
+            $member_list = [];
+            $countOne = 0 ;
+            $allcount = 0 ;
         }
+        $inviterdata = array(
+                'datainfo' =>$member_list,
+                'countOne'=>$countOne,
+                'countAll'=>$allcount,
+                'inviterlink'=>$this->member_info['inviter_code']
+            );
+        output_data($inviterdata);
     }
 
 }

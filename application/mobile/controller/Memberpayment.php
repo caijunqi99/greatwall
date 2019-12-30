@@ -55,28 +55,6 @@ class Memberpayment extends MobileMember
         $this->_api_pay($pay_info['data']);
     }
 
-    /**
-     * 虚拟订单支付
-     */
-    public function vr_pay_new()
-    {
-        @header("Content-type: text/html; charset=UTF-8");
-        $order_sn = input('param.pay_sn');
-        if (!preg_match('/^\d{18}$/', $order_sn)) {
-            exit('订单号错误');
-        }
-        $pay_info = $this->_get_vr_order_info($order_sn, input('param.'));
-
-        if (isset($pay_info['error'])) {
-            exit($pay_info['error']);
-        }
-
-         if($pay_info['data']['pay_end'] == 1) {
-             $this->redirect(WAP_SITE_URL . '/tmpl/member/vr_order_list.html');
-         }
-        //第三方API支付
-        $this->_api_pay($pay_info['data']);
-    }
 
     /**
      * 站内余额支付(充值卡、预存款支付) 实物订单
@@ -123,51 +101,6 @@ class Memberpayment extends MobileMember
         return $order_list;
     }
 
-    /**
-     * 站内余额支付(充值卡、预存款支付) 虚拟订单
-     *
-     */
-    private function _pd_vr_pay($order_info, $post)
-    {
-        if (empty($post['password'])) {
-            return $order_info;
-        }
-        $model_member = Model('member');
-        $buyer_info = $model_member->getMemberInfoByID($this->member_info['member_id']);
-        if ($buyer_info['member_paypwd'] == '' || $buyer_info['member_paypwd'] != md5($post['password'])) {
-            return $order_info;
-        }
-        if ($buyer_info['available_rc_balance'] == 0) {
-            $post['rcb_pay'] = null;
-        }
-        if ($buyer_info['available_predeposit'] == 0) {
-            $post['pd_pay'] = null;
-        }
-        if (floatval($order_info['rcb_amount']) > 0 || floatval($order_info['pd_amount']) > 0) {
-            return $order_info;
-        }
-
-        try {
-            $model_member->startTrans();
-            $logic_buy = model('buyvirtual', 'logic');
-            //使用充值卡支付
-            if (!empty($post['rcb_pay'])) {
-                $order_info = $logic_buy->rcbPay($order_info, $post, $buyer_info);
-            }
-
-            //使用预存款支付
-            if (!empty($post['pd_pay'])) {
-                $order_info = $logic_buy->pdPay($order_info, $post, $buyer_info);
-            }
-
-            $model_member->commit();
-        } catch (Exception $e) {
-            $model_member->rollback();
-            exit($e->getMessage());
-        }
-
-        return $order_info;
-    }
 
     /**
      * 第三方在线支付接口
@@ -282,47 +215,7 @@ class Memberpayment extends MobileMember
         return $result;
     }
 
-    /**
-     * 获取虚拟订单支付信息
-     */
-    private function _get_vr_order_info($pay_sn, $rcb_pd_pay = array())
-    {
-        $logic_payment = model('payment', 'logic');
 
-        //取得订单信息
-        $result = $logic_payment->getVrOrderInfo($pay_sn, $this->member_info['member_id']);
-        if (!$result['code']) {
-            output_error($result['msg']);
-        }
-
-        //站内余额支付
-        if ($rcb_pd_pay) {
-            $result['data'] = $this->_pd_vr_pay($result['data'], $rcb_pd_pay);
-        }
-        //计算本次需要在线支付的订单总金额
-        $pay_amount = 0;
-        if ($result['data']['order_state'] == ORDER_STATE_NEW) {
-            $pay_amount += $result['data']['order_amount'] - $result['data']['pd_amount'] - $result['data']['rcb_amount'];
-        }
-
-        if ($pay_amount == 0) {
-            $result['data']['pay_end']=1;
-        }else{
-            $result['data']['pay_end']=0;
-        }
-
-        $result['data']['api_pay_amount'] = ds_price_format($pay_amount);
-        //临时注释
-        //$update = Model('order')->editOrder(array('api_pay_time'=>TIMESTAMP),array('order_id'=>$result['data']['order_id']));
-        //if(!$update) {
-        //    return array('error' => '更新订单信息发生错误，请重新支付');
-        //}       
-        //计算本次需要在线支付的订单总金额
-        $pay_amount = $result['data']['order_amount'] - $result['data']['pd_amount'] - $result['data']['rcb_amount'];
-        $result['data']['api_pay_amount'] = ds_price_format($pay_amount);
-
-        return $result;
-    }
 
     /**
      * 可用支付参数列表
@@ -377,44 +270,6 @@ class Memberpayment extends MobileMember
             exit;
         }
     }
-
-    /**
-     * APP虚拟订单支付
-     */
-    public function orderpay_app_vr()
-    {
-        $pay_sn = input('param.pay_sn');
-
-        $pay_info = $this->_get_vr_order_info($pay_sn,input('param.'));
-        if (isset($pay_info['error'])) {
-            output_error($pay_info['error']);
-        }
-        if($pay_info['data']['pay_end'] ==1){
-            output_data(array('pay_end'=>1));
-        }
-        $param = $this->payment_config;
-        //微信app支付
-        if ($this->payment_code == 'wxpay_app') {
-            $param['orderSn'] = $pay_sn;
-            $param['orderFee'] = (int)($pay_info['data']['api_pay_amount'] * 100);
-            $param['orderInfo'] = config('site_name') . '虚拟商品订单' . $pay_sn;
-            $param['orderAttach'] = ($pay_info['data']['order_type'] == 'real_order' ? 'r' : 'v');
-            $api = new \wxpay_app();
-            $api->get_payform($param);
-            exit;
-        }
-        if ($this->payment_code == 'alipay_app') {
-            $param['orderSn'] = $pay_sn;
-            $param['orderFee'] = $pay_info['data']['api_pay_amount'];
-            $param['orderInfo'] = config('site_name') . '虚拟商品订单' . $pay_sn;
-            $param['order_type'] = ($pay_info['data']['order_type'] == 'real_order' ? 'r' : 'v');
-            $api = new \alipay_app();
-            $api->get_payform($param);
-            exit;
-        }
-    }
-
-
 
 
     public function PdaddPay(){
