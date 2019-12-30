@@ -32,6 +32,9 @@ class wxpay_app {
             if ($order['result_code'] == 'SUCCESS') {
                 $order['timestamp'] = TIMESTAMP;
                 $order['sign'] = $this->sign_again($order);
+                if(input('post.from') == 1){
+                    ds_json_encode(10000,'',array('content'=> $order));
+                }
                 ds_json_encode(10000,'',array('content'=> json_encode($order)));
             } else {
                 ds_json_encode(10001,$order['err_code_des']);
