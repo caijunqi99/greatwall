@@ -357,7 +357,7 @@ class Member extends Model
             $member_info['inviter_code']         = $this->_get_inviter_code();
             $member_info['member_login_ip'] = request()->ip();
             $member_info['member_old_login_ip'] = $member_info['member_login_ip'];
-            $member_info['member_mobile'] = $data['member_mobile'];
+            $member_info['member_mobile'] = isset($data['member_mobile'])?$data['member_mobile']:'';
             if (isset($data['member_truename'])) {
                 $member_info['member_truename'] = $data['member_truename'];
             }
