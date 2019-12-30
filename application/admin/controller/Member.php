@@ -89,7 +89,7 @@ class Member extends AdminControl {
                 if($value['member_id']==1){
                     $member_list[$item]['inviter_member'] = "00000000000";
                 }else{
-                    $member_list[$item]['inviter_member'] = $leftInviter[$value['inviter_id']]['member_mobile'];
+                    $member_list[$item]['inviter_member'] = isset($leftInviter[$value['inviter_id']]['member_mobile'])?$leftInviter[$value['inviter_id']]['member_mobile']:'第三方登陆';
                 }
             }
         }
