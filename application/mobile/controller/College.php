@@ -28,6 +28,7 @@ class College extends MobileMall
         if($article){
             foreach($article as $k=>$v){
                 $article[$k]['article_time'] = date("Y-m-d H:i:s",$v['article_time']);
+                $article[$k]['article_pic']=UPLOAD_SITE_URL . '/' . ATTACH_ARTICLE . '/'.$v['article_pic'];
             }
             $logindata = $article;
         }else{
