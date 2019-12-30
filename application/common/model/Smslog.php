@@ -96,7 +96,7 @@ class Smslog extends Model {
                 break;
             case 6: //5安全验证
                 $temp['SignName'] = '身份验证验证码';
-                $temp['TemplateCode'] = 'SMS_177130375';
+                $temp['TemplateCode'] = 'SMS_177130375';           
                 break;
             default:
                 $temp['SignName'] = '身份验证验证码';

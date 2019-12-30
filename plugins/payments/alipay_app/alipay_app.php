@@ -54,14 +54,17 @@ class alipay_app {
     function verify_notify() {
         require_once PLUGINS_PATH . '/payments/alipay_app/AopClient.php';
         $aop = new \AopClient;
-        
+        $data = $_POST;
+        if (!$data) {
+            $data = input();
+        }
         $aop->alipayrsaPublicKey = $this->config['alipay_public_key'];
-        $flag = $aop->rsaCheckV1($_POST, NULL, "RSA2");
+        $flag = $aop->rsaCheckV1($data, NULL, "RSA2");
         if ($flag) {
             $notify_result = array(
-                'out_trade_no' => $_POST["out_trade_no"], #商户订单号
-                'trade_no' => $_POST['trade_no'], #交易凭据单号
-                'total_fee' => $_POST["total_amount"], #涉及金额
+                'out_trade_no' => $data["out_trade_no"], #商户订单号
+                'trade_no' => $data['trade_no'], #交易凭据单号
+                'total_fee' => $data["total_amount"], #涉及金额
                 'trade_status' => '1',
             );
         } else {

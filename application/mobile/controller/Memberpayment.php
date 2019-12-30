@@ -47,12 +47,12 @@ class Memberpayment extends MobileMember
             output_data($pay_info['data']);
         }
 
-        if($pay_info['data']['pay_end']==1) {
-            //站内支付了全款
-            $this->redirect(WAP_SITE_URL . '/tmpl/member/order_list.html');
-        }
-        //第三方API支付
-        $this->_api_pay($pay_info['data']);
+        // if($pay_info['data']['pay_end']==1) {
+        //     //站内支付了全款
+        //     $this->redirect(WAP_SITE_URL . '/tmpl/member/order_list.html');
+        // }
+        // //第三方API支付
+        // $this->_api_pay($pay_info['data']);
     }
 
 
@@ -69,6 +69,10 @@ class Memberpayment extends MobileMember
         $buyer_info = $model_member->getMemberInfoByID($this->member_info['member_id']);
         if ($buyer_info['member_paypwd'] == '' || $buyer_info['member_paypwd'] != md5($post['password'])) {
             output_error('支付密码错误！');
+        }
+        $y = $buyer_info['available_predeposit'] - $order_list['order_amount'];
+        if ($y < 0 ) {
+            output_error('余额不足，请充值！');
         }
         //没有充值卡支付类型
         $post['rcb_pay'] = null;
