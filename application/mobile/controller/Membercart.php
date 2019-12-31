@@ -244,6 +244,10 @@ class Membercart extends MobileMember {
         $data['goods_num'] = $quantity;
         $data['goods_price'] = $goods_info['goods_price'];
         $update = $cart_model->editCart($data, array('cart_id' => $cart_id, 'buyer_id' => $this->member_info['member_id']));
+        $return = array();
+        $return['quantity'] = $quantity;
+        $return['update'] = $update;
+        output_data($return);
         if ($update) {
             $return = array();
             $return['quantity'] = $quantity;
