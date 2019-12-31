@@ -96,7 +96,9 @@ class Buy extends Model
 
         //购物车列表 [得到最新商品属性及促销信息]
         $cart_list = $this->_logic_buy_1->getGoodsCartList($cart_list);
-
+        foreach ($cart_list as $k => $v) {
+            $cart_list[$k]['goods_num'] = $buy_items[$v['cart_id']];
+        }
         //商品列表 [优惠套装子商品与普通商品同级罗列]
         $goods_list = $this->_getGoodsList($cart_list);
 
