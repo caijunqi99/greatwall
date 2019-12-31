@@ -63,24 +63,24 @@ class Memberpayment extends MobileMember
     private function _pd_pay($order_list, $post)
     {
         if (empty($post['password'])) {
-            output_error('支付密码错误！-A');
+            output_error('支付密码不能为空！');
         }
         $model_member = Model('member');
         $buyer_info = $model_member->getMemberInfoByID($this->member_info['member_id']);
         if ($buyer_info['member_paypwd'] == '' || $buyer_info['member_paypwd'] != md5($post['password'])) {
-            output_error('支付密码错误！-B');
+            output_error('支付密码错误！');
         }
         $y = abs($buyer_info['available_predeposit']) - abs( $order_list[0]['order_amount']);
         if ($y < 0 ) {
-            output_error('余额不足，请充值！-A');
+            output_error('余额不足，请充值！');
         }
         //没有充值卡支付类型
         $post['rcb_pay'] = null;
         if ($buyer_info['available_predeposit'] == 0) {
-            output_error('余额不足，请充值！-B');
+            output_error('可用余额为0，请充值！');
         }
         if (floatval($order_list[0]['rcb_amount']) > 0 || floatval($order_list[0]['pd_amount']) > 0) {
-            output_error('支付失败!-A');
+            output_error('支付失败!');
         }
 
         try {
