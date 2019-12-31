@@ -99,7 +99,7 @@ class Buy extends Model
 
         //商品列表 [优惠套装子商品与普通商品同级罗列]
         $goods_list = $this->_getGoodsList($cart_list);
-
+        
         //以店铺下标归类
         $store_cart_list = $this->_getStoreCartList($cart_list);
 

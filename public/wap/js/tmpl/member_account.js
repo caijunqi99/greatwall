@@ -21,21 +21,21 @@ $(function() {
             } else {
             }
         }});
-    $('#toWxPay').click(function(event) {
-        $.ajax({
-            url: ApiUrl + "/Memberpayment/PdaddPay",
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                'payment_code': 'wxpay_app',
-                'pdr_amount' : 0.01,
-                'key' : e
-            },
-            success:function(sb){
-                var data  = sb.result;
-                var data = JSON.parseJSON(data);
-                console.log(data);
-            }
-        })
-    });
+    // $('#toWxPay').click(function(event) {
+    //     $.ajax({
+    //         url: ApiUrl + "/Memberpayment/PdaddPay",
+    //         type: 'POST',
+    //         dataType: 'json',
+    //         data: {
+    //             'payment_code': 'wxpay_app',
+    //             'pdr_amount' : 0.01,
+    //             'key' : e
+    //         },
+    //         success:function(sb){
+    //             var data  = sb.result;
+    //             var data = JSON.parseJSON(data);
+    //             console.log(data);
+    //         }
+    //     })
+    // });
 });
