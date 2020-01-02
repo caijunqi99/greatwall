@@ -101,6 +101,7 @@ class Member extends MobileMember {
             }
             //可用积分
             if (in_array('available', $fields_arr)) {
+                $member_info['point'] = $this->member_info['member_points'];
                 $available = $this->member_info['member_points_available'];
                 $list_setting = rkcache('config', true);
                 $availables=$list_setting['withdraw'];
