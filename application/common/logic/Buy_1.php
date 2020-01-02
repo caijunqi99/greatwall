@@ -850,8 +850,8 @@ class Buy_1 extends Model
                     'order_amount' => $order_info['order_amount'],
                     'order_sn'     => $order_info['order_sn'],
                     'order_id'     => $order_info['order_id'],
-                    'member_id'    => $order_info['buyer_id'],
-                ;
+                    'member_id'    => $order_info['buyer_id'
+                ];
                 //积分返利
                 $this->AddGain($orderinfo);
                 // 发送商家提醒
