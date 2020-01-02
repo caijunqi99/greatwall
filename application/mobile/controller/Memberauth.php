@@ -91,7 +91,12 @@ class Memberauth extends MobileMall
                         'memberbank_no' => input('post.member_bankcard'),
                         'member_id' => $member_id
                     );
-                    $ret = $memberbank_model->addMemberbank($bank_array);
+                    if ($memberbank_model->getMemberbankCount( ['member_id'=>$member_id] ) ) {
+                        $ret = $memberbank_model->editMemberbank($bank_array,['member_id'=>$member_id]);
+                    }else{
+                        $ret = $memberbank_model->addMemberbank($bank_array);    
+                    }
+                    
                     if($ret){
                         $logindata = array(
                              'member_id' => $member_id
