@@ -128,7 +128,7 @@ class Member extends MobileMember {
             $member_info['memberbank_name'] = $bank['memberbank_name'];
             $member_info['memberbank_no'] = $bank['memberbank_no'];
             $member_info['memberbank_truename'] = $bank['memberbank_truename'];
-            $member_info['member_mobile'] = $this->member_info['member_mobile']$bank[''];
+            $member_info['member_mobile'] = $this->member_info['member_mobile'];
             output_data($member_info);
         }
         
