@@ -781,10 +781,6 @@ class Buy_1 extends Model
         $member_id = $buyer_info['member_id'];
         $member_name = $buyer_info['member_name'];
 
-//                 $payment_model = model('payment');
-//                 $pd_payment_info = $payment_model->getPaymentOpenInfo(array('payment_code'=>'predeposit'));
-//                 if (empty($pd_payment_info)) return;
-
         $available_pd_amount = floatval($buyer_info['available_predeposit']);
         if ($available_pd_amount <= 0)
             return;
@@ -792,6 +788,7 @@ class Buy_1 extends Model
         $order_model = model('order');
         $predeposit_model = model('predeposit');
         foreach ($order_list as $order_info) {
+
 
             //货到付款的订单、已经充值卡支付的订单跳过
             if ($order_info['payment_code'] == 'offline')
@@ -847,6 +844,16 @@ class Buy_1 extends Model
                 if (!$result) {
                     exception('订单更新失败');
                 }
+                $orderinfo = [
+                    'buyer_id'     => $order_info['buyer_id'],
+                    'buyer_name'   => $order_info['buyer_name'],
+                    'order_amount' => $order_info['order_amount'],
+                    'order_sn'     => $order_info['order_sn'],
+                    'order_id'     => $order_info['order_id'],
+                    'member_id'    => $order_info['buyer_id'],
+                ;
+                //积分返利
+                $this->AddGain($orderinfo);
                 // 发送商家提醒
                 $param = array();
                 $param['code'] = 'new_order';
@@ -874,8 +881,12 @@ class Buy_1 extends Model
         }
     }
 
-    private function AddGain($order_list){
-        p($order_list);exit;
+    /**
+     * 积分经验变动
+     * @DateTime 2020-01-02
+     * @param    [type]     $order_info [description]
+     */
+    private function AddGain($order_info){
         //添加会员积分
         if (config('points_isuse') == 1) {
             model('points')->savePointslog('order', array(
@@ -891,7 +902,7 @@ class Buy_1 extends Model
             'order_id' => $order_info['order_id']
         ), true);
         //邀请人获得返利积分
-        $inviter_id = ds_getvalue_byname('member', 'member_id', $member_id, 'inviter_id');
+        $inviter_id = ds_getvalue_byname('member', 'member_id', $orderinfo['member_id'], 'inviter_id');
         if(!empty($inviter_id)) {
             $inviter_name = ds_getvalue_byname('member', 'member_id', $inviter_id['inviter_id'], 'member_name');
             $rebate_amount = ceil(0.01 * $order_info['order_amount'] * config('points_rebate'));
