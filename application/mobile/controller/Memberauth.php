@@ -92,19 +92,15 @@ class Memberauth extends MobileMall
                         'member_id' => $member_id
                     );
                     if ($memberbank_model->getMemberbankCount( ['member_id'=>$member_id] ) ) {
-                        $ret = $memberbank_model->editMemberbank($bank_array,['member_id'=>$member_id]);
+                        $memberbank_model->editMemberbank($bank_array,['member_id'=>$member_id]);
                     }else{
-                        $ret = $memberbank_model->addMemberbank($bank_array);    
+                        $memberbank_model->addMemberbank($bank_array);    
                     }
                     
-                    if($ret){
-                        $logindata = array(
-                             'member_id' => $member_id
-                        );
-                        output_data($logindata);
-                    }else{
-                        output_error('提交认证失败');
-                    }
+                    $logindata = array(
+                         'member_id' => $member_id
+                    );
+                    output_data($logindata);
                 }else{
                     output_error('提交认证失败');
                 }

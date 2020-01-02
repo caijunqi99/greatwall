@@ -388,7 +388,7 @@ class Order extends Model {
      * @param array $condition 条件
      * @return int
      */
-    public function getOrderCount($condition,$group='') {
+    public function getOrderCount($condition,$group='pay_sn') {
         return db('order')->where($condition)->group($group)->count();
     }
 
