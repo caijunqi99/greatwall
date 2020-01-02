@@ -11,7 +11,7 @@ class Memberbuy extends MobileMember
         
         //验证该会员是否禁止购买
         if(!$this->member_info['is_buylimit']){
-            output_error(lang('您没有商品购买的权限,如有疑问请联系客服人员!'));
+            output_error('您没有商品购买的权限,如有疑问请联系客服人员!');
         }
         if(config('member_auth')){
             if ($this->member_info['member_auth_state']==0) {
