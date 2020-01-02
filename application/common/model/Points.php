@@ -58,8 +58,10 @@ class Points extends Model {
                 $insertarr['pl_points'] = 0;
                 if ($insertarr['orderprice']) {
                     $insertarr['pl_points'] = @intval($insertarr['orderprice'] / config('points_orderrate'));
-                    if ($insertarr['pl_points'] > intval(config('points_ordermax'))) {
-                        $insertarr['pl_points'] = intval(config('points_ordermax'));
+                    if (intval(config('points_ordermax')) >0) {
+                        if ($insertarr['pl_points'] > intval(config('points_ordermax'))) {
+                            $insertarr['pl_points'] = intval(config('points_ordermax'));
+                        }
                     }
                 }
                 //订单添加赠送积分列
