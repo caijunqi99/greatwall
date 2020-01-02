@@ -79,7 +79,7 @@ class Member extends Model
         if ($pagesize) {
             $member_list = db('member')->alias("m")
                 ->join('__MEMBERBANK__ me','m.member_id=me.member_id')
-                ->field("m.*,me.memberbank_truename,me.memberbank_name,me.memberbank_no")
+                ->field("m.*,me.memberbank_truename,me.memberbank_name,me.memberbank_no,me.memberbank_id")
                 ->where($condition)->order($order)->paginate($pagesize,false,['query' => request()->param()]
             );
             $this->page_info = $member_list;
