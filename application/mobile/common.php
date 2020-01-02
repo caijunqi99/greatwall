@@ -15,7 +15,7 @@ function output_data($datas, $extend_data = array()) {
     $data['result']=isset($datas['error'])?['error'=>$datas['error']]:$datas;
     $data['message'] = isset($datas['error'])?$datas['error']:(empty($msg)?'ok':$msg);
     //$data['datas']=$datas;
-    if ($extend_data['code'])unset($extend_data['code']);
+    if (isset($extend_data['code']))unset($extend_data['code']);
     if(!empty($extend_data)) {
         $data = array_merge($data, $extend_data);
     }
