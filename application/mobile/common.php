@@ -11,10 +11,11 @@ function output_data($datas, $extend_data = array()) {
         $msg = $datas['msg'];
         unset($datas['msg']);
     }
-    $data['code'] = isset($datas['error'])?'100':'200';
+    $data['code'] = isset($datas['error'])?( isset($extend_data['code'])?$extend_data['code']:'100' ):'200';
     $data['result']=isset($datas['error'])?['error'=>$datas['error']]:$datas;
     $data['message'] = isset($datas['error'])?$datas['error']:(empty($msg)?'ok':$msg);
     //$data['datas']=$datas;
+    if ($extend_data['code'])unset($extend_data['code']);
     if(!empty($extend_data)) {
         $data = array_merge($data, $extend_data);
     }
