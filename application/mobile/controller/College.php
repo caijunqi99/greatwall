@@ -51,15 +51,15 @@ class College extends MobileMall
         $article = $article_model->getOneArticle($condition);
         if($article){
             $article['article_time'] = date("Y-m-d H:i:s",$article['article_time']);
-            $article['article_content'] = '
-            <html>
-            <head>
-                <title>'.$article['article_title'].'</title>
-            </head>
-            <body>
-            '.$article['article_content'].'
-            </body>
-            </html>';
+            // $article['article_content'] = '
+            // <html>
+            // <head>
+            //     <title>'.$article['article_title'].'</title>
+            // </head>
+            // <body>
+            // '.$article['article_content'].'
+            // </body>
+            // </html>';
 
             $logindata = $article;
             output_data($logindata);
