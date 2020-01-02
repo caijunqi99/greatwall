@@ -20,13 +20,13 @@ class Article extends Model
      * @param type $order
      * @return type
      */
-    public function getArticleList($condition,$pagesize='',$order='article_sort asc,article_time desc'){
+    public function getArticleList($condition,$pagesize='',$field='*',$order='article_sort asc,article_time desc'){
         if ($pagesize) {
-            $result = db('article')->where($condition)->order($order)->paginate($pagesize, false, ['query' => request()->param()]);
+            $result = db('article')->field($field)->where($condition)->order($order)->paginate($pagesize, false, ['query' => request()->param()]);
             $this->page_info = $result;
             return $result->items();
         } else {
-            return db('article')->where($condition)->order($order)->limit(10)->select();
+            return db('article')->field($field)->where($condition)->order($order)->limit(10)->select();
         }
     }
 

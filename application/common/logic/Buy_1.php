@@ -777,6 +777,7 @@ class Buy_1 extends Model
      */
     public function pdPay($order_list, $input, $buyer_info)
     {
+        p($order_list);exit;
         $member_id = $buyer_info['member_id'];
         $member_name = $buyer_info['member_name'];
 
@@ -835,6 +836,7 @@ class Buy_1 extends Model
                     exception('记录订单预存款支付日志出现错误');
                 }
 
+
                 //订单状态 置为已支付
                 $data_order = array();
                 $data_order['order_state'] = ORDER_STATE_PAY;
@@ -872,6 +874,32 @@ class Buy_1 extends Model
         }
     }
 
+    private function AddGain($order_list){
+        p($order_list);exit;
+        //添加会员积分
+        if (config('points_isuse') == 1) {
+            model('points')->savePointslog('order', array(
+                'pl_memberid' => $order_info['buyer_id'], 'pl_membername' => $order_info['buyer_name'],
+                'orderprice' => $order_info['order_amount'], 'order_sn' => $order_info['order_sn'],
+                'order_id' => $order_info['order_id']
+            ), true);
+        }
+        //添加会员经验值
+        model('exppoints')->saveExppointslog('order', array(
+            'explog_memberid' => $order_info['buyer_id'], 'explog_membername' => $order_info['buyer_name'],
+            'orderprice' => $order_info['order_amount'], 'order_sn' => $order_info['order_sn'],
+            'order_id' => $order_info['order_id']
+        ), true);
+        //邀请人获得返利积分
+        $inviter_id = ds_getvalue_byname('member', 'member_id', $member_id, 'inviter_id');
+        if(!empty($inviter_id)) {
+            $inviter_name = ds_getvalue_byname('member', 'member_id', $inviter_id['inviter_id'], 'member_name');
+            $rebate_amount = ceil(0.01 * $order_info['order_amount'] * config('points_rebate'));
+            model('points')->savePointslog('rebate', array(
+                'pl_memberid' => $inviter_id['inviter_id'], 'pl_membername' => $inviter_name, 'pl_points' => $rebate_amount
+            ), true);
+        }
+    }
 
     /**
      * 订单编号生成规则，n(n>=1)个订单表对应一个支付表，

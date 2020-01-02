@@ -26,10 +26,13 @@ class Article extends MobileMall
                 }
             }
             $ac_ids	= implode(',',$ac_ids);
-            $condition['ac_ids']	= $ac_ids;
+            $condition['ac_id']	= $ac_ids;
             $condition['article_show']	= '1';
-            $article_list = $article_model->getArticleList($condition);
+
+            $article_list = $article_model->getArticleList($condition,'','article_id,ac_id,article_url,article_show,article_sort,article_title,article_time,article_type,article_pic');
+
             $article_type_name = $this->article_type_name($ac_ids);
+
             output_data(array('article_list' => $article_list, 'article_type_name'=> $article_type_name));
         }
         else {
@@ -43,7 +46,7 @@ class Article extends MobileMall
     private function article_type_name() {
         if(!empty(input('param.ac_id')) && intval(input('param.ac_id')) > 0) {
             $article_class_model = Model('articleclass');
-            $article_class = $article_class_model->getOneClass(intval(input('param.ac_id')));
+            $article_class = $article_class_model->getOneArticleclass(intval(input('param.ac_id')));
             return ($article_class['ac_name']);
         }
         else {
@@ -59,7 +62,7 @@ class Article extends MobileMall
 
         if(!empty(input('param.article_id')) && intval(input('param.article_id')) > 0) {
             $article	= $article_model->getOneArticle(intval(input('param.article_id')));
-
+            p($article);exit;
             if (empty($article)) {
                 output_error('文章不存在');
             }

@@ -24,7 +24,7 @@ class College extends MobileMall
         $search_type = input('param.article_type');
         $condition['article_type'] = isset($search_type) ? $search_type:0;
         $article_model = model('article');
-        $article = $article_model->getArticleList($condition, 10);
+        $article = $article_model->getArticleList($condition, 10,'article_id,ac_id,article_url,article_show,article_sort,article_title,article_time,article_type,article_pic');
         if($article){
             foreach($article as $k=>$v){
                 $article[$k]['article_time'] = date("Y-m-d H:i:s",$v['article_time']);
@@ -51,6 +51,16 @@ class College extends MobileMall
         $article = $article_model->getOneArticle($condition);
         if($article){
             $article['article_time'] = date("Y-m-d H:i:s",$article['article_time']);
+            $article['article_content'] = '<!DOCTYPE html>
+            <html>
+            <head>
+                <title>'.$article['article_title'].'</title>
+            </head>
+            <body>
+            '.$article['article_content'].'
+            </body>
+            </html>';
+
             $logindata = $article;
             output_data($logindata);
         }else{
