@@ -326,7 +326,8 @@ class Order extends Model {
      */
     public function getOrderStateNewCount($condition = array()) {
         $condition['order_state'] = "10";
-        return $this->getOrderCount($condition);
+        $condition['order_state'] = "10";
+        return $this->getOrderCount($condition,'order_sn');
     }
 
     /**
@@ -387,8 +388,8 @@ class Order extends Model {
      * @param array $condition 条件
      * @return int
      */
-    public function getOrderCount($condition) {
-        return db('order')->where($condition)->count();
+    public function getOrderCount($condition,$group='') {
+        return db('order')->where($condition)->group($group)->count();
     }
 
     /**
