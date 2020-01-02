@@ -100,7 +100,7 @@ class Member extends MobileMember {
             }
             //可用积分
             if (in_array('available', $fields_arr)) {
-
+                $member_info['point'] = $this->member_info['member_points'];
                 $available = $this->member_info['member_points_available'];
                 $list_setting = rkcache('config', true);
                 $availables=$list_setting['withdraw'];
@@ -111,7 +111,6 @@ class Member extends MobileMember {
                     $member_info['awable']=0.00;
                 }
                 $member_info['commission']=$list_setting['commission'];
-                $member_info['point'] = $this->member_info['member_points'];
             }
             //储值卡
             if (in_array('predepoit', $fields_arr)) {
