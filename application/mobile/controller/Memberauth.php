@@ -44,8 +44,8 @@ class Memberauth extends MobileMall
                 'member_townid'        =>$member_info['member_townid'],
                 'member_villageid'     =>$member_info['member_villageid'],
                 'member_areainfo'      =>$member_info['member_areainfo'],
-                'member_idcard_image2' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image2'],
-                'member_idcard_image3' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image3'],
+                'member_idcard_image2' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image2'].'?t='.time(),
+                'member_idcard_image3' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image3'].'?t='.time(),
                 'username'             => $bankinfo['memberbank_truename'],
                 'member_bankname'      =>$bankinfo['memberbank_name'],
                 'member_bankcard'      =>$bankinfo['memberbank_no']

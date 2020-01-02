@@ -327,7 +327,7 @@ class Order extends Model {
     public function getOrderStateNewCount($condition = array()) {
         $condition['order_state'] = "10";
         $condition['order_state'] = "10";
-        return $this->getOrderCount($condition,'order_sn');
+        return $this->getOrderCount($condition,'pay_sn');
     }
 
     /**
