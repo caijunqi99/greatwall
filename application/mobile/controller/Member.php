@@ -76,15 +76,16 @@ class Member extends MobileMember {
     public function my_asset() {
         if(empty($this->member_info['member_paypwd'])){
             output_error('您需要先到个人中心设置支付密码！');
-        }elseif(config('member_auth')){
-            if ($this->member_info['member_auth_state']==0) {
-                output_error('您需要先到我的钱包申请实名认证！');
-            }elseif ($this->member_info['member_auth_state']==1) {
-                output_error('您的实名认证信息正在审核中！');
-            }elseif ($this->member_info['member_auth_state']==2) {
-                output_error('您的实名认证信息未通过审核，请重新提交！');
-            }
         }else{
+            if (config('member_auth')) {
+                if ($this->member_info['member_auth_state']==0) {
+                    output_error('您需要先到我的钱包申请实名认证！');
+                }elseif ($this->member_info['member_auth_state']==1) {
+                    output_error('您的实名认证信息正在审核中！');
+                }elseif ($this->member_info['member_auth_state']==2) {
+                    output_error('您的实名认证信息未通过审核，请重新提交！');
+                }
+            }
             $fields_arr = array('point', 'available', 'predepoit', 'transaction','redpacket','voucher');
             $fields_str = trim(input('fields'));
             if ($fields_str) {
