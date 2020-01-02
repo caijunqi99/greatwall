@@ -112,9 +112,9 @@ class Sms
         $acsResponse = static::getAcsClient()->getAcsResponse($request);
         // p($request->queryParameters);exit;
         $writeLog = [
-            'request' =>$request,
+            'logName' =>'短信发送日志',
             'response' =>$acsResponse,
-            'content' =>$content
+            'code' =>$smslog_captcha
         ];
         
         if ($acsResponse->Code =='OK') {
