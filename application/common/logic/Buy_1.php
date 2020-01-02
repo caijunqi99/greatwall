@@ -902,7 +902,7 @@ class Buy_1 extends Model
             'order_id' => $order_info['order_id']
         ), true);
         //邀请人获得返利积分
-        $inviter_id = ds_getvalue_byname('member', 'member_id', $orderinfo['member_id'], 'inviter_id');
+        $inviter_id = ds_getvalue_byname('member', 'member_id', $order_info['member_id'], 'inviter_id');
         if(!empty($inviter_id)) {
             $inviter_name = ds_getvalue_byname('member', 'member_id', $inviter_id['inviter_id'], 'member_name');
             $rebate_amount = ceil(0.01 * $order_info['order_amount'] * config('points_rebate'));
