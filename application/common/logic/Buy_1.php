@@ -777,7 +777,7 @@ class Buy_1 extends Model
      */
     public function pdPay($order_list, $input, $buyer_info)
     {
-        p($order_list);exit;
+        // p($order_list);exit;
         $member_id = $buyer_info['member_id'];
         $member_name = $buyer_info['member_name'];
 
