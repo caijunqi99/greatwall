@@ -13,8 +13,12 @@ class Memberbuy extends MobileMember
         if(!$this->member_info['is_buylimit']){
             output_error(lang('您没有商品购买的权限,如有疑问请联系客服人员!'));
         }
-        if(config('member_auth') && $this->member_info['member_auth_state']!=3){
-            output_error('您需要先到我的钱包申请实名认证！');
+        if(config('member_auth')){
+            if ($this->member_info['member_auth_state']==0) {
+                output_error('您需要先到我的钱包申请实名认证！');
+            }elseif ($this->member_info['member_auth_state']==2) {
+                output_error('您的实名认证信息未通过审核，请重新提交！');
+            }
         }
         if (!$this->member_info['member_paypwd']) {
             output_error('您需要先到个人中心设置支付密码!');
