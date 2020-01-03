@@ -21,9 +21,14 @@ class Memberorder extends MobileMember {
         $condition = array();
         $condition['buyer_id'] = $this->member_info['member_id'];
 
-        $order_sn = input('param.order_sn');
+        $order_sn = input('param.order_key');
         if ($order_sn != '') {
-            $condition['order_sn'] = array('like','%'.$order_sn.'%');
+            if(preg_match('/[\x{4e00}-\x{9fa5}]/u', $order_sn)>0) {//含有中文
+                // $condition['order_sn'] = array('like','%'.$order_sn.'%');
+            }else{
+                $condition['order_sn'] = array('like','%'.$order_sn.'%');
+            }
+            
         }
         $query_start_date = input('param.query_start_date');
         $query_end_date = input('param.query_end_date');
