@@ -818,13 +818,13 @@ class Predeposit extends AdminControl {
                 $this->error(lang('admin_predeposit_cash_edit_fail'));
             }
             //扣除冻结的预存款
-            $data = array();
-            $data['member_id'] = $member_info['member_id'];
-            $data['member_name'] = $member_info['member_name'];
-            $data['amount'] = $info['pdc_amount'];
-            $data['order_sn'] = $info['pdc_sn'];
-            $data['admin_name'] = $admininfo['admin_name'];
-            $predeposit_model->changePd('cash_pay', $data);
+//            $data = array();
+//            $data['member_id'] = $member_info['member_id'];
+//            $data['member_name'] = $member_info['member_name'];
+//            $data['amount'] = $info['pdc_amount'];
+//            $data['order_sn'] = $info['pdc_sn'];
+//            $data['admin_name'] = $admininfo['admin_name'];
+//            $predeposit_model->changePd('cash_pay', $data);
             $predeposit_model->commit();
             $this->log($log_msg, 1);
             dsLayerOpenSuccess(lang('admin_predeposit_cash_edit_success'));
