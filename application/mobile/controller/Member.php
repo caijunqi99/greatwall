@@ -243,7 +243,7 @@ class Member extends MobileMember {
             foreach($member_list as $k=>$v){
                 $member_inviterids[] = $v['member_id'];
                 $member_list[$k]['level'] = "一代";
-                $member_list[$k]['member_addtime'] = date("Y-m-d H:i:s",$v['member_addtime']);
+                $member_list[$k]['member_addtime'] = date("Y-m-d",$v['member_addtime']);
             }
             $member_inviterids = implode(",",$member_inviterids);
             //二代
@@ -252,7 +252,7 @@ class Member extends MobileMember {
             $member_list_two = $member_model->getMemberList($cond);
             foreach($member_list_two as $i=>$t){
                 $member_list_two[$i]["level"] = "二代";
-                $member_list_two[$i]["member_addtime"] = date("Y-m-d H:i:s",$t['member_addtime']);
+                $member_list_two[$i]["member_addtime"] = date("Y-m-d",$t['member_addtime']);
             }
             $countOne = count($member_list,COUNT_NORMAL);//直推人数
             $countTwo = count($member_list_two,COUNT_NORMAL);
