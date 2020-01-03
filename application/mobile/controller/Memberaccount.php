@@ -419,9 +419,9 @@ class Memberaccount extends MobileMember
         }
         $update = $model_member->editMember(array('member_id' => $this->member_info['member_id']), array('member_paypwd' => md5($data['password'])));
         $message = $update ? lang('password_set_successfully') : lang('password_setting_failed');
-        
+        output_data(['state'=>$update==1?'true':'false','msg'=>$message]);
         if ($update) {
-            output_data(['state'=>$update,'msg'=>$message]);
+            
         } else {
             output_data($message);
         }
@@ -468,12 +468,7 @@ class Memberaccount extends MobileMember
         }
         $update = $model_member->editMember(array('member_id' => $this->member_info['member_id']), array('member_password' => md5($data['password'])));
         $message = $update ? lang('password_set_successfully') : lang('password_setting_failed');
-
-        if ($update) {
-            output_data(['state'=>$update==1?true:false,'msg'=>$message]);
-        } else {
-            output_data($message);
-        }
+        output_data(['state'=>$update==1?'true':'false','msg'=>$message]);
 
     }
 

@@ -116,7 +116,7 @@ class Memberbuy extends MobileMember
         // $buy_list['store_cart_list'] = $store_cart_list;
         $buy_list['store_cart_list_api']=array_values($store_cart_list);
         $buy_list['freight_hash'] = $result['freight_list'];
-        $buy_list['address_info'] = $result['address_info'];
+        $buy_list['address_info'] = !empty($result['address_info'])?$result['address_info']:[];
         $buy_list['ifshow_offpay'] = $result['ifshow_offpay'];
         $buy_list['vat_hash'] = $result['vat_hash'];
         $buy_list['inv_info'] = $result['inv_info'];
