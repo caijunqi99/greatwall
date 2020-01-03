@@ -67,30 +67,32 @@ class Memberorder extends MobileMember {
         $order_group_list = array();
         $order_pay_sn_array = array();
         foreach ($order_list as $order_id => $order) {
-            //显示取消订单
+            //是否显示取消订单
             $order['if_cancel'] = $order_model->getOrderOperateState('buyer_cancel', $order);
-            //显示退款取消订单
+            //是否显示退款取消订单
             $order['if_refund_cancel'] = $order_model->getOrderOperateState('refund_cancel', $order);
-            //显示投诉
+            //是否显示投诉
             $order['if_complain'] = $order_model->getOrderOperateState('complain', $order);
-            //显示收货
+            //是否显示收货
             $order['if_receive'] = $order_model->getOrderOperateState('receive', $order);
-            //显示锁定中
+            //是否显示锁定中
             $order['if_lock'] = $order_model->getOrderOperateState('lock', $order);
-            //显示物流跟踪
+            //是否显示物流跟踪
             $order['if_deliver'] = $order_model->getOrderOperateState('deliver', $order);
-            //显示评价
+            //是否显示评价
             $order['if_evaluation'] = $order_model->getOrderOperateState('evaluation', $order);
-            //显示删除订单(放入回收站)
+            //是否显示删除订单(放入回收站)
             $order['if_delete'] = $order_model->getOrderOperateState('delete', $order);
-            //显示永久删除
+            //是否显示永久删除
             $order['if_drop'] = $order_model->getOrderOperateState('drop', $order);
-            //显示还原订单
+            //是否显示还原订单
             $order['if_restore'] = $order_model->getOrderOperateState('restore', $order);
 
             foreach ($order['extend_order_goods'] as $value) {
                 $value['goods_type_cn'] = get_order_goodstype($value['goods_type']);
-                $value['goods_url'] = url('Goods/index', ['goods_id' => $value['goods_id']]);
+                $value['goods_image'] = goods_cthumb($value['goods_image'], 240, $value['store_id']);
+                
+                // $value['goods_url'] = url('Goods/index', ['goods_id' => $value['goods_id']]);
                 if ($value['goods_type'] == 5) {
                     $order['zengpin_list'][] = $value;
                 } else {
