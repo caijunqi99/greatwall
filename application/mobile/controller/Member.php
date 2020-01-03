@@ -77,58 +77,42 @@ class Member extends MobileMember {
         if(empty($this->member_info['member_paypwd'])){
             output_error('您需要先到个人中心设置支付密码！');
         }else{
-            if (config('member_auth')) {
-                if ($this->member_info['member_auth_state']==0) {
-                    output_error('您需要先到我的钱包申请实名认证！');
-                }elseif ($this->member_info['member_auth_state']==1) {
-                    output_error('您的实名认证信息正在审核中！');
-                }elseif ($this->member_info['member_auth_state']==2) {
-                    output_error('您的实名认证信息未通过审核，请重新提交！');
-                }
-            }
-            $fields_arr = array('point', 'available', 'predepoit', 'transaction','redpacket','voucher');
-            $fields_str = trim(input('fields'));
-            if ($fields_str) {
-                $fields_arr = explode(',', $fields_str);
-            }
+            
             $member_info = array();
             //最低可提现积分
             $list_config = rkcache('config', true);
             $member_info['withdraw'] = $list_config['withdraw'];//规则
             //冻结积分
-            if (in_array('point', $fields_arr)) {
-                $member_info['point'] = $this->member_info['member_points'];
-            }
             //可用积分
-            if (in_array('available', $fields_arr)) {
-                $member_info['point'] = $this->member_info['member_points'];
-                $available = $this->member_info['member_points_available'];
-                $list_setting = rkcache('config', true);
-                $availables=$list_setting['withdraw'];
-                $member_info['available']=$available;
-                if($available>=$availables) {
-                    $member_info['awable']=$available;
-                }else{
-                    $member_info['awable']=0.00;
-                }
-                $member_info['commission']=$list_setting['commission'];
+            $member_info['point'] = $this->member_info['member_points'];
+            $available = $this->member_info['member_points_available'];
+            $list_setting = rkcache('config', true);
+            $availables=$list_setting['withdraw'];
+            $member_info['available']=$available;
+            if($available>=$availables) {
+                $member_info['awable']=$available;
+            }else{
+                $member_info['awable']=0.00;
             }
+            $member_info['commission']=$list_setting['commission'];
             //储值卡
-            if (in_array('predepoit', $fields_arr)) {
-                $member_info['predepoit'] = $this->member_info['available_predeposit'];
-            }
+            $member_info['predepoit'] = $this->member_info['available_predeposit'];
             //交易码
-            if (in_array('transaction', $fields_arr)) {
-                $member_info['transaction'] = $this->member_info['member_transaction'];
-            }
+            $member_info['transaction'] = $this->member_info['member_transaction'];
             //银行卡信息
             $member_id = $this->member_info['member_id'];
-            $bank_model = Model("memberbank");
-            $bank = $bank_model->getMemberbankInfo(array("member_id"=>$member_id,"memberbank_type"=>"bank"));
-            $member_info['memberbank_name'] = $bank['memberbank_name'];
-            $member_info['memberbank_no'] = $bank['memberbank_no'];
-            $member_info['memberbank_truename'] = $bank['memberbank_truename'];
-            $member_info['member_mobile'] = $this->member_info['member_mobile'];
+            $bankInfo = [];
+            if (config('member_auth')) {
+                if ($this->member_info['member_auth_state']==3) {
+                    $bank_model = Model("memberbank");
+                    $bank = $bank_model->getMemberbankInfo(array("member_id"=>$member_id,"memberbank_type"=>"bank"));
+                    $bankInfo['memberbank_name'] = $bank['memberbank_name'];
+                    $bankInfo['memberbank_no'] = $bank['memberbank_no'];
+                    $bankInfo['memberbank_truename'] = $bank['memberbank_truename'];
+                    $bankInfo['member_mobile'] = $this->member_info['member_mobile'];
+                }
+            }
+            $member_info['bankinfo'] = $bankInfo;
             output_data($member_info);
         }
         
@@ -259,7 +243,7 @@ class Member extends MobileMember {
             foreach($member_list as $k=>$v){
                 $member_inviterids[] = $v['member_id'];
                 $member_list[$k]['level'] = "一代";
-                $member_list[$k]['member_addtime'] = date("Y-m-d H:i:s",$v['member_addtime']);
+                $member_list[$k]['member_addtime'] = date("Y-m-d",$v['member_addtime']);
             }
             $member_inviterids = implode(",",$member_inviterids);
             //二代
@@ -268,7 +252,7 @@ class Member extends MobileMember {
             $member_list_two = $member_model->getMemberList($cond);
             foreach($member_list_two as $i=>$t){
                 $member_list_two[$i]["level"] = "二代";
-                $member_list_two[$i]["member_addtime"] = date("Y-m-d H:i:s",$t['member_addtime']);
+                $member_list_two[$i]["member_addtime"] = date("Y-m-d",$t['member_addtime']);
             }
             $countOne = count($member_list,COUNT_NORMAL);//直推人数
             $countTwo = count($member_list_two,COUNT_NORMAL);

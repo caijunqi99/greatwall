@@ -33,7 +33,7 @@ class Login extends MobileMall
         $array['member_name'] = $username;
         $array['member_password'] = md5($password);
         $member_info = $model_member->getMemberInfo($array);
-        if (empty($member_info) && preg_match('/^0?(13|15|17|18|14)[0-9]{9}$/i', $username)) {//根据会员名没找到时查手机号
+        if (empty($member_info) && preg_match('/^1[3456789]\d{9}$/', $username)) {//根据会员名没找到时查手机号
             $array = array();
             $array['member_mobile'] = $username;
             $array['member_password'] = md5($password);

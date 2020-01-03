@@ -57,10 +57,10 @@ class Points extends Model {
                 }
                 $insertarr['pl_points'] = 0;
                 if ($insertarr['orderprice']) {
-                    $insertarr['pl_points'] = @intval($insertarr['orderprice'] / config('points_orderrate'));
+                    $insertarr['pl_points'] = number_format(($insertarr['orderprice'] / config('points_orderrate')),2);
                     if (intval(config('points_ordermax')) >0) {
                         if ($insertarr['pl_points'] > intval(config('points_ordermax'))) {
-                            $insertarr['pl_points'] = intval(config('points_ordermax'));
+                            $insertarr['pl_points'] = number_format(config('points_ordermax'),2);
                         }
                     }
                 }
