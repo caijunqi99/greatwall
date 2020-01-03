@@ -8,7 +8,7 @@ class Member extends MobileMember {
 
     public function _initialize() {
         parent::_initialize();
-        Lang::load(APP_PATH . 'mobile\lang\zh-cn\member.lang.php');
+        Lang::load(APP_PATH . 'home\lang\zh-cn\member.lang.php');
     }
     
     
@@ -75,60 +75,83 @@ class Member extends MobileMember {
      * */
     public function my_asset() {
         if(empty($this->member_info['member_paypwd'])){
-            output_error('请先设置支付密码，再申请提现');
-        }elseif($this->member_info['member_auth_state']!=3){
-            output_error('请先实名认证');
+            output_error('您需要先到个人中心设置支付密码！');
         }else{
-            $fields_arr = array('point', 'available', 'predepoit', 'transaction','redpacket','voucher');
-            $fields_str = trim(input('fields'));
-            if ($fields_str) {
-                $fields_arr = explode(',', $fields_str);
-            }
+            
             $member_info = array();
             //最低可提现积分
             $list_config = rkcache('config', true);
             $member_info['withdraw'] = $list_config['withdraw'];//规则
             //冻结积分
-            if (in_array('point', $fields_arr)) {
-                $member_info['point'] = $this->member_info['member_points'];
-            }
             //可用积分
-            if (in_array('available', $fields_arr)) {
-                $available = $this->member_info['member_points_available'];
-                $list_setting = rkcache('config', true);
-                $availables=$list_setting['withdraw'];
-                $member_info['available']=$available;
-                if($available>=$availables) {
-                    $member_info['awable']=$available;
-                }else{
-                    $member_info['awable']=0.00;
-                }
-                $member_info['commission']=$list_setting['commission'];
+            $member_info['point'] = $this->member_info['member_points'];
+            $available = $this->member_info['member_points_available'];
+            $list_setting = rkcache('config', true);
+            $availables=$list_setting['withdraw'];
+            $member_info['available']=$available;
+            if($available>=$availables) {
+                $member_info['awable']=$available;
+            }else{
+                $member_info['awable']=0.00;
             }
+            $member_info['commission']=$list_setting['commission'];
             //储值卡
-            if (in_array('predepoit', $fields_arr)) {
-                $member_info['predepoit'] = $this->member_info['available_predeposit'];
-            }
+            $member_info['predepoit'] = $this->member_info['available_predeposit'];
             //交易码
-            if (in_array('transaction', $fields_arr)) {
-                $member_info['transaction'] = $this->member_info['member_transaction'];
-            }
+            $member_info['transaction'] = $this->member_info['member_transaction'];
             //银行卡信息
             $member_id = $this->member_info['member_id'];
-            $bank_model = Model("memberbank");
-            $bank = $bank_model->getMemberbankInfo(array("member_id"=>$member_id,"memberbank_type"=>"bank"));
-            $member_info['memberbank_name'] = $bank['memberbank_name'];
-            $member_info['memberbank_no'] = $bank['memberbank_no'];
-            $member_info['memberbank_truename'] = $bank['memberbank_truename'];
-            $member_info['member_mobile'] = $bank['member_mobile'];
+            $bankInfo = [];
+            if (config('member_auth')) {
+                if ($this->member_info['member_auth_state']==3) {
+                    $bank_model = Model("memberbank");
+                    $bank = $bank_model->getMemberbankInfo(array("member_id"=>$member_id,"memberbank_type"=>"bank"));
+                    $bankInfo['memberbank_name'] = $bank['memberbank_name'];
+                    $bankInfo['memberbank_no'] = $bank['memberbank_no'];
+                    $bankInfo['memberbank_truename'] = $bank['memberbank_truename'];
+                    $bankInfo['member_mobile'] = $this->member_info['member_mobile'];
+                }
+            }
+            $member_info['bankinfo'] = $bankInfo;
+            output_data($member_info);
         }
-        output_data($member_info);
+        
     }
 
     /*
      * 申请提现
     * */
     public function my_withdraw(){
+        $verify_code = input('post.auth_code');
+        $validate_data = array(
+            'verify_code' => $verify_code,
+        );
+        $verify_code_validate = validate('verify_code');
+        if (!$verify_code_validate->scene('verify_code_search')->check($validate_data)) {
+            output_error($verify_code_validate->getError());
+        }
+        $verify_code_model = model('verify_code');
+        $vali = $verify_code_model->getVerifyCodeInfo(array(
+            'verify_code_type' => 6,
+            'verify_code_user_type' => 1,
+            'verify_code_user_id' => $this->member_info['member_id'],
+            'verify_code' => $verify_code,
+            'verify_code_add_time' => array('>', TIMESTAMP - VERIFY_CODE_INVALIDE_MINUTE * 1800)
+        ));
+
+        if (!$vali) {
+            $condition = array();
+            $condition['smslog_phone'] = $this->member_info['member_mobile'];
+            $condition['smslog_captcha'] = $verify_code;
+            $condition['smslog_type'] = 6;
+            $smslog_model = model('smslog');
+            $sms_log = $smslog_model->getSmsInfo($condition);
+            if (empty($sms_log) || ($sms_log['smslog_smstime'] < TIMESTAMP - VERIFY_CODE_INVALIDE_MINUTE*1800)) {//半小时内进行验证为有效
+                output_error(lang('validation_fails'));
+            }
+
+        }
+        //身份验证后，需要在30分钟内完成提现操作
         $amount = input('param.amount');
         if (empty($amount)) {
             output_error('积分参数有误');
@@ -198,10 +221,10 @@ class Member extends MobileMember {
                 $img=UPLOAD_SITE_URL . '/' . ATTACH_AVATAR .'/'.$file_name;
                 output_data(array('result' => 1,'avatar'=>$img));
             }else{
-                output_data($file_object->getError());
+                output_error($file_object->getError().'a');
             }
         } else {
-            output_data(lang('upload_failed_replace_pictures'));
+            output_error(lang('upload_failed_replace_pictures').'A');
         }
 
     }
@@ -239,7 +262,7 @@ class Member extends MobileMember {
     * 获取推荐下级信息
     * */
     public function inviter(){
-        $member_id = input('param.member_id');
+        $member_id = $this->member_info['member_id'];
         if (empty($member_id)) {
             output_error('member_id参数有误');
         }
@@ -250,7 +273,7 @@ class Member extends MobileMember {
             foreach($member_list as $k=>$v){
                 $member_inviterids[] = $v['member_id'];
                 $member_list[$k]['level'] = "一代";
-                $member_list[$k]['member_addtime'] = date("Y-m-d H:i:s",$v['member_addtime']);
+                $member_list[$k]['member_addtime'] = date("Y-m-d",$v['member_addtime']);
             }
             $member_inviterids = implode(",",$member_inviterids);
             //二代
@@ -259,19 +282,26 @@ class Member extends MobileMember {
             $member_list_two = $member_model->getMemberList($cond);
             foreach($member_list_two as $i=>$t){
                 $member_list_two[$i]["level"] = "二代";
-                $member_list_two[$i]["member_addtime"] = date("Y-m-d H:i:s",$t['member_addtime']);
+                $member_list_two[$i]["member_addtime"] = date("Y-m-d",$t['member_addtime']);
             }
             $countOne = count($member_list,COUNT_NORMAL);//直推人数
             $countTwo = count($member_list_two,COUNT_NORMAL);
             $allcount = $countOne+$countTwo;
             $member_info = $member_model->getMemberInfo(array("member_id"=>$member_id));
             $member_list=array_merge($member_list,$member_list_two);
-            $inviterdata = array(
-                'datainfo' =>$member_list,'countOne'=>$countOne,'countAll'=>$allcount,'inviterlink'=>$member_info['inviter_code']
-            );
-
-            output_data($inviterdata);
+            
+        }else{
+            $member_list = [];
+            $countOne = 0 ;
+            $allcount = 0 ;
         }
+        $inviterdata = array(
+                'datainfo' =>$member_list,
+                'countOne'=>$countOne,
+                'countAll'=>$allcount,
+                'inviterlink'=>$this->member_info['inviter_code']
+            );
+        output_data($inviterdata);
     }
 
 }
