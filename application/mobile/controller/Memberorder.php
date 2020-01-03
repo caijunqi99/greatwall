@@ -15,76 +15,112 @@ class Memberorder extends MobileMember {
      * 订单列表
      */
     public function order_list() {
-        $model_order = Model('order');
+        $order_model = model('order');
+
+        //搜索
         $condition = array();
-        $condition = $this->order_type_no(input('post.state_type'));
         $condition['buyer_id'] = $this->member_info['member_id'];
-        $condition['delete_state'] = 0;
-        //$order_list_array = $model_order->getNormalOrderList($condition, $this->pagesize, '*', 'order_id desc','', array('order_goods'));
-        $order_list_array = $model_order->getOrderList($condition, 5, '*', 'order_id desc', '', array('order_common', 'order_goods', 'store'));
 
-        $order_group_list = $order_pay_sn_array = array();
-        foreach ($order_list_array as $value) {
+        $order_sn = input('param.order_sn');
+        if ($order_sn != '') {
+            $condition['order_sn'] = array('like','%'.$order_sn.'%');
+        }
+        $query_start_date = input('param.query_start_date');
+        $query_end_date = input('param.query_end_date');
+        $if_start_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $query_start_date);
+        $if_end_date = preg_match('/^20\d{2}-\d{2}-\d{2}$/', $query_end_date);
+        $start_unixtime = $if_start_date ? strtotime($query_start_date) : null;
+        $end_unixtime = $if_end_date ? strtotime($query_end_date) : null;
+        if ($start_unixtime || $end_unixtime) {
+            $condition['add_time'] = array('between', array($start_unixtime, $end_unixtime));
+        }
+        $state_type = input('param.state_type');
+        if ($state_type != '') {
+            $condition['order_state'] = str_replace(
+                    array('state_new', 'state_pay', 'state_send', 'state_success', 'state_noeval', 'state_cancel'), array(ORDER_STATE_NEW, ORDER_STATE_PAY, ORDER_STATE_SEND, ORDER_STATE_SUCCESS, ORDER_STATE_SUCCESS, ORDER_STATE_CANCEL),$state_type);
+        }
+        if ($state_type == 'state_noeval') {
+            $condition['evaluation_state'] = 0;
+            $condition['order_state'] = ORDER_STATE_SUCCESS;
+        }
+        
+        //回收站
+        $recycle = input('param.recycle');
+        if ($recycle) {
+            $condition['delete_state'] = 1;
+        } else {
+            $condition['delete_state'] = 0;
+        }
+        
+        
+        $order_list = $order_model->getOrderList($condition, 5, '*', 'order_id desc','', array('order_common','order_goods','store'));
+        
+        $refundreturn_model = model('refundreturn');
+        $order_list = $refundreturn_model->getGoodsRefundList($order_list);
 
-            //$value['zengpin_list'] = false;
+        //订单列表以支付单pay_sn分组显示
+        $order_group_list = array();
+        $order_pay_sn_array = array();
+        foreach ($order_list as $order_id => $order) {
             //显示取消订单
-            $value['if_cancel'] = $model_order->getOrderOperateState('buyer_cancel', $value);
+            $order['if_cancel'] = $order_model->getOrderOperateState('buyer_cancel', $order);
+            //显示退款取消订单
+            $order['if_refund_cancel'] = $order_model->getOrderOperateState('refund_cancel', $order);
+            //显示投诉
+            $order['if_complain'] = $order_model->getOrderOperateState('complain', $order);
             //显示收货
-            $value['if_receive'] = $model_order->getOrderOperateState('receive', $value);
+            $order['if_receive'] = $order_model->getOrderOperateState('receive', $order);
             //显示锁定中
-            $value['if_lock'] = $model_order->getOrderOperateState('lock', $value);
+            $order['if_lock'] = $order_model->getOrderOperateState('lock', $order);
             //显示物流跟踪
-            $value['if_deliver'] = $model_order->getOrderOperateState('deliver', $value);
+            $order['if_deliver'] = $order_model->getOrderOperateState('deliver', $order);
+            //显示评价
+            $order['if_evaluation'] = $order_model->getOrderOperateState('evaluation', $order);
+            //显示删除订单(放入回收站)
+            $order['if_delete'] = $order_model->getOrderOperateState('delete', $order);
+            //显示永久删除
+            $order['if_drop'] = $order_model->getOrderOperateState('drop', $order);
+            //显示还原订单
+            $order['if_restore'] = $order_model->getOrderOperateState('restore', $order);
 
-            $value['if_evaluation'] = false;
-            $value['if_evaluation_again'] = false;
-            $value['if_delete'] = false;
-            $value['ownshop'] = true;
-
-            $value['zengpin_list'] = false;
-            if (isset($value['extend_order_goods'])) {
-                foreach ($value['extend_order_goods'] as $val) {
-                    if ($val['goods_type'] == 5) {
-                        $value['zengpin_list'][] = $val;
-                    }
+            foreach ($order['extend_order_goods'] as $value) {
+                $value['goods_type_cn'] = get_order_goodstype($value['goods_type']);
+                $value['goods_url'] = url('Goods/index', ['goods_id' => $value['goods_id']]);
+                if ($value['goods_type'] == 5) {
+                    $order['zengpin_list'][] = $value;
+                } else {
+                    $order['goods_list'][] = $value;
                 }
             }
-
-            //商品图
-            if (isset($value['extend_order_goods'])) {
-                foreach ($value['extend_order_goods'] as $k => $goods_info) {
-
-                    if ($goods_info['goods_type'] == 5) {
-                        unset($value['extend_order_goods'][$k]);
-                    }
-                    else {
-                        $value['extend_order_goods'][$k] = $goods_info;
-                        $value['extend_order_goods'][$k]['goods_image_url'] = goods_cthumb($goods_info['goods_image'], 240, $value['store_id']);
-                    }
-                }
+            unset($order['extend_order_goods']);
+            if (empty($order['zengpin_list'])) {
+                $order['goods_count'] = count($order['goods_list']);
+            } else {
+                $order['goods_count'] = count($order['goods_list']) + 1;
             }
-            $order_group_list[$value['pay_sn']]['order_list'][] = $value;
+            $order_group_list[$order['pay_sn']]['order_list'][] = $order;
+
             //如果有在线支付且未付款的订单则显示合并付款链接
-            if ($value['order_state'] == ORDER_STATE_NEW) {
-                if(!isset($order_group_list[$value['pay_sn']]['pay_amount'])){
-                    $order_group_list[$value['pay_sn']]['pay_amount'] = 0;
+            if ($order['order_state'] == ORDER_STATE_NEW) {
+                if (!isset($order_group_list[$order['pay_sn']]['pay_amount'])) {
+                    $order_group_list[$order['pay_sn']]['pay_amount'] = 0;
                 }
-                $order_group_list[$value['pay_sn']]['pay_amount'] += $value['order_amount'] - $value['rcb_amount'] - $value['pd_amount'];
+                $order_group_list[$order['pay_sn']]['pay_amount'] += $order['order_amount'] - $order['pd_amount'] - $order['rcb_amount'];
             }
-            $order_group_list[$value['pay_sn']]['add_time'] = $value['add_time'];
+            $order_group_list[$order['pay_sn']]['add_time'] = $order['add_time'];
 
             //记录一下pay_sn，后面需要查询支付单表
-            $order_pay_sn_array[] = $value['pay_sn'];
+            $order_pay_sn_array[] = $order['pay_sn'];
         }
 
-        $new_order_group_list = array();
-        foreach ($order_group_list as $key => $value) {
-            $value['pay_sn'] = strval($key);
-            $new_order_group_list[] = $value;
+        //取得这些订单下的支付单列表
+        $condition = array('pay_sn' => array('in', array_unique($order_pay_sn_array)));
+        $order_pay_list = $order_model->getOrderpayList($condition,'*','','pay_sn');
+        foreach ($order_group_list as $pay_sn => $pay_info) {
+            $order_group_list[$pay_sn]['pay_info'] = isset($order_pay_list[$pay_sn])?$order_pay_list[$pay_sn]:'';
         }
 
-        output_data(array('order_group_list' => $new_order_group_list), mobile_page($model_order->page_info));
-    }
+        output_data(array('order_group_list' =>array_values($order_group_list) ), mobile_page($order_model->page_info));
 
     private function order_type_no($stage) {
         $condition = array();
