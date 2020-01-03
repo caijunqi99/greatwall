@@ -67,6 +67,16 @@ class Memberorder extends MobileMember {
         $order_group_list = array();
         $order_pay_sn_array = array();
         foreach ($order_list as $order_id => $order) {
+            $order_group_list[$order['pay_sn']]['add_time']     = $order['add_time'];
+            $order_group_list[$order['pay_sn']]['order_state']  = $order['order_state'];
+            $order_group_list[$order['pay_sn']]['order_amount'] = $order['order_amount'];
+            $order_group_list[$order['pay_sn']]['state_desc']   = $order['state_desc'];
+            $order_group_list[$order['pay_sn']]['order_id']     = $order['order_id'];
+            $order_group_list[$order['pay_sn']]['order_sn']     = $order['order_sn'];
+            $order_group_list[$order['pay_sn']]['pay_sn']       = $order['pay_sn'];
+            $order_group_list[$order['pay_sn']]['buyer_id']     = $order['buyer_id'];
+            $order_group_list[$order['pay_sn']]['buyer_name']   = $order['buyer_name'];
+
             //是否显示取消订单
             $order['if_cancel'] = $order_model->getOrderOperateState('buyer_cancel', $order);
             //是否显示退款取消订单
@@ -91,7 +101,7 @@ class Memberorder extends MobileMember {
             foreach ($order['extend_order_goods'] as $value) {
                 $value['goods_type_cn'] = get_order_goodstype($value['goods_type']);
                 $value['goods_image'] = goods_cthumb($value['goods_image'], 240, $value['store_id']);
-                
+
                 // $value['goods_url'] = url('Goods/index', ['goods_id' => $value['goods_id']]);
                 if ($value['goods_type'] == 5) {
                     $order['zengpin_list'][] = $value;
@@ -114,18 +124,18 @@ class Memberorder extends MobileMember {
                 }
                 $order_group_list[$order['pay_sn']]['pay_amount'] += $order['order_amount'] - $order['pd_amount'] - $order['rcb_amount'];
             }
-            $order_group_list[$order['pay_sn']]['add_time'] = $order['add_time'];
+
 
             //记录一下pay_sn，后面需要查询支付单表
             $order_pay_sn_array[] = $order['pay_sn'];
         }
 
         //取得这些订单下的支付单列表
-        $condition = array('pay_sn' => array('in', array_unique($order_pay_sn_array)));
-        $order_pay_list = $order_model->getOrderpayList($condition,'*','','pay_sn');
-        foreach ($order_group_list as $pay_sn => $pay_info) {
-            $order_group_list[$pay_sn]['pay_info'] = isset($order_pay_list[$pay_sn])?$order_pay_list[$pay_sn]:'';
-        }
+        // $condition = array('pay_sn' => array('in', array_unique($order_pay_sn_array)));
+        // $order_pay_list = $order_model->getOrderpayList($condition,'*','','pay_sn');
+        // foreach ($order_group_list as $pay_sn => $pay_info) {
+        //     $order_group_list[$pay_sn]['pay_info'] = isset($order_pay_list[$pay_sn])?$order_pay_list[$pay_sn]:'';
+        // }
 
         output_data(array('order_group_list' =>array_values($order_group_list) ), mobile_page($order_model->page_info));
     }
