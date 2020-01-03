@@ -122,6 +122,36 @@ class Member extends MobileMember {
      * 申请提现
     * */
     public function my_withdraw(){
+        $verify_code = input('post.auth_code');
+        $validate_data = array(
+            'verify_code' => $verify_code,
+        );
+        $verify_code_validate = validate('verify_code');
+        if (!$verify_code_validate->scene('verify_code_search')->check($validate_data)) {
+            output_error($verify_code_validate->getError());
+        }
+        $verify_code_model = model('verify_code');
+        $vali = $verify_code_model->getVerifyCodeInfo(array(
+            'verify_code_type' => 6,
+            'verify_code_user_type' => 1,
+            'verify_code_user_id' => $this->member_info['member_id'],
+            'verify_code' => $verify_code,
+            'verify_code_add_time' => array('>', TIMESTAMP - VERIFY_CODE_INVALIDE_MINUTE * 1800)
+        ));
+
+        if (!$vali) {
+            $condition = array();
+            $condition['smslog_phone'] = $this->member_info['member_mobile'];
+            $condition['smslog_captcha'] = $verify_code;
+            $condition['smslog_type'] = 6;
+            $smslog_model = model('smslog');
+            $sms_log = $smslog_model->getSmsInfo($condition);
+            if (empty($sms_log) || ($sms_log['smslog_smstime'] < TIMESTAMP - VERIFY_CODE_INVALIDE_MINUTE*1800)) {//半小时内进行验证为有效
+                output_error(lang('validation_fails'));
+            }
+
+        }
+        //身份验证后，需要在30分钟内完成提现操作
         $amount = input('param.amount');
         if (empty($amount)) {
             output_error('积分参数有误');
