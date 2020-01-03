@@ -34,7 +34,7 @@ class Membermessage extends MobileMember
         if (!empty($message_array) && is_array($message_array)) {
             foreach ($message_array as $k => $v) {
                 $v['message_open'] = '0';
-                $message_array[$k]['times']=date('Y-m-d H:i:s',$v['message_time']);
+                $v['times']=date('Y-m-d H:i:s',$v['message_time']);
                 if (!empty($v['read_member_id'])) {
                     $tmp_readid_arr = explode(',', $v['read_member_id']);
                     if (in_array($this->member_info['member_id'], $tmp_readid_arr)) {
