@@ -188,7 +188,7 @@ class Member extends MobileMember {
         $datacash = array();
         $pdc_sn = makePaySn(session('member_id'));
         $datacash['pdc_sn'] = $pdc_sn;
-        $datacash['pdc_member_id'] = 1;
+        $datacash['pdc_member_id'] = $member_id;
         $datacash['pdc_member_name'] = $this->member_info['member_name'];
         $datacash['pdc_amount'] = $amount-$amount*$commission/100;
         $datacash['pdc_bank_name'] = input('param.memberbank_name');
