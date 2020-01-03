@@ -121,6 +121,7 @@ class Memberorder extends MobileMember {
         }
 
         output_data(array('order_group_list' =>array_values($order_group_list) ), mobile_page($order_model->page_info));
+    }
 
     private function order_type_no($stage) {
         $condition = array();
