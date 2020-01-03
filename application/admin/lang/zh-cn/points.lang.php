@@ -39,6 +39,7 @@ $lang['admin_points_stage_system'] = '系统调整';
 $lang['admin_points_stage_rebate'] = '推荐返利';
 $lang['admin_points_stage_marketmanage'] = '购物抽奖';
 $lang['admin_points_stage_pointransform'] = '积分互转';
+$lang['admin_points_stage_withdraw'] = '用户提现';
 
 $lang['admin_points_stage_pointorder'] = '礼品兑换';
 $lang['admin_points_stage_app'] = '积分兑换';
