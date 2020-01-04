@@ -907,8 +907,13 @@ namespace app\api\controller;
      public function updateAutomaticRecovery($keyword,$type='TEXT'){
         if (!$this->access_token && !$this->checkAuth())
              return false;
-         $result = $this->http_post(self::API_URL_PREFIX . self::CURRENT_AUTOREPLY_INFO. 'access_token=' . $this->access_token);
-         p($result);exit;
+         $result = $this->http_post(self::API_URL_PREFIX . self::CURRENT_AUTOREPLY_INFO. 'access_token=' . $this->access_token,[]);
+         if ($result) {
+             $json = json_decode($result, true);
+            p($json);
+         }
+         p($result);
+         exit;
      }
 
      /**
