@@ -52,7 +52,7 @@ class Wechat
          *处理事件
          */
         if (!empty($reMsg)) {
-            $writeLog['reMsg'] = $reMsg
+            $writeLog['reMsg'] = $reMsg;
             echo $this->weixin->text($reMsg)->reply();
             exit;
         }
