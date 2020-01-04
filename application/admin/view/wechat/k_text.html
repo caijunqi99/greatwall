@@ -15,8 +15,8 @@
         <thead>
             <tr>
                 <th style="width: 30%">{$Think.lang.keywords}</th>
-                <th style="width: 50%">{$Think.lang.k_value}</th>
-                <th style="%">{$Think.lang.ds_handle}</th>
+                <th style="width: 60%">{$Think.lang.k_value}</th>
+                <th style="width: 10%">{$Think.lang.ds_handle}</th>
             </tr>
         </thead>
         {notempty name="lists"}
@@ -28,7 +28,6 @@
                 <td>
                     <a href="javascript:dsLayerOpen('{:url('Wechat/text_form',['id'=>$list.id])}','{$Think.lang.ds_edit}-{$list.keyword}')"  class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.ds_edit}</a>
                     <a href="javascript:dsLayerConfirm('{:url('Wechat/del_text',['id'=>$list.id])}','{$Think.lang.ds_ensure_del}')"  class="dsui-btn-del"><i class="iconfont"></i>{$Think.lang.ds_del}</a>
-                    <a href="{:url('Wechat/pub_textform',['id'=>$list.id])}"  class="dsui-btn-edit"><i class="iconfont"></i>更新关键字</a>
                 </td>
             </tr>
             {/foreach}
