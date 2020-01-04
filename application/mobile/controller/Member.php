@@ -147,7 +147,7 @@ class Member extends MobileMember {
             $smslog_model = model('smslog');
             $sms_log = $smslog_model->getSmsInfo($condition);
             if (empty($sms_log) || ($sms_log['smslog_smstime'] < TIMESTAMP - VERIFY_CODE_INVALIDE_MINUTE*1800)) {//半小时内进行验证为有效
-                output_error(lang('validation_fails'));
+                output_error(lang('验证码无效！'));
             }
 
         }
