@@ -363,7 +363,7 @@ class Memberorder extends MobileMember {
         //显示系统自动取消订单日期
         if ($order_info['order_state'] == ORDER_STATE_NEW) {
             $auto_cancel_day = intval(config('order_auto_cancel_day'));
-            $order_info['order_cancel_day'] = $order_info['add_time'] + intval($auto_cancel_day * 24* 3600);
+            // $order_info['order_cancel_day'] = $order_info['add_time'] + intval($auto_cancel_day * 24* 3600);
         }
         $order_info['if_deliver'] = false;
         //显示快递信息
