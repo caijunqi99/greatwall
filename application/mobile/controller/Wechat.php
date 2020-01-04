@@ -122,11 +122,11 @@ class Wechat
             //处理关键字
             $this->MsgTypeText($content);
 
-            //处理商品的情况
-            $reMsg = $this->getGoodsByKey($content);
-            if(!empty($reMsg)) {
-                $this->MsgTypeNews($reMsg);
-            }
+            //处理商品的情况 -- 暂时没有H5页面，关闭
+            // $reMsg = $this->getGoodsByKey($content);
+            // if(!empty($reMsg)) {
+            //     $this->MsgTypeNews($reMsg);
+            // }
             /*处理其他输入文字*/
             echo $this->weixin->text("抱歉，暂时无法对您的输入作出处理。")->reply();
             exit;
@@ -194,9 +194,9 @@ class Wechat
     {
         //先处理是关键字的情况
         $value = $this->keywordsReply($content);
-        
+
         if (!empty($value)) {
-            echo $this->weixin->text($value['value'])->reply();
+            echo $this->weixin->text($value['text'])->reply();
             exit;
         }
     }
@@ -208,8 +208,8 @@ class Wechat
             foreach ($reMsg as $v) {
                 $newsData[$k]['Title'] = $v['goods_name'];
                 $newsData[$k]['Description'] = strip_tags($v['goods_name']);
-                $newsData[$k]['PicUrl'] = goods_cthumb($value['goods_image'], 240);
-                $newsData[$k]['Url'] = WAP_SITE_URL . '/tmpl/product_detail.html?goods_id='.$v['goods_id'];
+                $newsData[$k]['PicUrl'] = goods_cthumb($v['goods_image'], 240);
+                // $newsData[$k]['Url'] = WAP_SITE_URL . '/tmpl/product_detail.html?goods_id='.$v['goods_id'];
                 $k++;
             }
             echo $this->weixin->news($newsData)->reply();
@@ -227,7 +227,7 @@ class Wechat
         ];
         $value = model('wechat')->getOneJoinWxkeyword($condition);
         if ($value) {
-            return $value['text'];
+            return $value;
         }else{
             return '';
         }
