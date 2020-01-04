@@ -346,6 +346,7 @@ class Memberorder extends MobileMember {
             $value['image_240_url'] = goods_cthumb($value['goods_image'], 240, $value['store_id']);
             $value['goods_type_cn'] = get_order_goodstype($value['goods_type']);
             // $value['goods_url'] = url('Goods/index', ['goods_id' => $value['goods_id']]);
+            $value['goods_image'] = goods_cthumb($value['goods_image'], 240, $value['store_id']);
             if ($value['goods_type'] == 5) {
                 $order_info['zengpin_list'][] = $value;
             } else {
