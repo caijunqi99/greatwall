@@ -43,13 +43,21 @@ class Wechat
             default:
                 $reMsg = '未识别信息';
         }
+        $writeLog = [
+            'type' =>$this->type,
+            'data' =>$this->data,
+            'content' =>$content
+        ];
         /**
          *处理事件
          */
         if (!empty($reMsg)) {
+            $writeLog['reMsg'] = $reMsg
             echo $this->weixin->text($reMsg)->reply();
             exit;
         }
+        Log::write($writeLog);
+
         //一.接收事件推送
         if ($this->type == 'event') {
             //1.订阅(关注)事件
@@ -204,7 +212,7 @@ class Wechat
             foreach ($reMsg as $v) {
                 $newsData[$k]['Title'] = $v['goods_name'];
                 $newsData[$k]['Description'] = strip_tags($v['goods_name']);
-                $newsData[$k]['PicUrl'] = goods_cthumb($v['goods_image']);
+                $newsData[$k]['PicUrl'] = goods_cthumb($value['goods_image'], 240);
                 $newsData[$k]['Url'] = WAP_SITE_URL . '/tmpl/product_detail.html?goods_id='.$v['goods_id'];
                 $k++;
             }
@@ -218,9 +226,16 @@ class Wechat
     public function keywordsReply($content)
     {
         //关键字查询
-        $where = "k.keyword = '{$content}'";
-        $value = model('wechat')->keyText($field = 't.text', $where);
-        return $value;
+        $condition = [
+            'k.keyword' => ['like','%' . $content . '%']
+        ];
+        $value = model('wechat')->getOneJoinWxkeyword($condition);
+        if ($value) {
+            return $value['text'];
+        }else{
+            return '';
+        }
+        
     }
 
     /**关键字商品信息*/
@@ -229,7 +244,7 @@ class Wechat
         $condi = "(goods_name like '%{$key}%' or goods_advword like '%{$key}%' or store_name like '%{$key}%')";
         $condi .= " and goods_state = 1 and goods_verify = 1";
         $res=db('goods')->where($condi)->limit(4)->field('goods_id,goods_name,goods_image')->select();
-        $res=ds_changeArraykey($res,'goods_id');
+        $res=ds_change_arraykey($res,'goods_id');
         return $res;
     }
 
@@ -241,7 +256,7 @@ class Wechat
         $condition = $types[$type].' DESC';
         $where = "goods_state = 1 and goods_verify = 1";
         $res = db('goods')->field('goods_id,goods_name,goods_image')->where($where)->limit(4)->order($condition)->select();
-        $res=ds_changeArraykey($res,'goods_id');
+        $res=ds_change_arraykey($res,'goods_id');
         return $res;
     }
 }

@@ -151,23 +151,23 @@ use think\Log;
      /**
       * 获取微信服务器发来的信息
       */
-     public function getRev() {
-         if ($this->_receive)
+    public function getRev() {
+        if ($this->_receive)
              return $this;
-         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];//
-
-         //$postStr = file_get_contents("php://input");
+         if (isset($GLOBALS["HTTP_RAW_POST_DATA"])) {
+            $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];//
+         }
+         if (empty($postStr) && isset($_SERVER["HTTP_RAW_POST_DATA"])) {
+            $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];//
+         }
+         if(empty($postStr)){
+            $postStr = file_get_contents("php://input");   
+         }
          $this->log($postStr);
          if (!empty($postStr)) {
              $this->_receive = (array) simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
              $this->_receive = $this->iconvUtf($this->_receive);
          }
-         $writeLog = [
-            'postStr' =>file_get_contents("php://input"),
-            'this' =>$this,
-            'HTTP_RAW_POST_DATA' =>$postStr
-        ];
-        Log::write($writeLog);
          return $this;
      }
 
