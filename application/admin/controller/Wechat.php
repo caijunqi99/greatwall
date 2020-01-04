@@ -368,6 +368,43 @@ class Wechat extends AdminControl {
     }
     
     /**
+     * 更新微信自动回复
+     * @DateTime 2020-01-04
+     * @return   [type]     [description]
+     */
+    public function pub_textform(){
+        $kid = input('param.id');
+        $wechat_model = model('wechat');
+        $config = $wechat_model->getOneWxconfig();
+        $id = input('param.id');
+        $where = "k.id={$id} AND k.type='TEXT'";
+        $text = db('wxkeyword')->alias('k')->join('__WXTEXT__ t', 't.id=k.id', 'LEFT')->where($where)->field('k.id,k.keyword,k.type,t.text')->find();
+        if (empty($config)) {
+            $this->error(lang('please_set_wechat_config'), 'Wechat/setting');
+        }
+        $wechat = new WechatApi($config);
+        $expire_time = $config['expires_in'];
+        if ($expire_time > TIMESTAMP) {
+            //有效期内
+            $wechat->access_token_ = $config['access_token'];
+        } else {
+            $access_token = $wechat->checkAuth();
+            if($access_token == FALSE){
+                $this->error(lang('ds_common_op_fail') . $wechat->errCode.$wechat->errMsg, 'Wechat/menu');
+            }
+            $web_expires = TIMESTAMP + 7000; // 提前200秒过期
+            $condition = array();
+            $condition['id'] = $config['id'];
+            $data = array('access_token' => $access_token, 'expires_in' => $web_expires);
+            $wechat_model->editWxconfig($condition,$data);
+        }
+        $result = $wechat->updateAutomaticRecovery($add,'TEXT');
+        p($result);exit;
+        p(input());
+        exit;
+    }
+
+    /**
      * 删除消息推送
      */
     public function del_wxmsg(){
