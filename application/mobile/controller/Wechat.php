@@ -5,6 +5,7 @@
 
 namespace app\mobile\controller;
 use app\mobile\controller\WechatApi;
+use think\Log;
 
 class Wechat
 {

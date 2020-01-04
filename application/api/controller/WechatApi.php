@@ -4,6 +4,7 @@
  */
 
 namespace app\api\controller;
+use think\Log;
 
  final class WechatApi
 {

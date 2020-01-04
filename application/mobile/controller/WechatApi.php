@@ -4,6 +4,7 @@
  */
 
 namespace app\mobile\controller;
+use think\Log;
 
  final class WechatApi
 {
@@ -154,12 +155,19 @@ namespace app\mobile\controller;
          if ($this->_receive)
              return $this;
          $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];//
+
          //$postStr = file_get_contents("php://input");
          $this->log($postStr);
          if (!empty($postStr)) {
              $this->_receive = (array) simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
              $this->_receive = $this->iconvUtf($this->_receive);
          }
+         $writeLog = [
+            'postStr' =>file_get_contents("php://input"),
+            'this' =>$this,
+            'HTTP_RAW_POST_DATA' =>$postStr
+        ];
+        Log::write($writeLog);
          return $this;
      }
 
