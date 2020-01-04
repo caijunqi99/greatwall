@@ -194,14 +194,9 @@ class Wechat
     {
         //先处理是关键字的情况
         $value = $this->keywordsReply($content);
-        $writeLog = [
-            'type' =>$this->type,
-            'data' =>$this->data,
-            'value' =>$value
-        ];
-        Log::write($writeLog);
+        
         if (!empty($value)) {
-            echo $this->weixin->text($value['text'])->reply();
+            echo $this->weixin->text($value['value'])->reply();
             exit;
         }
     }
