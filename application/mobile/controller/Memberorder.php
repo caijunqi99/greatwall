@@ -275,117 +275,62 @@ class Memberorder extends MobileMember {
      * 订单详情
      */
     public function order_info() {
-        $order_id = intval(input('order_id'));
+        $order_id = intval(input('param.order_id'));
         if ($order_id <= 0) {
-            output_error('订单不存在');
+            output_error('订单不存在！');
         }
-        $model_order = Model('order');
+        $order_model = model('order');
         $condition = array();
         $condition['order_id'] = $order_id;
         $condition['buyer_id'] = $this->member_info['member_id'];
-        $order_info = $model_order->getOrderInfo($condition, array('order_goods', 'order_common', 'store'));
-
+        $order_info = $order_model->getOrderInfo($condition, array('order_goods', 'order_common', 'store'));
         if (empty($order_info) || $order_info['delete_state'] == ORDER_DEL_STATE_DROP) {
-            output_error('订单不存在');
+            output_error('订单已删除！');
         }
 
-        $model_refund_return = Model('refundreturn');
+        $refundreturn_model = model('refundreturn');
         $order_list = array();
         $order_list[$order_id] = $order_info;
-        $order_list = $model_refund_return->getGoodsRefundList($order_list, 1); //订单商品的退款退货显示
+        $order_list = $refundreturn_model->getGoodsRefundList($order_list, 1); //订单商品的退款退货显示
         $order_info = $order_list[$order_id];
-        $refund_all = isset($order_info['refund_list'][0])?$order_info['refund_list'][0]:'';
+        $refund_all = isset($order_info['refund_list'][0]) ? $order_info['refund_list'][0] : '';
         if (!empty($refund_all) && $refund_all['seller_state'] < 3) {//订单全部退款商家审核状态:1为待审核,2为同意,3为不同意
-            output_error($refund_all);
+            $order_info['refund_all'] =$refund_all;
         }
 
-
-        $order_info['store_member_id'] = $order_info['extend_store']['member_id'];
-        $order_info['store_phone'] = $order_info['extend_store']['store_phone'];
-
-
-        if ($order_info['payment_time']) {
-            $order_info['payment_time'] = date('Y-m-d H:i:s', $order_info['payment_time']);
-        } else {
-            $order_info['payment_time'] = '';
-        }
-        if ($order_info['finnshed_time']) {
-            $order_info['finnshed_time'] = date('Y-m-d H:i:s', $order_info['finnshed_time']);
-        } else {
-            $order_info['finnshed_time'] = '';
-        }
-        if ($order_info['add_time']) {
-            $order_info['add_time'] = date('Y-m-d H:i:s', $order_info['add_time']);
-        } else {
-            $order_info['add_time'] = '';
-        }
-
-        if ($order_info['extend_order_common']['order_message']) {
-            $order_info['order_message'] = $order_info['extend_order_common']['order_message'];
-        }
-        if(!empty($order_info['extend_order_common']['invoice_info'])) {
-            $order_info['invoice'] = $order_info['extend_order_common']['invoice_info']['类型'] . $order_info['extend_order_common']['invoice_info']['抬头'] . $order_info['extend_order_common']['invoice_info']['内容'];
-        }
-
-        $order_info['reciver_phone'] = $order_info['extend_order_common']['reciver_info']['phone'];
-        $order_info['reciver_name'] = $order_info['extend_order_common']['reciver_name'];
-        $order_info['reciver_addr'] = $order_info['extend_order_common']['reciver_info']['address'];
-
-        $order_info['promotion'] = array();
         //显示锁定中
-        $order_info['if_lock'] = $model_order->getOrderOperateState('lock', $order_info);
+        $order_info['if_lock'] = $order_model->getOrderOperateState('lock', $order_info);
 
         //显示取消订单
-        $order_info['if_buyer_cancel'] = $model_order->getOrderOperateState('buyer_cancel', $order_info);
+        $order_info['if_cancel'] = $order_model->getOrderOperateState('buyer_cancel', $order_info);
 
         //显示退款取消订单
-        $order_info['if_refund_cancel'] = $model_order->getOrderOperateState('refund_cancel', $order_info);
+        $order_info['if_refund_cancel'] = $order_model->getOrderOperateState('refund_cancel', $order_info);
 
         //显示投诉
-        // $order_info['if_complain'] = $model_order->getOrderOperateState('complain', $order_info);
+        $order_info['if_complain'] = $order_model->getOrderOperateState('complain', $order_info);
 
         //显示收货
-        $order_info['if_receive'] = $model_order->getOrderOperateState('receive', $order_info);
+        $order_info['if_receive'] = $order_model->getOrderOperateState('receive', $order_info);
 
         //显示物流跟踪
-        $order_info['if_deliver'] = $model_order->getOrderOperateState('deliver', $order_info);
-
-
-
+        $order_info['if_deliver'] = $order_model->getOrderOperateState('deliver', $order_info);
 
         //显示评价
-        // $order_info['if_evaluation'] = $model_order->getOrderOperateState('evaluation', $order_info);
-        //显示分享
-        // $order_info['if_share'] = $model_order->getOrderOperateState('share', $order_info);
+        $order_info['if_evaluation'] = $order_model->getOrderOperateState('evaluation', $order_info);
 
-        // $order_info['ownshop'] = $model_order->getOrderOperateState('share', $order_info);
-        
         //显示系统自动取消订单日期
         if ($order_info['order_state'] == ORDER_STATE_NEW) {
-            $auto_cancel_day = intval(config('order_auto_cancel_day'));
-            // $order_info['order_cancel_day'] = $order_info['add_time'] + intval($auto_cancel_day * 24* 3600);
+            $order_info['order_cancel_day'] = $order_info['add_time'] + config('order_auto_cancel_day') * 24 * 3600;
         }
-        $order_info['if_deliver'] = false;
+
         //显示快递信息
         if ($order_info['shipping_code'] != '') {
-            $order_info['if_deliver'] = true;
             $express = rkcache('express', true);
             $order_info['express_info']['express_code'] = $express[$order_info['extend_order_common']['shipping_express_id']]['express_code'];
             $order_info['express_info']['express_name'] = $express[$order_info['extend_order_common']['shipping_express_id']]['express_name'];
             $order_info['express_info']['express_url'] = $express[$order_info['extend_order_common']['shipping_express_id']]['express_url'];
-            // $result = model('express')->queryExpress($express[$order_info['extend_order_common']['shipping_express_id']]['express_code'],$order_info['shipping_code'],$order_info['extend_order_common']['reciver_info']['phone']);
-            // $content['Traces'] = array_reverse($result['Traces']);
-            // $output = array();
-            // if (is_array($content['Traces'])) {
-            //     foreach ($content['Traces'] as $k => $v) {
-            //         if ($v['AcceptTime'] == '')
-            //             continue;
-            //         $output[] = $v['AcceptTime'] . '&nbsp;&nbsp;' . $v['AcceptStation'];
-            //     }
-            // }
-            // $order_info['express_info'] = $output;
         }
-
 
         //显示系统自动收获时间
         if ($order_info['order_state'] == ORDER_STATE_SEND) {
@@ -394,61 +339,31 @@ class Memberorder extends MobileMember {
 
         //如果订单已取消，取得取消原因、时间，操作人
         if ($order_info['order_state'] == ORDER_STATE_CANCEL) {
-            $close_info = $model_order->getOrderlogInfo(array('order_id' => $order_info['order_id']), 'log_id desc');
-            $order_info['close_info'] = $close_info;
-            $order_info['state_desc'] = $close_info['log_orderstate'];
-            $order_info['order_tips'] = $close_info['log_msg'];
+            $order_info['close_info'] = $order_model->getOrderlogInfo(array('order_id' => $order_info['order_id']), 'log_id desc');
         }
-        //查询消费者保障服务
-        if (config('contract_allow') == 1) {
-            $contract_item = Model('contract')->getContractItemByCache();
-        }
+
         foreach ($order_info['extend_order_goods'] as $value) {
-            $value['image_60_url'] = goods_cthumb($value['goods_image'], 60, $value['store_id']);
-            $value['image_url'] = goods_cthumb($value['goods_image'], 240, $value['store_id']);
+            $value['image_240_url'] = goods_cthumb($value['goods_image'], 240, $value['store_id']);
             $value['goods_type_cn'] = get_order_goodstype($value['goods_type']);
-            $value['goods_url'] = url('goods/index', array('goods_id' => $value['goods_id']));
-            //处理消费者保障服务
-            if (isset($value['goods_contractid']) && $contract_item) {
-                $goods_contractid_arr = explode(',', $value['goods_contractid']);
-                foreach ((array) $goods_contractid_arr as $gcti_v) {
-                    $value['contractlist'][] = $contract_item[$gcti_v];
-                }
-            }
+            // $value['goods_url'] = url('Goods/index', ['goods_id' => $value['goods_id']]);
             if ($value['goods_type'] == 5) {
                 $order_info['zengpin_list'][] = $value;
             } else {
                 $order_info['goods_list'][] = $value;
             }
         }
-
         if (empty($order_info['zengpin_list'])) {
             $order_info['goods_count'] = count($order_info['goods_list']);
         } else {
             $order_info['goods_count'] = count($order_info['goods_list']) + 1;
         }
-
-        $order_info['real_pay_amount'] = $order_info['order_amount'] + $order_info['shipping_fee'];
-        //取得其它订单类型的信息000--------------------------------
-        //$model_order->getOrderExtendInfo($order_info);
-
-
-        $order_info['zengpin_list'] = array();
-        if (is_array($order_info['extend_order_goods'])) {
-            foreach ($order_info['extend_order_goods'] as $val) {
-                if ($val['goods_type'] == 5) {
-                    $order_info['zengpin_list'][] = $val;
-                }
-            }
-        }
-        output_data(array('order_info' => $order_info));
-
-
+        $this->assign('order_info', $order_info);
         //卖家发货信息
         if (!empty($order_info['extend_order_common']['daddress_id'])) {
-            // $daddress_info = Model('daddress')->getAddressInfo(array('address_id' => $order_info['extend_order_common']['daddress_id']));
-            // $this->assign('daddress_info', $daddress_info);
+            $daddress_info = model('daddress')->getAddressInfo(array('daddress_id' => $order_info['extend_order_common']['daddress_id']));
+            $order_info['daddress_info'] =$daddress_info;
         }
+        output_data($order_info);
     }
 
     /**
