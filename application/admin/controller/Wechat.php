@@ -398,9 +398,8 @@ class Wechat extends AdminControl {
             $data = array('access_token' => $access_token, 'expires_in' => $web_expires);
             $wechat_model->editWxconfig($condition,$data);
         }
+        p($wechat);
         $result = $wechat->updateAutomaticRecovery($text,'TEXT');
-        p($result);exit;
-        p(input());
         exit;
     }
 
