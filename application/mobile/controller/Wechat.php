@@ -43,20 +43,15 @@ class Wechat
             default:
                 $reMsg = '未识别信息';
         }
-        $writeLog = [
-            'type' =>$this->type,
-            'data' =>$this->data,
-            'content' =>$content
-        ];
+        
         /**
          *处理事件
          */
         if (!empty($reMsg)) {
-            $writeLog['reMsg'] = $reMsg;
             echo $this->weixin->text($reMsg)->reply();
             exit;
         }
-        Log::write($writeLog);
+
 
         //一.接收事件推送
         if ($this->type == 'event') {
@@ -199,6 +194,12 @@ class Wechat
     {
         //先处理是关键字的情况
         $value = $this->keywordsReply($content);
+        $writeLog = [
+            'type' =>$this->type,
+            'data' =>$this->data,
+            'value' =>$value
+        ];
+        Log::write($writeLog);
         if (!empty($value)) {
             echo $this->weixin->text($value['text'])->reply();
             exit;
