@@ -394,7 +394,7 @@ class Memberorder extends MobileMember {
 
         //如果订单已取消，取得取消原因、时间，操作人
         if ($order_info['order_state'] == ORDER_STATE_CANCEL) {
-            $close_info = $model_order->getOrderLogInfo(array('order_id' => $order_info['order_id']), 'log_id desc');
+            $close_info = $model_order->getOrderlogInfo(array('order_id' => $order_info['order_id']), 'log_id desc');
             $order_info['close_info'] = $close_info;
             $order_info['state_desc'] = $close_info['log_orderstate'];
             $order_info['order_tips'] = $close_info['log_msg'];
