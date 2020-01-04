@@ -40,6 +40,8 @@ namespace app\api\controller;
      const OAUTH_REFRESH_URL = '/refresh_token?';
      const OAUTH_USERINFO_URL = 'https://api.weixin.qq.com/sns/userinfo?';
      const MASS_SEND_URL = '/message/mass/send?';
+     const CURRENT_AUTOREPLY_INFO = '/get_current_autoreply_info?access_token=';
+
 
      private $token;
      private $appid;
@@ -900,6 +902,13 @@ namespace app\api\controller;
              return $json;
          }
          return false;
+     }
+
+     public function updateAutomaticRecovery($keyword,$type='TEXT'){
+        if (!$this->access_token && !$this->checkAuth())
+             return false;
+         $result = $this->http_post(self::API_URL_PREFIX . self::CURRENT_AUTOREPLY_INFO. 'access_token=' . $this->access_token);
+         p($result);exit;
      }
 
      /**
