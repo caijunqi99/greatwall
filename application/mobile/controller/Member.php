@@ -110,6 +110,8 @@ class Member extends MobileMember {
                     $bankInfo['memberbank_no'] = $bank['memberbank_no'];
                     $bankInfo['memberbank_truename'] = $bank['memberbank_truename'];
                     $bankInfo['member_mobile'] = $this->member_info['member_mobile'];
+                }else{
+                    output_error('您的实名认证未通过！','code'=>'10086');
                 }
             }
             $member_info['bankinfo'] = $bankInfo;
