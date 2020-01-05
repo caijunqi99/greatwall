@@ -67,12 +67,7 @@ class Memberauth extends MobileMall
                     "member_areainfo"   => input('post.member_areainfo'),
                     "member_auth_state" => 1,
                 );
-                $AliMethod = new \libr\AliMethod([]);
-                //判断是否为真实姓名
-                $IdValidate = $AliMethod->NidCard($member_array);
-                if ($IdValidate['code']==100) {
-                    output_error($IdValidate['msg']);
-                }
+                
                 $IdCardValidate = [];
                 //上传身份证图
                 if ($_FILES) {
@@ -88,7 +83,7 @@ class Memberauth extends MobileMall
                         $IdCardValidate['member_back'] = BASE_UPLOAD_PATH . "/home/idcard_image/".$upload['member_idcard_image3'];
                     }
                 }
-                
+                $AliMethod = new \libr\AliMethod([]);
                 //判断身份证正面
                 $member_face_validate = $AliMethod->OcrIdcard($IdCardValidate,'face');
                 if ($member_face_validate['code']==100) {
@@ -100,6 +95,8 @@ class Memberauth extends MobileMall
                 if ($member_back_validate['code']==100) {
                     output_error($member_back_validate['msg']);
                 }
+                
+
                 //使用输入的姓名和身份证号 与身份证上面的姓名和身份证号做对比
                 if ($member_array['member_truename'] == $member_face_validate['info']['name'] && strval($idcard) == strval($member_face_validate['info']['idcard'])) {
                     $member_array['member_sex']        = $member_face_validate['info']['sex'] == '男'?0:1;
@@ -123,6 +120,12 @@ class Memberauth extends MobileMall
                 if ($bankValidate['code']==100) {
                     output_error($bankValidate['msg']);
                 }
+                //判断是否为真实姓名 -- 如果银联三要素通过，实名验证可跳过
+                // $IdValidate = $AliMethod->NidCard($member_array);
+                // if ($IdValidate['code']==100) {
+                //     output_error($IdValidate['msg']);
+                // }
+                
                 //编辑个人信息
                 $result = $member_model->editMember(['member_id'=>$member_id],$member_array);
                 if($result){
