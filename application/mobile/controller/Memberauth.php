@@ -4,7 +4,7 @@ namespace app\mobile\controller;
 
 use think\Lang;
 use process\Process;
-use think\Log;
+// use think\Log;
 
 class Memberauth extends MobileMall
 {
@@ -130,7 +130,7 @@ class Memberauth extends MobileMall
                 if ($bankValidate['code']==100) {
                     output_error($bankValidate['msg']);
                 }
-                Log::write($writeLog);
+                // Log::write($writeLog);
                 //判断是否为真实姓名 -- 如果银联三要素通过，实名验证可跳过
                 // $IdValidate = $AliMethod->NidCard($member_array);
                 // if ($IdValidate['code']==100) {

@@ -27,7 +27,7 @@ class AliMethod{
 	public function OcrIdcard($cardInfo,$side='face'){
 		$url = $this->OcrCardhost;
 		$o = 'member_'.$side;
-	    $file = str_replace('/', '\\', $cardInfo[$o]); 
+	    $file = str_replace('\\', '/', $cardInfo[$o]); 
 	    //如果输入带有 inputs, 设置为True，否则设为False
 	    $is_old_format = false;
 	    //如果没有configure字段，config设为空  side: face , side:back
