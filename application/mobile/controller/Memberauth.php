@@ -71,7 +71,7 @@ class Memberauth extends MobileMall
                 //判断是否为真实姓名
                 $IdValidate = $AliMethod->NidCard($member_array);
                 if ($IdValidate['code']==100) {
-                    output_error($IdValidate['msg']);
+                    // output_error($IdValidate['msg']);
                 }
                 $IdCardValidate = [];
                 //上传身份证图
