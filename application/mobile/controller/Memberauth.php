@@ -4,7 +4,7 @@ namespace app\mobile\controller;
 
 use think\Lang;
 use process\Process;
-// use think\Log;
+use think\Log;
 
 class Memberauth extends MobileMall
 {
@@ -83,15 +83,23 @@ class Memberauth extends MobileMall
                         $IdCardValidate['member_back'] = BASE_UPLOAD_PATH . "/home/idcard_image/".$upload['member_idcard_image3'];
                     }
                 }
+
                 $AliMethod = new \libr\AliMethod([]);
+                $writeLog = [
+                    'logName' =>'实名认证',
+                    'AliMethod' =>$AliMethod,
+                    'IdCardValidate' =>$IdCardValidate
+                ];
                 //判断身份证正面
                 $member_face_validate = $AliMethod->OcrIdcard($IdCardValidate,'face');
+                $writeLog['member_face_validate'] = $member_face_validate;
                 if ($member_face_validate['code']==100) {
                     output_error($member_face_validate['msg']);
                 }
                 
                 //判断身份证反面
                 $member_back_validate = $AliMethod->OcrIdcard($IdCardValidate,'back');
+                $writeLog['member_back_validate'] = $member_back_validate;
                 if ($member_back_validate['code']==100) {
                     output_error($member_back_validate['msg']);
                 }
@@ -116,10 +124,13 @@ class Memberauth extends MobileMall
                 );
                 //银联三要素详情版本验证
                 $bankValidate = $AliMethod->bankCheckNew($bank_array);
+                $writeLog['bank_array'] = $bank_array;
+                $writeLog['bankValidate'] = $bankValidate;
                 unset($bank_array['member_idcard']);
                 if ($bankValidate['code']==100) {
                     output_error($bankValidate['msg']);
                 }
+                Log::write($writeLog);
                 //判断是否为真实姓名 -- 如果银联三要素通过，实名验证可跳过
                 // $IdValidate = $AliMethod->NidCard($member_array);
                 // if ($IdValidate['code']==100) {
