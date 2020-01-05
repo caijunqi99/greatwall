@@ -243,6 +243,9 @@ class AliMethod{
 			case '9999':
 				$return['msg']	= '服务异常';
 				break;
+			default:
+				$return['msg']	= '服务异常';
+				break;
     	}
     	$return['msg'] = '银行卡验证：'.$return['msg'];
     	return $return;
