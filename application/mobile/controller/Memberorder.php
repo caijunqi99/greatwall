@@ -406,7 +406,7 @@ class Memberorder extends MobileMember {
 
         $result = model('express')->queryExpress(input('param.express_code'),input('param.shipping_code'),input('param.phone'));
         if ($result['Success'] != true) {
-            output_error('订单不存在1');
+            output_error('订单不存在');
         }
         $content['Traces'] = array_reverse($result['Traces']);
         $output = array();
@@ -418,7 +418,7 @@ class Memberorder extends MobileMember {
             }
         }
         if (empty($output))
-            output_error('订单不存在2');
+            output_error('物流单号不正确！');
 
         // output_data($output);
         output_data($result['Traces']);
