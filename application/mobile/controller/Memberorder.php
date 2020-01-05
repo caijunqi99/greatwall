@@ -418,7 +418,7 @@ class Memberorder extends MobileMember {
             }
         }
         if (empty($output))
-            output_error('物流单号不正确！');
+            output_error('暂无物流信息！');
 
         // output_data($output);
         output_data($result['Traces']);
