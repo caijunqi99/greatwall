@@ -46,7 +46,7 @@ class Memberpoints extends MobileMember
                         }
                     }
                 }
-                $list_log[$key]['pl_desc']=$desc;
+                // $list_log[$key]['pl_desc']=$desc;
             }
         }
         output_data(array('log_list' => $list_log), mobile_page($points_model->page_info));
