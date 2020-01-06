@@ -26,22 +26,22 @@ class Memberpoints extends MobileMember
                 $list_log[$key]['addtimetext'] = date('Y-m-d', $value['pl_addtime']);
                 if($value['pl_points']!=0){
                     if($value['pl_points']>0){
-                        $desc="冻结积分增加".$value['pl_points']."积分";
+                        $desc="冻结积分+".$value['pl_points']."积分";
                     }else{
-                        $desc="冻结积分减少".$value['pl_points']."积分";
+                        $desc="冻结积分".$value['pl_points']."积分";
                     }
                     if($value['pl_pointsav']!=0) {
                         if ($value['pl_pointsav'] > 0) {
-                            $desc = $desc . "，可用积分增加" . $value['pl_pointsav'] . "积分";
+                            $desc = $desc . "，可用积分+" . $value['pl_pointsav'] . "积分";
                         } else {
-                            $desc = $desc . "，可用积分减少" . $value['pl_pointsav'] . "积分";
+                            $desc = $desc . "，可用积分" . $value['pl_pointsav'] . "积分";
                         }
                     }
                 }else{
                     if($value['pl_pointsav']>0){
-                        $desc="可用积分增加".$value['pl_pointsav']."积分";
+                        $desc="可用积分+".$value['pl_pointsav']."积分";
                     }else{
-                        $desc="可用积分减少".$value['pl_pointsav']."积分";
+                        $desc="可用积分".$value['pl_pointsav']."积分";
                     }
                 }
                 $list_log[$key]['pl_desc']=$desc;
