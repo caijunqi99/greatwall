@@ -410,7 +410,7 @@ class Memberorder extends MobileMember {
         }
         $content['Traces'] = array_reverse($result['Traces']);
         $output = array();
-        if (is_array($content['Traces'])) {
+        if ( isset($content['Traces']) && is_array($content['Traces'])) {
             foreach ($content['Traces'] as $k => $v) {
                 if ($v['AcceptTime'] == '')
                     continue;
