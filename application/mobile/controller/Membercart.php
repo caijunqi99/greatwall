@@ -149,11 +149,12 @@ class Membercart extends MobileMember {
             $condition = array();
             $condition['buyer_id'] = $this->member_info['member_id'];
             $condition['cart_id'] = $cart_id;
-
             $result = $model_cart->delCart('db', $condition);
+            output_data(['state'=>true]);
+        }else{
+            output_error('未获取到该条购物车信息！');
         }
 
-        output_data(['state'=>true]);
     }
 
     /**
