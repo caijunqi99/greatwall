@@ -1132,6 +1132,14 @@ function encrypt_show($str, $start, $length)
     return implode('', $array);
 }
 
+function str_insert($str, $i, $substr) {     
+    //通过遍历获取字符串的前半部分
+    $array = str_split($str);
+    $array[$i-1] .=$substr; 
+    //字符串重新组装
+    return implode('', $array);
+} 
+
 /**
  * CURL请求
  * @param $url 请求url地址

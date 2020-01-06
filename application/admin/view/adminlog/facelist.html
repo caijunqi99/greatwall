@@ -1,6 +1,6 @@
 {include file="public/header" /}
-
-
+<link rel="stylesheet" href="{$Think.PLUGINS_SITE_ROOT}/layer/css/layui.css"  media="all">
+<script src="{$Think.PLUGINS_SITE_ROOT}/layer/layui.js"></script>
 
 <div class="page">
     <div class="fixed-bar">
@@ -28,8 +28,7 @@
       </thead>
       <tbody>
         {notempty name="lst"}
-        {foreach name="lst" item="value"}
-        {foreach name="$value.data" item="val"}
+        {foreach name="$lst" item="val"}
         {foreach name="$val.data" item="v" key='k'}
         <tr class="hover member" id="log_{$v.date}">
           <td class="align-center">{$val.id}</td>
@@ -43,17 +42,53 @@
         </tr>
         {/foreach}
         {/foreach}
-        {/foreach}
         {else /}
         <tr class="no_data">
           <td colspan="11">{$Think.lang.ds_no_record}</td>
         </tr>
         {/notempty}
+
+        
       </tbody>
       
     </table>
+<!--     <div class="layui-collapse" lay-accordion="">
+        {foreach name="$lst" item="val"}
+          <div class="layui-colla-item">
+            <h2 class="layui-colla-title">{$val.value} ({$val.count})条</h2>
+
+            <div class="layui-colla-content layui-show">
+              {foreach name="$val.data" item="v" key='k'}
+              <div class="layui-collapse" lay-accordion="">
+                <div class="layui-colla-item">
+                  <h2 class="layui-colla-title">{$v.id}
+                    <a style="float: right;" href="javascript:checkError('{$v.id}','check','{$v.date}');" id="{$k+1}" class="dsui-btn-edit"><i class="iconfont"></i>查看内容</a>
+                    <a style="float: right;" href="javascript:checkError('{$v.id}','del','{$v.date}');" ids="{$val.id}_{$k+1}" class="dsui-btn-del"><i class="iconfont"></i>删除</a>
+                    
+                  </h2>
+                  
+                </div>
+              </div>
+              {/foreach}
+            </div>
+          </div>
+        {/foreach}
+    </div> -->
 
 </div>
+
+<script>
+layui.use(['element', 'layer'], function(){
+  var element = layui.element;
+  var layer = layui.layer;
+  
+  //监听折叠
+  element.on('collapse(test)', function(data){
+    layer.msg('展开状态：'+ data.show);
+  });
+});
+</script>
+
 <script type="text/javascript">
     
     function checkError(id,act,t) {

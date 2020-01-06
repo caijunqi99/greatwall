@@ -68,6 +68,18 @@ class Adminlog extends AdminControl
         
         $api->virtualRoot("folder");
         $lst = $api->ls("/", TRUE,'all');
+        $lst = $lst[0]['data'];
+        foreach ($lst as $k => $v) {
+            $lst[$k]['value'] = str_insert($v['value'],4,'-');
+            $lst[$k]['count'] = count($v['data']);
+            $lst[$k]['date'] = date('Y-m-d H:i:s',$v['date']);
+            if (!empty($v['data'])) {
+                foreach ($v['data'] as $key => $value) {
+                    $lst[$k]['data'][$key]['size'] = TransByte($value['size']);
+                    $lst[$k]['data'][$key]['date'] = date('Y-m-d H:i:s',$value['date']);
+                }
+            }
+        }
         // p($lst);
         $this->assign('lst',$lst);
         $this->setAdminCurItem('facelist');
@@ -92,6 +104,7 @@ class Adminlog extends AdminControl
         }
         echo $text;
     }
+
 
 
     /**

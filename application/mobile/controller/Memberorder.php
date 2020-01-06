@@ -409,6 +409,7 @@ class Memberorder extends MobileMember {
             output_error('订单不存在');
         }
         $content['Traces'] = array_reverse($result['Traces']);
+
         $output = array();
         if ( isset($content['Traces']) && is_array($content['Traces'])) {
             foreach ($content['Traces'] as $k => $v) {
@@ -419,7 +420,7 @@ class Memberorder extends MobileMember {
         }
         if (empty($output))
             output_error('暂无物流信息！');
-
+        $result['Traces'] = array_reverse($result['Traces']);
         // output_data($output);
         output_data($result['Traces']);
     }
