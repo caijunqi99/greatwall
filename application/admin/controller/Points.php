@@ -133,8 +133,8 @@ class Points extends AdminControl {
             $data = [
                 'member_name' => input('post.member_name'),
                 'points_type' => input('post.points_type'),
-                'points_num' => intval(input('post.points_num')),
-                'points_num_av' => intval(input('post.points_num_av')),
+                'points_num' => input('post.points_num'),
+                'points_num_av' => input('post.points_num_av'),
                 'points_desc' => input('post.points_desc'),
             ];
             $point_validate = validate('point');
