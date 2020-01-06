@@ -30,23 +30,19 @@ class Memberpoints extends MobileMember
                     }else{
                         $desc="冻结积分减少".$value['pl_points']."积分";
                     }
-                    if($value['pl_pointsav']!=0){
-                        if($value['pl_pointsav']>0){
-                            $desc=$desc."，可用积分增加".$value['pl_pointsav']."积分";
-                        }else{
-                            $desc=$desc."，可用积分减少".$value['pl_pointsav']."积分";
-                        }
+                    if($value['pl_pointsav']>0){
+                        $desc=$desc."，可用积分增加".$value['pl_pointsav']."积分";
+                    }else{
+                        $desc=$desc."，可用积分减少".$value['pl_pointsav']."积分";
                     }
                 }else{
-                    if($value['pl_pointsav']!=0){
-                        if($value['pl_pointsav']>0){
-                            $desc="可用积分增加".$value['pl_pointsav']."积分";
-                        }else{
-                            $desc="可用积分减少".$value['pl_pointsav']."积分";
-                        }
+                    if($value['pl_pointsav']>0){
+                        $desc="可用积分增加".$value['pl_pointsav']."积分";
+                    }else{
+                        $desc="可用积分减少".$value['pl_pointsav']."积分";
                     }
                 }
-                // $list_log[$key]['pl_desc']=$desc;
+                $list_log[$key]['pl_desc']=$desc;
             }
         }
         output_data(array('log_list' => $list_log), mobile_page($points_model->page_info));
