@@ -1160,11 +1160,15 @@ class Buy extends Model
         if (empty($string))
             return;
         $string = base64_decode(ds_decrypt(strval($string), $buy_key, $ttl));
+        $string = $this->mb_unserialize($string);
         $tmp = @unserialize($string);
         return $tmp !== false ? $tmp : $string;
         // return ($tmp = @unserialize($string)) !== false ? $tmp : $string;
     }
 
+    public function mb_unserialize($str) {
+        return preg_replace_callback('#s:(\d+):"(.*?)";#s',function($match){return 's:'.strlen($match[2]).':"'.$match[2].'";';},$str);
+    }
     /**
      * 得到所购买的id和数量
      *
