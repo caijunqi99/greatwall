@@ -277,7 +277,8 @@ class Payment extends Model
             $member_info = $model_member->getMemberInfoByID($order['data']['pdr_member_id']);
             $writeLog['member_info'] = $member_info;
             $writeLog['api_pay_amount'] = $order['data']['api_pay_amount'];
-            Log::write($writeLog);
+            //写入日志中用于debug
+            // Log::write($writeLog);
             Model('Predeposit')->PdRebate($member_info,$order['data']['api_pay_amount']);
             //返利完成
             

@@ -539,33 +539,39 @@ class Predeposit extends Model {
         }
         //积分变动
         //积分记录表
-        $insert_arr['pl_memberid'] = $member_info_one['member_id'];
-        $insert_arr['pl_membername'] = $member_info_one['member_name'];
-        if($list_config['way']==1) {
-            $insert_arr['pl_points'] = 0;
-            $insert_arr['pl_pointsav'] = $amount * $exppointone / 100;
-            $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原可用积分为：".$member_info_one['member_points_available'];
-        }else if($list_config['way']==2){
-            $insert_arr['pl_points'] = $amount * $exppointone / 100;
-            $insert_arr['pl_pointsav'] = 0;
-            $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$member_info_one['member_points'];
-        }
-        $insert_arr['pl_adminname'] = !empty(session('admin_name'))?session('admin_name'):'';
-        model('points')->savePointslog('system', $insert_arr);
-        if(isset($member_info_two)){
-            $insert_arrs['pl_memberid'] = $member_info_two['member_id'];
-            $insert_arrs['pl_membername'] = $member_info_two['member_name'];
+        if ($exppointone!=0) {
+            $insert_arr['pl_memberid'] = $member_info_one['member_id'];
+            $insert_arr['pl_membername'] = $member_info_one['member_name'];
             if($list_config['way']==1) {
-               $insert_arrs['pl_points'] = 0;
-               $insert_arrs['pl_pointsav'] = $amount*$exppointtwo/100;
-                $insert_arrs['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原可用积分为：".$member_info_two['member_points_available'];
-            }elseif($list_config['way']==2){
-                $insert_arrs['pl_points'] = $amount * $exppointtwo / 100;
-                $insert_arrs['pl_pointsav'] = 0;
-                $insert_arrs['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$member_info_two['member_points'];
+                $insert_arr['pl_points'] = 0;
+                $insert_arr['pl_pointsav'] = $amount * $exppointone / 100;
+                $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原可用积分为：".$member_info_one['member_points_available'];
+            }else if($list_config['way']==2){
+                $insert_arr['pl_points'] = $amount * $exppointone / 100;
+                $insert_arr['pl_pointsav'] = 0;
+                $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$member_info_one['member_points'];
             }
-            $insert_arrs['pl_adminname'] = !empty(session('admin_name'))?session('admin_name'):'';
-            model('points')->savePointslog('system', $insert_arrs);
+            $insert_arr['pl_adminname'] = !empty(session('admin_name'))?session('admin_name'):'';
+            model('points')->savePointslog('system', $insert_arr);
+        }
+        
+        if(isset($member_info_two)){
+            if ($exppointtwo!=0) {
+
+                $insert_arrs['pl_memberid'] = $member_info_two['member_id'];
+                $insert_arrs['pl_membername'] = $member_info_two['member_name'];
+                if($list_config['way']==1) {
+                   $insert_arrs['pl_points'] = 0;
+                   $insert_arrs['pl_pointsav'] = $amount*$exppointtwo/100;
+                    $insert_arrs['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原可用积分为：".$member_info_two['member_points_available'];
+                }elseif($list_config['way']==2){
+                    $insert_arrs['pl_points'] = $amount * $exppointtwo / 100;
+                    $insert_arrs['pl_pointsav'] = 0;
+                    $insert_arrs['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$member_info_two['member_points'];
+                }
+                $insert_arrs['pl_adminname'] = !empty(session('admin_name'))?session('admin_name'):'';
+                model('points')->savePointslog('system', $insert_arrs);
+            }
         }
 
         //子公司返利
