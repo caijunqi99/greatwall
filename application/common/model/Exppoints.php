@@ -57,7 +57,7 @@ class Exppoints extends Model {
                 $insertarr['explog_points'] = 0;
                 $exppoints_rule['exp_orderrate'] = floatval($exppoints_rule['exp_orderrate']);
                 if ($insertarr['orderprice'] && $exppoints_rule['exp_orderrate'] > 0) {
-                    $insertarr['explog_points'] = @number_format($insertarr['orderprice'] / $exppoints_rule['exp_orderrate'],2);
+                    $insertarr['explog_points'] = $insertarr['orderprice'] / $exppoints_rule['exp_orderrate'];
                     $exp_ordermax = intval($exppoints_rule['exp_ordermax']);
                     if ($exp_ordermax > 0 && $insertarr['explog_points'] > $exp_ordermax) {
                         $insertarr['explog_points'] = $exp_ordermax;
