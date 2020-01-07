@@ -1,0 +1,38 @@
+{include file="public/header" /}
+
+
+
+<div class="page">
+
+    <!--<div class="explanation" id="explanation">-->
+    <!--<ul>-->
+    <!--<li>下级总人数：</li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <table class="ds-default-table">
+        <thead>
+        <tr>
+            <th>股东ID</th>
+            <th>股东手机号</th>
+            <th>添加时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {notempty name="share_list"}
+        {foreach name="share_list" item="v" key="k"}
+        <tr>
+            <td>{$v.m_id}</td>
+            <td>{$v.mobile}</td>
+            <td>{:date('Y-m-d H:i:s',$v.s_addtime)}</td>
+            <td><a href="javascript:dsLayerOpen('{:url('Companys/sharedel',['s_id'=>$v.s_id])}','{$Think.lang.ds_del}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.ds_del}</a></td>
+        </tr>
+        {/foreach}
+        {else /}
+        <tr class="no_data">
+            <td colspan="15">{$Think.lang.ds_no_record}</td>
+        </tr>
+        {/notempty}
+        </tbody>
+    </table>
+</div>
