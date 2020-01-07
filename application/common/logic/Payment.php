@@ -233,6 +233,14 @@ class Payment extends Model
      * @param type $payment_code  #支付方式代号
      */
     public function updateOrder($out_trade_no1,$trade_no,$order_type,$payment_code){
+        $writeLog = [
+            'logName' =>'支付回调',
+            'out_trade_no1' =>$out_trade_no1,
+            'trade_no' =>$trade_no,
+            'order_type' =>$order_type,
+            'payment_code' =>$payment_code
+        ];
+        
         $out_trade_no = explode('_', $out_trade_no1);
         if (strlen(current($out_trade_no)) != 20) {
             $out_trade_no = end($out_trade_no);
@@ -267,6 +275,9 @@ class Payment extends Model
             //储值卡充值返利
             $model_member = Model('member');
             $member_info = $model_member->getMemberInfoByID($order['data']['pdr_member_id']);
+            $writeLog['member_info'] = $member_info;
+            $writeLog['api_pay_amount'] = $order['data']['api_pay_amount'];
+            Log::write($writeLog);
             Model('Predeposit')->PdRebate($member_info,$order['data']['api_pay_amount']);
             //返利完成
             
