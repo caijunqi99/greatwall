@@ -84,4 +84,9 @@ $lang['member_add_mobile_length_c'] = '该手机号码已经是会员，请重�
 $lang['member_add_mobile_length'] = '请输入正确的手机号';
 $lang['member_add_invite_length'] = '请输入正确的邀请码';
 $lang['member_add_invite_length_c'] = '该邀请码不存在，请输入有效的邀请码';
+
+$lang['ds_shareholder']='添加股东';
+$lang['ds_sharelist']='股东列表';
+$lang['ds_share_error']='该用户已是股东身份，添加失败！';
+$lang['ds_share_level_chooses']='该用户无法设置为股东(用户未注册或已经是股东)';
 ?>

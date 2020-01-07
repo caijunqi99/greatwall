@@ -72,6 +72,8 @@
             </td>
             <td>{$v.member_areainfo}</td>
             <td class="align-center">
+                <a href="javascript:dsLayerOpen('{:url('Companys/shareholderadd',['company_id'=>$v.company_id])}','{$Think.lang.ds_shareholder}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.ds_shareholder}</a>
+                <a href="javascript:dsLayerOpen('{:url('Companys/sharelist',['company_id'=>$v.company_id])}','{$Think.lang.ds_sharelist}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.ds_sharelist}</a>
                 <a href="javascript:dsLayerOpen('{:url('Companys/del',['company_id'=>$v.company_id])}','{$Think.lang.ds_edit}')" class="dsui-btn-edit"><i class="iconfont"></i>{$Think.lang.ds_del}</a>
             </td>
         </tr>

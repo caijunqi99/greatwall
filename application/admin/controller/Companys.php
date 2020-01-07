@@ -144,6 +144,111 @@ class Companys extends AdminControl {
                 break;
         }
     }
+    /**
+     * 子公司添加股东
+     */
+    public function shareholderadd(){
+        if (!request()->isPost()) {
+            $company_id = input('param.company_id');
+            $this->assign('company_id', $company_id);
+            return $this->fetch();
+        } else {
+            $condition['member_mobile'] = input('post.member_phone');
+            $member_model = model('member');
+            $member_array = $member_model->getMemberInfo($condition);
+            $shareholder_model = model('shareholder');
+            $data = array(
+                'c_id' => input('post.c_id'),
+                'm_id' => $member_array['member_id'],
+                's_addtime' => TIMESTAMP,
+                's_del'=>0
+            );
+            $datas = array(
+                'm_id' => $member_array['member_id'],
+                's_del' =>0
+            );
+            $res=$shareholder_model->getShareholder($datas);
+            if(empty($res)) {
+                $result = $shareholder_model->addShareholder($data);
+                if ($result) {
+                    dsLayerOpenSuccess(lang('ds_common_op_succ'));
+                } else {
+                    $this->error(lang('member_add_fail'));
+                }
+            }else{
+                $this->error(lang('ds_share_error'));
+            }
+        }
+    }
+    /**
+     * ajax操作
+     */
+    public function ajaxs() {
+        $branch = input('param.branch');
+
+        switch ($branch) {
+            /**
+             * 验证手机号
+             */
+            case 'member_phone':
+                $member_model = model('member');
+                $condition['member_mobile'] = input('param.member_phone');
+                $list = $member_model->getMemberInfo($condition);
+                if (empty($list)) {
+                    echo 'false';
+                    exit;
+                } else {
+                    $shareholder_model=model('shareholder');
+                    $conditions['s_del']=0;
+                    $conditions['m_id']=$list['member_id'];
+                    $lists=$shareholder_model->getShareholder($conditions);
+                    if(empty($lists)) {
+                        echo 'true';
+                        exit;
+                    }else{
+                        echo 'false';
+                        exit;
+                    }
+                }
+                break;
+        }
+    }
+    /**
+     * 股东列表
+    */
+    public function sharelist(){
+        $company_id = input('param.company_id');
+        if (empty($company_id)) {
+            $this->error(lang('param_error'));
+        }
+        $share_model = model('shareholder');
+        //股东信息
+        $share_list = $share_model->getShareList(array('c_id'=>$company_id,'s_del'=>0), '*');
+        $member_model = model('member');
+        foreach($share_list as $k=>$v){
+            $member_list = $member_model->getMemberInfoByID($v['m_id']);
+            $share_list[$k]['mobile']=$member_list['member_mobile'];
+        }
+        $this->assign('share_list', $share_list);
+        $this->setAdminCurItem('sharelist');
+        return $this->fetch();
+    }
+    /**
+     * 删除股东
+    */
+    public function sharedel() {
+        $s_id = input('param.s_id');
+        if (empty($s_id)) {
+            $this->error(lang('param_error'));
+        }
+        $shareholder_model = model('shareholder');
+        $result = $shareholder_model->editShare(array('s_id'=>intval($s_id)),array("s_del"=>1));
+        if ($result>=0) {
+            dsLayerOpenSuccess(lang('ds_common_op_succ'));
+        } else {
+            $this->error(lang('ds_common_op_fail'));
+        }
+    }
 
     /**
      * 获取卖家栏目列表,针对控制器下的栏目
