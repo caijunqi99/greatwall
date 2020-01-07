@@ -573,7 +573,13 @@ class Predeposit extends Model {
                 model('points')->savePointslog('system', $insert_arrs);
             }
         }
-
+        //添加会员经验值
+        model('exppoints')->saveExppointslog('order', array(
+            'explog_memberid' => $member_info['member_id'], 'explog_membername' => $member_info['member_name'],
+            'orderprice' => $amount,
+            'explog_desc'=>"用户".$member_info['member_name']."充值".$amount."元"
+        ), true);
+        
         //子公司返利
         $company_model = model('company');
         //村级
