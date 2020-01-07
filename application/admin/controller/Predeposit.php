@@ -345,7 +345,7 @@ class Predeposit extends AdminControl {
         }else if($list_config['way']==2){
             $insert_arr['pl_points'] = $amount * $exppointone / 100;
             $insert_arr['pl_pointsav'] = 0;
-            $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$member_info_one['member_points_available'];
+            $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$member_info_one['member_points'];
         }
         $insert_arr['pl_adminname'] = session('admin_name');
         model('points')->savePointslog('system', $insert_arr);
@@ -359,7 +359,7 @@ class Predeposit extends AdminControl {
             }elseif($list_config['way']==2){
                 $insert_arrs['pl_points'] = $amount * $exppointtwo / 100;
                 $insert_arrs['pl_pointsav'] = 0;
-                $insert_arrs['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$member_info_two['member_points_available'];
+                $insert_arrs['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$member_info_two['member_points'];
             }
             $insert_arrs['pl_adminname'] = session('admin_name');
             model('points')->savePointslog('system', $insert_arrs);
@@ -380,7 +380,7 @@ class Predeposit extends AdminControl {
             }elseif($list_config['companyway']==2){
                 $insert_arr['pl_points'] = $amount * $list_config['village_scale'] / 100;
                 $insert_arr['pl_pointsav'] = 0;
-                $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$village_info['member_points_available'];
+                $insert_arr['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$village_info['member_points'];
             }
             $insert_arr['pl_adminname'] = session('admin_name');
             model('points')->savePointslog('system', $insert_arr);
@@ -398,7 +398,7 @@ class Predeposit extends AdminControl {
             }elseif($list_config['companyway']==2){
                 $insert_arrtown['pl_points'] = $amount * $list_config['town_scale'] / 100;
                 $insert_arrtown['pl_pointsav'] = 0;
-                $insert_arrtown['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$town_info['member_points_available'];
+                $insert_arrtown['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$town_info['member_points'];
             }
             $insert_arrtown['pl_adminname'] = session('admin_name');
             model('points')->savePointslog('system', $insert_arrtown);
@@ -416,7 +416,7 @@ class Predeposit extends AdminControl {
             }elseif($list_config['companyway']==2){
                 $insert_arrarea['pl_points'] = $amount*$list_config['county_scale']/100;
                 $insert_arrarea['pl_pointsav'] = 0;
-                $insert_arrarea['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$area_info['member_points_available'];
+                $insert_arrarea['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$area_info['member_points'];
             }
             $insert_arrarea['pl_adminname'] = session('admin_name');
             model('points')->savePointslog('system', $insert_arrarea);
@@ -434,7 +434,7 @@ class Predeposit extends AdminControl {
             }elseif($list_config['companyway']==2){
                 $insert_arrcity['pl_points'] = $amount*$list_config['city_scale']/100;
                 $insert_arrcity['pl_pointsav'] = 0;
-                $insert_arrcity['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$city_info['member_points_available'];
+                $insert_arrcity['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$city_info['member_points'];
             }
             $insert_arrcity['pl_adminname'] = session('admin_name');
             model('points')->savePointslog('system', $insert_arrcity);
@@ -452,7 +452,7 @@ class Predeposit extends AdminControl {
             }elseif($list_config['companyway']==2){
                 $insert_arrpro['pl_points'] = $amount*$list_config['province_scale']/100;
                 $insert_arrpro['pl_pointsav'] = 0;
-                $insert_arrpro['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$province_info['member_points_available'];
+                $insert_arrpro['pl_desc'] ="来自".$member_info['member_name']."充值返利,充值金额：".$amount."元，原冻结积分为：".$province_info['member_points'];
             }
             $insert_arrpro['pl_adminname'] = session('admin_name');
             model('points')->savePointslog('system', $insert_arrpro);
