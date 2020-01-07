@@ -896,11 +896,12 @@ class Buy_1 extends Model
             ), true);
         }
         //添加会员经验值
-        model('exppoints')->saveExppointslog('order', array(
-            'explog_memberid' => $order_info['buyer_id'], 'explog_membername' => $order_info['buyer_name'],
-            'orderprice' => $order_info['order_amount'], 'order_sn' => $order_info['order_sn'],
-            'order_id' => $order_info['order_id']
-        ), true);
+        // model('exppoints')->saveExppointslog('order', array(
+        //     'explog_memberid' => $order_info['buyer_id'], 'explog_membername' => $order_info['buyer_name'],
+        //     'orderprice' => $order_info['order_amount'], 'order_sn' => $order_info['order_sn'],
+        //     'order_id' => $order_info['order_id']
+        // ), true);
+        
         //邀请人获得返利积分
         // $inviter_id = ds_getvalue_byname('member', 'member_id', $order_info['member_id'], 'inviter_id');
         // if(!empty($inviter_id)) {
