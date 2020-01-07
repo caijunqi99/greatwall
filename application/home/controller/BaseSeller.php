@@ -256,7 +256,7 @@ class BaseSeller extends BaseMall
                     'submenu' => array(
 //                        array('name' => 'Sellergroupbuy', 'text' => lang('snap_up_management'), 'controller' => 'Sellergroupbuy', 'url' => url('Sellergroupbuy/index'),),
 //                        array('name' => 'Sellerpromotionxianshi', 'text' => lang('time_discount'), 'controller' => 'Sellerpromotionxianshi', 'url' => url('Sellerpromotionxianshi/index'),),
-//                        array('name' => 'Sellermgdiscount', 'text' => lang('membership_level_discount'), 'controller' => 'Sellerpromotionmgdiscount', 'url' => url('Sellerpromotionmgdiscount/mgdiscount_store'),),
+                        array('name' => 'Sellermgdiscount', 'text' => lang('membership_level_discount'), 'controller' => 'Sellerpromotionmgdiscount', 'url' => url('Sellerpromotionmgdiscount/mgdiscount_store'),),
 //                        array('name' => 'Sellerpromotionpintuan', 'text' => lang('syndication'), 'controller' => 'Sellerpromotionpintuan', 'url' => url('Sellerpromotionpintuan/index'),),
 //                        array('name' => 'Sellerpromotionbargain', 'text' => lang('baseseller_bargain'), 'controller' => 'Sellerpromotionbargain', 'url' => url('Sellerpromotionbargain/index'),),
 //                        array('name' => 'Sellerpromotionmansong', 'text' => lang('free_on_delivery'), 'controller' => 'Sellerpromotionmansong', 'url' => url('Sellerpromotionmansong/index'),),
