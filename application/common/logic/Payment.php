@@ -267,7 +267,7 @@ class Payment extends Model
             //储值卡充值返利
             $model_member = Model('member');
             $member_info = $model_member->getMemberInfoByID($order['data']['pdr_member_id']);
-            Model('Predeposit')->PdRebate($order['data']['pdr_member_id'],$order['data']['api_pay_amount']);
+            Model('Predeposit')->PdRebate($member_info,$order['data']['api_pay_amount']);
             //返利完成
             
             $result = $this->updatePdOrder($out_trade_no, $payment_code, $order['data'], $trade_no);
