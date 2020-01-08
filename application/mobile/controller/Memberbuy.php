@@ -40,21 +40,21 @@ class Memberbuy extends MobileMember
         $logic_buy = model('buy','logic');
 
         //得到会员等级
-       /* $model_member = Model('member');
+        $model_member = Model('member');
         $member_info = $model_member->getMemberInfoByID($this->member_info['member_id']);
 
         if ($member_info) {
             $member_gradeinfo = $model_member->getOneMemberGrade(intval($member_info['member_exppoints']));
-            $member_discount = $member_gradeinfo['orderdiscount'];
+            //$member_discount = $member_gradeinfo['orderdiscount'];
             $member_level = $member_gradeinfo['level'];
         }
         else {
-            $member_discount = $member_level = 0;
-        }*/
+            $member_level = 0;
+        }
 
         //得到购买数据
         $ifcart=!empty($_POST['ifcart'])?true:false;
-        $result = $logic_buy->buyStep1($cart_id, $ifcart, $this->member_info['member_id'], $this->member_info['store_id']);
+        $result = $logic_buy->buyStep1($cart_id, $ifcart, $this->member_info['member_id'], $this->member_info['store_id'],$member_level);
         if (!$result['code']) {
             output_error($result['msg']);
         }
