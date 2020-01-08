@@ -51,8 +51,10 @@ class Buy extends Model
      * @param type $extra  额外特殊判断处理数据，比如拼团功能  
      * @return type
      */
-    public function buyStep1($cart_id, $ifcart, $member_id, $store_id,$extra=array())
+    public function buyStep1($cart_id, $ifcart, $member_id, $store_id,$extra=array(),$level)
     {
+        //用户等级
+        $this->_logic_buy_1->levelInfo=$level;
         //得到购买商品信息
         if ($ifcart) {
             $result = $this->getCartList($cart_id, $member_id);
