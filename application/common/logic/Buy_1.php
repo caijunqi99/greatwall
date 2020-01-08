@@ -55,8 +55,7 @@ class Buy_1 extends Model
             $this->getBargainInfo($goods_info, $goods_info['goods_num'],$extra);
         } else {
             //会员等级折扣
-            $level='';
-            $this->getMgdiscountInfo($goods_info,$level);
+            $this->getMgdiscountInfo($goods_info);
             //抢购
             $this->getGroupbuyInfo($goods_info, $goods_info['goods_num']);
             //限时折扣
@@ -371,14 +370,10 @@ class Buy_1 extends Model
      * @param array $goods_info
      * @param number $level 会员等级
      */
-    public function getMgdiscountInfo(& $goods_info,$level){
-        $levels = intval(session('level'));
-        if(empty($levels)) {
-            if ($level=='') {
+    public function getMgdiscountInfo(& $goods_info){
+        $level = intval(session('level'));
+        if(empty($level)) {
                 $level = $this->levelInfo;
-            }
-        }else{
-            $level=$levels;
         }
         if (!config('mgdiscount_allow') || empty($goods_info['mgdiscount_info']) || $level<=0){
             return;
