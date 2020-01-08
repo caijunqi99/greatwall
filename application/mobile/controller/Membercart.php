@@ -22,7 +22,7 @@ class Membercart extends MobileMember {
 
         //得到会员等级
         $model_member = Model('member');
-        $member_info = $model_member->getMemberInfoByID(session('member_id'));
+        $member_info = $model_member->getMemberInfoByID($this->member_info['member_id']);
 
         if ($member_info) {
             $member_gradeinfo = $model_member->getOneMemberGrade(intval($member_info['member_exppoints']));
@@ -96,7 +96,7 @@ class Membercart extends MobileMember {
 
             //得到会员等级
             $model_member = Model('member');
-            $member_info = $model_member->getMemberInfoByID(session('member_id'));
+            $member_info = $model_member->getMemberInfoByID($this->member_info['member_id']);
 
             if ($member_info) {
                 $member_gradeinfo = $model_member->getOneMemberGrade(intval($member_info['member_exppoints']));
