@@ -53,7 +53,6 @@ class Buy extends Model
      */
     public function buyStep1($cart_id, $ifcart, $member_id, $store_id,$extra=array())
     {
-
         //得到购买商品信息
         if ($ifcart) {
             $result = $this->getCartList($cart_id, $member_id);
@@ -256,14 +255,15 @@ class Buy extends Model
      * @param string $member_email
      * @return array
      */
-    public function buyStep2($post, $member_id, $member_name, $member_email)
+    public function buyStep2($post, $member_id, $member_name, $member_email,$level)
     {
 
         $this->_member_info['member_id'] = $member_id;
         $this->_member_info['member_name'] = $member_name;
         $this->_member_info['member_email'] = $member_email;
         $this->_post_data = $post;
-
+        //用户等级
+        $this->_logic_buy_1->levelInfo=$level;
         try {
 
             $order_model = model('order');

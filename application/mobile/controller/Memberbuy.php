@@ -27,6 +27,7 @@ class Memberbuy extends MobileMember
         }
     }
 
+
     /**
      * 购物车、直接购买第一步:选择收获地址和配置方式
      */
@@ -212,18 +213,18 @@ class Memberbuy extends MobileMember
         $logic_buy = model('buy','logic');
 
         //得到会员等级
-       /* $model_member = Model('member');
+       $model_member = Model('member');
         $member_info = $model_member->getMemberInfoByID($this->member_info['member_id']);
         if ($member_info) {
             $member_gradeinfo = $model_member->getOneMemberGrade(intval($member_info['member_exppoints']));
-            $member_discount = $member_gradeinfo['orderdiscount'];
+            //$member_discount = $member_gradeinfo['orderdiscount'];
             $member_level = $member_gradeinfo['level'];
         }
         else {
-            $member_discount = $member_level = 0;
-        }*/
+             $member_level = 0;
+        }
 
-        $result = $logic_buy->buyStep2($param, $this->member_info['member_id'], $this->member_info['member_name'], $this->member_info['member_email']);
+        $result = $logic_buy->buyStep2($param, $this->member_info['member_id'], $this->member_info['member_name'], $this->member_info['member_email'],$member_level);
         if (!$result['code']) {
             output_error($result['msg']);
         }
