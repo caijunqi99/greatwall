@@ -169,7 +169,6 @@ class Memberbuy extends MobileMember
      */
     public function buy_step2()
     {
-        p($this->member_info);exit;
         $param = array();
         $param['ifcart']            = input('param.ifcart');
         $param['cart_id']           = explode(',', input('param.cart_id'));

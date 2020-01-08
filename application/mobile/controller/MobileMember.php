@@ -47,7 +47,7 @@ class MobileMember extends MobileHome {
                     $this->member_info['member_clienttype'] = $mb_user_token_info['member_clienttype'];
                     $this->member_info['member_openid'] = $mb_user_token_info['member_openid'];
                     $this->member_info['member_token'] = $mb_user_token_info['member_token'];
-                    $level_name = $model_member->getOneMemberGrade($mb_user_token_info['member_id']);
+                    $level_name = $model_member->getOneMemberGrade($this->member_info['member_exppoints']);
                     $this->member_info['level'] = $level_name['level'];
                     $this->member_info['level_name'] = $level_name['level_name'];
                     //读取卖家信息
