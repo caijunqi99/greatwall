@@ -385,11 +385,13 @@ class Statmember extends AdminControl {
         $paramtype = trim(input('param.type'));
         switch ($paramtype) {
             case 'orderamount':
+                $type = 'orderamount';
                 $where['statm_orderamount'] = array('gt', 0);
                 $field .= ' ,SUM(statm_orderamount) as orderamount ';
                 $caption = lang('statstore_orderamount');
                 break;
             case 'goodsnum':
+                $type = 'goodsnum';
                 $where['statm_goodsnum'] = array('gt', 0);
                 $field .= ' ,SUM(statm_goodsnum) as goodsnum ';
                 $caption = lang('goodsnum');
