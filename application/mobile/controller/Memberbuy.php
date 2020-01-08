@@ -54,7 +54,8 @@ class Memberbuy extends MobileMember
 
         //得到购买数据
         $ifcart=!empty($_POST['ifcart'])?true:false;
-        $result = $logic_buy->buyStep1($cart_id, $ifcart, $this->member_info['member_id'], $this->member_info['store_id'],$member_level);
+        $extra=array();
+        $result = $logic_buy->buyStep1($cart_id, $ifcart, $this->member_info['member_id'], $this->member_info['store_id'],$extra,$member_level);
         if (!$result['code']) {
             output_error($result['msg']);
         }
