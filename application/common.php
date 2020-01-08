@@ -657,7 +657,7 @@ function get_member_idcard_image($member_image,$if_local=false){
  * @param string $member_avatar
  * @return string
  */
-function get_member_avatar($member_avatar)
+function get_member_avatar($member_avatar,$t=true)
 {
     if (empty($member_avatar)) {
         return UPLOAD_SITE_URL . '/' . ATTACH_COMMON . '/' . 'default_user_portrait.gif';
@@ -665,7 +665,11 @@ function get_member_avatar($member_avatar)
     else {
 
         if (file_exists(BASE_UPLOAD_PATH . '/' . ATTACH_AVATAR . '/' . $member_avatar)) {
-            return UPLOAD_SITE_URL . '/' . ATTACH_AVATAR . '/' . $member_avatar.'?t='.time();
+            if ($t) {
+                return UPLOAD_SITE_URL . '/' . ATTACH_AVATAR . '/' . $member_avatar.'?t='.time();
+            }else{
+                return UPLOAD_SITE_URL . '/' . ATTACH_AVATAR . '/' . $member_avatar;
+            }
         }
         else {
             return UPLOAD_SITE_URL . '/' . ATTACH_COMMON . '/' . 'default_user_portrait.gif';
