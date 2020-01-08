@@ -92,6 +92,8 @@ class Membercart extends MobileMember {
             else {
                 $member_level = 0;
             }
+            $logic_buy = model('buy','logic');
+            $logic_buy->level($member_level);
             //会员等级折扣
             $logic_buy_1->getMgdiscountInfo($goods_info);
 
