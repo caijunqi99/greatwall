@@ -30,14 +30,14 @@
         {notempty name="lst"}
         {foreach name="$lst" item="val"}
         {foreach name="$val.data" item="v" key='k'}
-        <tr class="hover member" id="log_{$v.date}">
+        <tr class="hover member" id="log_{$v.size}">
           <td class="align-center">{$val.id}</td>
           <td class="align-center">{$v.id}</td>
           <td class="align-center">{$val.value}</td>
           <td class="w150 align-center"><p>{:TransByte($v.size)}</p></td>
           <td class="align-center">
-              <a href="javascript:checkError('{$v.id}','check','{$v.date}');" id="{$k+1}" class="dsui-btn-edit"><i class="iconfont"></i>查看内容</a>
-              <a href="javascript:checkError('{$v.id}','del','{$v.date}');" ids="{$val.id}_{$k+1}" class="dsui-btn-del"><i class="iconfont"></i>删除</a>
+              <a href="javascript:checkError('{$v.id}','check','{$v.size}');" id="{$k+1}" class="dsui-btn-edit"><i class="iconfont"></i>查看内容</a>
+              <a href="javascript:checkError('{$v.id}','del','{$v.size}');" ids="{$val.id}_{$k+1}" class="dsui-btn-del"><i class="iconfont"></i>删除</a>
           </td>
         </tr>
         {/foreach}
