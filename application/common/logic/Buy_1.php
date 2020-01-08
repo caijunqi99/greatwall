@@ -11,7 +11,7 @@ use think\Db;
  */
 class Buy_1 extends Model
 {
-    //private $levelInfo;
+    private $levelInfo;
 
     /**
      * 取得商品最新的属性及促销[购物车]
