@@ -382,7 +382,8 @@ class Statmember extends AdminControl {
         $memberlist = array();
         //查询统计数据
         $field = ' statm_memberid, statm_membername ';
-        switch (input('param.type')) {
+        $paramtype = trim(input('param.type'));
+        switch ($paramtype) {
             case 'orderamount':
                 $where['statm_orderamount'] = array('gt', 0);
                 $field .= ' ,SUM(statm_orderamount) as orderamount ';

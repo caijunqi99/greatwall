@@ -3,6 +3,7 @@
 namespace app\mobile\controller;
 
 use think\Lang;
+use think\Log;
 
 class Version extends MobileMall {
 
@@ -27,6 +28,16 @@ class Version extends MobileMall {
         unset($channel['id']);
         $channel['is_update'] =$isupdate;
         output_data($channel);
+    }
+
+    public function logWriteTest(){
+        $ins = [
+            'type' =>'日志写入测试',
+            'request'=>$_REQUEST,
+            'server'=>$_SERVER
+        ];
+        LOG::write($ins);
+        p('日志写入成功');
     }
 
 
