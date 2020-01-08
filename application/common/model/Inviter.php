@@ -140,7 +140,7 @@ class Inviter extends Model {
         $QR_height = imagesy($qrcode);
         imagecopyresampled($inviter_back, $qrcode, 100, 170, 0, 0, 160, 160, $QR_width, $QR_height);
         
-        $portrait = imagecreatefromstring(file_get_contents(str_replace(UPLOAD_SITE_URL, BASE_UPLOAD_PATH, get_member_avatar($member_info['member_avatar']))));
+        $portrait = imagecreatefromstring(file_get_contents(str_replace(UPLOAD_SITE_URL, BASE_UPLOAD_PATH, get_member_avatar($member_info['member_avatar'],false))));
 
         $QR_width2 = imagesx($portrait);
         $QR_height2 = imagesy($portrait);
