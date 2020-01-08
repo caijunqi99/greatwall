@@ -374,7 +374,7 @@ class Buy_1 extends Model
     public function getMgdiscountInfo(& $goods_info,$level){
         $levels = intval(session('level'));
         if(empty($levels)) {
-            if (empty($level)) {
+            if ($level=='') {
                 $level = $this->levelInfo;
             }
         }else{
