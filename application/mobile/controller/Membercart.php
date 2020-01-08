@@ -93,7 +93,7 @@ class Membercart extends MobileMember {
                 $member_level = 0;
             }
             //会员等级折扣
-            $logic_buy_1->getMgdiscountInfo($goods_info,$member_level);
+            $logic_buy_1->getMgdiscountInfo($goods_info);
 
             $this->_check_goods($goods_info, $quantity);
         } elseif (is_numeric($bl_id)&& $bl_id>0 ) {
