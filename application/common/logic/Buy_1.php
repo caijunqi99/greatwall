@@ -11,6 +11,8 @@ use think\Db;
  */
 class Buy_1 extends Model
 {
+    //private $levelInfo;
+
     /**
      * 取得商品最新的属性及促销[购物车]
      * @param unknown $cart_list
@@ -40,7 +42,7 @@ class Buy_1 extends Model
      * 取得商品最新的属性及促销[立即购买]
      * @param type $goods_id
      * @param type $quantity
-     * @param type $extra  
+     * @param type $extra
      * @return array
      */
     public function getGoodsOnlineInfo($goods_id, $quantity,$extra=array(),$member_id=0)
@@ -244,7 +246,7 @@ class Buy_1 extends Model
             $goods_info['ifxianshi'] = true;
         }
     }
-    
+
     /**
      * 判断商品是不是砍价中，如果购买数量若>=规定的下限,则报错
      * @param array $goods_info
@@ -283,7 +285,7 @@ class Buy_1 extends Model
     public function getPintuanInfo(& $goods_info, $quantity,$extra,$member_id){
         if (empty($quantity))
             $quantity = 1;
-        
+
         //超过了购买限制按照原价
         if ($quantity > $goods_info['pintuan_info']['pintuan_limit_quantity']) {
             return;
@@ -313,14 +315,14 @@ class Buy_1 extends Model
                             return;
                         }
                     }
-              
+
               }
         $goods_info['pintuan_info']['down_price'] = ds_price_format($goods_info['goods_price'] * (1 - $goods_info['pintuan_info']['pintuan_zhe']));
         $goods_info['goods_price'] = round(($goods_info['pintuan_info']['pintuan_zhe'] * $goods_info['goods_price']) / 10, 2);
         $goods_info['promotions_id'] = $goods_info['pintuan_info']['pintuan_id'];
         $goods_info['ifpintuan'] = true;
     }
-    
+
     public function updatePintuan($post_data,$goods_info,$order,$order_type,$member_id) {
         $res=array();
         //拼团订单的特殊性,还需要额外的进行处理.
@@ -370,6 +372,9 @@ class Buy_1 extends Model
      */
     public function getMgdiscountInfo(& $goods_info){
         $level = intval(session('level'));
+        if(empty($level)){
+            $level=$this->levelInfo;
+        }
         if (!config('mgdiscount_allow') || empty($goods_info['mgdiscount_info']) || $level<=0){
             return;
         }
