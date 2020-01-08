@@ -11,6 +11,8 @@ use think\Db;
  */
 class Buy_1 extends Model
 {
+    //private $levelInfo;
+
     /**
      * 取得商品最新的属性及促销[购物车]
      * @param unknown $cart_list
@@ -370,6 +372,9 @@ class Buy_1 extends Model
      */
     public function getMgdiscountInfo(& $goods_info){
         $level = intval(session('level'));
+        if(empty($level)){
+            $level=$this->levelInfo;
+        }
         if (!config('mgdiscount_allow') || empty($goods_info['mgdiscount_info']) || $level<=0){
             return;
         }

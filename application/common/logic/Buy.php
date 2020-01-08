@@ -34,10 +34,12 @@ class Buy extends Model
      * @var obj
      */
     private $_logic_buy_1;
+    private $levelInfo ;
 
     public function __construct()
     {
         $this->_logic_buy_1 = model('buy_1','logic');
+        $this->_logic_buy_1->levelInfo = $this->levelInfo;
     }
 
     /**
