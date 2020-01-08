@@ -32,8 +32,21 @@ class Buy extends BaseMember {
         $this->_buy_branch(input('post.'));
         $ifcart = input('post.ifcart');
 
+        //得到会员等级
+        $model_member = Model('member');
+        $member_info = $model_member->getMemberInfoByID(session('member_id'));
+
+        if ($member_info) {
+            $member_gradeinfo = $model_member->getOneMemberGrade(intval($member_info['member_exppoints']));
+            //$member_discount = $member_gradeinfo['orderdiscount'];
+            $member_level = $member_gradeinfo['level'];
+        }
+        else {
+            $member_level = 0;
+        }
+
         $buy_logic = model('buy','logic');
-        $result = $buy_logic->buyStep1(input('post.cart_id/a'), $ifcart, session('member_id'), session('store_id'));
+        $result = $buy_logic->buyStep1(input('post.cart_id/a'), $ifcart, session('member_id'), session('store_id'),$member_level);
         if ($result['code'] != 'SUCCESS') {
             $this->error($result['msg']);
         } else {
@@ -93,8 +106,20 @@ class Buy extends BaseMember {
      *
      */
     public function buy_step2() {
+        //得到会员等级
+        $model_member = Model('member');
+        $member_info = $model_member->getMemberInfoByID(session('member_id'));
+
+        if ($member_info) {
+            $member_gradeinfo = $model_member->getOneMemberGrade(intval($member_info['member_exppoints']));
+            //$member_discount = $member_gradeinfo['orderdiscount'];
+            $member_level = $member_gradeinfo['level'];
+        }
+        else {
+            $member_level = 0;
+        }
         $buy_logic = model('buy','logic');
-        $result = $buy_logic->buyStep2(input('post.'), session('member_id'), session('member_name'), session('member_email'));
+        $result = $buy_logic->buyStep2(input('post.'), session('member_id'), session('member_name'), session('member_email'),$member_level);
         if (!$result['code']) {
             $this->error($result['msg']);
         }
