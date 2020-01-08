@@ -55,7 +55,8 @@ class Buy_1 extends Model
             $this->getBargainInfo($goods_info, $goods_info['goods_num'],$extra);
         } else {
             //会员等级折扣
-            $this->getMgdiscountInfo($goods_info);
+            $level='';
+            $this->getMgdiscountInfo($goods_info,$level);
             //抢购
             $this->getGroupbuyInfo($goods_info, $goods_info['goods_num']);
             //限时折扣
