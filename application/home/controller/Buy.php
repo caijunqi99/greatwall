@@ -46,7 +46,8 @@ class Buy extends BaseMember {
         }
 
         $buy_logic = model('buy','logic');
-        $result = $buy_logic->buyStep1(input('post.cart_id/a'), $ifcart, session('member_id'), session('store_id'),$member_level);
+        $extra=array();
+        $result = $buy_logic->buyStep1(input('post.cart_id/a'), $ifcart, session('member_id'), session('store_id'),$extra,$member_level);
         if ($result['code'] != 'SUCCESS') {
             $this->error($result['msg']);
         } else {
@@ -118,8 +119,9 @@ class Buy extends BaseMember {
         else {
             $member_level = 0;
         }
+        $extra=array();
         $buy_logic = model('buy','logic');
-        $result = $buy_logic->buyStep2(input('post.'), session('member_id'), session('member_name'), session('member_email'),$member_level);
+        $result = $buy_logic->buyStep2(input('post.'), session('member_id'), session('member_name'), session('member_email'),$extra,$member_level);
         if (!$result['code']) {
             $this->error($result['msg']);
         }
