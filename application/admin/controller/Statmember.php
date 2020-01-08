@@ -405,9 +405,9 @@ class Statmember extends AdminControl {
         $count_arr = $stat_model->statByStatmember($where, 'COUNT(DISTINCT statm_memberid) as countnum');
         $countnum = intval($count_arr[0]['countnum']);
         if (input('param.exporttype') == 'excel') {
-            $memberlist = $stat_model->statByStatmember($where, $field, 0, 0, "{input('param.type')} desc,statm_memberid desc", 'statm_memberid');
+            $memberlist = $stat_model->statByStatmember($where, $field, 0, 0, $paramtype." desc,statm_memberid desc", 'statm_memberid');
         } else {
-            $memberlist = $stat_model->statByStatmember($where, $field, array(10, $countnum), 0, "{input('param.type')} desc,statm_memberid desc", 'statm_memberid');
+            $memberlist = $stat_model->statByStatmember($where, $field, array(10, $countnum), 0, $paramtype." desc,statm_memberid desc", 'statm_memberid');
         }
         $curpage = ($t = intval(input('param.curpage'))) ? $t : 1;
         foreach ((array) $memberlist as $k => $v) {
