@@ -79,9 +79,21 @@ class Membercart extends MobileMember {
 
             //限时折扣
             $logic_buy_1->getXianshiInfo($goods_info, $quantity);
-            
+
+            //得到会员等级
+            $model_member = Model('member');
+            $member_info = $model_member->getMemberInfoByID(session('member_id'));
+
+            if ($member_info) {
+                $member_gradeinfo = $model_member->getOneMemberGrade(intval($member_info['member_exppoints']));
+                //$member_discount = $member_gradeinfo['orderdiscount'];
+                $member_level = $member_gradeinfo['level'];
+            }
+            else {
+                $member_level = 0;
+            }
             //会员等级折扣
-            $logic_buy_1->getMgdiscountInfo($goods_info);
+            $logic_buy_1->getMgdiscountInfo($goods_info,$member_level);
 
             $this->_check_goods($goods_info, $quantity);
         } elseif (is_numeric($bl_id)&& $bl_id>0 ) {

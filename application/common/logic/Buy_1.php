@@ -370,10 +370,14 @@ class Buy_1 extends Model
      * @param array $goods_info
      * @param number $level 会员等级
      */
-    public function getMgdiscountInfo(& $goods_info){
-        $level = intval(session('level'));
-        if(empty($level)){
-            $level=$this->levelInfo;
+    public function getMgdiscountInfo(& $goods_info,$level){
+        $levels = intval(session('level'));
+        if(empty($levels)) {
+            if (empty($level)) {
+                $level = $this->levelInfo;
+            }
+        }else{
+            $level=$levels;
         }
         if (!config('mgdiscount_allow') || empty($goods_info['mgdiscount_info']) || $level<=0){
             return;
