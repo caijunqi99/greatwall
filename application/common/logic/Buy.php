@@ -1292,4 +1292,12 @@ class Buy extends Model
             return false;
         }
     }
+    /**
+     * 会员等级
+    */
+    public function level($level){
+        //用户等级
+        $this->_logic_buy_1->levelInfo=$level;
+        return true;
+    }
 }
