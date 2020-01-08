@@ -16,32 +16,43 @@ class Membercart extends MobileMember {
      */
     public function cart_list() {
         $model_cart = Model('cart');
-
-        $condition = array('buyer_id' => $this->member_info['member_id']);
-        $cart_list = $model_cart->getCartList('db', $condition);
-
+        $logic_buy = model('buy','logic');
+        $model_goods = Model('goods');
         //得到会员等级
         $model_member = Model('member');
         $member_info = $model_member->getMemberInfoByID($this->member_info['member_id']);
-
         if ($member_info) {
             $member_gradeinfo = $model_member->getOneMemberGrade(intval($member_info['member_exppoints']));
-            //$member_discount = $member_gradeinfo['orderdiscount'];
             $member_level = $member_gradeinfo['level'];
         }
         else {
             $member_level = 0;
         }
-        $logic_buy = model('buy','logic');
         $logic_buy->level($member_level);
+
+        $condition = array('buyer_id' => $this->member_info['member_id']);
+        $cart_list = $model_cart->getCartList('db', $condition);
+
         // 购物车列表 [得到最新商品属性及促销信息]
         $cart_list = model('buy_1','logic')->getGoodsCartList($cart_list);
-
-        $model_goods = Model('goods');
 
         $sum = 0;
         $cart_a = array();
         $k=0;
+        // foreach ($cart_list as $key => $val) {
+        //     $cart_a[$val['store_id']]['store_id'] = $val['store_id'];
+        //     $cart_a[$val['store_id']]['store_name'] = $val['store_name'];
+        //     $cart_a[$val['store_id']]['goods'][$key] = $val;
+
+        //     $cart_a[$val['store_id']]['goods'][$key]['cart_id'] = $val['cart_id'];
+        //     $cart_a[$val['store_id']]['goods'][$key]['goods_num'] = $val['goods_num'];
+        //     $cart_a[$val['store_id']]['goods'][$key]['goods_image_url'] = goods_cthumb($val['goods_image'], $val['store_id']);
+            
+        //     $cart_a[$val['store_id']]['goods'][$key]['gift_list'] = isset($val['gift_list'])?$val['gift_list']:'';
+        //     $cart_a[$val['store_id']]['goods'][$key]['goods_sum'] =ds_price_format($val['goods_price'] * $val['goods_num']);
+        //     $sum += $cart_a[$val['store_id']]['goods'][$key]['goods_sum'];
+        //     $k++;
+        // }
         foreach ($cart_list as $key => $val) {
             $cart_a[$val['store_id']]['store_id'] = $val['store_id'];
             $cart_a[$val['store_id']]['store_name'] = $val['store_name'];
@@ -96,7 +107,7 @@ class Membercart extends MobileMember {
 
             //得到会员等级
             $model_member = Model('member');
-            $member_info = $model_member->getMemberInfoByID($this->member_info['member_id']);
+            $member_info = $model_member->getMemberInfoByID(session('member_id'));
 
             if ($member_info) {
                 $member_gradeinfo = $model_member->getOneMemberGrade(intval($member_info['member_exppoints']));
@@ -106,8 +117,6 @@ class Membercart extends MobileMember {
             else {
                 $member_level = 0;
             }
-            $logic_buy = model('buy','logic');
-            $logic_buy->level($member_level);
             //会员等级折扣
             $logic_buy_1->getMgdiscountInfo($goods_info);
 
