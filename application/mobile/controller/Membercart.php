@@ -20,6 +20,20 @@ class Membercart extends MobileMember {
         $condition = array('buyer_id' => $this->member_info['member_id']);
         $cart_list = $model_cart->getCartList('db', $condition);
 
+        //得到会员等级
+        $model_member = Model('member');
+        $member_info = $model_member->getMemberInfoByID(session('member_id'));
+
+        if ($member_info) {
+            $member_gradeinfo = $model_member->getOneMemberGrade(intval($member_info['member_exppoints']));
+            //$member_discount = $member_gradeinfo['orderdiscount'];
+            $member_level = $member_gradeinfo['level'];
+        }
+        else {
+            $member_level = 0;
+        }
+        $logic_buy = model('buy','logic');
+        $logic_buy->level($member_level);
         // 购物车列表 [得到最新商品属性及促销信息]
         $cart_list = model('buy_1','logic')->getGoodsCartList($cart_list);
 
