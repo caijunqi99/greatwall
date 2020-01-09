@@ -1215,7 +1215,7 @@ class Buy extends Model
                 $goods_list[$i]['store_id'] = $cart['store_id'];
                 $goods_list[$i]['gc_id'] = $cart['gc_id'];
                 $goods_list[$i]['goods_name'] = $cart['goods_name'];
-                $goods_list[$i]['goods_price'] = $cart['goods_price'];
+                $goods_list[$i]['goods_price'] = ds_price_format($cart['goods_price']);
                 $goods_list[$i]['store_name'] = $cart['store_name'];
                 $goods_list[$i]['goods_image'] = $cart['goods_image'];
                 $goods_list[$i]['transport_id'] = $cart['transport_id'];
@@ -1233,7 +1233,7 @@ class Buy extends Model
                     $goods_list[$i]['store_id'] = $cart['store_id'];
                     $goods_list[$i]['gc_id'] = $bl_goods['gc_id'];
                     $goods_list[$i]['goods_name'] = $bl_goods['goods_name'];
-                    $goods_list[$i]['goods_price'] = $bl_goods['blgoods_price'];
+                    $goods_list[$i]['goods_price'] = ds_price_format($bl_goods['blgoods_price']);
                     $goods_list[$i]['store_name'] = $bl_goods['store_name'];
                     $goods_list[$i]['goods_image'] = $bl_goods['goods_image'];
                     $goods_list[$i]['transport_id'] = $bl_goods['transport_id'];
