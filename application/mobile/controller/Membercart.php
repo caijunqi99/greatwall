@@ -45,7 +45,7 @@ class Membercart extends MobileMember {
             $cart_a[$val['store_id']]['goods'][$key] = $val;
 
             $cart_a[$val['store_id']]['goods'][$key]['cart_id'] = $val['cart_id'];
-            $cart_a[$val['store_id']]['goods'][$key]['goods_price'] = '"'.ds_price_format($val['goods_price']).'"';
+            $cart_a[$val['store_id']]['goods'][$key]['goods_price'] = ds_price_format($val['goods_price']);
             $cart_a[$val['store_id']]['goods'][$key]['goods_num'] = $val['goods_num'];
             $cart_a[$val['store_id']]['goods'][$key]['goods_image_url'] = goods_cthumb($val['goods_image'], $val['store_id']);
             
@@ -54,26 +54,6 @@ class Membercart extends MobileMember {
             $sum += $cart_a[$val['store_id']]['goods'][$key]['goods_sum'];
             $k++;
         }
-        // foreach ($cart_list as $key => $val) {
-        //     $cart_a[$val['store_id']]['store_id'] = $val['store_id'];
-        //     $cart_a[$val['store_id']]['store_name'] = $val['store_name'];
-        //     $goods_data = $model_goods->getGoodsOnlineInfoForShare($val['goods_id']);
-        //     $cart_a[$val['store_id']]['goods'][$key] = $goods_data;
-
-        //     $cart_a[$val['store_id']]['goods'][$key]['cart_id'] = $val['cart_id'];
-        //     $cart_a[$val['store_id']]['goods'][$key]['goods_num'] = $val['goods_num'];
-        //     $cart_a[$val['store_id']]['goods'][$key]['goods_image_url'] = goods_cthumb($val['goods_image'], $val['store_id']);
-        //     if (isset($goods_data['goods_spec'])&&$goods_data['goods_spec'] == 'N;') {
-        //         $cart_a[$val['store_id']]['goods'][$key]['goods_spec'] = '';
-        //     }
-        //     if (isset($goods_data['goods_promotion_type'])) {
-        //         $cart_a[$val['store_id']]['goods'][$key]['goods_price'] = $goods_data['goods_promotion_price'];
-        //     }
-        //     $cart_a[$val['store_id']]['goods'][$key]['gift_list'] = isset($val['gift_list'])?$val['gift_list']:'';
-        //     $cart_list[$key]['goods_sum'] = ds_price_format($val['goods_price'] * $val['goods_num']);
-        //     $sum += $cart_list[$key]['goods_sum'];
-        //     $k++;
-        // }
         $cart_l = [];
         foreach ($cart_a as $key=>$value){
            $value['goods']=array_values($value['goods']);
