@@ -41,7 +41,7 @@
             {foreach name="store_list" item="v" key="k" }
             <tr class="hover edit">
                 <td>
-                    <a href="{:url('/Home/Store/index',['store_id'=>$v.store_id])}" target="_blank">{$v.store_name}</a>
+                    {$v.store_name}
                 </td>
                 <td>{$v.member_name}</td>
                 <td>{$v.seller_name}</td>
