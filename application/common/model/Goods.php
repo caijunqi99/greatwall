@@ -1570,6 +1570,9 @@ class Goods extends Model {
             $goods_info['mgdiscount_type'] = 'mgdiscount';
             $goods_info['goods_mgdiscount_arr'] = $goods_info['mgdiscount_info'];
             unset($goods_info['mgdiscount_info']);
+        }else{
+            $goods_info['mgdiscount_type'] = '';
+            $goods_info['goods_mgdiscount_arr'] ='';
         }
         
         // 验证是否允许送赠品
