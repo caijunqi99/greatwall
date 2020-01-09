@@ -71,10 +71,11 @@ class Memberorder extends MobileMember {
             $order_group_list[$order['pay_sn']]['add_time']     = $order['add_time'];
             $order_group_list[$order['pay_sn']]['order_state']  = $order['order_state'];
             if (isset($order_group_list[$order['pay_sn']]['order_amount']) && $order_group_list[$order['pay_sn']]['order_amount']>0) {
-                $order_group_list[$order['pay_sn']]['order_amount'] +=$order['order_amount'];
+                $order_group_list[$order['pay_sn']]['order_amount'] +=ds_price_format($order['order_amount']);
             }else{
-                $order_group_list[$order['pay_sn']]['order_amount'] =$order['order_amount'];
+                $order_group_list[$order['pay_sn']]['order_amount'] =ds_price_format($order['order_amount']);
             }
+            $order_group_list[$order['pay_sn']]['order_amount'] = ds_price_format($order_group_list[$order['pay_sn']]['order_amount']);
             $order_group_list[$order['pay_sn']]['state_desc']   = $order['state_desc'];
             $order_group_list[$order['pay_sn']]['order_id']     = $order['order_id'];
             $order_group_list[$order['pay_sn']]['order_sn']     = $order['order_sn'];
