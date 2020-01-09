@@ -30,17 +30,6 @@ class Version extends MobileMall {
         output_data($channel);
     }
 
-    public function logWriteTest(){
-        $ins = [
-            'type' =>'日志写入测试',
-            'request'=>$_REQUEST,
-            'server'=>$_SERVER
-        ];
-        LOG::write($ins);
-        p('日志写入成功');
-    }
-
-
 
 }
 
