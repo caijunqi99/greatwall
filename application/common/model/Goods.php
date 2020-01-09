@@ -1567,12 +1567,17 @@ class Goods extends Model {
         
         //会员等级折扣
         if (!empty($goods_info['mgdiscount_info'])) {
+            foreach ($goods_info['mgdiscount_info'] as $ks => $v) {
+                $goods_info['mgdiscount_info'][$ks]['level'] = $ks;
+            }
+            $goods_info['mgdiscount_info'] =array_values($goods_info['mgdiscount_info']);
+            
             $goods_info['mgdiscount_type'] = 'mgdiscount';
             $goods_info['goods_mgdiscount_arr'] = $goods_info['mgdiscount_info'];
             unset($goods_info['mgdiscount_info']);
         }else{
             $goods_info['mgdiscount_type'] = '';
-            $goods_info['goods_mgdiscount_arr'] ='';
+            $goods_info['goods_mgdiscount_arr'] =[];
         }
         
         // 验证是否允许送赠品
