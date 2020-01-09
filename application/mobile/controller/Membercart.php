@@ -197,6 +197,18 @@ class Membercart extends MobileMember {
         $cart_info = $cart_model->getCartInfo(array('cart_id' => $cart_id, 'buyer_id' => $this->member_info['member_id']));
         if ($cart_info['bl_id'] == '0') {
 
+            $logic_buy = model('buy','logic');
+            //得到会员等级
+            $model_member = Model('member');
+            $member_info = $model_member->getMemberInfoByID($this->member_info['member_id']);
+            if ($member_info) {
+                $member_gradeinfo = $model_member->getOneMemberGrade(intval($member_info['member_exppoints']));
+                $member_level = $member_gradeinfo['level'];
+            }
+            else {
+                $member_level = 0;
+            }
+            $logic_buy->level($member_level);
             //普通商品
             $goods_id = intval($cart_info['goods_id']);
             $goods_info = $logic_buy_1->getGoodsOnlineInfo($goods_id, $quantity);
