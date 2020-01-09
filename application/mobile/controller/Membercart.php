@@ -45,7 +45,7 @@ class Membercart extends MobileMember {
             $cart_a[$val['store_id']]['goods'][$key] = $val;
 
             $cart_a[$val['store_id']]['goods'][$key]['cart_id'] = $val['cart_id'];
-            $cart_a[$val['store_id']]['goods'][$key]['goods_price'] = string($val['goods_price']);
+            $cart_a[$val['store_id']]['goods'][$key]['goods_price'] = '"'.ds_price_format($val['goods_price']).'"';
             $cart_a[$val['store_id']]['goods'][$key]['goods_num'] = $val['goods_num'];
             $cart_a[$val['store_id']]['goods'][$key]['goods_image_url'] = goods_cthumb($val['goods_image'], $val['store_id']);
             
