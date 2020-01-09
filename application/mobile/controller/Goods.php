@@ -388,30 +388,6 @@ class Goods extends MobileMall {
         $goods_detail['store_info']['goods_count'] = $store_info['goods_count'];
         $goods_detail['store_info']['store_credit'] = $store_info['store_credit'];
 
-        // $goods_detail['store_info']['store_credit'] = array(
-        //     'store_desccredit' => array(
-        //         'text' => '描述',
-        //         'credit' => 5,
-        //         'percent' => '----',
-        //         'percent_class' => 'equal',
-        //         'percent_text' => '平',
-        //     ),
-        //     'store_servicecredit' => array(
-        //         'text' => '服务',
-        //         'credit' => 5,
-        //         'percent' => '----',
-        //         'percent_class' => 'equal',
-        //         'percent_text' => '平',
-        //     ),  
-        //     'store_deliverycredit' => array(
-        //         'text' => '物流',
-        //         'credit' => 5,
-        //         'percent' => '----',
-        //         'percent_class' => 'equal',
-        //         'percent_text' => '平',
-        //     ),
-        // );
-
         //商品详细信息处理
         $goods_detail = $this->_goods_detail_extend($goods_detail);
 
