@@ -88,7 +88,7 @@ class Memberbuy extends MobileMember
 
         foreach ($result['store_cart_list'] as $key => $value) {
             $store_cart_list[$key]['goods'] = $value;
-            $store_cart_list[$key]['store_goods_total'] = $result['store_goods_total'][$key];
+            $store_cart_list[$key]['store_goods_total'] = ds_price_format($result['store_goods_total'][$key]);
 
             $store_cart_list[$key]['store_mansong_rule_list'] = isset($result['store_mansong_rule_list'][$key])?$result['store_mansong_rule_list'][$key]:'';
             // 不需要代金券
@@ -151,7 +151,7 @@ class Memberbuy extends MobileMember
             //     unset($result['rpt_info']['rpacket_code']);
             // }
         }
-        $rpacket_price=isset($result['rpt_info']['rpacket_price']) ? $result['rpt_info']['rpacket_price']:'';
+        $rpacket_price=isset($result['rpt_info']['rpacket_price']) ? ds_price_format($result['rpt_info']['rpacket_price']):'';
         $rpacket_price = is_numeric($rpacket_price)?ds_price_format($rpacket_price):0;
         $buy_list['order_amount'] = ds_price_format(array_sum($store_total_list) - $rpacket_price);
         $buy_list['rpt_info'] = isset($result['rpt_info']) ? $result['rpt_info'] : array();
