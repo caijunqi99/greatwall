@@ -77,6 +77,7 @@ class Adminlog extends AdminControl
                 foreach ($v['data'] as $key => $value) {
                     $lst[$k]['data'][$key]['size'] = TransByte($value['size']);
                     $lst[$k]['data'][$key]['date'] = date('Y-m-d H:i:s',$value['date']);
+                    $lst[$k]['data'][$key]['ids'] = $value['date'];
                 }
             }
         }
