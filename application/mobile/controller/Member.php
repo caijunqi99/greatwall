@@ -244,7 +244,7 @@ class Member extends MobileMember {
                 $data['member_name'] = input('param.member_name');
             }
             if(input('param.member_sex')){
-                $data['member_sex'] = input('param.member_sex');
+                $data['member_sex'] = input('param.member_sex')=='man' ?0:1;
             }
             if(input('param.member_email')){
                 $data['member_email'] = input('param.member_email');
