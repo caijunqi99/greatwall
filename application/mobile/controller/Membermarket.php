@@ -39,6 +39,9 @@ class Membermarket extends MobileMember
         $marketinfo = $marketmanage_list[$this->member_info['level']];
         //获取转盘奖品
         $MarketAward = $marketmanage_model->getMarketmanageAwardList(['marketmanage_id'=>$marketinfo['marketmanage_id']]);
+        foreach($MarketAward as $k=>$v){
+            $v['marketmanageaward_picture']=UPLOAD_SITE_URL . '/' . ATTACH_WARD . '/'.$v['marketmanageaward_picture'];
+        }
         //修改抽奖次数
         $orderModel->editOrder(['draw_num'=>0],[
             'buyer_id'=>$this->member_info['member_id'],
