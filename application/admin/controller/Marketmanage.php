@@ -84,9 +84,27 @@ class Marketmanage extends AdminControl {
             $this->assign('vouchertemplate_list', $vouchertemplate_list);
             return $this->fetch('form');
         } else {
+            //print_r($_FILES);exit;
             $data_marketmanageaward = array();
             $total_marketmanageaward_probability = 0;
             for ($i = 1; $i <= 4; $i++) {
+                //上传文件保存路径
+                $upload_file = BASE_UPLOAD_PATH . DS . ATTACH_WARD;
+                if (!empty($_FILES['site_logo'.$i]['name'])) {
+                    $file = request()->file('site_logo'.$i);
+                    $picture=time();
+                    $info = $file->validate(['ext'=>ALLOW_IMG_EXT])->move($upload_file, $picture.$i);
+                    if ($info) {
+                        $upload['site_logo'.$i] = $info->getFilename();
+                    } else {
+                        // 上传失败获取错误信息
+                        $this->error($file->getError());
+                    }
+                }
+                if (!empty($upload['site_logo'.$i])) {
+                    $_POST['site_logo'.$i] = $upload['site_logo'.$i];
+                }
+
                 $marketmanageaward_probability = intval($_POST['probability_' . $i]);
                 $total_marketmanageaward_probability +=$marketmanageaward_probability;
                 $data_marketmanageaward[] = array(
@@ -95,6 +113,7 @@ class Marketmanage extends AdminControl {
                     'marketmanageaward_count' => intval($_POST['count_' . $i]),
                     'marketmanageaward_probability' => $marketmanageaward_probability,//中奖概率
                     'marketmanageaward_point'=>intval($_POST['point_' . $i]),
+                    'marketmanageaward_picture'=>$_POST['site_logo'.$i],
                     'bonus_id'=>isset($_POST['bonus_id_' . $i]) ? $_POST['bonus_id_' . $i] : 0,
                     'vouchertemplate_id'=> isset($_POST['vouchertemplate_id_' . $i]) ? intval($_POST['vouchertemplate_id_' . $i]) : 0,
                 );
@@ -168,18 +187,49 @@ class Marketmanage extends AdminControl {
             $data_marketmanageaward = array();
             $total_marketmanageaward_probability = 0;
             for ($i = 1; $i <= 4; $i++) {
+                //上传文件保存路径
+                $upload_file = BASE_UPLOAD_PATH . DS . ATTACH_WARD;
+                if (!empty($_FILES['site_logo'.$i]['name'])) {
+                    $file = request()->file('site_logo'.$i);
+                    $picture=time();
+                    $info = $file->validate(['ext'=>ALLOW_IMG_EXT])->move($upload_file, $picture.$i);
+                    if ($info) {
+                        $upload['site_logo'.$i] = $info->getFilename();
+                    } else {
+                        // 上传失败获取错误信息
+                        $this->error($file->getError());
+                    }
+                }
+                if (!empty($upload['site_logo'.$i])) {
+                    $_POST['site_logo'.$i] = $upload['site_logo'.$i];
+                }
+
                 $marketmanageaward_probability = intval($_POST['probability_' . $i]);
                 $total_marketmanageaward_probability +=$marketmanageaward_probability;
-                $data_marketmanageaward[] = array(
-                    'marketmanageaward_id' => intval($_POST['id_' . $i]), //主键ID 稍后用于修改数据
-                    'marketmanageaward_level' => $i,
-                    'marketmanageaward_type' => intval($_POST['type_' . $i]),
-                    'marketmanageaward_count' => intval($_POST['count_' . $i]),
-                    'marketmanageaward_probability' => $marketmanageaward_probability,//中奖概率
-                    'marketmanageaward_point' => intval($_POST['point_' . $i]),
-                    'bonus_id' => isset($_POST['bonus_id_' . $i]) ? $_POST['bonus_id_' . $i] : 0,
-                    'vouchertemplate_id' => isset($_POST['vouchertemplate_id_' . $i]) ? intval($_POST['vouchertemplate_id_' . $i]) : 0,
-                );
+                if (!empty($upload['site_logo'.$i])) {
+                    $data_marketmanageaward[] = array(
+                        'marketmanageaward_id' => intval($_POST['id_' . $i]), //主键ID 稍后用于修改数据
+                        'marketmanageaward_level' => $i,
+                        'marketmanageaward_type' => intval($_POST['type_' . $i]),
+                        'marketmanageaward_count' => intval($_POST['count_' . $i]),
+                        'marketmanageaward_probability' => $marketmanageaward_probability,//中奖概率
+                        'marketmanageaward_point' => intval($_POST['point_' . $i]),
+                        'marketmanageaward_picture' => $_POST['site_logo' . $i],
+                        'bonus_id' => isset($_POST['bonus_id_' . $i]) ? $_POST['bonus_id_' . $i] : 0,
+                        'vouchertemplate_id' => isset($_POST['vouchertemplate_id_' . $i]) ? intval($_POST['vouchertemplate_id_' . $i]) : 0,
+                    );
+                }else{
+                    $data_marketmanageaward[] = array(
+                        'marketmanageaward_id' => intval($_POST['id_' . $i]), //主键ID 稍后用于修改数据
+                        'marketmanageaward_level' => $i,
+                        'marketmanageaward_type' => intval($_POST['type_' . $i]),
+                        'marketmanageaward_count' => intval($_POST['count_' . $i]),
+                        'marketmanageaward_probability' => $marketmanageaward_probability,//中奖概率
+                        'marketmanageaward_point' => intval($_POST['point_' . $i]),
+                        'bonus_id' => isset($_POST['bonus_id_' . $i]) ? $_POST['bonus_id_' . $i] : 0,
+                        'vouchertemplate_id' => isset($_POST['vouchertemplate_id_' . $i]) ? intval($_POST['vouchertemplate_id_' . $i]) : 0,
+                    );
+                }
             }
             //中奖概率应小于 400%
             if($total_marketmanageaward_probability>400){

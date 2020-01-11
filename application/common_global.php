@@ -80,6 +80,8 @@ define('TPL_ADMIN_NAME', 'default');
 define('TPL_DELIVERY_NAME', 'default');
 define('TPL_MEMBER_NAME', 'default');
 
+define('ATTACH_WARD',ATTACH_PATH.'/marketmanageaward');
+
 define('DEFAULT_CONNECT_SMS_TIME', 60);//倒计时时间
 
 define('MD5_KEY', 'a2382918dbb49c8643f19bc3ab90ecf9');
