@@ -1,137 +1,150 @@
 {include file="public/header" /}
 <div class="page">
-    <form method="post" id="marketmanage_form">
+    <form method="post" id="marketmanage_form" enctype="multipart/form-data">
         <table class="ds-default-table">
             <tbody>
-                <tr class="noborder"> 
-                    <td class="required w120">{$Think.lang.marketmanage_name}</td>
-                    <td class="vatop rowform"><input id="marketmanage_name" name="marketmanage_name" value="{$marketmanage.marketmanage_name|default=''}" class="input-txt" type="text"></td>
-                    <td class="vatop tips"></td>
-                </tr>
-                <tr class="noborder"> 
-                    <td class="required w120">{$Think.lang.marketmanage_detail}</td>
-                    <td class="vatop rowform"><textarea name="marketmanage_detail">{$marketmanage.marketmanage_detail|default=''}</textarea></td>
-                    <td class="vatop tips"></td>
-                </tr>
-                <tr class="noborder">
-                    <td class="required w120">用户等级</td>
-                    <td class="vatop rowform">
-                        <select id="marketmanage_grade" name="marketmanage_grade">
-                            <?php foreach($level as $v){ ?>
-                            <option value="{$v.level}" <?php if($marketmanage['marketmanage_grade']==$v['level']){ ?>selected<?php } ?>>{$v.level_name}</option>
-                            <?php } ?>
-                        </select></td>
-                    <td class="vatop tips"></td>
-                </tr>
-                <tr class="noborder"> 
-                    <td class="required w120">{$Think.lang.ds_begin_time}</td>
-                    <td class="vatop rowform"><input id="marketmanage_begintime" name="marketmanage_begintime" value="{$marketmanage.marketmanage_begintime|date='Y-m-d H:i',###}" class="input-txt" type="text"></td>
-                    <td class="vatop tips"></td>
-                </tr>
-                <tr class="noborder"> 
-                    <td class="required w120">{$Think.lang.ds_end_time}</td>
-                    <td class="vatop rowform"><input id="marketmanage_endtime" name="marketmanage_endtime" value="{$marketmanage.marketmanage_endtime|date='Y-m-d H:i',###}" class="input-txt" type="text"></td>
-                    <td class="vatop tips"></td>
-                </tr>
-                <tr class="noborder"> 
-                    <td class="required w120">{$Think.lang.marketmanage_joincount}</td>
-                    <td class="vatop rowform" id="marketmanage_jointype">
-                            <input name="marketmanage_jointype" value="0" type="radio" {if $marketmanage.marketmanage_jointype eq '0'}checked{/if}>{$Think.lang.ds_total}
-                            <input id="marketmanage_joincount_0" name="marketmanage_joincount" value="{$marketmanage.marketmanage_joincount|default=''}" class="input-txt w36" type="text" {if $marketmanage.marketmanage_jointype neq '0'}disabled{/if}>
-                            {$Think.lang.ds_times}
-                            <input name="marketmanage_jointype" value="1" type="radio" {if $marketmanage.marketmanage_jointype eq '1'}checked{/if}>{$Think.lang.marketmanage_jointype_1}
-                            <input id="marketmanage_joincount_1" name="marketmanage_joincount" value="{$marketmanage.marketmanage_joincount|default=''}" class="input-txt w36" type="text" {if $marketmanage.marketmanage_jointype neq '1'}disabled{/if}>
-                            {$Think.lang.ds_times}
-                            <input name="marketmanage_jointype" value="2" type="radio" {if $marketmanage.marketmanage_jointype eq '2'}checked{/if}>{$Think.lang.marketmanage_jointype_2}
-                    </td>
-                    <td class="vatop tips"></td>
-                </tr>
-                <tr class="noborder"> 
-                    <td class="required w120">{$Think.lang.marketmanage_point}</td>
-                    <td class="vatop rowform">
-                            <input id="marketmanage_point_type" name="marketmanage_point_type" value="0" type="radio" {if $marketmanage.marketmanage_point eq '0'}checked{/if}>{$Think.lang.marketmanage_point_type_0}
-                            <input id="marketmanage_point_type" name="marketmanage_point_type" value="1" type="radio" {if $marketmanage.marketmanage_point neq '0'}checked{/if}>{$Think.lang.marketmanage_point_type_1}
-                            <input id="marketmanage_point" name="marketmanage_point" value="{$marketmanage.marketmanage_point|default=''}" class="input-txt w36" type="text">
-                    </td>
-                    <td class="vatop tips"></td>
-                </tr>
-                <tr class="noborder"> 
-                    <td class="required w120">{$Think.lang.marketmanage_failed}</td>
-                    <td class="vatop rowform"><textarea name="marketmanage_failed">{$marketmanage.marketmanage_failed|default=''}</textarea></td>
-                    <td class="vatop tips"></td>
-                </tr>
-                <tr class="noborder"> 
-                    <td class="required w120">{$Think.lang.marketmanage_award_set}</td>
-                    <td class="vatop rowform" style="width:500px;">
-                        <div class="marketmanage_award_list" dstype="marketmanage_award_list">
-                            <ul class="tab-menu">
-                                <li class="current">{$Think.lang.marketmanage_award_1}</li>
-                                <li>{$Think.lang.marketmanage_award_2}</li>
-                                <li>{$Think.lang.marketmanage_award_3}</li>
-                                <li>{$Think.lang.marketmanage_award_4}</li>
-                            </ul>
-                            {foreach name="marketmanageaward_list" item="award"}
-                            <div class="marketmanage_award" {if $award.marketmanageaward_level neq '1'}style="display:none"{/if}> 
-				{if $Request.action eq 'edit'}
-                                 <input name="id_{$award.marketmanageaward_level}" type="hidden" value="{$award.marketmanageaward_id|default='0'}"/>
-				{/if}
-                                 <dl>
-                                    <dt>{$Think.lang.choose_prizes}</dt>
-                                    <dd>
-                                        <label><input name="type_{$award.marketmanageaward_level}" type="radio" value="1" {if $award.marketmanageaward_type eq '1'}checked{/if}>{$Think.lang.points_unit}</label>
-                                        <label><input name="type_{$award.marketmanageaward_level}" type="radio" value="2" {if $award.marketmanageaward_type eq '2'}checked{/if}>{$Think.lang.ds_matter}</label>
-                                        <!--<label><input name="type_{$award.marketmanageaward_level}" type="radio" value="3" {if $award.marketmanageaward_type eq '3'}checked{/if}>{$Think.lang.ds_voucher}</label>-->
-                                    </dd>
-                                </dl>
-                                <dl class="award_type_show" id="award_type_show_1" {if $award.marketmanageaward_type neq '1'}style="display:none"{/if}>
-                                    <dt>{$Think.lang.gift_points}:</dt>
-                                    <dd>
-                                        <input name="point_{$award.marketmanageaward_level}" value="{$award.marketmanageaward_point}" class="input-txt w36" type="text">
-                                    </dd>
-                                </dl>
-                                <dl class="award_type_show" id="award_type_show_2" {if $award.marketmanageaward_type neq '2'}style="display:none"{/if}>
-                                    <dt>{$Think.lang.choose_matter}:</dt>
-                                    <dd>
-                                        <input name="bonus_id_{$award.marketmanageaward_level}" value="{$award.bonus_id}" class="input-txt w108" type="text">
-                                        <!--<select name="bonus_id_{$award.marketmanageaward_level}">-->
-                                            <!--{foreach name="bonus_list" item="bonus"}-->
-                                            <!--<option value="{$bonus.bonus_id}" {if $award.bonus_id eq $bonus.bonus_id}selected{/if}>{$bonus.bonus_name}</option>-->
-                                            <!--{/foreach}-->
-                                        <!--</select>-->
-                                    </dd>
-                                </dl>
-                                <dl class="award_type_show" id="award_type_show_3" {if $award.marketmanageaward_type neq '3'}style="display:none"{/if}>
-                                    <dt>{$Think.lang.choose_voucher}:</dt>
-                                    <dd>
-                                        <select name="vouchertemplate_id_{$award.marketmanageaward_level}">
-                                            {foreach name="vouchertemplate_list" item="vouchertemplate"}
-                                            <option value="{$vouchertemplate.vouchertemplate_id}" {if $award.vouchertemplate_id eq $vouchertemplate.vouchertemplate_id}selected{/if}>{$vouchertemplate.vouchertemplate_title}[{$vouchertemplate.vouchertemplate_storename}]</option>
-                                            {/foreach}
-                                        </select>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>{$Think.lang.marketmanageaward_count}:</dt>
-                                    <dd><input name="count_{$award.marketmanageaward_level}" value="{$award.marketmanageaward_count}" class="input-txt w36" type="text"><em>{$Think.lang.marketmanageaward_send}：{$award.marketmanageaward_send|default='0'}</em></dd>
-                                </dl>
-                                <dl>
-                                    <dt>{$Think.lang.marketmanageaward_probability}:</dt>
-                                    <dd><input name="probability_{$award.marketmanageaward_level}" value="{$award.marketmanageaward_probability}" class="input-txt w36" type="text">%<em>{$Think.lang.marketmanageaward_probability_tips}</em></dd>
-                                </dl>
-                            </div>
-                            {/foreach}
-                        </div>
-                    </td>
-                    <td class="vatop tips"></td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr class="tfoot">
-                    <td colspan="15"><input type="submit" value="{$Think.lang.ds_confirm_submit}" class="btn" /></td>
-                </tr>
-            </tfoot>
-        </table>
-    </form>
+            <tr class="noborder">
+                <td class="required w120">{$Think.lang.marketmanage_name}</td>
+                <td class="vatop rowform"><input id="marketmanage_name" name="marketmanage_name" value="{$marketmanage.marketmanage_name|default=''}" class="input-txt" type="text"></td>
+                <td class="vatop tips"></td>
+            </tr>
+            <tr class="noborder">
+                <td class="required w120">{$Think.lang.marketmanage_detail}</td>
+                <td class="vatop rowform"><textarea name="marketmanage_detail">{$marketmanage.marketmanage_detail|default=''}</textarea></td>
+                <td class="vatop tips"></td>
+            </tr>
+            <tr class="noborder">
+                <td class="required w120">用户等级</td>
+                <td class="vatop rowform">
+                    <select id="marketmanage_grade" name="marketmanage_grade">
+                        <?php foreach($level as $v){ ?>
+                        <option value="{$v.level}" <?php if($marketmanage['marketmanage_grade']==$v['level']){ ?>selected<?php } ?>>{$v.level_name}</option>
+                        <?php } ?>
+                    </select></td>
+                <td class="vatop tips"></td>
+            </tr>
+            <tr class="noborder">
+                <td class="required w120">{$Think.lang.ds_begin_time}</td>
+                <td class="vatop rowform"><input id="marketmanage_begintime" name="marketmanage_begintime" value="{$marketmanage.marketmanage_begintime|date='Y-m-d H:i',###}" class="input-txt" type="text"></td>
+                <td class="vatop tips"></td>
+            </tr>
+            <tr class="noborder">
+                <td class="required w120">{$Think.lang.ds_end_time}</td>
+                <td class="vatop rowform"><input id="marketmanage_endtime" name="marketmanage_endtime" value="{$marketmanage.marketmanage_endtime|date='Y-m-d H:i',###}" class="input-txt" type="text"></td>
+                <td class="vatop tips"></td>
+            </tr>
+            <tr class="noborder">
+                <td class="required w120">{$Think.lang.marketmanage_joincount}</td>
+                <td class="vatop rowform" id="marketmanage_jointype">
+                    <input name="marketmanage_jointype" value="0" type="radio" {if $marketmanage.marketmanage_jointype eq '0'}checked{/if}>{$Think.lang.ds_total}
+                    <input id="marketmanage_joincount_0" name="marketmanage_joincount" value="{$marketmanage.marketmanage_joincount|default=''}" class="input-txt w36" type="text" {if $marketmanage.marketmanage_jointype neq '0'}disabled{/if}>
+                    {$Think.lang.ds_times}
+                    <input name="marketmanage_jointype" value="1" type="radio" {if $marketmanage.marketmanage_jointype eq '1'}checked{/if}>{$Think.lang.marketmanage_jointype_1}
+                    <input id="marketmanage_joincount_1" name="marketmanage_joincount" value="{$marketmanage.marketmanage_joincount|default=''}" class="input-txt w36" type="text" {if $marketmanage.marketmanage_jointype neq '1'}disabled{/if}>
+                    {$Think.lang.ds_times}
+                    <input name="marketmanage_jointype" value="2" type="radio" {if $marketmanage.marketmanage_jointype eq '2'}checked{/if}>{$Think.lang.marketmanage_jointype_2}
+                </td>
+                <td class="vatop tips"></td>
+            </tr>
+            <tr class="noborder">
+                <td class="required w120">{$Think.lang.marketmanage_point}</td>
+                <td class="vatop rowform">
+                    <input id="marketmanage_point_type" name="marketmanage_point_type" value="0" type="radio" {if $marketmanage.marketmanage_point eq '0'}checked{/if}>{$Think.lang.marketmanage_point_type_0}
+                    <input id="marketmanage_point_type" name="marketmanage_point_type" value="1" type="radio" {if $marketmanage.marketmanage_point neq '0'}checked{/if}>{$Think.lang.marketmanage_point_type_1}
+                    <input id="marketmanage_point" name="marketmanage_point" value="{$marketmanage.marketmanage_point|default=''}" class="input-txt w36" type="text">
+                </td>
+                <td class="vatop tips"></td>
+            </tr>
+            <tr class="noborder">
+                <td class="required w120">{$Think.lang.marketmanage_failed}</td>
+                <td class="vatop rowform"><textarea name="marketmanage_failed">{$marketmanage.marketmanage_failed|default=''}</textarea></td>
+                <td class="vatop tips"></td>
+            </tr>
+            <tr class="noborder">
+                <td class="required w120">{$Think.lang.marketmanage_award_set}</td>
+                <td class="vatop rowform" style="width:500px;">
+                    <div class="marketmanage_award_list" dstype="marketmanage_award_list">
+                        <ul class="tab-menu">
+                            <li class="current">{$Think.lang.marketmanage_award_1}</li>
+                            <li>{$Think.lang.marketmanage_award_2}</li>
+                            <li>{$Think.lang.marketmanage_award_3}</li>
+                            <li>{$Think.lang.marketmanage_award_4}</li>
+                        </ul>
+                        {foreach name="marketmanageaward_list" item="award"}
+                        <div class="marketmanage_award" {if $award.marketmanageaward_level neq '1'}style="display:none"{/if}>
+                        {if $Request.action eq 'edit'}
+                        <input name="id_{$award.marketmanageaward_level}" type="hidden" value="{$award.marketmanageaward_id|default='0'}"/>
+                        {/if}
+                        <dl>
+                            <dt>{$Think.lang.choose_prizes}</dt>
+                            <dd>
+                                <label><input name="type_{$award.marketmanageaward_level}" type="radio" value="1" {if $award.marketmanageaward_type eq '1'}checked{/if}>{$Think.lang.points_unit}</label>
+                                <label><input name="type_{$award.marketmanageaward_level}" type="radio" value="2" {if $award.marketmanageaward_type eq '2'}checked{/if}>{$Think.lang.ds_matter}</label>
+                                <!--<label><input name="type_{$award.marketmanageaward_level}" type="radio" value="3" {if $award.marketmanageaward_type eq '3'}checked{/if}>{$Think.lang.ds_voucher}</label>-->
+                            </dd>
+                        </dl>
+                        <dl class="award_type_show" id="award_type_show_1" {if $award.marketmanageaward_type neq '1'}style="display:none"{/if}>
+                        <dt>{$Think.lang.gift_points}:</dt>
+                        <dd>
+                            <input name="point_{$award.marketmanageaward_level}" value="{$award.marketmanageaward_point}" class="input-txt w36" type="text">
+                        </dd>
+                        </dl>
+                        <dl class="award_type_show" id="award_type_show_2" {if $award.marketmanageaward_type neq '2'}style="display:none"{/if}>
+                        <dt>{$Think.lang.choose_matter}:</dt>
+                        <dd>
+                            <input name="bonus_id_{$award.marketmanageaward_level}" value="{$award.bonus_id}" class="input-txt w108" type="text">
+                            <!--<select name="bonus_id_{$award.marketmanageaward_level}">-->
+                            <!--{foreach name="bonus_list" item="bonus"}-->
+                            <!--<option value="{$bonus.bonus_id}" {if $award.bonus_id eq $bonus.bonus_id}selected{/if}>{$bonus.bonus_name}</option>-->
+                            <!--{/foreach}-->
+                            <!--</select>-->
+                        </dd>
+                        </dl>
+                        <dl class="award_type_show" id="award_type_show_3" {if $award.marketmanageaward_type neq '3'}style="display:none"{/if}>
+                        <dt>{$Think.lang.choose_voucher}:</dt>
+                        <dd>
+                            <select name="vouchertemplate_id_{$award.marketmanageaward_level}">
+                                {foreach name="vouchertemplate_list" item="vouchertemplate"}
+                                <option value="{$vouchertemplate.vouchertemplate_id}" {if $award.vouchertemplate_id eq $vouchertemplate.vouchertemplate_id}selected{/if}>{$vouchertemplate.vouchertemplate_title}[{$vouchertemplate.vouchertemplate_storename}]</option>
+                                {/foreach}
+                            </select>
+                        </dd>
+                        </dl>
+                        <dl>
+                            <dt>奖品图片:</dt>
+                            <dd>
+                                {notempty name="$award.marketmanageaward_picture"}
+                    <span class="type-file-show"><img class="show_image" src="{$Think.ADMIN_SITE_ROOT}/images/preview.png">
+                        <div class="type-file-preview"><img src="{$Think.UPLOAD_SITE_URL}/{$Think.ATTACH_WARD}/{$award.marketmanageaward_picture}?{$Think.TIMESTAMP}"></div>
+                    </span>
+                                {/notempty}
+                    <span class="type-file-box"><input type='text' name='textfield{$award.marketmanageaward_level}' id='textfield{$award.marketmanageaward_level}' class='type-file-text' /><input type='button' name='button' id='button{$award.marketmanageaward_level}' value='上传' class='type-file-button' />
+                        <input name="site_logo{$award.marketmanageaward_level}" type="file" class="type-file-file" id="site_logo{$award.marketmanageaward_level}" size="30" hidefocus="true" ds_type="change_site_logo" onchange="a({$award.marketmanageaward_level})">
+                    </span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>{$Think.lang.marketmanageaward_count}:</dt>
+                            <dd><input name="count_{$award.marketmanageaward_level}" value="{$award.marketmanageaward_count}" class="input-txt w36" type="text"><em>{$Think.lang.marketmanageaward_send}：{$award.marketmanageaward_send|default='0'}</em></dd>
+                        </dl>
+                        <dl>
+                            <dt>{$Think.lang.marketmanageaward_probability}:</dt>
+                            <dd><input name="probability_{$award.marketmanageaward_level}" value="{$award.marketmanageaward_probability}" class="input-txt w36" type="text">%<em>{$Think.lang.marketmanageaward_probability_tips}</em></dd>
+                        </dl>
+                    </div>
+                    {/foreach}
+</div>
+</td>
+<td class="vatop tips"></td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="tfoot">
+    <td colspan="15"><input type="submit" value="{$Think.lang.ds_confirm_submit}" class="btn" /></td>
+</tr>
+</tfoot>
+</table>
+</form>
 </div>
 <link rel="stylesheet" href="{$Think.PLUGINS_SITE_ROOT}/js/jquery-ui-timepicker/jquery-ui-timepicker-addon.min.css">
 <script src="{$Think.PLUGINS_SITE_ROOT}/js/jquery-ui-timepicker/jquery-ui-timepicker-addon.min.js"></script>
@@ -175,6 +188,9 @@
             }
         });
     });
+    function a(id){
+        $("#textfield"+id).val($("#site_logo"+id).val());
+    }
 </script>
 
 <style>
