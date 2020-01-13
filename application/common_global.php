@@ -25,6 +25,7 @@ if (!REWRITE_MODEL) {
 define('HOME_SITE_URL', BASE_SITE_URL.'/home');
 define('ADMIN_SITE_URL', BASE_SITE_URL.'/admin');
 define('API_SITE_URL', BASE_SITE_URL.'/api');
+define('DEFAULT_SITE_URL', str_replace('/index.php', '', BASE_SITE_URL));
 define('H5_SITE_URL', str_replace('/index.php', '', BASE_SITE_URL).'/h5/#');
 define('UPLOAD_SITE_URL',str_replace('/index.php', '', BASE_SITE_URL).'/uploads');
 define('EXAMPLES_SITE_URL',str_replace('/index.php', '', BASE_SITE_URL).'/examples');
