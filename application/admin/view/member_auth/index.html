@@ -54,7 +54,7 @@
           <th colspan="2">{$Think.lang.member_index_name}</th>
           <th class="align-center">{$Think.lang.member_index_true_name}</th>
           <th class="align-center">{$Think.lang.member_idcard}</th>
-          <!--<th class="align-center">{$Think.lang.member_idcard_image1}</th>-->
+          <th class="align-center">{$Think.lang.member_idcard_image1}</th>
           <th class="align-center">{$Think.lang.member_idcard_image2}</th>
           <th class="align-center">{$Think.lang.member_idcard_image3}</th>
           <th class="align-center">{$Think.lang.member_areainfo}</th>
@@ -98,9 +98,9 @@
           <td class="align-center">{$v.memberbank_truename}</td>
           
           <td class="align-center">{$v.member_idcard}</td>
-          <!--<td class="align-center">-->
-              <!--<img src="{:get_member_idcard_image($v.member_idcard_image1)}" height="100" onclick="openPhoto('{:get_member_idcard_image($v.member_idcard_image1)}')">-->
-          <!--</td>-->
+          <td class="align-center">
+              <img src="{:get_member_idcard_image($v.member_idcard_image1)}" height="100" onclick="openPhoto('{:get_member_idcard_image($v.member_idcard_image1)}')">
+          </td>
           <td class="align-center">
               <img src="{:get_member_idcard_image($v.member_idcard_image2)}" height="100" onclick="openPhoto('{:get_member_idcard_image($v.member_idcard_image2)}')">
           </td>
