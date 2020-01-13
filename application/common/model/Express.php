@@ -148,9 +148,46 @@ class Express extends Model {
     }
 
     /**
-     * 快递查询
+     * 获取物流信息 ----阿里云
+     * @DateTime 2020-01-13
+     * @param    [type]     $express_code  [description]
+     * @param    [type]     $shipping_code [description]
+     * @param    string     $phone         [description]
+     * @return   [type]                    [description]
      */
     public function queryExpress($express_code,$shipping_code,$phone = ''){
+        $AliMethod = new \libr\AliMethod(array());
+        $ExpressInfo = [
+            'express_code'  =>$express_code,
+            'shipping_code' =>$shipping_code,
+            'phone'         =>$phone
+        ];
+        //获取物流信息
+        $ExpressInfo = $AliMethod->Express($ExpressInfo);
+        $result['Success'] = true;
+        if ($ExpressInfo['code']==100) {
+            $result['Success'] = false;
+        }
+        $result['msg'] = $ExpressInfo['msg'];
+        $info = $ExpressInfo['info']['result'];
+        $list = [];
+        foreach ($info['list'] as $k => $v) {
+            $list[$k]['AcceptTime'] = $v['time'];
+            $list[$k]['AcceptStation'] = $v['status'];
+        }
+        $result['Traces'] = array_reverse($list);
+        return $result;
+    }
+
+    /**
+     * 查询物流接口 2
+     * @DateTime 2020-01-13
+     * @param    [type]     $express_code  [description]
+     * @param    [type]     $shipping_code [description]
+     * @param    string     $phone         [description]
+     * @return   [type]                    [description]
+     */
+    public function queryExpress2($express_code,$shipping_code,$phone = ''){
         if ($express_code == 'SF'){
             $phone = ds_substing($phone,7,4);
         }
