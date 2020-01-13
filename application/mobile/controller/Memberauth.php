@@ -34,8 +34,8 @@ class Memberauth extends MobileMall
         if ($commit != 1) {
             
             $bankinfo = $memberbank_model -> getMemberbankInfo($condition);
-            $sc = '';
-            if (!is_file(BASE_SITE_ROOT . "/home/idcard_image/".$member_info['member_idcard_image1'])) {
+            $sc = BASE_UPLOAD_PATH . "/home/idcard_image/".$member_info['member_idcard_image1'];
+            if (!is_file($sc)) {
                 $sc = DEFAULT_SITE_URL.'/static/home/images/member_idcard_image1.png';
             }else{
                 $sc = UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image1'].'?t='.time();
