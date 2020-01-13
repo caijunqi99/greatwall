@@ -38,7 +38,7 @@ class Memberfund extends MobileMember {
         output_data(array('list' => $list), mobile_page($model_predeposit->page_info));
     }
     /**
-     * 交易码日志列表
+     * 认筹股日志列表
      */
     public function transactionlog() {
         $model_transaction = Model('transaction');
@@ -51,9 +51,9 @@ class Memberfund extends MobileMember {
                 $v['tl_add_time_text'] = @date('Y-m-d', $v['tl_addtime']);
                 $list[$k] = $v;
                 if($v['tl_transaction']>0){
-                    $list[$k]['tl_desc']="交易码增加".$v['tl_transaction'];
+                    $list[$k]['tl_desc']="认筹股增加".$v['tl_transaction'];
                 }else{
-                    $list[$k]['tl_desc']="交易码减少".$v['tl_transaction'];
+                    $list[$k]['tl_desc']="认筹股减少".$v['tl_transaction'];
                 }
             }
         }
