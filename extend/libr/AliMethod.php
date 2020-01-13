@@ -6,17 +6,28 @@ class AliMethod{
 	private $AppSecret;
 	private $AppCode;
 	private $AppKey;
-	private $NidCardhost   = "https://bankali.market.alicloudapi.com/";
+	private $Commenthost   = "https://bankali.market.alicloudapi.com/";
 	private $OcrCardhost   = "https://dm-51.data.aliyun.com/rest/160601/ocr/ocr_idcard.json";
-	private $BankCheckhost = "https://bankali.market.alicloudapi.com/";
+	private $Expresshost   = "https://wuliu.market.alicloudapi.com/";
+
 
 	function __construct($config=[]){
 		$this->AppSecret = isset($config['AppSecret'])?$config['AppSecret']:'fhvbpmiqxhbcvkn4p1h67eeljxft3fmv';
 		$this->AppCode   = isset($config['AppCode'])?$config['AppCode']:'2a829c2e12504bff846a7c92ca7460ab';
 		$this->AppKey    = isset($config['AppKey'])?$config['AppKey']:'203766257';
 	}
-
-
+	
+	public function Express($ExpressInfo){
+	    $this->Expresshost .= "kdi";
+	    $method = "GET";
+	    $headers = array('Authorization:APPCODE '.$this->AppCode);
+	    $querys = "no=".$ExpressInfo['shipping_code']."&type=".$ExpressInfo['express_code'];
+	    $this->Expresshost .="?" . $querys;
+	    $res  = http_request($this->Expresshost, $method, [], $headers);
+	    $res  = json_decode($res , TRUE);
+	    $result = $this->GetCodeExpresscheck($res);
+	    return $result;
+	}
 
 	/**
 	 * 身份证识别
@@ -89,12 +100,12 @@ class AliMethod{
 	 * @param    [type]     $member [个人信息]
 	 */
 	public function NidCard($member){
-	    $this->NidCardhost .= "nidCard";
+	    $this->Commenthost .= "nidCard";
 	    $method = "GET";
 	    $headers = array('Authorization:APPCODE '.$this->AppCode);
 	    $querys = "idCard=".$member['member_idcard']."&name=".$member['member_truename'];
-	    $this->NidCardhost .="?" . $querys;
-	    $res  = http_request($this->NidCardhost, $method, [], $headers);
+	    $this->Commenthost .="?" . $querys;
+	    $res  = http_request($this->Commenthost, $method, [], $headers);
 	    $res  = json_decode($res , TRUE);
 	    return $this->GetCodeCardcheck($res);
 	}
@@ -106,12 +117,12 @@ class AliMethod{
 	 * @return   [type]           [description]
 	 */
 	public function bankCheckNew($bank){
-	    $this->BankCheckhost .= "bank3CheckNew";
+	    $this->Commenthost .= "bank3CheckNew";
 	    $method = "GET";
 	    $headers = array('Authorization:APPCODE '.$this->AppCode);
 	    $querys = "accountNo=".$bank['memberbank_no']."&idCard=".$bank['member_idcard']."&name=".$bank['memberbank_truename'];
-	    $this->BankCheckhost .="?" . $querys;
-	    $res  = http_request($this->BankCheckhost, $method, [], $headers);
+	    $this->Commenthost .="?" . $querys;
+	    $res  = http_request($this->Commenthost, $method, [], $headers);
 	    $res  = json_decode($res , TRUE);
 	    return $this->GetCodeBankcheck($res);
 	}
@@ -248,6 +259,43 @@ class AliMethod{
 				break;
     	}
     	$return['msg'] = '银行卡验证：'.$return['msg'];
+    	return $return;
+    }
+
+    /**
+     * 获取物流信息状态码
+     * @DateTime 2020-01-13
+     * @param    [type]     $res [description]
+     */
+    private function GetCodeExpresscheck($res){
+    	$return = array(
+    		'code' => 100
+    	);
+    	switch (strval($res['status'])) {
+    		case '0':
+	    		$return['msg'] = '查询成功';
+	    		$return['info'] = $res;
+	    		$return['code'] = 200;
+    			break;
+    		case '201':
+	    		$return['msg'] = '快递单号错误！';
+    			break;
+    		case '203':
+	    		$return['msg'] = '快递公司不存在！';
+    			break;
+    		case '204':
+	    		$return['msg'] = '快递公司识别失败！';
+    			break;
+    		case '205':
+	    		$return['msg'] = '没有获取到物流信息！';
+    			break;
+    		case '207':
+	    		$return['msg'] = '该单号被限制，错误单号；一个单号对应多个快递公司，请求须指定快递公司！';
+    			break;
+    		default:
+	    		$return['msg'] = '没有获取到物流信息！';
+    			break;
+    	}
     	return $return;
     }
 
