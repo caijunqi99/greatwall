@@ -87,4 +87,4 @@ $lang['pdlog_list'] = '预存款明细';
 $lang['pdlog_list_c'] = '储值卡明细';
 $lang['pd_add'] = '储值卡调节';
 $lang['pd_add_c'] = '储值卡变更';
-$lang['change_predeposit_now']='当前交易码为';
+$lang['change_predeposit_now']='当前认筹股为';
