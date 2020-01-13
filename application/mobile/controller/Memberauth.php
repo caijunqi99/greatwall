@@ -44,6 +44,7 @@ class Memberauth extends MobileMall
                 'member_townid'        =>$member_info['member_townid'],
                 'member_villageid'     =>$member_info['member_villageid'],
                 'member_areainfo'      =>$member_info['member_areainfo'],
+                'member_idcard_image1' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image1'].'?t='.time(),
                 'member_idcard_image2' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image2'].'?t='.time(),
                 'member_idcard_image3' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image3'].'?t='.time(),
                 'username'             => $bankinfo['memberbank_truename'],
@@ -71,9 +72,13 @@ class Memberauth extends MobileMall
                 $IdCardValidate = [];
                 //上传身份证图
                 if ($_FILES) {
+                    $files['member_idcard_image1'] = isset($_FILES['member_idcard_image1']['name'])?$_FILES['member_idcard_image1']['name']:'';
                     $files['member_idcard_image2'] = isset($_FILES['member_idcard_image2']['name'])?$_FILES['member_idcard_image2']['name']:'';
                     $files['member_idcard_image3'] = isset($_FILES['member_idcard_image3']['name'])?$_FILES['member_idcard_image3']['name']:'';
                     $upload = $this->img($files,$member_id);
+                    if (!empty($upload['member_idcard_image1'])) {
+                        $member_array['member_idcard_image1'] = $upload['member_idcard_image1'];
+                    }
                     if (!empty($upload['member_idcard_image2'])) {
                         $member_array['member_idcard_image2'] = $upload['member_idcard_image2'];
                         $IdCardValidate['member_face'] = BASE_UPLOAD_PATH . "/home/idcard_image/".$upload['member_idcard_image2'];
@@ -84,7 +89,7 @@ class Memberauth extends MobileMall
                     }
                 }
 
-                $AliMethod = new \libr\AliMethod([]);
+                $AliMethod = new \libr\AliMethod(array());
                 $writeLog = [
                     'logName' =>'实名认证',
                     'AliMethod' =>$AliMethod,
@@ -165,6 +170,16 @@ class Memberauth extends MobileMall
     public function img($files,$member_id){
         $upload_file = BASE_UPLOAD_PATH . DS ."home/idcard_image";
         $upload = [];
+        if (!empty($files['member_idcard_image1'])) {
+            $file = request()->file('member_idcard_image1');
+            $info = $file->validate(['ext'=>ALLOW_IMG_EXT])->move($upload_file, $member_id.'_idcard_s');
+            if ($info) {
+                $upload['member_idcard_image1'] = $info->getFilename();
+            } else {
+                // 上传失败获取错误信息
+                output_error($file->getError());
+            }
+        }
         if (!empty($files['member_idcard_image2'])) {
             $file = request()->file('member_idcard_image2');
             $info = $file->validate(['ext'=>ALLOW_IMG_EXT])->move($upload_file, $member_id.'_idcard_z');
