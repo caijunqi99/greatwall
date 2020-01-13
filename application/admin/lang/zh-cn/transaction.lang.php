@@ -8,7 +8,7 @@ $lang['admin_points_membername'] = '会员名称';
 $lang['admin_points_operatetype'] = '增减类型';
 $lang['admin_points_operatetype_add'] = '增加';
 $lang['admin_points_operatetype_reduce'] = '减少';
-$lang['admin_points_pointsnum'] = '交易码';
+$lang['admin_points_pointsnum'] = '认筹股';
 $lang['admin_points_pointsnum_av'] = '可用积分';
 $lang['admin_points_pointsdesc'] = '描述';
 $lang['admin_points_pointsdesc_notice'] = '描述信息将显示在积分明细相关页，会员和管理员都可见';
@@ -43,7 +43,7 @@ $lang['admin_points_stage_app'] = '积分兑换';
 $lang['admin_points_stage_signin'] = '签到';
 $lang['admin_points_stage_inviter'] = '推荐注册';
 $lang['admin_points_addtime'] = '添加时间';
-$lang['admin_points_log_help1'] = '交易码管理，展示了会员、管理员、操作积分数（交易码，无符号表示增加，“-”表示减少，）、添加时间等信息';
+$lang['admin_points_log_help1'] = '认筹股管理，展示了会员、管理员、操作积分数（交易码，无符号表示增加，“-”表示减少，）、添加时间等信息';
 $lang['admin_points_stage_pointransform'] = '积分互转';
 
 

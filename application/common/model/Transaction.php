@@ -34,7 +34,7 @@ class Transaction extends Model{
         switch ($change_type) {
             case 'sys_add_money':
                 $data_log['tl_transaction'] = $data['amount'];
-                $data_log['tl_desc'] = '管理员调节交易码【增加】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['tl_desc'];
+                $data_log['tl_desc'] = '管理员调节认筹股【增加】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['tl_desc'];
                 $data_log['tl_adminname'] = $data['admin_name'];
                 $data_log['tl_adminid'] = $data['admin_id'];
                 $data_pd['member_transaction'] = Db::raw('member_transaction+'.$data['amount']);
@@ -45,7 +45,7 @@ class Transaction extends Model{
                 break;
             case 'sys_del_money':
                 $data_log['tl_transaction'] = -$data['amount'];
-                $data_log['tl_desc'] = '管理员调节交易码【减少】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['tl_desc'];
+                $data_log['tl_desc'] = '管理员调节认筹股【减少】，充值单号: ' . $data['pdr_sn'].',备注：'.$data['tl_desc'];
                 $data_log['tl_adminname'] = $data['admin_name'];
                 $data_log['tl_adminid'] = $data['admin_id'];
                 $data_pd['member_transaction'] = Db::raw('member_transaction-'.$data['amount']);
@@ -101,7 +101,7 @@ class Transaction extends Model{
         return $insert;
     }
     /**
-     * 交易码日志列表
+     * 认筹股日志列表
      * @access public
      * @author bayi-shop
      * @param type $condition

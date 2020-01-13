@@ -63,7 +63,7 @@ class Transaction extends AdminControl {
         }
     }
     /*
-    * 调节交易码
+    * 调节认筹股
     */
 
     public function ts_add() {
@@ -111,16 +111,16 @@ class Transaction extends AdminControl {
             #生成对应订单号
             $order_sn = makePaySn($member_id);
             $admininfo = $this->getAdminInfo();
-            $log_msg = "管理员【" . $admininfo['admin_name'] . "】操作会员【" . $member_info['member_name'] . "】交易码，金额为" . $money . ",编号为" . $order_sn;
+            $log_msg = "管理员【" . $admininfo['admin_name'] . "】操作会员【" . $member_info['member_name'] . "】认筹股，金额为" . $money . ",编号为" . $order_sn;
             $admin_act = "sys_add_money";
             switch ($operatetype) {
                 case 1:
                     $admin_act = "sys_add_money";
-                    $log_msg = "管理员【" . $admininfo['admin_name'] . "】操作会员【" . $member_info['member_name'] . "】交易码【增加】，金额为" . $money . ",编号为" . $order_sn;
+                    $log_msg = "管理员【" . $admininfo['admin_name'] . "】操作会员【" . $member_info['member_name'] . "】认筹股【增加】，金额为" . $money . ",编号为" . $order_sn;
                     break;
                 case 2:
                     $admin_act = "sys_del_money";
-                    $log_msg = "管理员【" . $admininfo['admin_name'] . "】操作会员【" . $member_info['member_name'] . "】交易码【减少】，金额为" . $money . ",编号为" . $order_sn;
+                    $log_msg = "管理员【" . $admininfo['admin_name'] . "】操作会员【" . $member_info['member_name'] . "】认筹股【减少】，金额为" . $money . ",编号为" . $order_sn;
                     break;
                 default:
                     $this->error(lang('ds_common_op_fail'), 'Predeposit/pdlog_list');
