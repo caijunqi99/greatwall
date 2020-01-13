@@ -43,9 +43,9 @@ class Membertransform extends MobileMember
                 $result = $this->TransToPdcash($balance,$msg,$act);
                 break;
             
-            case 2:     //转到交易码
+            case 2:     //转到认筹股
                 $bitcoin = $transPoint*config('inter');
-                $msg .= $rmsg = '交易码【增加】 '.$bitcoin.' ,积分【减少】'.$transPoint.'，'.'本次交易转换比率为 【1：'.config('inter').'】';
+                $msg .= $rmsg = '认筹股【增加】 '.$bitcoin.' ,积分【减少】'.$transPoint.'，'.'本次交易转换比率为 【1：'.config('inter').'】';
                 $result = $this->TransToBitcoin($bitcoin,$msg,$act);
                 break;
         }
@@ -106,7 +106,7 @@ class Membertransform extends MobileMember
     }
 
     /**
-     * 积分转移到交易码
+     * 积分转移到认筹股
      * @DateTime 2019-12-06
      * @param    [type]     $bitcoin [转移数量]
      * @param    [type]     $memo    [备注]

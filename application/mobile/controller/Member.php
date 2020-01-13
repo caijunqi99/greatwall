@@ -97,7 +97,7 @@ class Member extends MobileMember {
             $member_info['commission']=$list_setting['commission'];
             //储值卡
             $member_info['predepoit'] = $this->member_info['available_predeposit'];
-            //交易码
+            //认筹股
             $member_info['transaction'] = $this->member_info['member_transaction'];
             //银行卡信息
             $member_id = $this->member_info['member_id'];
