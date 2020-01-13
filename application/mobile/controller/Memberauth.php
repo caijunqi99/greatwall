@@ -34,6 +34,12 @@ class Memberauth extends MobileMall
         if ($commit != 1) {
             
             $bankinfo = $memberbank_model -> getMemberbankInfo($condition);
+            $sc = '';
+            if (!is_file(BASE_SITE_ROOT . "/home/idcard_image/".$member_info['member_idcard_image1'])) {
+                $sc = HOME_SITE_ROOT.'/images/member_idcard_image1.png';
+            }else{
+                $sc = UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image1'].'?t='.time();
+            }
             $logindata = array(
                 'member_id'            => $member_info['member_id'],
                 'member_auth_state'    => $member_info['member_auth_state'],
@@ -44,7 +50,7 @@ class Memberauth extends MobileMall
                 'member_townid'        =>$member_info['member_townid'],
                 'member_villageid'     =>$member_info['member_villageid'],
                 'member_areainfo'      =>$member_info['member_areainfo'],
-                'member_idcard_image1' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image1'].'?t='.time(),
+                'member_idcard_image1' => $sc,
                 'member_idcard_image2' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image2'].'?t='.time(),
                 'member_idcard_image3' => UPLOAD_SITE_URL . "/home/idcard_image/".$member_info['member_idcard_image3'].'?t='.time(),
                 'username'             => $bankinfo['memberbank_truename'],
