@@ -43,12 +43,12 @@ class Membermarket extends MobileMember
             $MarketAward[$k]['marketmanageaward_picture']=UPLOAD_SITE_URL . '/' . ATTACH_WARD . '/'.$v['marketmanageaward_picture'];
         }
         //修改抽奖次数
-        // $orderModel->editOrder(['draw_num'=>0],[
-        //     'buyer_id'=>$this->member_info['member_id'],
-        //     'order_state'=>ORDER_STATE_PAY,
-        //     'pay_sn'=>$paySn,
-        //     'draw_num'=> 1
-        // ]);
+        $orderModel->editOrder(['draw_num'=>0],[
+            'buyer_id'=>$this->member_info['member_id'],
+            'order_state'=>ORDER_STATE_PAY,
+            'pay_sn'=>$paySn,
+            'draw_num'=> 1
+        ]);
         output_data([
             'marketmanage_info' =>$marketinfo,
             'marketmanageaward_list' =>$MarketAward
