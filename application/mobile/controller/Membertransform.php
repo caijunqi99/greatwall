@@ -24,7 +24,7 @@ class Membertransform extends MobileMember
 
 
     /**
-     * 转换可用积分到储值卡余额或数字币
+     * 转换可用积分到储值卡余额或认筹股
      * @DateTime 2019-12-06
      */
     public function PointTransform(){
@@ -44,8 +44,8 @@ class Membertransform extends MobileMember
                 break;
             
             case 2:     //转到认筹股
-                $bitcoin = $transPoint*config('inter');
-                $msg .= $rmsg = '认筹股【增加】 '.$bitcoin.' ,积分【减少】'.$transPoint.'，'.'本次交易转换比率为 【1：'.config('inter').'】';
+                $bitcoin = round($transPoint/config('inter'));
+                $msg .= $rmsg = '认筹股【增加】 '.$bitcoin.' ,积分【减少】'.$transPoint.'，'.'本次交易转换比率为 【'.config('inter').':1】';
                 $result = $this->TransToBitcoin($bitcoin,$msg,$act);
                 break;
         }
