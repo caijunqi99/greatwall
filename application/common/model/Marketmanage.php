@@ -119,7 +119,7 @@ class Marketmanage extends Model {
      * @return array 数组类型的返回结果
      */
     public function getMarketmanageAwardList($condition,$lock=false) {
-        $result = db('marketmanageaward')->where($condition)->order('marketmanageaward_level asc')->lock($lock)->select();
+        $result = db('marketmanageaward')->where($condition)->order('sort asc')->lock($lock)->select();
         return $result;
     }
 

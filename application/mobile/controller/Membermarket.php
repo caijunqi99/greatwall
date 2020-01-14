@@ -43,12 +43,12 @@ class Membermarket extends MobileMember
             $MarketAward[$k]['marketmanageaward_picture']=UPLOAD_SITE_URL . '/' . ATTACH_WARD . '/'.$v['marketmanageaward_picture'];
         }
         //修改抽奖次数
-        $orderModel->editOrder(['draw_num'=>0],[
-            'buyer_id'=>$this->member_info['member_id'],
-            'order_state'=>ORDER_STATE_PAY,
-            'pay_sn'=>$paySn,
-            'draw_num'=> 1
-        ]);
+        // $orderModel->editOrder(['draw_num'=>0],[
+        //     'buyer_id'=>$this->member_info['member_id'],
+        //     'order_state'=>ORDER_STATE_PAY,
+        //     'pay_sn'=>$paySn,
+        //     'draw_num'=> 1
+        // ]);
         output_data([
             'marketmanage_info' =>$marketinfo,
             'marketmanageaward_list' =>$MarketAward
@@ -72,35 +72,42 @@ class Membermarket extends MobileMember
         //加入空奖  --并删除已发放完的奖品
         $probability = config('marketmanageaward_probability');
         foreach ($MarketAward as $key => $val) {  
-            if ($val['marketmanageaward_count']<=0) {
+            //删除已发放完的奖品，如果为空奖，则不予删除
+            if ($val['marketmanageaward_count']<=0 && $val['marketmanageaward_type']!=3) {
                 unset($MarketAward[$key]);
             }else{
-                $probability -= $val['marketmanageaward_probability'];//概率数组  
+                //$probability -= $val['marketmanageaward_probability'];//概率数组  
             }
         } 
         //空奖
-        $nothingAward = [
-            'marketmanageaward_id' => 99999,
-            'marketmanageaward_probability' => $probability
-        ];
+        // $nothingAward = [
+        //     'marketmanageaward_id' => 99999,
+        //     'marketmanageaward_probability' => $probability
+        // ];
         //如果奖品已发放完毕， 100%空奖
-        if (empty($MarketAward)) {
-            $MarketAward[]=$nothingAward;
-        }else{
-            array_push($MarketAward, $nothingAward);
-        }
+        // if (empty($MarketAward)) {
+        //     $MarketAward[]=$nothingAward;
+        // }else{
+        //     array_push($MarketAward, $nothingAward);
+        // }
         //开始抽奖
+        sort($MarketAward);
         $result = $this->GetSurprise($MarketAward);
+        foreach ($leftAward as $key => &$v) {
+            $v['marketmanageaward_picture'] = UPLOAD_SITE_URL . '/' . ATTACH_WARD . '/'.$v['marketmanageaward_picture'];
+        }
+        unset($v);
         //获取最终奖品
         $LastAward = isset($leftAward[$result['yes']])?$leftAward[$result['yes']]:[];
         $return = [];
         $return['count_left'] = 0;//当前剩余抽奖次数
         $return['draw_result'] = $LastAward?true:false;//是否中奖
-        if ($return['draw_result']) {
-            $return['draw_info'] =$LastAward;//中奖信息
+        $return['draw_info'] =$LastAward;//中奖信息
+        if ($return['draw_result'] && $LastAward['marketmanageaward_type']!=3) {
             //处理奖品
             $return['awardMsg'] = $this->HandleAward($LastAward);
         }else{
+            $return['draw_result'] = false;
             $return['awardMsg'] = $marketinfo['marketmanage_failed'];
         }
         output_data($return);
