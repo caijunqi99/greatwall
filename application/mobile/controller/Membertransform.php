@@ -44,7 +44,7 @@ class Membertransform extends MobileMember
                 break;
             
             case 2:     //转到认筹股
-                $bitcoin = round($transPoint/config('inter'));
+                $bitcoin = round($transPoint/config('inter'),2);
                 $msg .= $rmsg = '认筹股【增加】 '.$bitcoin.' ,积分【减少】'.$transPoint.'，'.'本次交易转换比率为 【'.config('inter').':1】';
                 $result = $this->TransToBitcoin($bitcoin,$msg,$act);
                 break;
