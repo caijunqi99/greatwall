@@ -12,9 +12,9 @@ class AliMethod{
 
 
 	function __construct($config=[]){
-		$this->AppSecret = isset($config['AppSecret'])?$config['AppSecret']:'fhvbpmiqxhbcvkn4p1h67eeljxft3fmv';
-		$this->AppCode   = isset($config['AppCode'])?$config['AppCode']:'2a829c2e12504bff846a7c92ca7460ab';
-		$this->AppKey    = isset($config['AppKey'])?$config['AppKey']:'203766257';
+		$this->AppKey    = isset($config['AppKey'])?$config['AppKey']:config('aliyun_api_appkey');
+		$this->AppSecret = isset($config['AppSecret'])?$config['AppSecret']:config('aliyun_api_appsecret');
+		$this->AppCode   = isset($config['AppCode'])?$config['AppCode']:config('aliyun_api_appcode');
 	}
 	
 	public function Express($ExpressInfo){
