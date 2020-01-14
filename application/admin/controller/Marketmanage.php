@@ -56,11 +56,12 @@ class Marketmanage extends AdminControl {
             $this->assign('level',$level);
 
             $marketmanageaward_list = array();
-            for ($i = 1; $i <= 4; $i++) {
+            for ($i = 1; $i <= 8; $i++) {
                 $marketmanageaward_list[] = array(
                     'marketmanageaward_level' => $i,
                     'marketmanageaward_type' => 1,
                     'marketmanageaward_count' => 0,
+                    'sort' => 1,
                     'marketmanageaward_probability' => 0,
                     'marketmanageaward_point' => 0,
                     'bonus_id' => '',
@@ -87,7 +88,7 @@ class Marketmanage extends AdminControl {
             //print_r($_FILES);exit;
             $data_marketmanageaward = array();
             $total_marketmanageaward_probability = 0;
-            for ($i = 1; $i <= 4; $i++) {
+            for ($i = 1; $i <= 8; $i++) {
                 //上传文件保存路径
                 $upload_file = BASE_UPLOAD_PATH . DS . ATTACH_WARD;
                 if (!empty($_FILES['site_logo'.$i]['name'])) {
@@ -111,6 +112,7 @@ class Marketmanage extends AdminControl {
                     'marketmanageaward_level' => $i,
                     'marketmanageaward_type' => intval($_POST['type_' . $i]),
                     'marketmanageaward_count' => intval($_POST['count_' . $i]),
+                    'sort' => intval($_POST['sort_' . $i]),
                     'marketmanageaward_probability' => $marketmanageaward_probability,//中奖概率
                     'marketmanageaward_point'=>intval($_POST['point_' . $i]),
                     'marketmanageaward_picture'=>$_POST['site_logo'.$i],
@@ -186,7 +188,7 @@ class Marketmanage extends AdminControl {
         } else {
             $data_marketmanageaward = array();
             $total_marketmanageaward_probability = 0;
-            for ($i = 1; $i <= 4; $i++) {
+            for ($i = 1; $i <= 8; $i++) {
                 //上传文件保存路径
                 $upload_file = BASE_UPLOAD_PATH . DS . ATTACH_WARD;
                 if (!empty($_FILES['site_logo'.$i]['name'])) {

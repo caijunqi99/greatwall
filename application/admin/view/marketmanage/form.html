@@ -69,6 +69,10 @@
                             <li>{$Think.lang.marketmanage_award_2}</li>
                             <li>{$Think.lang.marketmanage_award_3}</li>
                             <li>{$Think.lang.marketmanage_award_4}</li>
+                            <li>{$Think.lang.marketmanage_award_5}</li>
+                            <li>{$Think.lang.marketmanage_award_6}</li>
+                            <li>{$Think.lang.marketmanage_award_7}</li>
+                            <li>{$Think.lang.marketmanage_award_8}</li>
                         </ul>
                         {foreach name="marketmanageaward_list" item="award"}
                         <div class="marketmanage_award" {if $award.marketmanageaward_level neq '1'}style="display:none"{/if}>
@@ -80,7 +84,7 @@
                             <dd>
                                 <label><input name="type_{$award.marketmanageaward_level}" type="radio" value="1" {if $award.marketmanageaward_type eq '1'}checked{/if}>{$Think.lang.points_unit}</label>
                                 <label><input name="type_{$award.marketmanageaward_level}" type="radio" value="2" {if $award.marketmanageaward_type eq '2'}checked{/if}>{$Think.lang.ds_matter}</label>
-                                <!--<label><input name="type_{$award.marketmanageaward_level}" type="radio" value="3" {if $award.marketmanageaward_type eq '3'}checked{/if}>{$Think.lang.ds_voucher}</label>-->
+                                <label><input name="type_{$award.marketmanageaward_level}" type="radio" value="3" {if $award.marketmanageaward_type eq '3'}checked{/if}>{$Think.lang.marketmanageaward_notwin}</label>
                             </dd>
                         </dl>
                         <dl class="award_type_show" id="award_type_show_1" {if $award.marketmanageaward_type neq '1'}style="display:none"{/if}>
@@ -101,14 +105,14 @@
                         </dd>
                         </dl>
                         <dl class="award_type_show" id="award_type_show_3" {if $award.marketmanageaward_type neq '3'}style="display:none"{/if}>
-                        <dt>{$Think.lang.choose_voucher}:</dt>
-                        <dd>
-                            <select name="vouchertemplate_id_{$award.marketmanageaward_level}">
-                                {foreach name="vouchertemplate_list" item="vouchertemplate"}
-                                <option value="{$vouchertemplate.vouchertemplate_id}" {if $award.vouchertemplate_id eq $vouchertemplate.vouchertemplate_id}selected{/if}>{$vouchertemplate.vouchertemplate_title}[{$vouchertemplate.vouchertemplate_storename}]</option>
-                                {/foreach}
-                            </select>
-                        </dd>
+                        <dt>{$Think.lang.marketmanageaward_notwin}</dt>
+                        <!--<dd>-->
+                            <!--<select name="vouchertemplate_id_{$award.marketmanageaward_level}">-->
+                                <!--{foreach name="vouchertemplate_list" item="vouchertemplate"}-->
+                                <!--<option value="{$vouchertemplate.vouchertemplate_id}" {if $award.vouchertemplate_id eq $vouchertemplate.vouchertemplate_id}selected{/if}>{$vouchertemplate.vouchertemplate_title}[{$vouchertemplate.vouchertemplate_storename}]</option>-->
+                                <!--{/foreach}-->
+                            <!--</select>-->
+                        <!--</dd>-->
                         </dl>
                         <dl>
                             <dt>奖品图片:</dt>
@@ -124,6 +128,10 @@
                             </dd>
                         </dl>
                         <dl>
+                            <dt>{$Think.lang.marketmanageaward_sort}:</dt>
+                            <dd><input name="sort_{$award.marketmanageaward_level}" value="{$award.sort}" class="input-txt w36" type="text"></dd>
+                        </dl>
+                        <dl>
                             <dt>{$Think.lang.marketmanageaward_count}:</dt>
                             <dd><input name="count_{$award.marketmanageaward_level}" value="{$award.marketmanageaward_count}" class="input-txt w36" type="text"><em>{$Think.lang.marketmanageaward_send}：{$award.marketmanageaward_send|default='0'}</em></dd>
                         </dl>
@@ -131,6 +139,7 @@
                             <dt>{$Think.lang.marketmanageaward_probability}:</dt>
                             <dd><input name="probability_{$award.marketmanageaward_level}" value="{$award.marketmanageaward_probability}" class="input-txt w36" type="text">%<em>{$Think.lang.marketmanageaward_probability_tips}</em></dd>
                         </dl>
+
                     </div>
                     {/foreach}
 </div>
