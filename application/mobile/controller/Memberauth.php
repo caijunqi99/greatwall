@@ -77,6 +77,9 @@ class Memberauth extends MobileMall
                 
                 $IdCardValidate = [];
                 //上传身份证图
+                if (!isset($_FILES['member_idcard_image1']))output_error('手持身份证图片未上传！');
+                if (!isset($_FILES['member_idcard_image2']))output_error('身份证正面图片未上传！');
+                if (!isset($_FILES['member_idcard_image3']))output_error('身份证反面图片未上传！');
                 if ($_FILES) {
                     $files['member_idcard_image1'] = isset($_FILES['member_idcard_image1']['name'])?$_FILES['member_idcard_image1']['name']:'';
                     $files['member_idcard_image2'] = isset($_FILES['member_idcard_image2']['name'])?$_FILES['member_idcard_image2']['name']:'';
