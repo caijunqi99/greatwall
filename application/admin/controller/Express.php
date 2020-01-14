@@ -173,6 +173,9 @@ class Express extends AdminControl {
             $update_array = array();
             $update_array['expresscf_kdn_id'] = intval(input('post.expresscf_kdn_id'));
             $update_array['expresscf_kdn_key'] = input('post.expresscf_kdn_key');
+            $update_array['aliyun_api_appkey'] = intval(input('post.aliyun_api_appkey'));
+            $update_array['aliyun_api_appsecret'] = input('post.aliyun_api_appsecret');
+            $update_array['aliyun_api_appcode'] = input('post.aliyun_api_appcode');
             $result = $config_model->editConfig($update_array);
             if ($result) {
                 $this->success(lang('ds_common_save_succ'));
