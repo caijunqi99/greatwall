@@ -62,6 +62,19 @@ class Transaction extends AdminControl {
             return $this->fetch();
         }
     }
+    public function price() {
+            $tranprice_model=model('tranprice');
+            $condition_arr=array();
+            $list = $tranprice_model->getTranList($condition_arr,'*',10, 't_id desc');
+            foreach($list as $k=>$v){
+                $list[$k]['t_addtime']=date('Y-m-d H:i:s',$v['t_addtime']);
+            }
+            $this->assign('tranlist', $list);
+            $this->assign('show_page', $tranprice_model->page_info->render());
+            $this->setAdminCurItem('price');
+            return $this->fetch();
+
+    }
     /*
     * 调节认筹股
     */
@@ -365,6 +378,11 @@ class Transaction extends AdminControl {
                 'name' => 'index',
                 'text' => lang('ds_transaction_code'),
                 'url' => url('Transaction/index')
+            ),
+            array(
+                'name' => 'price',
+                'text' => lang('ds_transaction_price'),
+                'url' => url('Transaction/price')
             ),
         );
         return $menu_array;
