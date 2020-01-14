@@ -165,10 +165,11 @@ class Express extends Model {
         //获取物流信息
         $ExpressInfo = $AliMethod->Express($ExpressInfo);
         $result['Success'] = true;
+        $result['msg'] = $ExpressInfo['msg'];
         if ($ExpressInfo['code']==100) {
             $result['Success'] = false;
+            return $result;
         }
-        $result['msg'] = $ExpressInfo['msg'];
         $info = $ExpressInfo['info']['result'];
         $list = [];
         foreach ($info['list'] as $k => $v) {
