@@ -227,6 +227,7 @@ class Marketmanage extends AdminControl {
                         'marketmanageaward_level' => $i,
                         'marketmanageaward_type' => intval($_POST['type_' . $i]),
                         'marketmanageaward_count' => intval($_POST['count_' . $i]),
+                        'sort' => intval($_POST['sort_' . $i]),
                         'marketmanageaward_probability' => $marketmanageaward_probability,//中奖概率
                         'marketmanageaward_point' => intval($_POST['point_' . $i]),
                         'bonus_id' => isset($_POST['bonus_id_' . $i]) ? $_POST['bonus_id_' . $i] : 0,
