@@ -43,6 +43,14 @@ class Scale extends AdminControl {
             $update_array['marketmanageaward_probability'] =input('post.marketmanageaward_probability');
             $update_array['draw']                =input('post.draw');
             $result = $config_model->editConfig($update_array);
+            $tranprice_model=model('tranprice');
+            $res=$tranprice_model->getTranLast();
+            if($res[0]['t_price']!=$update_array['inter']){
+                $data=array();
+                $data['t_price']=$update_array['inter'];
+                $data['t_addtime']=time();
+                $tranprice_model->addTran($data);
+            }
             if ($result) {
                 $this->log(lang('ds_edit').lang('scale_set'),1);
                 $this->success(lang('ds_common_save_succ'), 'Scale/scale');
