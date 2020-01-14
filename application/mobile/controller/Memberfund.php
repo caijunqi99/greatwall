@@ -198,6 +198,18 @@ class Memberfund extends MobileMember {
             $this->assign('member_info', $member_info);
         }
     }
+    /**
+     * 认筹股折线图
+     */
+    public function tranprice() {
+        $tranprice_model=model('tranprice');
+        $condition_arr=array();
+        $list = $tranprice_model->getTranList($condition_arr,'*',7, 't_id desc');
+        foreach($list as $k=>$v){
+            $list[$k]['t_addtime']=date('m-d',$v['t_addtime']);
+        }
+        output_data(array('list' => $list));
+    }
 
     /**
      * AJAX验证

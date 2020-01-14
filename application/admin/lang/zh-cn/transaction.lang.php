@@ -45,6 +45,7 @@ $lang['admin_points_stage_inviter'] = '推荐注册';
 $lang['admin_points_addtime'] = '添加时间';
 $lang['admin_points_log_help1'] = '认筹股管理，展示了会员、管理员、操作积分数（交易码，无符号表示增加，“-”表示减少，）、添加时间等信息';
 $lang['admin_points_stage_pointransform'] = '积分互转';
+$lang['admin_price_help1'] = '认筹股管理，展示当前每股认筹股价格、添加时间等信息';
 
 
 
@@ -66,3 +67,8 @@ $lang['points_number_ordermax_tip'] = '例:设置为100，表明每订单赠送�
 $lang['pointslog']='积分调整';
 $lang['points_setting']='积分规则';
 $lang['points_draw']='积分提现';
+
+
+$lang['tranprice_id']='ID';
+$lang['tranprice_price']='每股价格';
+$lang['tranprice_addtime']='添加时间';
