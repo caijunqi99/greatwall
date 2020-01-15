@@ -37,6 +37,7 @@ class Membermarket extends MobileMember
         $marketmanage_list = array_column($marketmanage_list, null ,'marketmanage_grade');
         //获取当前等级的抽奖转盘
         $marketinfo = $marketmanage_list[$this->member_info['level']];
+        $marketinfo['botton'] = UPLOAD_SITE_URL . '/' . ATTACH_WARD . '/choujiang.png?t='.time();
         //获取转盘奖品
         $MarketAward = $marketmanage_model->getMarketmanageAwardList(['marketmanage_id'=>$marketinfo['marketmanage_id']]);
         foreach($MarketAward as $k=>$v){
@@ -72,7 +73,7 @@ class Membermarket extends MobileMember
         //加入空奖  --并删除已发放完的奖品
         $probability = config('marketmanageaward_probability');
         foreach ($MarketAward as $key => $val) {  
-            //删除已发放完的奖品，如果为空奖，则不予删除
+            //删除已发放完的奖品
             if ($val['marketmanageaward_count']<=0 && $val['marketmanageaward_type']!=3) {
                 unset($MarketAward[$key]);
             }else{
