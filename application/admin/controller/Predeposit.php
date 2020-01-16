@@ -83,7 +83,7 @@ class Predeposit extends AdminControl {
         $condition = array();
         $condition['payment_code'] = input('post.payment_code');
         $payment_info = $payment_model->getPaymentOpenInfo($condition);
-        if (!$payment_info || $payment_info['payment_code'] == 'offline' || $payment_info['payment_code'] == 'offline') {
+        if (!$payment_info ) {
             $this->error(lang('payment_index_sys_not_support'));
         }
 
