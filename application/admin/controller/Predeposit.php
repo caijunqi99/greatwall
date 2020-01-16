@@ -69,7 +69,7 @@ class Predeposit extends AdminControl {
             $payment_list = model('payment')->getPaymentOpenList();
             //去掉预存款和货到付款
             foreach ($payment_list as $key => $value) {
-                if ($value['payment_code'] == 'predeposit' || $value['payment_code'] == 'offline') {
+                if ($value['payment_code'] == 'predeposit' || $value['payment_code'] == 'alipay'|| $value['payment_code'] == 'unionpay'|| $value['payment_code'] == 'wxpay_h5'|| $value['payment_code'] == 'wxpay_native') {
                     unset($payment_list[$key]);
                 }
             }
@@ -103,7 +103,7 @@ class Predeposit extends AdminControl {
             //更改充值状态
             $state = $predeposit_model->editPdRecharge($update, $condition);
             if (!$state) {
-                throw Exception(lang('predeposit_payment_pay_fail'));
+                $this->error(lang('predeposit_payment_pay_fail'));
             }
             //变更会员预存款
             $data = array();
@@ -113,6 +113,7 @@ class Predeposit extends AdminControl {
             $data['pdr_sn'] = $info['pdr_sn'];
             $data['admin_name'] = $this->admin_info['admin_name'];
             $predeposit_model->changePd('recharge', $data);
+            $this->rollback($info['pdr_member_id'],$info['pdr_amount']);
             $predeposit_model->commit();
             $this->log($log_msg, 1);
             dsLayerOpenSuccess(lang('admin_predeposit_recharge_edit_success'));
