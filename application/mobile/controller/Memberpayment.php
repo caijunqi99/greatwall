@@ -347,7 +347,6 @@ class Memberpayment extends MobileMember
             output_data($pay_url);
         }
     }
-
 }
 
 ?>
