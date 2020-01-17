@@ -204,13 +204,9 @@ class Memberfund extends MobileMember {
     public function tranprice() {
         $tranprice_model=model('tranprice');
         $condition_arr=array();
-        $list = $tranprice_model->getTranList($condition_arr,'*',7, 't_id desc');
-        $end = end($list);
+        $list = $tranprice_model->getTranList($condition_arr,'*',20, 't_id desc');
         foreach($list as $k=>$v){
             $list[$k]['t_addtime']=date('m-d',$v['t_addtime']);
-            if ($k == 0) {
-                // $list[$k]['t_addtime']='当前';
-            }
         }
         $list = array_reverse($list);
         output_data(array('list' => $list));
