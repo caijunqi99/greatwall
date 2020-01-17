@@ -87,7 +87,7 @@ define('DEFAULT_CONNECT_SMS_TIME', 60);//倒计时时间
 
 define('MD5_KEY', 'a2382918dbb49c8643f19bc3ab90ecf9');
 define('CHARSET','UTF-8');
-define('ALLOW_IMG_EXT','jpg,png,gif,bmp,jpeg');#上传图片后缀
+define('ALLOW_IMG_EXT','jpg,png,gif,bmp,jpeg,JPG,PNG,GIF,BMP,JPEG');#上传图片后缀
 define('HTTP_TYPE',  \think\Request::instance()->isSsl() ? 'https://' : 'http://');#是否为SSL
 
 define('VERIFY_CODE_INVALIDE_MINUTE',15);//验证码失效时间（分钟）
