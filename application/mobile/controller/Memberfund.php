@@ -208,6 +208,8 @@ class Memberfund extends MobileMember {
         foreach($list as $k=>$v){
             $list[$k]['t_addtime']=date('m-d',$v['t_addtime']);
         }
+        $list = array_reverse($list);
+        
         output_data(array('list' => $list));
     }
 
