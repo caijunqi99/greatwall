@@ -183,6 +183,8 @@ class Memberauth extends MobileMall
             $file = request()->file('member_idcard_image1');
             $info = $file->validate(['ext'=>ALLOW_IMG_EXT])->move($upload_file, $member_id.'_idcard_s');
             if ($info) {
+                $images = \think\Image::open($info);
+                $images->thumb(600,600)->save($upload_file.'/'.$info->getFilename());
                 $upload['member_idcard_image1'] = $info->getFilename();
             } else {
                 // 上传失败获取错误信息
@@ -193,6 +195,8 @@ class Memberauth extends MobileMall
             $file = request()->file('member_idcard_image2');
             $info = $file->validate(['ext'=>ALLOW_IMG_EXT])->move($upload_file, $member_id.'_idcard_z');
             if ($info) {
+                $images = \think\Image::open($info);
+                $images->thumb(600,600)->save($upload_file.'/'.$info->getFilename());
                 $upload['member_idcard_image2'] = $info->getFilename();
             } else {
                 // 上传失败获取错误信息
@@ -203,6 +207,8 @@ class Memberauth extends MobileMall
             $file = request()->file('member_idcard_image3');
             $info = $file->validate(['ext'=>ALLOW_IMG_EXT])->move($upload_file, $member_id.'_idcard_f');
             if ($info) {
+                $images = \think\Image::open($info);
+                $images->thumb(600,600)->save($upload_file.'/'.$info->getFilename());
                 $upload['member_idcard_image3'] = $info->getFilename();
             } else {
                 // 上传失败获取错误信息
